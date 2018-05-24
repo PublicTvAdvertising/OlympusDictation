@@ -1,0 +1,4 @@
+#Thu May 24 11:32:41 IST 2018
+base.0=/home/raneez/Documents/olympus_dictation/dictation/app/build/intermediates/transforms/dexMerger/debug/19
+renamed.0=classes.dex
+file.0=/home/raneez/Documents/olympus_dictation/dictation/app/build/intermediates/transforms/dexMerger/debug/19/classes.dex

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light_grey">#D8D8D8</color>
+    <color name="white">#FFFFFF</color>
+	<color name="dark_grey">#525252</color>
+	<color name="black">#000000</color>
+	
+    <color name="blue_top">#0099E6</color>
+    <color name="orange_top">#E54C00</color>
+    
+   	<color name="blue_bottom">#3399B2</color>
+    <color name="orange_bottom">#B24C33</color>
+	<color name="Yellow">#FFB000</color>
+	
+	<!-- Status colors -->
+	<color name="status_blue">#1E90FF</color>
+	<color name="status_red">#EE2E24</color>
+	
+	<color name="text_color">#E6E6E6</color>
+	
+</resources>

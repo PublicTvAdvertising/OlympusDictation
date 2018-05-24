@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.olympus.dmmobile.utils.chips.RecipientEditTextView
+        android:id="@+id/text_recipient_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:gravity="left|center_vertical"
+        android:inputType="textEmailAddress" 
+        android:imeOptions="actionDone"
+        android:hint="@string/recipient_hint_text"
+        android:drawableRight="@android:drawable/ic_input_add" />
+
+
+    <TextView
+        android:id="@+id/add_recipients_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_recipient_email"
+        android:layout_alignRight="@+id/text_recipient_email"
+        android:layout_below="@+id/text_recipient_email"
+        android:layout_marginTop="30dp"
+        android:padding="5dp"
+        android:text="@string/add_recipients_description"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

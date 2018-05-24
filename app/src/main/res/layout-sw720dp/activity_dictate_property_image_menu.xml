@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative_property_image_menu"
+    android:layout_width="match_parent"
+    android:background="@color/black"
+    android:layout_height="wrap_content" >
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linear_property_image_menu"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_property_image_takephoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textSize="30sp"
+        android:text="@string/Camera_Take_Photo" />
+     <Button
+        android:id="@+id/btn_property_image_choose_existing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textSize="30sp"
+        android:text="@string/Camera_Choose_Existing" />
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:orientation="horizontal"
+         android:padding="2dp"
+         android:id="@+id/linear_property_image_delete_photo"
+         android:layout_height="wrap_content" >
+     </LinearLayout>
+
+     <Button
+         android:id="@+id/btn_property_image_cancel"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="5dp"
+         android:layout_marginLeft="2dp"
+         android:layout_marginRight="2dp"
+         android:textSize="30sp"
+         android:text="@string/Camera_Cancel" />
+
+</LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+   
+
+        <ImageView
+            android:id="@+id/folder_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/flashair_mp3_icon"/>  
+         <!--    android:src="@drawable/folderopen"  -->
+
+		 <RelativeLayout android:id="@+id/rel_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            >
+
+            <ImageView
+                android:id="@+id/img_next_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:src="@drawable/flashair_next_item" />
+
+            <CheckBox
+                android:id="@+id/chkbox_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:visibility="invisible"
+                android:paddingRight="20dp"
+                android:button="@drawable/checkbox_selector"/>
+
+        </RelativeLayout>
+
+
+		 <RelativeLayout android:id="@+id/rel_lay_for_file"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		      android:layout_toRightOf="@id/folder_img">
+        <TextView
+            android:id="@+id/file_name"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:layout_alignParentTop="true"
+            android:ellipsize="middle"
+            android:singleLine="true"/>
+        <LinearLayout android:id="@+id/lin_lay_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/file_name"
+            android:layout_marginTop="5dp">
+            <TextView android:id="@+id/text_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1998/02/22"
+                android:paddingRight="10dp"/>
+            <TextView android:id="@+id/text_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:34"
+                android:paddingRight="15dp"/>
+            <TextView android:id="@+id/text_file_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="360 KB"/>
+        </LinearLayout>
+
+       </RelativeLayout>
+
+
+		<TextView
+            android:id="@+id/folder_name"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/folder_img"
+            android:ellipsize="middle"
+            android:singleLine="true"/>
+		 
+
+</RelativeLayout>

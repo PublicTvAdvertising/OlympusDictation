@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+      <string name="app_name">Dictation</string>
+      <string name="hello_world">Hello world!</string>
+      <string name="menu_settings">Inställningar</string>
+     
+     <!-- Dictate -->
+     <string name="Property_Worktype">Arbetstyp:</string>
+     <string name="Record_Save_Actionsheet_Message">Du har inte sparat ändringarna. Klicka på Ignorera nedan för att fortsätta utan att spara eller Avbryt för att återgå till inspelning.</string>
+     <string name="Button_Discard">Ignorera</string>
+     <string name="Button_Pending">Avvaktande</string>
+     <string name="Button_Cancel">Avbryt</string>
+     <string name="Button_Sendtosever">Skicka till server</string>
+     <string name="Button_Sendviaemail">Skicka via E-mail</string>
+     <string name="Button_Email">E-mail</string>
+     <string name="Button_FTP">FTP</string>
+     <string name="Dictate_Alert_name_exists">Dikteringsnamn finns</string>
+     <string name="Dictate_Alert_Ok">OK</string>
+     <string name="Dictate_Alert_Yes">JA</string>
+     <string name="Dictate_Alert_No">NEJ</string>
+     <string name="Dictate_Alert_Insufficent_Device_Memory">Otillräckligt enhetsminne</string>
+     <string name="Dictate_Alert_Insufficent_Memory">Otillräckligt minne</string>
+     <string name="Dictate_Alert_Maximum_Recording_Message">Det går inte att spela in mer eftersom maximal inspelningstid nåtts.</string>
+     <string name="Dictate_Alert_Recording_File_Large_Message">Eftersom inspelningsfilens storlek är stor, kommer den att skickas uppdelad i flera filer.</string>
+     <string name="Dictate_Preparing_Audio">Förbereder ljud</string>
+     <string name="Dictate_Saving_Audio">Sparar ljud</string>
+     <string name="Dictate_Disconnect_Call">Koppla bort det pågående samtalet och fortsätt</string>
+     <string name="Dictate_Alert_Continue_Insert_Message">Vill du fortsätta att infoga?</string>
+     <string name="Dictate_Alert_Continue_Overwrite_Message">Vill du fortsätta att skriva över?</string>
+     <string name="Dictate_Alert_Continue">Fortsätt</string>
+     <string name="Dictate_Alert_Stop">Stopp</string>
+     <string name="Dictate_Loading">Laddar...</string>
+     <string name="Dictate_Alert_Configure_Server">Konfigurera serverinställningar</string>
+     <string name="Dictate_Alert_Compress_Recording_Background_message">Vänta medan din inspelning komprimeras eller tryck på hemknappen för att komprimera i bakgrunden.</string>
+     <string name="Dictate_Alert_Compressing">Komprimerar</string>
+     <string name="Dictate_Alert_File_Conversion">Filkonvertering pågår</string>     
+     <string name="Dictate_Low_Memory">Det finns inte tillräckligt med minne eller diskutrymme för att slutföra åtgärden</string>
+     <string name="Dictate_No_Space">Inget diskutrymme</string>
+     <string name="Dictate_Network_Notavailable">Nätverket är inte tillgängligt</string>
+     <string name="Dictate_Email_Configuration">Inget Emailkonto konfigurerat</string>
+     <!-- Dictate -->
+     
+     <!-- Property  -->
+     <string name="Property_Back">Bakåt</string>
+     <string name="Property_Edit">Redigera</string>
+     <string name="Property_Done">Klar</string>
+     <string name="Property_Priority">Prioritet:</string>
+     <string name="Property_Jobnumber">Jobbnummer:</string>
+     <string name="Property_Status">Status:</string>
+     <string name="Property_Comment">Kommentar:</string>
+     <string name="Property_Close">Stäng</string>
+     <string name="Property_Shake_Twice">Skaka två gånger för ”Spela in”</string>  
+     <string name="Property_New">Ny</string>
+     <string name="Property_Pending">Avvaktande</string>
+     <string name="Property_Outbox">Utkorg</string>
+     <string name="Property_sending">Skickar</string>
+     <string name="property_sending_failed">Filöverföringen misslyckades</string>
+     <string name="Property_Dictate_Sent">Skickat</string>
+     <string name="Property_Via_Email">Skickat via Email</string>
+     <string name="Property_Timeout">Timeout</string>
+     <string name="Property_Settings">Inställningar</string>
+     <string name="Property_Waiting_Send">Väntar på att skicka</string>
+     <string name="Property_Retrying">Försöker igen</string>
+     <string name="Property_Conversion_Failed">Konverteringen misslyckades</string>
+     <string name="Camera_Take_Photo">Ta foto</string>
+     <string name="Camera_Choose_Existing">Välj befintligt</string>
+     <string name="Camera_Cancel">Avbryt</string>
+     <string name="Camera_Delete_Photo">Ta bort foto</string>
+     
+      <!-- Property  -->
+ 
+      <!-- Recording Labels -->
+      
+    <string name="Recording_Label_Back">Bakåt</string>
+    <string name="Recording_Label_Pending">Avvaktande</string>
+    <string name="Recording_Label_Outbox">Utkorg  </string>
+    <string name="Recording_Label_Sent">Skickat </string>
+    <string name="Recording_Label_Edit">Redigera</string>
+    <string name="Recording_Label_Search">Sök</string>
+    <string name="Recording_Label_Send">Skicka</string>
+    <string name="Recording_Label_Send_All">Skicka alla</string>
+    <string name="Recording_Label_Delete">Ta bort</string>
+    <string name="Recording_Label_Delete_All">Ta bort alla</string>
+    <string name="Recording_Label_Settings">Inställningar</string>
+    <string name="Recording_Alerts_Do_Sent_Dictation_Message">Vad vill du göra med skickad diktering?</string>
+    <string name="Recording_Alerts_Sent_Dictation">Skickad diktering</string>
+    <string name="Recording_Alerts_Review">Granska</string>
+    <string name="Recording_Alerts_Edit_Copy">Redigera kopia</string>
+    <string name="Recording_Alerts_Cancel">Avbryt</string>
+    <string name="Recording_Alerts_Delete_Recording_Pending_Message">Är du säker på att du vill ta bort alla inspelningar i #? Detta kan inte ångras och du kommer att förlora alla inspelningar i #.</string>
+    <string name="Recording_Alerts_Delete_All_recordings">Ta bort alla inspelningar?</string>
+    <string name="Recording_Alerts_Delete_All">Ta bort alla</string>
+    <string name="Recording_Alerts_Delete">Ta bort</string>
+    <string name="Recording_Alerts_Delete_Pending_Message">Är du säker på att du vill ta bort # inspelningar i *? Detta kan inte ångras.</string>
+    <string name="Recording_Alerts_Delete_Recordings">Ta bort # inspelningar?</string>  
+    <string name="Recording_Alerts_Send_All_Recordings_Message">Är du säker på att du vill skicka alla inspelningar?</string>      
+    <string name="Recording_Alerts_Send_All_Recordings">Skicka alla inspelningar?</string>
+    <string name="Recording_Alerts_Send_All_Server">Skicka alla till server</string>
+    <string name="Recording_Alerts_Send_All_Email">Skicka alla via E-mail</string>
+    <string name="Recording_Alerts_Send_Recordings_Message">Är du säker på att du vill skicka # inspelningar?</string>
+    <string name="Recording_Alerts_Send_Recordings">Skicka # inspelningar?</string>
+    <string name="Recording_Alerts_Copying_Editing">Kopierar fil för redigering</string>
+    <string name="Recording_Alerts_Encrypt_File_Message">Denna tjänst skickar dikteringsfiler via E-mail och FTP. För att förhindra informationsläckage, rekommenderar vi dig att be administratören att kryptera dikteringsfiler. </string>
+    <string name="Recording_Alerts_Dontshow">Visa inte detta igen.</string>
+     <!-- Recordings -->
+     
+     
+    <!-- Flashair Labels -->
+    
+     <string name="Flashair_Label_Connect_Flashair">Anslut FlashAir</string>
+     <string name="Flashair_Label_Choose_SSID">Välj ett SSID</string>
+     <string name="Flashair_Recordings">Inspelningar</string>
+     <string name="Flashair_Label_Establish_WiFi_Message">Upprätta en Wi-Fi-anslutning med FlashAir-kort och knacka på ”Klar”.</string>
+     <string name="Flashair_Label_Choose_FlashAir">FlashAir-anslutning krävs för denna funktion. Anslut till FlashAir-kort med hjälp av Inställningar > Wi-Fi > Välj ett nätverk.</string>
+     <string name="Flashair_Label_Scan_Flashair">Skannar FlashAir-kort</string>
+     <string name="Flashair_Label_Flashcard_inSettings">Ställ in detta FlashAir-kort i Inställningar</string>
+     <string name="Flashair_Label_YES">JA</string>
+     <string name="Flashair_Label_NO">NEJ</string>
+     <string name="Flashair_Label_Done">Klar</string>
+     <string name="Flashair_Label_Select_All">Markera alla</string>
+     <string name="Flashair_Label_Deselect_All">Avmarkera alla</string>
+     <string name="Flashair_Label_Send">Skicka</string>
+     <string name="Flashair_Label_Downloading">Laddar ned</string>
+     <string name="Flashair_Label_DownloadSummary">Nedladdning sammanfattning</string>
+     <string name="Flashair_Label_Files_Downloaded">* av # fil(er) har laddats ned</string>
+     <string name="Flashair_Label_Password">Password</string>
+     <string name="Flashair_Label_Authenticating">Authenticating</string>
+     <string name="Flashair_Label_Obtaining_Ip">Obtaining IP Address</string>
+     <string name="Flashair_Label_Connection_Compleate">Connection Complete</string>
+     <string name="Flashair_Label_Items"># Objekt</string>
+     <string name="Flashair_Alert_WiFi_Accessible">Wi-Fi är inte tillgängligt. Se till att Wi-Fi är aktiverat i inställningarna.</string>
+     <string name="Flashair_Alert_WiFi_Connection">Wi-Fi-anslutning</string>
+     <string name="Flashair_Alert_Connection_Notfound">FlashAir Wi-Fi-anslutning hittades inte. </string>
+     <string name="Flashair_Alert_Cannot_Establish_Connection">Kan inte upprätta anslutning med FlashAir-kort</string>
+     <string name="Flashair_Alert_Connection_Error">Anslutningsfel</string>
+     <string name="Flashair_Alert_Valid_WiFi_Connection">Växla tillbaka till en giltig Wi-Fi-anslutning om du är ansluten till Flash Air-kortet</string>
+     <string name="Flashair_Alert_Error_Recieving_Data">Ett fel uppstod medan data togs emot. Kontrollera FlashAir-anslutningen</string>
+     <string name="Flashair_Alert_FTP_option">Kan inte skicka följande fil(er) eftersom filstorleken är för stor.  Använd \'FTP\'-alternativet för att skicka stora filer.</string>
+     <string name="Flashair_Alert_Size_limitation">Filstorleksbegränsning</string>  
+     <string name="Flashair_Alert_Activate_Account">Aktivera ditt konto. Knacka på [Kontrollera serveranslutning] för att aktivera i Serveralternativen. </string>
+   
+    
+    <!-- Settings -->
+    <string name="Settings_setting">Inställningar</string>
+    <string name="category_comunication">Kommunikation</string>
+    <string name="category_recording">Inspelning</string>
+    <string name="category_workflow">Arbetsflöde</string>
+    <string name="category_general">Allmänt</string>
+    <string name="Settings_Information">Information</string>
+    <string name="send_title">Skicka</string>   
+    <string-array name="send_entries">
+        <item >via E-mail</item>
+        <item >till server</item>
+    </string-array>
+     <string-array name="send_values">
+        <item >1</item>
+        <item >2</item>
+    </string-array>
+    <string name="sendoption_server">Serveralternativ</string>
+    <string name="server_url_title">Server-URL</string>
+    <string name="login_category">Logga in</string>
+    <string name="login_user_title">Användare</string>
+    <string name="login_password_title">Lösenord</string>
+    <!-- <string name="email_title">E-mail</string> -->
+    <string name="server_title">Server</string>
+    <string name="Settings_Invalid_Email">Ogiltig e-postadress</string>
+    <string name="check_server_text">Kontrollera serveranslutning</string>  
+    <string name="Settings_Valid_url">ODP-anslutningen misslyckades. Ange en giltig ODP URL.</string>
+    <string name="sendoption_email">E-mailalternativ</string>
+    <string name="recipient_title">Mottagare</string>
+    <string name="subject_title">Ämne</string>
+    <string name="message_title">Meddelandetext</string>
+    <string name="rec_format_title">Inspelningsformat</string>
+    <string name="audio_quality_category">Ljudkvalitet</string>
+    <string name="Settings_High">Hög</string>
+    <string name="Settings_Standard">Standard - 8kHz</string>
+    <string name="blutooth_input_title">Bluetooth-inmatning</string>
+    <string name="mic_sens_screen_title">Mikrofonkänslighet</string>
+    <string name="Settings_Low">Låg</string>
+    <string name="vcva_screen_title">VCVA</string>
+    <string name="vcva_title">Aktivera VCVA</string>
+    <string name="Settings_Vcva_Level">VCVA-nivå</string>
+    <string name="Settings_max">MAX</string>
+    <string name="Settings_min">MIN</string>
+    <string name="push_to_talk_title">Direktsamtal</string>
+    <string name="author_title">Författare</string>
+    <string name="worktype_list_title">Arbetstyplista</string>
+    <string name="Settings_Add_Worktype">Lägg till Arbetstyp</string>
+    <string name="Settings_Enter_Worktype">Skriv in Arbetstyp</string>
+    <string name="Settings_Cancel">Avbryt</string>
+    <string name="keep_sent_items_title">Spara skickade objekt</string>
+    <string name="Settings_Select">Välj</string>
+    <string-array name="keep_item_enties">
+        <item >Senaste dagen</item>
+        <item >3 dagar</item>
+        <item >Senaste veckan</item>
+        <item >Senaste 2 veckorna</item>
+        <item >Senaste månaden</item>
+        <item >Alltid</item>
+        </string-array>
+        <string-array name="keep_item_values">
+        <item >1</item>
+        <item >2</item>
+        <item >3</item>
+        <item >4</item>
+        <item >5</item>
+        <item >6</item>
+    </string-array>
+    <string name="Setting_LastDay">Senaste dagen</string>
+    <string name="Setting_3day">3 dagar</string>
+    <string name="Setting_Lastweek">Senaste veckan</string>
+    <string name="Setting_Last2weeks">Senaste 2 veckorna</string>
+    <string name="Setting_Lastmonth">Senaste månaden</string>
+    <string name="Setting_Always">Alltid</string>
+    <string name="Setting_Never">Never</string>
+    <string name="onlaunch_show_title">Vid start visa</string>
+    <string-array name="on_launch_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="on_launch_entries">
+        <item >Nya inspelningar</item>
+        <item >Lista över inspelningar</item>
+    </string-array>
+    <string name="Settings_Worktype_Exist">Denna arbetstyp finns redan i listan</string>
+    <string name="language_title">Språk</string>
+    <string name="use_flashair_title">Använd FlashAir</string>
+    <string name="legal_notices_title">Juridiska anmärkningar</string>
+    <string name="Settings_Delete">Ta bort</string>
+    <string name="Settings_Success">Klart</string>
+    <string name="Settings_Alerts">Aviseringar</string>
+    <string name="Settings_Error">Fel</string>
+    <string name="Settings_Change_Server">Du har ändrat serverinformationen. Vill du autentisera med servern?</string>
+    <string name="Settings_Discard">Ignorera ändringar</string>
+    <string name="Settings_Activate">Aktivera</string>
+    <string name="Settings_Activating">Aktiverar...</string>
+    <string name="Settings_Server_Connection">Serveranslutning upprättades</string>
+    <string name="Settings_Error_Correct">Anslutning till servern misslyckades. Se till att server-URL, användare och lösenord är korrekta.</string>
+    <string name="Settings_via_email">via E-mail</string>
+    <string name="Settings_to_server">till server</string> 
+     <string name="Settings_newRecording">Nya inspelningar</string>
+    <string name="Settings_ListRecording">Lista över inspelningar</string>
+    <string name="Settings_trademark">FlashAir™ är ett varumärke eller registrerat som tillhör TOSHIBA CORPORATION.
+</string>
+    <!-- Settings -->
+    
+       
+    <!-- ODP-Resultcode -->
+    <string name="Ils_Result_Global_Client_Error">Globalt klientfel</string>
+    <string name="Ils_Result_Global_Server_Error">Globalt serverfel</string>
+    <string name="Ils_Result_Internal_Server_error">Internt serverfel</string>
+    <string name="Ils_Result_Bad_request">Felaktig begäran</string>
+    <string name="Ils_Result_Resend_Selected">Markera objekten \"Filöverföringen misslyckades\" på fliken Utkorg och knacka på [Skicka]-ikonen för att skicka dem på nytt.</string>   
+    <string name="Ils_Result_Fail_Activate">Det gick inte att aktivera</string>
+    <string name="ILs_Result_Another_UUID_Activated">Annan UUID aktiverad</string>
+   <!--  <string name="ILs_Result_Already_Activated">Denna enhet är redan aktiverad med en annan enhets-ID</string> -->
+    <string name="Ils_Result_Unauthorized">Behörighet saknas</string>
+    <string name="Ils_Result_Unexpected_Error">Ett oväntat systemfel uppstod. </string>
+    <string name="Ils_Result_Resource_Not_Found">Resursen hittades inte</string>
+    <string name="Ils_Result_Client_Update">Klientuppdatering krävs</string>
+    <string name="Ils_Result_Need_Client_Update">Versionen av appen är gammal. Åtkomst till tjänsteservern nekad. Uppdatera appen.</string>
+    <string name="Ils_Result_Not_Activated">Inte aktiverad</string>
+    <string name="Ils_Result_Activate_Server">Denna enhet är inaktiverad av administratören. Knacka på [Kontrollera serveranslutning] för att aktivera i Serveralternativen. </string>
+    <string name="Ils_Result_License_Expired">Licensen har förfallit</string>     
+    <string name="Ils_Result_License_Access_Service">Licensen har förfallit. Kan inte komma åt tjänsteservern.</string>
+    <string name="Ils_Result_Account_Disabled">Kontot är inaktiverat</string>
+    <string name="Ils_Result_Service_Unavailable">Tjänsten är inte tillgänglig</string>   
+    <string name="Ils_Result_Cannot_Connect">Det går inte att ansluta</string>
+    <string name="Ils_Result_Cannot_Connect_Server">Det går inte att ansluta till servern ODP-anslutningen misslyckades.</string>
+    <string name="Ils_Result_Invalid_Url">Ogiltig URL</string>
+    
+    
+    <string name="entervalidemail">Ange en giltig e-postadress</string>
+<string name="Settings_Language">Starta om applikationen för att språkinställningarna ska börja gälla</string>
+<string name="Account_Disabled">Kontot är inaktiverat. Det går inte att komma åt tjänstservern.</string>
+<string name="Continue_Recording">Vill du fortsätta spela in?</string>
+<string name="Property_enter_valid_dict_name">Ange ett giltigt dikteringsnamn</string>
+<string name="Trademarks">Varumärken</string>
+<string name="ThirdPartySoftware">Tredjepartsprogramvara</string>
+<string name="None">Ingen</string>
+<string name="ON">PÅ</string>
+<string name="OFF">AV</string>
+<string name="Alert">Avisering</string>
+<string name="FlashAirTrade">FlashAir™ är ett varumärke eller registrerat varumärke som tillhör TOSHIBA CORPORATION.</string>
+<string name="worktypeexist">Denna arbetstyp finns redan i listan</string>
+<string name="Dictate_Alert_Already_Exists_Message">Detta dikteringsnamn finns redan i listan</string>
+<string name="HomeSleep">Skickar dikteringsfil(er). 
+Tryck inte på knappen hem/vila innan sändningen är slutförd.</string>
+<string name="Settings_Max_Recipients">Maximalt antal mottagare uppnått</string>
+<string name="SourceNotfound">Källa ej hittad</string>
+<string name="Settings_About">Om</string>
+<string name="UnableRecording">Det går inte att starta inspelningen. En annan inspelningsapplikation är igång</string>
+<string name="FileSizeMaximum">Eftersom den valda filstorleken överskrider gränsen för e-postbilagor kommer den att skickas som flera e-postmeddelanden.</string>
+<string name="WifiAllianze">Wi-Fi är ett registrerat märke som tillhör Wi-Fi Alliance. </string>
+<string name="Add">Lägg</string> 
+<string name="Select">Välj</string>
+<string name="Connect_Flashair">Anslut till FlashAir manuellt från Inställningar</string>  
+<string name="Connecting_to">Anslutning till</string>      
+    <!-- ODP-Resultcode -->
+    
+<!-- New Stings -->
+
+    <string name="author_id">Författar-ID</string>
+    <string name="email_title">Författarens e-postadress och författar-ID (initialer)</string>
+    <string name="server_options_recipient_title">Mottagare</string>
+    <string name="Follow_Server_Settings">Använd portalinställningar (standard)</string>
+    <string name="email_not_available">E-post ej tillgänglig för vald person</string>
+    <string name="edit_recipients">Redigera mottagare</string>
+    <string name="add_recipients">Lägg till mottagare</string>
+    <string name="choose_email_address">Välj e-postadress</string>
+    <string name="enter_valid_email_address">Ange giltig e-postadress</string>
+    <string name="recipient_already_exist">Denna mottagare finns redan</string>
+    <string name="add_recipients_description">Ange den nya mottagarens e-postadress, knacka på (+)-ikonen för att lägga till. Välj denna användare från mottagarlistan för att skicka dikteringar till denna användare.</string>
+    <string name="update_recipient_success_message">Mottagare uppdaterade</string>
+    <string name="Recording_Alerts_Copying_Resend">Kopierar fil för att skicka igen</string>
+    <string name="invalid_recipient_email_alert_message">Följande e-postadress(er) är ogiltig(a) \n</string>
+    <string name="resend">Skicka igen</string>
+    
+    <string name="recipient_hint_text"> Ange e-postadress</string>
+   
+    
+    <!-- ODP Strings -->
+    
+    <string name="Ils_Result_Another_Email_Activated">Denna enhet är redan aktiverad av en annan e-postadress. Vill du ändra e-postadressen?</string>
+    <string name="Ils_Result_No_Unused_Licence">Aktivering misslyckades på grund av för få tillgängliga licenser.
+Beställ en till licens.</string>
+    <string name="Ils_Result_Invalid_Arguments">Aktivering misslyckades på grund av inkorrekt angivna författar-iD eller mottagare.</string>
+    <string name="ILs_Result_Already_Activated">Din profil används av en annan enhet. Välj [Ja] för att använda din profil för att aktivera denna enhet.\nOBS: Den andra enheten kommer att inaktiveras när du väljer [Ja].</string>
+    <string name="Ils_Result_Code_4010">Oanvänd licens ej hittad</string>
+    <string name="Ils_Result_Code_4011">Ogiltiga argument</string>
+    <string name="Ils_Result_Code_4012">En annan e-postadress aktiverad</string>    
+    
+    
+    
+</resources>

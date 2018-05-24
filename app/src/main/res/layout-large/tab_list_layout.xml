@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:orientation="horizontal"
+         >
+
+        <CheckBox
+            android:id="@+id/chkToSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:button="@drawable/checkbox_selector" />
+
+        <RelativeLayout
+            android:id="@+id/relativeTabDictateDetails"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp" >
+
+                <ImageView
+                    android:layout_marginTop="3dp"
+                    android:id="@+id/img_tab_list_priority"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="2dp"
+                    android:src="@drawable/priority_state_selected" />
+
+                <TextView
+                    android:id="@+id/text_tab_list_dictation_name"
+                    android:layout_width="280dp"
+                    android:ellipsize="end"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:layout_toRightOf="@id/img_tab_list_priority"
+                    android:singleLine="true"
+                    android:text="ARM:00"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/text_tab_list_dictation_status"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/text_tab_list_dictation_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/text_tab_list_dictation_name"
+                    android:singleLine="true"
+                    android:text="Conversion Failed" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_marginRight="53dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/text_tab_list_dictation_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:singleLine="true"
+                android:text="Sep 25,2012 12:02:24 PM 02:35:45 "
+                android:textSize="20sp" />
+
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_tab_list_dictation_date"
+                android:layout_marginTop="20dp"
+                android:shrinkColumns="*"
+                android:stretchColumns="*" >
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/text_tab_list_worktype"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="Report:....sfwshrwheQGRETGRWTETRTGaeahtaeghbA"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_marginRight="53dp"
+                        android:id="@+id/text_tab_list_comment"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="Transcript:............fhdfnahdhdgh"
+                        android:textSize="20sp" />
+                </TableRow>
+            </TableLayout>
+
+            <ImageButton
+                android:id="@+id/img_tab_list_edit_dictation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@drawable/dictate_files_selector" />
+
+            <ImageView
+                android:id="@+id/img_is_flashair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@drawable/flashair_selector"
+                android:visibility="gone" />
+            
+            
+              <ImageView
+                android:background="@drawable/horizontal_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/text_tab_list_dictation_date"
+                android:layout_below="@id/tableLayout1"
+                android:layout_marginTop="4dp"
+                
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

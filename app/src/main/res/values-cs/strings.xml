@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+      <string name="app_name">Dictation</string>
+      <string name="hello_world">Hello world!</string>
+      <string name="menu_settings">Nastavení</string>
+     
+     <!-- Dictate -->
+     <string name="Property_Worktype">Typ práce:</string>
+     <string name="Record_Save_Actionsheet_Message">Neuložili jste provedené změny. Chcete-li pokračovat bez uložení, klepněte na Zahodit níže, nebo se vraťte k záznamu tlačítkem Storno. </string>
+     <string name="Button_Discard">Zahodit</string>
+     <string name="Button_Pending">Nevyřízeno</string>
+     <string name="Button_Cancel">Storno</string>
+     <string name="Button_Sendtosever">Odeslat na server</string>
+     <string name="Button_Sendviaemail">Odeslat přes E-mail</string>
+     <string name="Button_Email">E-mail</string>
+     <string name="Button_FTP">FTP</string>
+     <string name="Dictate_Alert_name_exists">Název diktátu existuje</string>
+     <string name="Dictate_Alert_Ok">OK</string>
+     <string name="Dictate_Alert_Yes">ANO</string>
+     <string name="Dictate_Alert_No">NE</string>
+     <string name="Dictate_Alert_Insufficent_Device_Memory">Nedostatek paměti zařízení</string>
+     <string name="Dictate_Alert_Insufficent_Memory">Nedostatek paměti</string>
+     <string name="Dictate_Alert_Maximum_Recording_Message">Další záznam již není možný kvůli dosažení maxima záznamu.</string>
+     <string name="Dictate_Alert_Recording_File_Large_Message">Protože je soubor záznamu velký, bude odeslán rozdělený na několik souborů.</string>
+     <string name="Dictate_Preparing_Audio">Příprava zvuku</string>
+     <string name="Dictate_Saving_Audio">Ukládání zvuku</string>
+     <string name="Dictate_Disconnect_Call">Odpojte aktivní hovor a pokračujte</string>
+     <string name="Dictate_Alert_Continue_Insert_Message">Chcete pokračovat ve vkládání?</string>
+     <string name="Dictate_Alert_Continue_Overwrite_Message">Chcete pokračovat v přepsání?</string>
+     <string name="Dictate_Alert_Continue">Pokračovat</string>
+     <string name="Dictate_Alert_Stop">Zastavit</string>
+     <string name="Dictate_Loading">Načítání…</string>
+     <string name="Dictate_Alert_Configure_Server">Zkonfigurujte nastavení serveru</string>
+     <string name="Dictate_Alert_Compress_Recording_Background_message">Vyčkejte na zkomprimování záznamu, nebo stisknutím tlačítka Domů komprimujte na pozadí.</string>
+     <string name="Dictate_Alert_Compressing">Komprimování</string>
+     <string name="Dictate_Alert_File_Conversion">Probíhá konverze souboru</string>     
+     <string name="Dictate_Low_Memory">Na dokončení operace není dostatek paměti nebo místa na disku</string>
+     <string name="Dictate_No_Space">Není místo na disku</string>
+     <string name="Dictate_Network_Notavailable">Není dostupná síť</string>
+     <string name="Dictate_Email_Configuration">Není zkonfigurován E-mailový účet</string>
+     <!-- Dictate -->
+     
+     <!-- Property  -->
+     <string name="Property_Back">Zpět</string>
+     <string name="Property_Edit">Upravit</string>
+     <string name="Property_Done">Hotovo</string>
+     <string name="Property_Priority">Priorita:</string>
+     <string name="Property_Jobnumber">Číslo úlohy:</string>
+     <string name="Property_Status">Stav:</string>
+     <string name="Property_Comment">Komentář:</string>
+     <string name="Property_Close">Zavřít</string>
+     <string name="Property_Shake_Twice">Zatřeste dvakrát pro „Záznam“</string>  
+     <string name="Property_New">Nový</string>
+     <string name="Property_Pending">Nevyřízeno</string>
+     <string name="Property_Outbox">K odeslání</string>
+     <string name="Property_sending">Odesílání</string>
+     <string name="property_sending_failed">Odesílání neúspěšné</string>
+     <string name="Property_Dictate_Sent">Odeslané</string>
+     <string name="Property_Via_Email">Odeslané přes E-mail</string>
+     <string name="Property_Timeout">Vypršení</string>
+     <string name="Property_Settings">Nastavení</string>
+     <string name="Property_Waiting_Send">Čekání na odeslání</string>
+     <string name="Property_Retrying">Opakování</string>
+     <string name="Property_Conversion_Failed">Konverze neúspěšná</string>
+     <string name="Camera_Take_Photo">Pořídit snímek</string>
+     <string name="Camera_Choose_Existing">Vybrat existující</string>
+     <string name="Camera_Cancel">Storno</string>
+     <string name="Camera_Delete_Photo">Odstranit snímek</string>
+     
+      <!-- Property  -->
+ 
+      <!-- Recording Labels -->
+      
+    <string name="Recording_Label_Back">Zpět</string>
+    <string name="Recording_Label_Pending">Nevyřízeno</string>
+    <string name="Recording_Label_Outbox">K odeslání</string>
+    <string name="Recording_Label_Sent">Odeslané </string>
+    <string name="Recording_Label_Edit">Upravit</string>
+    <string name="Recording_Label_Search">Hledat</string>
+    <string name="Recording_Label_Send">Odeslat</string>
+    <string name="Recording_Label_Send_All">Odeslat vše</string>
+    <string name="Recording_Label_Delete">Odstranit</string>
+    <string name="Recording_Label_Delete_All">Odstranit vše</string>
+    <string name="Recording_Label_Settings">Nastavení</string>
+    <string name="Recording_Alerts_Do_Sent_Dictation_Message">Co chcete provést pro odeslaný diktát?</string>
+    <string name="Recording_Alerts_Sent_Dictation">Odeslaný diktát</string>
+    <string name="Recording_Alerts_Review">Revize</string>
+    <string name="Recording_Alerts_Edit_Copy">Upravit kopii</string>
+    <string name="Recording_Alerts_Cancel">Storno</string>
+    <string name="Recording_Alerts_Delete_Recording_Pending_Message">Opravdu chcete odstranit všechny záznamy v položce #? Tuto akci nelze vrátit zpět a ztratíte všechny záznamy v položce #.</string>
+    <string name="Recording_Alerts_Delete_All_recordings">Odstranit všechny záznamy?</string>
+    <string name="Recording_Alerts_Delete_All">Odstranit vše</string>
+    <string name="Recording_Alerts_Delete">Odstranit</string>
+    <string name="Recording_Alerts_Delete_Pending_Message">Opravdu chcete odstranit # záznamy(ů) v položce *? Tuto akci nelze vrátit zpět.</string>
+    <string name="Recording_Alerts_Delete_Recordings">Odstranit # záznamy(ů)?</string>  
+    <string name="Recording_Alerts_Send_All_Recordings_Message">Opravdu chcete odeslat všechny záznamy?</string>      
+    <string name="Recording_Alerts_Send_All_Recordings">Odeslat všechny záznamy?</string>
+    <string name="Recording_Alerts_Send_All_Server">Odeslat vše na server</string>
+    <string name="Recording_Alerts_Send_All_Email">Odeslat vše E-mailem</string>
+    <string name="Recording_Alerts_Send_Recordings_Message">Opravdu chcete odeslat # záznamy(ů)?</string>
+    <string name="Recording_Alerts_Send_Recordings">Odeslat # záznamy(ů)?</string>
+    <string name="Recording_Alerts_Copying_Editing">Kopírování souboru pro úpravy</string>
+    <string name="Recording_Alerts_Encrypt_File_Message">Tato služba odesílá soubory diktátů přes E-mail a FTP. Pro prevenci úniku informací doporučujeme požádat administrátora o silné šifrování souborů diktátů. </string>
+   <string name="Recording_Alerts_Dontshow">Toto již nezobrazovat.</string>
+     <!-- Recordings -->
+     
+     
+    <!-- Flashair Labels -->
+    
+     <string name="Flashair_Label_Connect_Flashair">Připojit FlashAir</string>
+     <string name="Flashair_Label_Choose_SSID">Vybrat SSID</string>
+     <string name="Flashair_Recordings">Záznamy</string>
+     <string name="Flashair_Label_Establish_WiFi_Message">Sestavte připojení Wi-Fi pomocí karty FlashAir a stiskněte „Hotovo“.</string>
+     <string name="Flashair_Label_Choose_FlashAir">Pro tuto funkci je potřeba připojení FlashAir. Připojte se ke kartě FlashAir pomocí Nastavení > Wi-Fi > Vybrat síť.</string>
+     <string name="Flashair_Label_Scan_Flashair">Skenování karty FlashAir</string>
+     <string name="Flashair_Label_Flashcard_inSettings">Nastavit tuto kartu FlashAir v Nastavení</string>
+     <string name="Flashair_Label_YES">ANO</string>
+     <string name="Flashair_Label_NO">NE</string>
+     <string name="Flashair_Label_Done">Hotovo</string>
+     <string name="Flashair_Label_Select_All">Vybrat vše</string>
+     <string name="Flashair_Label_Deselect_All">Zrušit celý výběr</string>
+     <string name="Flashair_Label_Send">Odeslat</string>
+     <string name="Flashair_Label_Downloading">Stahování</string>
+     <string name="Flashair_Label_DownloadSummary">Souhrn stahování</string>
+     <string name="Flashair_Label_Files_Downloaded">Stažen(o) * z # souboru(ů)</string>
+     <string name="Flashair_Label_Password">Password</string>
+     <string name="Flashair_Label_Authenticating">Authenticating</string>
+     <string name="Flashair_Label_Obtaining_Ip">Obtaining IP Address</string>
+     <string name="Flashair_Label_Connection_Compleate">Connection Complete</string>
+     <string name="Flashair_Label_Items"># položky(-ek)</string>
+     <string name="Flashair_Alert_WiFi_Accessible">Wi-Fi není k dispozici. Ověřte, že je Wi-Fi aktivováno v nastavení.</string>
+     <string name="Flashair_Alert_WiFi_Connection">Připojení Wi-Fi</string>
+     <string name="Flashair_Alert_Connection_Notfound">Připojení Wi-Fi FlashAir nebylo nalezeno. </string>
+     <string name="Flashair_Alert_Cannot_Establish_Connection">Nelze sestavit připojení pomocí karty FlashAir</string>
+     <string name="Flashair_Alert_Connection_Error">Chyba připojení</string>
+     <string name="Flashair_Alert_Valid_WiFi_Connection">Jste-li připojeni ke kartě Flash Air, přepněte zpět na platné připojení Wi-Fi</string>
+     <string name="Flashair_Alert_Error_Recieving_Data">Při příjmu dat došlo k chybě. Zkontrolujte připojení FlashAir</string>
+     <string name="Flashair_Alert_FTP_option">Následující soubor(-y) nelze odeslat kvůli nadměrné velikosti.  K odeslání velkých souborů slouží možnost \'FTP\'.</string>
+     <string name="Flashair_Alert_Size_limitation">Omezení velikosti souboru</string>  
+     <string name="Flashair_Alert_Activate_Account">Zaktivujte svůj účet. Stisknutím [Ověřit připojení serveru] zaktivujte v možnostech serveru. </string>
+   
+    
+    <!-- Settings -->
+    <string name="Settings_setting">Nastavení</string>
+    <string name="category_comunication">Komunikace</string>
+    <string name="category_recording">Záznam</string>
+    <string name="category_workflow">Sled práce</string>
+    <string name="category_general">Všeobecné</string>
+    <string name="Settings_Information">Informace</string>
+    <string name="send_title">Odeslat</string>   
+    <string-array name="send_entries">
+        <item >přes E-mail</item>
+        <item >na server</item>
+    </string-array>
+     <string-array name="send_values">
+        <item >1</item>
+        <item >2</item>
+    </string-array>
+    <string name="sendoption_server">Možnosti serveru</string>
+    <string name="server_url_title">Adresa URL serveru</string>
+    <string name="login_category">Přihlášení</string>
+    <string name="login_user_title">Uživatel</string>
+    <string name="login_password_title">Heslo</string>
+    <!-- <string name="email_title">E-mail</string> -->
+    <string name="server_title">Server</string>
+    <string name="Settings_Invalid_Email">Neplatný E-mail</string>
+    <string name="check_server_text">Ověřit připojení serveru</string>  
+    <string name="Settings_Valid_url">Připojení ODP neúspěšné. Zadejte platnou adresu URL ODP.</string>
+    <string name="sendoption_email">Možnosti E-mailu</string>
+    <string name="recipient_title">Příjemci</string>
+    <string name="subject_title">Předmět</string>
+    <string name="message_title">Tělo zprávy</string>
+    <string name="rec_format_title">Formát záznamu</string>
+    <string name="audio_quality_category">Kvalita zvuku</string>
+    <string name="Settings_High">Vysoká</string>
+    <string name="Settings_Standard">Standardní - 8kHz</string>
+    <string name="blutooth_input_title">Vstup Bluetooth</string>
+    <string name="mic_sens_screen_title">Citlivost mikrofonu</string>
+    <string name="Settings_Low">Nízká</string>
+    <string name="vcva_screen_title">VCVA</string>
+    <string name="vcva_title">Aktivovat VCVA</string>
+    <string name="Settings_Vcva_Level">Úroveň VCVA</string>
+    <string name="Settings_max">MAX</string>
+    <string name="Settings_min">MIN</string>
+    <string name="push_to_talk_title">PTT (stiskni a mluv)</string>
+    <string name="author_title">Autor</string>
+    <string name="worktype_list_title">Seznam typů práce</string>
+    <string name="Settings_Add_Worktype">Přidat typ práce</string>
+    <string name="Settings_Enter_Worktype">Zadat typ práce</string>
+    <string name="Settings_Cancel">Storno</string>
+    <string name="keep_sent_items_title">Uchovat odeslané položky</string>
+    <string name="Settings_Select">Vybrat</string>
+    <string name="Setting_LastDay">Poslední den</string>
+    <string name="Setting_3day">3 dny</string>
+    <string name="Setting_Lastweek">Poslední týden</string>
+    <string name="Setting_Last2weeks">Poslední 2 týdny</string>
+    <string name="Setting_Lastmonth">Poslední měsíc</string>
+    <string name="Setting_Always">Vždy</string>
+    <string name="Setting_Never">Never</string>
+    <string name="onlaunch_show_title">Při spuštění zobrazit</string>
+    <string-array name="on_launch_values">
+        <item >1</item>
+        <item >2</item>
+    </string-array>
+    <string-array name="on_launch_entries">
+        <item >Nové záznamy</item>
+        <item >Seznam záznamů</item>
+    </string-array>
+    <string-array name="keep_item_enties">
+        <item >Poslední den</item>
+        <item >3 dny</item>
+        <item >Poslední týden</item>
+        <item >Poslední 2 týdny</item>
+        <item >Poslední měsíc</item>
+        <item >Vždy</item>
+        </string-array>
+        <string-array name="keep_item_values">
+        <item >1</item>
+        <item >2</item>
+        <item >3</item>
+        <item >4</item>
+        <item >5</item>
+        <item >6</item>
+    </string-array>
+    <string name="Settings_Worktype_Exist">Tento typ práce již v seznamu existuje</string>
+    <string name="language_title">Jazyk</string>
+    <string name="use_flashair_title">Použít FlashAir</string>
+    <string name="legal_notices_title">Právní upozornění</string>
+    <string name="Settings_Delete">Odstranit</string>
+    <string name="Settings_Success">Úspěch</string>
+    <string name="Settings_Alerts">Upozornění</string>
+    <string name="Settings_Error">Chyba</string>
+    <string name="Settings_Change_Server">Změnili jste serverové informace. Chcete provést ověření serverem?</string>
+    <string name="Settings_Discard">Zahodit změny</string>
+    <string name="Settings_Activate">Aktivovat</string>
+    <string name="Settings_Activating">Aktivování...</string>
+    <string name="Settings_Server_Connection">Připojení k serveru úspěšné</string>
+    <string name="Settings_Error_Correct">Připojení k serveru neúspěšné. Ověřte správnost adresy URL serveru, uživatele a hesla. </string>
+    <string name="Settings_via_email">přes E-mail</string>
+    <string name="Settings_to_server">na server</string>
+     <string-array name="language_enties">
+        <item >English</item>
+        <item >Deutsch</item>
+        <item >Français</item>
+        <item >Español</item>
+        <item >Svenska</item>
+        <item >Ceský</item>
+    </string-array>
+    
+    <string-array name="language_values">
+        <item >1</item>
+        <item >2</item>
+        <item >3</item>
+        <item >4</item>
+        <item >5</item>
+        <item >6</item>
+    </string-array>
+    <string name="Settings_newRecording">Nové záznamy</string>
+    <string name="Settings_ListRecording">Seznam záznamů</string>
+    <string name="Settings_trademark">FlashAir is a trademark or registered trademark of TOSHIBA CORPORATION</string>
+    <!-- Settings -->
+    
+       
+    <!-- ODP-Resultcode -->
+    <string name="Ils_Result_Global_Client_Error">Globální chyba klienta</string>
+    <string name="Ils_Result_Global_Server_Error">Globální chyba serveru</string>
+    <string name="Ils_Result_Internal_Server_error">Interní chyba serveru</string>
+    <string name="Ils_Result_Bad_request">Chybný požadavek</string>
+    <string name="Ils_Result_Resend_Selected">Vyberte položky \"Odesílání neúspěšné\" v záložce K odeslání a stisknutím ikony [Odeslat] je opět odešlete.</string>   
+    <string name="Ils_Result_Fail_Activate">Aktivace neúspěšná</string>
+    <string name="ILs_Result_Another_UUID_Activated">Aktivováno jiné UUID</string>
+   <!--  <string name="ILs_Result_Already_Activated">Toto zařízení je již aktivováno s jiným ID zařízení</string> -->
+    <string name="Ils_Result_Unauthorized">Neoprávněno</string>
+    <string name="Ils_Result_Unexpected_Error">Došlo k neočekávané chybě systému. </string>
+    <string name="Ils_Result_Resource_Not_Found">Zdroj nenalezen</string>
+    <string name="Ils_Result_Client_Update">Nutná aktualizace klienta</string>
+    <string name="Ils_Result_Need_Client_Update">Tato verze aplikace je stará. Nelze získat přístup k serveru služeb. Zaktualizujte aplikaci.</string>
+    <string name="Ils_Result_Not_Activated">Nezaktivováno</string>
+    <string name="Ils_Result_Activate_Server">Toto zařízení je deaktivováno administrátorem. Stisknutím [Ověřit připojení serveru] zaktivujte v možnostech serveru. </string>
+    <string name="Ils_Result_License_Expired">Vypršela licence</string>     
+    <string name="Ils_Result_License_Access_Service">Licence již vypršela. Nelze získat přístup k serveru služeb.</string>
+    <string name="Ils_Result_Account_Disabled">Účet deaktivován</string>
+    <string name="Ils_Result_Service_Unavailable">Služba nedostupná</string>   
+    <string name="Ils_Result_Cannot_Connect">Nelze se připojit</string>
+    <string name="Ils_Result_Cannot_Connect_Server">Nelze se připojit k serveru
+Připojení ODP neúspěšné.</string>
+    <string name="Ils_Result_Invalid_Url">Invalid URL</string>
+    
+    
+    <string name="entervalidemail">Zadejte prosím platný E-mail</string>
+<string name="Settings_Language">Restartováním aplikace prosím aktivujte jazykové nastavení</string>
+<string name="Account_Disabled">Účet je neaktivní. Není možné získat přístup k serveru služeb.</string>
+<string name="Continue_Recording">Chcete pokračovat se záznamem?</string>
+<string name="Property_enter_valid_dict_name">Zadejte prosím platný název diktátu</string>
+<string name="Trademarks">Ochranné známky</string>
+<string name="ThirdPartySoftware">Software třetí strany</string>
+<string name="None">Žádné</string>
+<string name="ON">ZAP.</string>
+<string name="OFF">VYP.</string>
+<string name="Alert">Upozornění</string>
+<string name="FlashAirTrade">FlashAir™ je ochranná známka nebo registrovaná ochranná známka společnosti TOSHIBA CORPORATION.</string>
+<string name="worktypeexist">Tento typ práce již existuje v seznamu</string>
+<string name="Dictate_Alert_Already_Exists_Message">Tento název diktátu již existuje v seznamu</string>
+<string name="HomeSleep">Odesílání souboru(souborů) diktátu. 
+Nestiskněte tlačítko Domů/Spánek, dokud se nedokončí přenos.</string>
+<string name="Settings_Max_Recipients">Byl dosažen maximální počet příjemců</string>
+<string name="SourceNotfound">Nebyl nalezen zdroj</string>
+<string name="Settings_About">O aplikaci</string>
+<string name="UnableRecording">Nebylo možné spustit záznam. Je spuštěná jiná záznamová aplikace</string>
+<string name="FileSizeMaximum">Vzhledem k tomu, že velikost zvoleného souboru přesahuje limit přílohy E-mailu, bude odeslán ve více E-mailech.</string>
+<string name="WifiAllianze">Wi-Fi je registrovaná ochranná známka Wi-Fi Alliance.  </string>
+<string name="Add">přidat</string> 
+<string name="Select">vybrat</string>
+<string name="Connect_Flashair">Připojte se k FlashAir ručně z nastavení</string>  
+<string name="Connecting_to">Připojení k</string>
+    <!-- ODP-Resultcode -->
+    
+    <!-- New Stings -->
+
+    <string name="author_id">ID autora</string>
+    <string name="email_title">E-mailová adresa a ID (iniciály) autora</string>
+     <string name="server_options_recipient_title">Příjemci</string>
+    <string name="Follow_Server_Settings">Použít nastavení portálu (výchozí)</string>
+    <string name="email_not_available">Pro vybranou osobu není k dispozici E-mail</string>
+    <string name="edit_recipients">Upravit příjemce</string>
+    <string name="add_recipients">Přidat příjemce</string>
+    <string name="choose_email_address">Vyberte e-mailovou adresu</string>
+    <string name="enter_valid_email_address">Zadejte platnou e-mailovou adresu</string>
+    <string name="recipient_already_exist">Tento příjemce již existuje</string>
+    <string name="add_recipients_description">Zadejte e-mailovou adresu nového příjemce a klepnutím na ikonu (+) jej přidejte. Chcete-li nadiktované texty odeslat tomuto uživateli, vyberte jej v seznamu příjemců.</string>
+    <string name="update_recipient_success_message">Příjemci úspěšně aktualizováni</string>
+    <string name="Recording_Alerts_Copying_Resend">Kopírování souboru k opakovanému odeslání</string>
+    <string name="invalid_recipient_email_alert_message">Následující e-mailová adresa (adresy) je neplatná \n</string>
+    <string name="resend">Znovu odeslat</string>
+    
+    <string name="recipient_hint_text">Zadejte e-mailovou adresu</string>
+    
+    <!-- ODP Strings -->
+    
+    <string name="Ils_Result_Another_Email_Activated">Toto zařízení je již aktivováno pro jinou e-mailovou adresu. Chcete změnit e-mailovou adresu?</string>
+    <string name="Ils_Result_No_Unused_Licence">Aktivace se nezdařila, protože není k dispozici dostatek dostupných licencí. Objednejte si další licenci.</string>
+    <string name="Ils_Result_Invalid_Arguments">Aktivace se nezdařila, protože je zadáno chybné ID autora nebo příjemci.</string>
+    <string name="ILs_Result_Already_Activated">Váš profil používá jiné zařízení. Výběrem možnosti [Ano] použijete svůj profil k aktivaci tohoto zařízení.\nPOZNÁMKA: Jakmile zvolíte možnost [Ano], bude druhé zařízení deaktivováno.</string>
+    <string name="Ils_Result_Code_4010">Nebyla nalezena nepoužitá licence</string>
+    <string name="Ils_Result_Code_4011">Neplatné argumenty</string>
+    <string name="Ils_Result_Code_4012">Aktivováno pro jinou e-mailovou adresu</string>
+    
+    
+</resources>

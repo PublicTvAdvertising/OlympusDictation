@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  Active tab -->
+	<item 
+		android:state_pressed="false" android:drawable="@color/black" />
+	<!--  Inactive tab -->
+	
+	<item android:state_pressed="true" android:drawable="@android:drawable/list_selector_background" />
+	<!--  Selected tab (using d-pad) -->
+	
+</selector>

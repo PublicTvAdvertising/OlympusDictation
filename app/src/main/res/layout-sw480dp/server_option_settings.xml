@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true" >
+    
+	<TextView android:id="@+id/text_url"
+	     android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/server_url_title"
+	    android:padding="5dp"
+	    android:layout_marginTop="10dp"
+	    android:textStyle="bold"
+	    android:textSize="18sp"
+	    android:textColor="#FFFFFF"
+	    />
+	<EditText android:id="@+id/edit_server_url"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="5dp"
+	    android:text="https://"
+	    android:inputType="textUri"
+	    android:imeOptions="actionDone"
+	    android:maxLength="4096"/>
+	<TextView android:id="@+id/text_log"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/login_category"
+	    android:layout_marginTop="20dp"
+	    android:padding="5dp"
+	    android:textStyle="bold"
+	    android:textSize="18sp"
+	    android:textColor="#FFFFFF"
+	    />
+	<RelativeLayout android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="5dp">
+	    <TextView android:id="@+id/text_user_label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="47dp"
+	        android:text="@string/login_user_title"
+	        android:paddingRight="55dp"
+	        android:gravity="center_vertical"/>
+	    <EditText android:id="@+id/edit_server_user"
+	        android:layout_width="fill_parent"
+	        android:layout_height="47dp"
+	        android:layout_toRightOf="@id/text_user_label"
+	        android:inputType="text"
+	        android:imeOptions="actionDone"
+	        android:maxLength="64"/>
+	    <TextView android:id="@+id/text_password_label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="47dp"
+	        android:text="@string/login_password_title"
+	        android:layout_below="@id/text_user_label"
+	        android:layout_alignLeft="@id/text_user_label"
+	        android:layout_alignRight="@id/text_user_label"
+	        android:gravity="center_vertical"/>
+	    <EditText android:id="@+id/edit_server_password"
+	        android:layout_width="fill_parent"
+	        android:layout_height="47dp"
+	        android:layout_toRightOf="@id/text_password_label"
+	        android:layout_below="@id/edit_server_user"
+	        android:inputType="textPassword"
+	        android:imeOptions="actionDone"
+	        android:maxLength="64"/>
+	</RelativeLayout>
+    
+	<RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView android:id="@+id/title_email"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email_title"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            />
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_below="@+id/title_email"
+            android:paddingRight="50dp"
+            android:gravity="center_vertical"
+            android:text="@string/Button_Email"/>  
+
+        <EditText android:id="@+id/edit_email"
+            android:layout_width="fill_parent"
+            android:layout_height="47dp"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionDone"
+            android:layout_below="@+id/title_email"
+            android:layout_toRightOf="@+id/text_email" />  
+        <EditText 
+            android:id="@+id/edit_author_id"
+            android:layout_width="fill_parent"
+            android:layout_height="47dp"
+            android:maxLength="16"
+            android:imeOptions="actionDone"
+            android:inputType="textCapCharacters|textNoSuggestions"
+            android:layout_below="@+id/edit_email"
+            android:layout_alignLeft="@+id/edit_email" />  
+
+        <TextView
+            android:id="@+id/text_author_id"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_alignBaseline="@+id/edit_author_id"
+            android:layout_alignBottom="@+id/edit_author_id"
+            android:layout_alignLeft="@+id/text_email"
+            android:layout_alignRight="@+id/text_email"
+            android:gravity="center_vertical"
+            android:paddingRight="20dp"
+            android:text="@string/author_id" />
+
+        <TextView
+            android:id="@+id/text_recipients"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_alignLeft="@+id/text_author_id"
+            android:layout_alignRight="@+id/text_email"
+            android:layout_below="@+id/edit_author_id"
+            android:gravity="center_vertical"
+            android:text="@string/server_options_recipient_title" />
+
+        <Button
+            android:id="@+id/recipient"
+            android:layout_width="fill_parent"
+            android:layout_height="47dp"
+            android:layout_alignLeft="@+id/edit_author_id"
+            android:layout_below="@+id/text_author_id"
+            android:background="@android:drawable/btn_dropdown"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@android:color/black" 
+            android:singleLine="true"
+            android:ellipsize="end"/>
+
+    </RelativeLayout>
+	
+	<Button android:id="@+id/button_check_server"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/check_server_text"
+	    android:layout_marginLeft="5dp"
+	    android:layout_marginRight="5dp"
+	    android:layout_marginTop="10dp"
+	    android:layout_marginBottom="10dp"
+	    android:layout_gravity="center_horizontal"/>
+	
+</LinearLayout>
+</ScrollView>

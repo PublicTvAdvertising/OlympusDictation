@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@android:id/background"
+        >
+        <bitmap
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:dither="true"
+            android:src="@drawable/dictate_cover_back" />
+    </item>
+
+    <item
+        android:id="@android:id/progress"
+        android:drawable="@drawable/dictate_cover_front">
+        <shape>
+            <corners android:radius="0dip" />
+        </shape>
+
+    </item>
+
+</layer-list>

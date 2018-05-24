@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:seekbar="http://schemas.android.com/apk/res/com.olympus.dmmobile" >
+
+    <PreferenceCategory android:title="@string/category_comunication" >
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/send_entries"
+            android:entryValues="@array/send_values"
+            android:key="@string/send_key"
+            android:persistent="true"
+            android:summary=""
+            android:negativeButtonText="@string/Camera_Cancel"
+            android:title="@string/send_title"
+            android:widgetLayout="@layout/custom_image" 
+            />
+
+        <PreferenceScreen
+            android:key="send_options"
+            android:title="@string/sendoption_email"
+            android:widgetLayout="@layout/custom_image" >
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/category_recording" >
+        <PreferenceScreen
+            android:key="@string/rec_format_key"
+            android:summary="AMR"
+            android:title="@string/rec_format_title"
+            android:widgetLayout="@layout/custom_image" >
+            <Preference
+                android:defaultValue="AMR"
+                android:summary="AMR"
+                android:key="@string/formats_list_key"
+                android:title="@string/rec_format_title"
+                 />
+            <Preference
+                android:defaultValue="@string/Settings_Standard"
+                android:summary="@string/Settings_Standard"
+                android:key="@string/audio_quality_key"
+                android:title="@string/audio_quality_category"
+                />
+        </PreferenceScreen>
+
+        <CheckBoxPreference
+            android:key="@string/blutooth_input_key"
+            android:title="@string/blutooth_input_title" />
+
+        <PreferenceScreen
+            android:key="@string/mic_sens_screen_key"
+            android:title="@string/mic_sens_screen_title"
+            android:widgetLayout="@layout/custom_image" >
+            <com.olympus.dmmobile.settings.SeekBarPreference
+                android:defaultValue="100"
+                android:key="@string/mic_sensitivity_key"
+                android:max="150"
+                android:summary="@string/Settings_Low"
+                seekbar:min="25"
+                seekbar:unitsRight="@string/Settings_High" 
+                 />
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:key="@string/vcva_screen_key"
+            android:summary="@string/OFF"
+            android:title="@string/vcva_screen_title"
+            android:widgetLayout="@layout/custom_image" >
+            <CheckBoxPreference
+                android:key="@string/vcva_key"
+                android:title="@string/vcva_title" />
+			<PreferenceCategory android:title="@string/Settings_Vcva_Level" 
+			    android:key="vcva_level_category">
+			    </PreferenceCategory>
+	            <com.olympus.dmmobile.settings.SeekBarPreference
+	                android:defaultValue="5"
+	                android:key="@string/vcva_seekbar_key"
+	                android:max="9"
+	                android:summary="@string/Settings_max"
+	                seekbar:min="0"
+	                seekbar:unitsRight="@string/Settings_min" />
+	        
+        </PreferenceScreen>
+
+        <CheckBoxPreference
+            android:key="@string/push_to_talk_key"
+            android:title="@string/push_to_talk_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/category_workflow" >
+        <EditTextPreference
+            android:key="@string/author_key"
+            android:title="@string/author_id"
+            android:widgetLayout="@layout/custom_image"
+            android:inputType="textCapCharacters" 
+            android:negativeButtonText="@string/Camera_Cancel"
+             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890"
+             android:maxLength="16"/>
+        <Preference
+            android:key="@string/worktype_list_key"
+            android:title="@string/worktype_list_title"
+            android:widgetLayout="@layout/custom_image" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/category_general" >
+        <ListPreference
+            android:entries="@array/keep_item_enties"
+            android:entryValues="@array/keep_item_values"
+            android:key="@string/keep_sent_items_key"
+            android:title="@string/keep_sent_items_title"
+            android:widgetLayout="@layout/custom_image" 
+            android:negativeButtonText="@string/Camera_Cancel"
+            android:defaultValue="6"
+            />
+        <ListPreference
+            android:entries="@array/on_launch_entries"
+            android:entryValues="@array/on_launch_values"
+            android:key="@string/onlaunch_show_key"
+            android:summary="List of Recordings"
+            android:title="@string/onlaunch_show_title"
+            android:negativeButtonText="@string/Camera_Cancel"
+            android:widgetLayout="@layout/custom_image"
+            android:defaultValue="2" />
+        <ListPreference
+            android:entries="@array/language_enties"
+            android:entryValues="@array/language_values"
+            android:key="@string/language_key"
+            android:summary="English"
+            android:negativeButtonText="@string/Camera_Cancel"
+            android:title="@string/language_title"
+            android:widgetLayout="@layout/custom_image" />
+
+        <CheckBoxPreference
+            android:key="@string/use_flashair_key"
+            android:title="@string/use_flashair_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="    ">
+        <Preference android:key="@string/privacy_policy_key"
+            android:title="@string/privacy_policy_title"
+            android:widgetLayout="@layout/custom_image"/>
+        <Preference android:key="@string/legal_notices_key"
+            android:title="@string/legal_notices_title"
+            android:widgetLayout="@layout/custom_image"/>
+        <Preference android:key="@string/about_key"
+            android:title="@string/Settings_About"
+            android:widgetLayout="@layout/custom_image"/>
+    </PreferenceCategory>
+   <!-- <PreferenceCategory android:title="    ">
+        <Preference android:key="@string/about_key"
+            android:title="@string/Settings_About"
+            android:widgetLayout="@layout/custom_image"/>
+    </PreferenceCategory>-->
+</PreferenceScreen>

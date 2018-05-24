@@ -1,0 +1,354 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:2:1-148:12
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:2:1-148:12
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:2:1-148:12
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:2:1-148:12
+MERGED from [com.android.support:appcompat-v7:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-21.0.3.aar/30a0b69e20ac0ced244e989999ff5ff0/AndroidManifest.xml:14:4-17:12
+MERGED from [com.android.support:support-v4:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/support-v4-21.0.3.aar/ef1f16b8860f6c2e9de0d9300c0bda2f/AndroidManifest.xml:14:4-17:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/raneez/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/94706bce23adc7aa688bc350f2a0def4/AndroidManifest.xml:2:1-11:12
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:2:1-148:12
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:2:1-148:12
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:2:1-148:12
+	package
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:3:5-35
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:5:5-32
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:4:5-29
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+uses-sdk
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:7:5-44
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:7:5-44
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:7:5-44
+MERGED from [com.android.support:appcompat-v7:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-21.0.3.aar/30a0b69e20ac0ced244e989999ff5ff0/AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:appcompat-v7:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-21.0.3.aar/30a0b69e20ac0ced244e989999ff5ff0/AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/support-v4-21.0.3.aar/ef1f16b8860f6c2e9de0d9300c0bda2f/AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/support-v4-21.0.3.aar/ef1f16b8860f6c2e9de0d9300c0bda2f/AndroidManifest.xml:15:5-42
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/raneez/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/94706bce23adc7aa688bc350f2a0def4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/raneez/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/94706bce23adc7aa688bc350f2a0def4/AndroidManifest.xml:5:5-7:41
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:7:5-44
+INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:7:5-44
+	android:targetSdkVersion
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:7:5-44
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:7:15-41
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+		INJECTED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml
+uses-feature#android.hardware.telephony
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:9:5-11:36
+	android:required
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:11:9-33
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:10:9-50
+uses-feature#android.hardware.bluetooth
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:12:5-14:36
+	android:required
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:14:9-33
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:13:9-50
+uses-feature#android.hardware.wifi
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:15:5-17:36
+	android:required
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:17:9-33
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:16:9-45
+uses-feature#android.hardware.microphone
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:18:5-64
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:18:19-61
+uses-feature#android.hardware.screen.portrait
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:19:5-69
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:19:19-66
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:21:5-76
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:21:22-73
+uses-permission#android.permission.INTERNET
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:22:5-67
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:22:22-64
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:23:5-76
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:23:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:24:22-76
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:25:5-81
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:25:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:26:5-80
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:26:22-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:27:5-71
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:27:22-68
+uses-permission#android.permission.READ_CONTACTS
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:28:5-72
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:28:22-69
+uses-permission#android.permission.READ_PROFILE
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:29:5-71
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:29:22-68
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:30:5-68
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:30:22-65
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:31:5-80
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:31:22-77
+uses-permission#android.permission.BROADCAST_STICKY
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:32:5-75
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:32:22-72
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:33:5-74
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:33:22-71
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:34:5-81
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:34:22-78
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:35:5-68
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:35:22-65
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:36:5-75
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:36:22-72
+uses-permission#android.permission.PROCESS_OUTGOING_CALLS
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:37:5-81
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:37:22-78
+application
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:39:5-146:19
+MERGED from [com.android.support:appcompat-v7:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-21.0.3.aar/30a0b69e20ac0ced244e989999ff5ff0/AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:appcompat-v7:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-21.0.3.aar/30a0b69e20ac0ced244e989999ff5ff0/AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/support-v4-21.0.3.aar/ef1f16b8860f6c2e9de0d9300c0bda2f/AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.3] /home/raneez/.gradle/caches/transforms-1/files-1.1/support-v4-21.0.3.aar/ef1f16b8860f6c2e9de0d9300c0bda2f/AndroidManifest.xml:16:5-19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/raneez/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/94706bce23adc7aa688bc350f2a0def4/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/raneez/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/94706bce23adc7aa688bc350f2a0def4/AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:43:9-41
+	android:icon
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:42:9-45
+	android:allowBackup
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:41:9-35
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:44:9-40
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:40:9-38
+activity#com.olympus.dmmobile.SplashscreenActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:45:9-54:20
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:48:13-49
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:47:13-45
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:46:13-49
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:49:13-53:29
+action#android.intent.action.MAIN
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:50:17-69
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:50:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:52:17-77
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:52:27-74
+activity#com.olympus.dmmobile.DMActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:55:9-59:61
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:59:13-49
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:57:13-45
+	android:launchMode
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:58:13-43
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:56:13-39
+activity#com.olympus.dmmobile.settings.SettingsActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:60:9-65:67
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:64:13-49
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:62:13-45
+	android:launchMode
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:63:13-43
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:65:13-55
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:61:13-54
+activity#com.olympus.dmmobile.DictationPropertyActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:66:9-72:64
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:71:13-49
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:69:13-45
+	android:launchMode
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:70:13-43
+	android:windowSoftInputMode
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:72:13-52
+	android:configChanges
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:68:13-48
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:67:13-54
+service#com.olympus.dmmobile.Errorservice
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:74:9-76:56
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:76:13-45
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:75:13-41
+activity#com.olympus.dmmobile.flashair.FlashAirMain
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:78:9-81:61
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:81:13-49
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:80:13-45
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:79:13-50
+activity#com.olympus.dmmobile.flashair.FlashAirBrowser
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:82:9-84:61
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:84:13-49
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:83:13-53
+activity#com.olympus.dmmobile.settings.WorktypeActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:85:9-88:58
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:87:13-49
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:88:13-46
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:86:13-54
+activity#com.olympus.dmmobile.settings.EmailOptionsActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:89:9-92:58
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:91:13-49
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:92:13-46
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:90:13-58
+activity#com.olympus.dmmobile.settings.ServerOptionsActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:93:9-96:58
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:95:13-49
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:96:13-46
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:94:13-59
+activity#com.olympus.dmmobile.settings.LegalNoticesActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:97:9-101:58
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:100:13-49
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:99:13-56
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:101:13-46
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:98:13-58
+activity#com.olympus.dmmobile.settings.LegalnoticeActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:102:9-106:58
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:105:13-49
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:104:13-56
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:106:13-46
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:103:13-57
+activity#com.olympus.dmmobile.settings.ThirdpartySoftware
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:107:9-110:58
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:109:13-49
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:110:13-46
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:108:13-56
+activity#com.olympus.dmmobile.recorder.DictateActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:111:9-114:61
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:114:13-49
+	android:launchMode
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:113:13-43
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:112:13-53
+activity#com.olympus.dmmobile.settings.TrademarkActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:115:9-118:58
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:117:13-49
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:118:13-46
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:116:13-55
+activity#com.olympus.dmmobile.settings.NoSdcard
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:119:9-121:61
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:121:13-49
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:120:13-46
+activity#com.olympus.dmmobile.settings.SplashActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:122:9-124:61
+	android:screenOrientation
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:124:13-49
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:123:13-52
+service#com.olympus.dmmobile.ConvertAndUploadService
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:126:9-68
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:126:18-57
+activity#com.olympus.dmmobile.CustomDialog
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:128:9-130:84
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:130:13-72
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:129:13-41
+activity#com.olympus.dmmobile.CustomLaunchDialog
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:131:9-133:84
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:133:13-72
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:132:13-47
+activity#com.olympus.dmmobile.settings.RecipientActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:134:9-138:67
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:136:13-52
+	android:launchMode
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:137:13-43
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:138:13-55
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:135:13-55
+activity#com.olympus.dmmobile.settings.AddRecipientActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:139:9-142:67
+	android:launchMode
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:141:13-43
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:142:13-55
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:140:13-58
+activity#com.olympus.dmmobile.settings.PrivacyPolicyActivity
+ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:143:9-145:67
+	android:label
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:144:13-57
+	android:theme
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:145:13-55
+	android:name
+		ADDED from /home/raneez/Documents/olympus_dictation/dictation/app/src/main/AndroidManifest.xml:143:19-65

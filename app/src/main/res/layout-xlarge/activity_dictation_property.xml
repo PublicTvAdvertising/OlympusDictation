@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/property_activity_root_view"
+	android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_activity" 
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+	<RelativeLayout
+		android:id="@+id/relative_property_tab_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/tabpanel_top" >
+	 		<Button
+	 		    android:textColor="@color/text_color"
+	 	    android:id="@+id/btn_property_edit"
+	 	    android:layout_width="180dp"
+	 	    android:layout_height="wrap_content"
+	 	    android:layout_alignParentRight="true"
+	 	    android:layout_centerHorizontal="true"
+	 	    android:layout_centerVertical="true"
+	 	    android:text="@string/Property_Edit"
+	 	    android:singleLine="true"
+	 	    android:background="@android:color/transparent"
+	 	    android:paddingLeft="8dp"
+	 	    android:paddingTop="20dp"
+	 	    android:textStyle="bold"
+	 	    android:paddingBottom="20dp"
+	 	    android:layout_marginTop="4dp"
+	 	    android:layout_marginRight="5dp"
+	 	    android:layout_marginBottom="4dp"
+	 	    android:paddingRight="8dp"
+	 	    android:textSize="30sp" />
+	</RelativeLayout>
+	
+	
+<!-- 	<ScrollView
+		android:id="@+id/scroll_dictate_property"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+		android:layout_above="@+id/relative_property_bottom_tab"
+        android:layout_below="@+id/relative_property_tab_top" > -->
+
+		<LinearLayout
+		    android:id="@+id/linear_property_main"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:layout_above="@+id/relative_property_bottom_tab"
+		    android:layout_below="@+id/relative_property_tab_top"
+		    android:orientation="vertical" >
+<com.olympus.dmmobile.VerticalScrollview
+		android:id="@+id/scroll_dictate_property"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+        
+			<RelativeLayout
+				android:id="@+id/relative_property_main_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/activity_dictate_property_top_panel_bg"
+                android:padding="20dp" >
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_dictation_name"
+                    android:layout_width="450dp"
+                    android:layout_height="wrap_content"
+                    android:text="AUTHOR0001"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:textSize="50sp"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+ 
+                <EditText
+                    android:id="@+id/edittext_property_dictation_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textSize="35sp"
+                    android:background="@drawable/button_round_shape_selector"
+                    android:maxLength="64"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz0123456789_"
+                    android:layout_alignLeft="@+id/text_property_dictation_name"
+                    android:layout_alignTop="@+id/text_property_dictation_name"
+                    android:layout_marginRight="10dp"
+                    android:visibility="invisible"
+                    android:hint="Dictation name"
+                    android:layout_toLeftOf="@+id/image_property_camera"
+                    android:imeOptions="actionDone" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_worktype_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_property_dictation_name"
+                    android:layout_marginTop="15dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Property_Worktype"
+                    android:textStyle="bold"
+                    android:textSize="40sp" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_priority_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_property_worktype_header"
+                    android:layout_marginTop="7dp"
+                    android:textSize="40sp"
+                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/Property_Priority"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/check_property_priority"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignBottom="@+id/text_property_priority_head"
+                    android:layout_alignRight="@+id/text_property_comment"
+                    android:layout_below="@+id/text_property_worktype"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/text_property_priority_head"
+                    android:background="@drawable/priority_selector"
+                    android:button="@null" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_worktype"
+                    android:layout_width="240dp"
+                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/text_property_worktype_header"
+                    android:layout_alignTop="@+id/text_property_worktype_header"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/text_property_worktype_header"
+                    android:text="Office"
+                    android:textSize="40sp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_dictate_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_property_priority_head"
+                    android:layout_marginTop="80dp"
+                    android:textSize="35sp"
+                    android:text="2013/09/25 12:08:18 0:36:15"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_jobnumber_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                     android:textSize="35sp"
+                    android:layout_below="@+id/text_property_dictate_details"
+                    android:text="@string/Property_Jobnumber"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_jobnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/text_property_jobnumber"
+                    android:layout_alignBottom="@+id/text_property_jobnumber"
+                    android:layout_below="@+id/text_property_dictate_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/text_property_jobnumber_header"
+                    android:text="1"
+                    android:textSize="35sp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_status_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_property_jobnumber_header"
+                    android:text="@string/Property_Status"
+                     android:textSize="35sp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/text_property_status_header"
+                    android:layout_below="@+id/text_property_jobnumber_header"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/text_property_status_header"
+                    android:text="Pending"
+                     android:textSize="35sp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_property_status_header"
+                    android:layout_marginTop="80dp"
+                    android:text="@string/Property_Comment"
+                    android:textStyle="bold"
+                     android:textSize="45sp"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/edit_property_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_below="@+id/text_property_comment"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:scrollbars = "vertical"
+                    android:overScrollMode="always"
+                    android:isScrollContainer="true"
+                    android:textSize="22sp"
+                    android:padding="7dp"
+                    android:maxLength="100"
+                    android:gravity="top"
+                    android:textColor="@color/white"
+                    android:inputType="textMultiLine|textCapSentences" />
+
+                <ImageView
+                    android:id="@+id/image_property_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/dictation_property_cam_stroke_selector"
+                    android:src="@drawable/dictation_property_camera_icon_selector" />
+
+            </RelativeLayout>
+</com.olympus.dmmobile.VerticalScrollview>
+            <RelativeLayout
+                android:id="@+id/relative_property_shake_twice_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+
+				<TextView
+				    android:textColor="@color/text_color"
+				    android:id="@+id/text_property_shake"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_centerInParent="true"
+				     android:textSize="40sp"
+				    android:text="@string/Property_Shake_Twice"
+				    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			</RelativeLayout>
+
+		
+		</LinearLayout>
+	<!-- </ScrollView> 
+        -->
+	
+	<RelativeLayout
+		    android:id="@+id/relative_property_bottom_tab"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="bottom"
+		    android:gravity="center"
+		    android:layout_alignParentBottom="true"
+		    android:background="@drawable/bg_activity_bottom_tab"
+		    android:padding="5dp" >
+
+		<ImageView
+			android:id="@+id/image_property_new_dictation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/new_dictation_selector" />
+		<ImageButton
+                 android:id="@+id/imgBtn_property_SettingsOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentRight="true"
+               	android:background="@android:color/transparent"
+                android:src="@drawable/action_settings_icon"
+                />
+	</RelativeLayout>
+</RelativeLayout>

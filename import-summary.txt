@@ -1,0 +1,391 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* doc/
+* doc/allclasses-frame.html
+* doc/allclasses-noframe.html
+* doc/android/
+* doc/android/media/
+* doc/android/media/AmrInputStream.html
+* doc/android/media/class-use/
+* doc/android/media/class-use/AmrInputStream.html
+* doc/android/media/package-frame.html
+* doc/android/media/package-summary.html
+* doc/android/media/package-tree.html
+* doc/android/media/package-use.html
+* doc/com/
+* doc/com/olympus/
+* doc/com/olympus/dmmobile/
+* doc/com/olympus/dmmobile/AMRConverter.html
+* doc/com/olympus/dmmobile/BuildConfig.html
+* doc/com/olympus/dmmobile/ConvertAndUploadService.CustomSSLSocketFactory.html
+* doc/com/olympus/dmmobile/ConvertAndUploadService.UploadStatusChangeListener.html
+* doc/com/olympus/dmmobile/ConvertAndUploadService.html
+* doc/com/olympus/dmmobile/CustomCursorAdapter.ViewHolder.html
+* doc/com/olympus/dmmobile/CustomCursorAdapter.html
+* doc/com/olympus/dmmobile/CustomDialog.html
+* doc/com/olympus/dmmobile/CustomLaunchDialog.html
+* doc/com/olympus/dmmobile/DMActivity.EditCopyTask.html
+* doc/com/olympus/dmmobile/DMActivity.GetAvailableDictationSlotTask.html
+* doc/com/olympus/dmmobile/DMActivity.SendViaEmailTask.html
+* doc/com/olympus/dmmobile/DMActivity.SetAdapterTask.html
+* doc/com/olympus/dmmobile/DMActivity.WebServiceGetSettings.html
+* doc/com/olympus/dmmobile/DMActivity.html
+* doc/com/olympus/dmmobile/DMActivityViewPager.html
+* doc/com/olympus/dmmobile/DMApplication.html
+* doc/com/olympus/dmmobile/DSSConverter.html
+* doc/com/olympus/dmmobile/DatabaseHandler.html
+* doc/com/olympus/dmmobile/DictationCard.html
+* doc/com/olympus/dmmobile/DictationPropertyActivity.ManageChooseImage.html
+* doc/com/olympus/dmmobile/DictationPropertyActivity.html
+* doc/com/olympus/dmmobile/DictationQueryXmlParser.AttributeObjects.html
+* doc/com/olympus/dmmobile/DictationQueryXmlParser.html
+* doc/com/olympus/dmmobile/DictationStatus.html
+* doc/com/olympus/dmmobile/DictationUploadFileXmlParser.AttributeObjects.html
+* doc/com/olympus/dmmobile/DictationUploadFileXmlParser.JobDataObjects.html
+* doc/com/olympus/dmmobile/DictationUploadFileXmlParser.html
+* doc/com/olympus/dmmobile/EditCopySelectedListener.html
+* doc/com/olympus/dmmobile/Errorservice.WebServiceErrorinfo.html
+* doc/com/olympus/dmmobile/Errorservice.html
+* doc/com/olympus/dmmobile/FilesCard.html
+* doc/com/olympus/dmmobile/NoSdcard.html
+* doc/com/olympus/dmmobile/OutboxTabFragment.html
+* doc/com/olympus/dmmobile/PendingTabFragment.html
+* doc/com/olympus/dmmobile/R.anim.html
+* doc/com/olympus/dmmobile/R.array.html
+* doc/com/olympus/dmmobile/R.attr.html
+* doc/com/olympus/dmmobile/R.color.html
+* doc/com/olympus/dmmobile/R.drawable.html
+* doc/com/olympus/dmmobile/R.html
+* doc/com/olympus/dmmobile/R.id.html
+* doc/com/olympus/dmmobile/R.layout.html
+* doc/com/olympus/dmmobile/R.menu.html
+* doc/com/olympus/dmmobile/R.string.html
+* doc/com/olympus/dmmobile/R.style.html
+* doc/com/olympus/dmmobile/R.styleable.html
+* doc/com/olympus/dmmobile/R.xml.html
+* doc/com/olympus/dmmobile/RecordingSelectedListener.html
+* doc/com/olympus/dmmobile/SendTabFragment.html
+* doc/com/olympus/dmmobile/ShakeListener.OnShakeListener.html
+* doc/com/olympus/dmmobile/ShakeListener.html
+* doc/com/olympus/dmmobile/SplashscreenActivity.SplashTimer.html
+* doc/com/olympus/dmmobile/SplashscreenActivity.WebServiceUpdate.html
+* doc/com/olympus/dmmobile/SplashscreenActivity.WebServicegetSettings.html
+* doc/com/olympus/dmmobile/SplashscreenActivity.html
+* doc/com/olympus/dmmobile/VerticalScrollview.html
+* doc/com/olympus/dmmobile/ViewPagerAdapter.html
+* doc/com/olympus/dmmobile/class-use/
+* doc/com/olympus/dmmobile/class-use/AMRConverter.html
+* doc/com/olympus/dmmobile/class-use/BuildConfig.html
+* doc/com/olympus/dmmobile/class-use/ConvertAndUploadService.CustomSSLSocketFactory.html
+* doc/com/olympus/dmmobile/class-use/ConvertAndUploadService.UploadStatusChangeListener.html
+* doc/com/olympus/dmmobile/class-use/ConvertAndUploadService.html
+* doc/com/olympus/dmmobile/class-use/CustomCursorAdapter.ViewHolder.html
+* doc/com/olympus/dmmobile/class-use/CustomCursorAdapter.html
+* doc/com/olympus/dmmobile/class-use/CustomDialog.html
+* doc/com/olympus/dmmobile/class-use/CustomLaunchDialog.html
+* doc/com/olympus/dmmobile/class-use/DMActivity.EditCopyTask.html
+* doc/com/olympus/dmmobile/class-use/DMActivity.GetAvailableDictationSlotTask.html
+* doc/com/olympus/dmmobile/class-use/DMActivity.SendViaEmailTask.html
+* doc/com/olympus/dmmobile/class-use/DMActivity.SetAdapterTask.html
+* doc/com/olympus/dmmobile/class-use/DMActivity.WebServiceGetSettings.html
+* doc/com/olympus/dmmobile/class-use/DMActivity.html
+* doc/com/olympus/dmmobile/class-use/DMActivityViewPager.html
+* doc/com/olympus/dmmobile/class-use/DMApplication.html
+* doc/com/olympus/dmmobile/class-use/DSSConverter.html
+* doc/com/olympus/dmmobile/class-use/DatabaseHandler.html
+* doc/com/olympus/dmmobile/class-use/DictationCard.html
+* doc/com/olympus/dmmobile/class-use/DictationPropertyActivity.ManageChooseImage.html
+* doc/com/olympus/dmmobile/class-use/DictationPropertyActivity.html
+* doc/com/olympus/dmmobile/class-use/DictationQueryXmlParser.AttributeObjects.html
+* doc/com/olympus/dmmobile/class-use/DictationQueryXmlParser.html
+* doc/com/olympus/dmmobile/class-use/DictationStatus.html
+* doc/com/olympus/dmmobile/class-use/DictationUploadFileXmlParser.AttributeObjects.html
+* doc/com/olympus/dmmobile/class-use/DictationUploadFileXmlParser.JobDataObjects.html
+* doc/com/olympus/dmmobile/class-use/DictationUploadFileXmlParser.html
+* doc/com/olympus/dmmobile/class-use/EditCopySelectedListener.html
+* doc/com/olympus/dmmobile/class-use/Errorservice.WebServiceErrorinfo.html
+* doc/com/olympus/dmmobile/class-use/Errorservice.html
+* doc/com/olympus/dmmobile/class-use/FilesCard.html
+* doc/com/olympus/dmmobile/class-use/NoSdcard.html
+* doc/com/olympus/dmmobile/class-use/OutboxTabFragment.html
+* doc/com/olympus/dmmobile/class-use/PendingTabFragment.html
+* doc/com/olympus/dmmobile/class-use/R.anim.html
+* doc/com/olympus/dmmobile/class-use/R.array.html
+* doc/com/olympus/dmmobile/class-use/R.attr.html
+* doc/com/olympus/dmmobile/class-use/R.color.html
+* doc/com/olympus/dmmobile/class-use/R.drawable.html
+* doc/com/olympus/dmmobile/class-use/R.html
+* doc/com/olympus/dmmobile/class-use/R.id.html
+* doc/com/olympus/dmmobile/class-use/R.layout.html
+* doc/com/olympus/dmmobile/class-use/R.menu.html
+* doc/com/olympus/dmmobile/class-use/R.string.html
+* doc/com/olympus/dmmobile/class-use/R.style.html
+* doc/com/olympus/dmmobile/class-use/R.styleable.html
+* doc/com/olympus/dmmobile/class-use/R.xml.html
+* doc/com/olympus/dmmobile/class-use/RecordingSelectedListener.html
+* doc/com/olympus/dmmobile/class-use/SendTabFragment.html
+* doc/com/olympus/dmmobile/class-use/ShakeListener.OnShakeListener.html
+* doc/com/olympus/dmmobile/class-use/ShakeListener.html
+* doc/com/olympus/dmmobile/class-use/SplashscreenActivity.SplashTimer.html
+* doc/com/olympus/dmmobile/class-use/SplashscreenActivity.WebServiceUpdate.html
+* doc/com/olympus/dmmobile/class-use/SplashscreenActivity.WebServicegetSettings.html
+* doc/com/olympus/dmmobile/class-use/SplashscreenActivity.html
+* doc/com/olympus/dmmobile/class-use/VerticalScrollview.html
+* doc/com/olympus/dmmobile/class-use/ViewPagerAdapter.html
+* doc/com/olympus/dmmobile/flashair/
+* doc/com/olympus/dmmobile/flashair/ChooserIntentListAdapter.html
+* doc/com/olympus/dmmobile/flashair/DownloadFiles.html
+* doc/com/olympus/dmmobile/flashair/FlashAirBrowser.DirectoryFragment.DirectoryListAdapter.ViewHolder.html
+* doc/com/olympus/dmmobile/flashair/FlashAirBrowser.DirectoryFragment.DirectoryListAdapter.html
+* doc/com/olympus/dmmobile/flashair/FlashAirBrowser.DirectoryFragment.ReadURLTask.html
+* doc/com/olympus/dmmobile/flashair/FlashAirBrowser.DirectoryFragment.SendFilesTask.html
+* doc/com/olympus/dmmobile/flashair/FlashAirBrowser.DirectoryFragment.SizeComparator.html
+* doc/com/olympus/dmmobile/flashair/FlashAirBrowser.DirectoryFragment.html
+* doc/com/olympus/dmmobile/flashair/FlashAirBrowser.html
+* doc/com/olympus/dmmobile/flashair/FlashAirFiles.html
+* doc/com/olympus/dmmobile/flashair/FlashAirMain.ConnectionTask.html
+* doc/com/olympus/dmmobile/flashair/FlashAirMain.ScanTask.html
+* doc/com/olympus/dmmobile/flashair/FlashAirMain.State.html
+* doc/com/olympus/dmmobile/flashair/FlashAirMain.WifiScanReciever.html
+* doc/com/olympus/dmmobile/flashair/FlashAirMain.html
+* doc/com/olympus/dmmobile/flashair/FolderSelectedListener.html
+* doc/com/olympus/dmmobile/flashair/class-use/
+* doc/com/olympus/dmmobile/flashair/class-use/ChooserIntentListAdapter.html
+* doc/com/olympus/dmmobile/flashair/class-use/DownloadFiles.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirBrowser.DirectoryFragment.DirectoryListAdapter.ViewHolder.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirBrowser.DirectoryFragment.DirectoryListAdapter.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirBrowser.DirectoryFragment.ReadURLTask.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirBrowser.DirectoryFragment.SendFilesTask.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirBrowser.DirectoryFragment.SizeComparator.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirBrowser.DirectoryFragment.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirBrowser.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirFiles.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirMain.ConnectionTask.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirMain.ScanTask.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirMain.State.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirMain.WifiScanReciever.html
+* doc/com/olympus/dmmobile/flashair/class-use/FlashAirMain.html
+* doc/com/olympus/dmmobile/flashair/class-use/FolderSelectedListener.html
+* doc/com/olympus/dmmobile/flashair/package-frame.html
+* doc/com/olympus/dmmobile/flashair/package-summary.html
+* doc/com/olympus/dmmobile/flashair/package-tree.html
+* doc/com/olympus/dmmobile/flashair/package-use.html
+* doc/com/olympus/dmmobile/log/
+* doc/com/olympus/dmmobile/log/ErrorList.html
+* doc/com/olympus/dmmobile/log/ErrorXmlHandler.html
+* doc/com/olympus/dmmobile/log/ExceptionReporter.Handler.html
+* doc/com/olympus/dmmobile/log/ExceptionReporter.html
+* doc/com/olympus/dmmobile/log/class-use/
+* doc/com/olympus/dmmobile/log/class-use/ErrorList.html
+* doc/com/olympus/dmmobile/log/class-use/ErrorXmlHandler.html
+* doc/com/olympus/dmmobile/log/class-use/ExceptionReporter.Handler.html
+* doc/com/olympus/dmmobile/log/class-use/ExceptionReporter.html
+* doc/com/olympus/dmmobile/log/package-frame.html
+* doc/com/olympus/dmmobile/log/package-summary.html
+* doc/com/olympus/dmmobile/log/package-tree.html
+* doc/com/olympus/dmmobile/log/package-use.html
+* doc/com/olympus/dmmobile/network/
+* doc/com/olympus/dmmobile/network/NetworkConnectivityListener.NetworkBroadcastReceiver.html
+* doc/com/olympus/dmmobile/network/NetworkConnectivityListener.RetryUploadListener.html
+* doc/com/olympus/dmmobile/network/NetworkConnectivityListener.State.html
+* doc/com/olympus/dmmobile/network/NetworkConnectivityListener.html
+* doc/com/olympus/dmmobile/network/class-use/
+* doc/com/olympus/dmmobile/network/class-use/NetworkConnectivityListener.NetworkBroadcastReceiver.html
+* doc/com/olympus/dmmobile/network/class-use/NetworkConnectivityListener.RetryUploadListener.html
+* doc/com/olympus/dmmobile/network/class-use/NetworkConnectivityListener.State.html
+* doc/com/olympus/dmmobile/network/class-use/NetworkConnectivityListener.html
+* doc/com/olympus/dmmobile/network/package-frame.html
+* doc/com/olympus/dmmobile/network/package-summary.html
+* doc/com/olympus/dmmobile/network/package-tree.html
+* doc/com/olympus/dmmobile/network/package-use.html
+* doc/com/olympus/dmmobile/package-frame.html
+* doc/com/olympus/dmmobile/package-summary.html
+* doc/com/olympus/dmmobile/package-tree.html
+* doc/com/olympus/dmmobile/package-use.html
+* doc/com/olympus/dmmobile/recorder/
+* doc/com/olympus/dmmobile/recorder/DMAudioRecorder.AudioRecordStateListener.html
+* doc/com/olympus/dmmobile/recorder/DMAudioRecorder.State.html
+* doc/com/olympus/dmmobile/recorder/DMAudioRecorder.VCVAMODE.html
+* doc/com/olympus/dmmobile/recorder/DMAudioRecorder.html
+* doc/com/olympus/dmmobile/recorder/DictateActivity.CheckAvailableDictationSlotTask.html
+* doc/com/olympus/dmmobile/recorder/DictateActivity.DeviceLockInterrupt.html
+* doc/com/olympus/dmmobile/recorder/DictateActivity.InsertOrOverwriteTask.html
+* doc/com/olympus/dmmobile/recorder/DictateActivity.MediaMode.html
+* doc/com/olympus/dmmobile/recorder/DictateActivity.OutgoingCallReceiver.html
+* doc/com/olympus/dmmobile/recorder/DictateActivity.SendViaEmailTask.html
+* doc/com/olympus/dmmobile/recorder/DictateActivity.WebServiceGetSettings.html
+* doc/com/olympus/dmmobile/recorder/DictateActivity.html
+* doc/com/olympus/dmmobile/recorder/OverwriteSignalometer.html
+* doc/com/olympus/dmmobile/recorder/Signalometer.html
+* doc/com/olympus/dmmobile/recorder/SoundWaveGraph.html
+* doc/com/olympus/dmmobile/recorder/Utilities.html
+* doc/com/olympus/dmmobile/recorder/class-use/
+* doc/com/olympus/dmmobile/recorder/class-use/DMAudioRecorder.AudioRecordStateListener.html
+* doc/com/olympus/dmmobile/recorder/class-use/DMAudioRecorder.State.html
+* doc/com/olympus/dmmobile/recorder/class-use/DMAudioRecorder.VCVAMODE.html
+* doc/com/olympus/dmmobile/recorder/class-use/DMAudioRecorder.html
+* doc/com/olympus/dmmobile/recorder/class-use/DictateActivity.CheckAvailableDictationSlotTask.html
+* doc/com/olympus/dmmobile/recorder/class-use/DictateActivity.DeviceLockInterrupt.html
+* doc/com/olympus/dmmobile/recorder/class-use/DictateActivity.InsertOrOverwriteTask.html
+* doc/com/olympus/dmmobile/recorder/class-use/DictateActivity.MediaMode.html
+* doc/com/olympus/dmmobile/recorder/class-use/DictateActivity.OutgoingCallReceiver.html
+* doc/com/olympus/dmmobile/recorder/class-use/DictateActivity.SendViaEmailTask.html
+* doc/com/olympus/dmmobile/recorder/class-use/DictateActivity.WebServiceGetSettings.html
+* doc/com/olympus/dmmobile/recorder/class-use/DictateActivity.html
+* doc/com/olympus/dmmobile/recorder/class-use/OverwriteSignalometer.html
+* doc/com/olympus/dmmobile/recorder/class-use/Signalometer.html
+* doc/com/olympus/dmmobile/recorder/class-use/SoundWaveGraph.html
+* doc/com/olympus/dmmobile/recorder/class-use/Utilities.html
+* doc/com/olympus/dmmobile/recorder/package-frame.html
+* doc/com/olympus/dmmobile/recorder/package-summary.html
+* doc/com/olympus/dmmobile/recorder/package-tree.html
+* doc/com/olympus/dmmobile/recorder/package-use.html
+* doc/com/olympus/dmmobile/settings/
+* doc/com/olympus/dmmobile/settings/ChipsMultiAutoCompleteTextview.html
+* doc/com/olympus/dmmobile/settings/EmailOptionsActivity.html
+* doc/com/olympus/dmmobile/settings/LegalNoticesActivity.html
+* doc/com/olympus/dmmobile/settings/LegalnoticeActivity.html
+* doc/com/olympus/dmmobile/settings/SeekBarPreference.html
+* doc/com/olympus/dmmobile/settings/ServerOptionsActivity.MyDialogFragment.html
+* doc/com/olympus/dmmobile/settings/ServerOptionsActivity.WebServiceActivation.html
+* doc/com/olympus/dmmobile/settings/ServerOptionsActivity.WebServicegetSettings.html
+* doc/com/olympus/dmmobile/settings/ServerOptionsActivity.html
+* doc/com/olympus/dmmobile/settings/SettingsActivity.html
+* doc/com/olympus/dmmobile/settings/SplashActivity.html
+* doc/com/olympus/dmmobile/settings/ThirdpartySoftware.html
+* doc/com/olympus/dmmobile/settings/TrademarkActivity.html
+* doc/com/olympus/dmmobile/settings/WorktypeActivity.CustomGestureDetector.html
+* doc/com/olympus/dmmobile/settings/WorktypeActivity.html
+* doc/com/olympus/dmmobile/settings/WorktypeCustomAdapter.ViewHolder.html
+* doc/com/olympus/dmmobile/settings/WorktypeCustomAdapter.html
+* doc/com/olympus/dmmobile/settings/class-use/
+* doc/com/olympus/dmmobile/settings/class-use/ChipsMultiAutoCompleteTextview.html
+* doc/com/olympus/dmmobile/settings/class-use/EmailOptionsActivity.html
+* doc/com/olympus/dmmobile/settings/class-use/LegalNoticesActivity.html
+* doc/com/olympus/dmmobile/settings/class-use/LegalnoticeActivity.html
+* doc/com/olympus/dmmobile/settings/class-use/SeekBarPreference.html
+* doc/com/olympus/dmmobile/settings/class-use/ServerOptionsActivity.MyDialogFragment.html
+* doc/com/olympus/dmmobile/settings/class-use/ServerOptionsActivity.WebServiceActivation.html
+* doc/com/olympus/dmmobile/settings/class-use/ServerOptionsActivity.WebServicegetSettings.html
+* doc/com/olympus/dmmobile/settings/class-use/ServerOptionsActivity.html
+* doc/com/olympus/dmmobile/settings/class-use/SettingsActivity.html
+* doc/com/olympus/dmmobile/settings/class-use/SplashActivity.html
+* doc/com/olympus/dmmobile/settings/class-use/ThirdpartySoftware.html
+* doc/com/olympus/dmmobile/settings/class-use/TrademarkActivity.html
+* doc/com/olympus/dmmobile/settings/class-use/WorktypeActivity.CustomGestureDetector.html
+* doc/com/olympus/dmmobile/settings/class-use/WorktypeActivity.html
+* doc/com/olympus/dmmobile/settings/class-use/WorktypeCustomAdapter.ViewHolder.html
+* doc/com/olympus/dmmobile/settings/class-use/WorktypeCustomAdapter.html
+* doc/com/olympus/dmmobile/settings/package-frame.html
+* doc/com/olympus/dmmobile/settings/package-summary.html
+* doc/com/olympus/dmmobile/settings/package-tree.html
+* doc/com/olympus/dmmobile/settings/package-use.html
+* doc/com/olympus/dmmobile/webservice/
+* doc/com/olympus/dmmobile/webservice/Base64_Encoding.html
+* doc/com/olympus/dmmobile/webservice/ResultXmlParser.html
+* doc/com/olympus/dmmobile/webservice/Settingsparser.AudioObjects.html
+* doc/com/olympus/dmmobile/webservice/Settingsparser.RootObjects.html
+* doc/com/olympus/dmmobile/webservice/Settingsparser.SettingsObjects.html
+* doc/com/olympus/dmmobile/webservice/Settingsparser.WorkTypeListObjects.html
+* doc/com/olympus/dmmobile/webservice/Settingsparser.html
+* doc/com/olympus/dmmobile/webservice/WebserviceHandler.html
+* doc/com/olympus/dmmobile/webservice/class-use/
+* doc/com/olympus/dmmobile/webservice/class-use/Base64_Encoding.html
+* doc/com/olympus/dmmobile/webservice/class-use/ResultXmlParser.html
+* doc/com/olympus/dmmobile/webservice/class-use/Settingsparser.AudioObjects.html
+* doc/com/olympus/dmmobile/webservice/class-use/Settingsparser.RootObjects.html
+* doc/com/olympus/dmmobile/webservice/class-use/Settingsparser.SettingsObjects.html
+* doc/com/olympus/dmmobile/webservice/class-use/Settingsparser.WorkTypeListObjects.html
+* doc/com/olympus/dmmobile/webservice/class-use/Settingsparser.html
+* doc/com/olympus/dmmobile/webservice/class-use/WebserviceHandler.html
+* doc/com/olympus/dmmobile/webservice/package-frame.html
+* doc/com/olympus/dmmobile/webservice/package-summary.html
+* doc/com/olympus/dmmobile/webservice/package-tree.html
+* doc/com/olympus/dmmobile/webservice/package-use.html
+* doc/constant-values.html
+* doc/deprecated-list.html
+* doc/help-doc.html
+* doc/index-files/
+* doc/index-files/index-1.html
+* doc/index-files/index-10.html
+* doc/index-files/index-11.html
+* doc/index-files/index-12.html
+* doc/index-files/index-13.html
+* doc/index-files/index-14.html
+* doc/index-files/index-15.html
+* doc/index-files/index-16.html
+* doc/index-files/index-17.html
+* doc/index-files/index-18.html
+* doc/index-files/index-19.html
+* doc/index-files/index-2.html
+* doc/index-files/index-20.html
+* doc/index-files/index-21.html
+* doc/index-files/index-22.html
+* doc/index-files/index-23.html
+* doc/index-files/index-24.html
+* doc/index-files/index-25.html
+* doc/index-files/index-3.html
+* doc/index-files/index-4.html
+* doc/index-files/index-5.html
+* doc/index-files/index-6.html
+* doc/index-files/index-7.html
+* doc/index-files/index-8.html
+* doc/index-files/index-9.html
+* doc/index.html
+* doc/overview-frame.html
+* doc/overview-summary.html
+* doc/overview-tree.html
+* doc/package-list
+* doc/resources/
+* doc/resources/background.gif
+* doc/resources/tab.gif
+* doc/resources/titlebar.gif
+* doc/resources/titlebar_end.gif
+* doc/stylesheet.css
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* assets/ => app/src/main/assets
+* jni/ => app/src/main/jni/
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

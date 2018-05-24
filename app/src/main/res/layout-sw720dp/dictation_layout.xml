@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dictate_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_activity" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/dictate_topbox_bg"
+        android:padding="5dp" >
+
+        <CheckBox
+            android:id="@+id/sound_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_toLeftOf="@+id/sound_image"
+            android:button="@drawable/priority_selector" />
+
+        <ImageView
+            android:id="@+id/sound_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="center"
+            android:src="@drawable/dictate_cam" />
+
+        <EditText
+            android:id="@+id/sound_title"
+            android:layout_width="450dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz0123456789_"
+            android:maxLength="64"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text_color"
+            android:textStyle="bold"
+            android:textSize="60sp" />
+
+        <TextView
+            android:id="@+id/sound_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sound_title"
+            android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:text="@string/Property_Worktype"
+            android:textColor="@color/text_color"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/sound_worktype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/sound_subtitle"
+            android:layout_below="@+id/sound_title"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/sound_subtitle"
+            android:singleLine="true"
+            android:textColor="@color/text_color"
+            android:textSize="35sp"
+            android:layout_toLeftOf="@+id/sound_fav"
+            android:paddingRight="2dp"/>
+
+        <FrameLayout
+            android:id="@+id/progress_frame"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sound_subtitle"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="55dp" >
+
+            <SeekBar
+                android:id="@+id/seekbar_graph"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="20"
+                android:maxHeight="26dp"
+                android:progress="0"
+                android:progressDrawable="@drawable/dictate_my_custom_pb"
+                android:secondaryProgress="0"
+                android:thumb="@drawable/dictate_thumb" />
+
+            <com.olympus.dmmobile.recorder.Signalometer
+                android:id="@+id/seekbar_signalometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:indeterminate="false"
+                android:padding="0dp"
+                android:progress="0"
+                android:secondaryProgress="0"
+                android:thumb="@drawable/dictate_cover_front"
+                android:thumbOffset="0dp" />
+
+            <com.olympus.dmmobile.recorder.OverwriteSignalometer
+                android:id="@+id/seekbar_over_signalometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:indeterminate="false"
+                android:padding="0dp"
+                android:progress="0"
+                android:secondaryProgress="0"
+                android:thumb="@drawable/dictate_cover"
+                android:thumbOffset="0dp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/time_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/progress_frame"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/time_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/time_left"
+            android:layout_alignBottom="@+id/time_left"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/text_color"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout1"
+        android:layout_alignRight="@+id/relativeLayout1"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_marginTop="20dp" >
+
+        <ToggleButton
+            android:id="@+id/toggle_rec_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/toggle"
+            android:textOff=""
+            android:textOn="" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp" >
+
+        <Button
+            android:id="@+id/new_rec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/dictate_new_selector"
+            android:text="" />
+
+        <Button
+            android:id="@+id/record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@+id/new_rec"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/dictate_record_selector" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_ll"
+        android:layout_below="@+id/RelativeLayout2"
+        
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/b_rewind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/dictate_rewind" />
+
+        <Button
+            android:id="@+id/b_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/dictate_play_selector" />
+
+        <Button
+            android:id="@+id/b_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/dictate_forward" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_activity_bottom_tab" >
+
+        <ImageButton
+            android:id="@+id/b_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/dictate_folder_selector" />
+
+        <ImageButton
+            android:id="@+id/b_flash"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/dictate_files_selector" />
+
+        <ImageButton
+            android:id="@+id/b_export"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/dictate_send_selector" />
+
+        <ImageButton
+            android:id="@+id/b_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/dictate_delete_selector" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/property_activity_root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_activity"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/relative_property_tab_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/tabpanel_top" >
+
+        <Button
+            android:textColor="@color/text_color"
+            android:id="@+id/btn_property_edit"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/transparent"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:singleLine="true"
+            android:text="@string/Property_Edit"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!--
+     	<ScrollView
+		android:id="@+id/scroll_dictate_property"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+		android:layout_above="@+id/relative_property_bottom_tab"
+        android:layout_below="@+id/relative_property_tab_top" >
+    -->
+
+    <LinearLayout
+        android:id="@+id/linear_property_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relative_property_bottom_tab"
+        android:layout_below="@+id/relative_property_tab_top"
+        android:orientation="vertical" >
+
+        <!-- <com.olympus.dmmobile.VerticalScrollview
+            android:id="@+id/scroll_dictate_property"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none" > -->
+
+            <RelativeLayout
+                android:id="@+id/relative_property_main_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="320dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/activity_dictate_property_top_panel_bg"
+                android:padding="10dp" >
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_dictation_name"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="AUTHOR0001"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edittext_property_dictation_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/text_property_dictation_name"
+                    android:layout_alignTop="@+id/text_property_dictation_name"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/image_property_camera"
+                    android:background="@drawable/button_round_shape_selector"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz0123456789_"
+                    android:hint="Dictation name"
+                    android:imeOptions="actionDone"
+                    android:maxLength="64"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:singleLine="true"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_worktype_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_property_dictation_name"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/Property_Worktype"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_priority_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_property_worktype_header"
+                    android:layout_marginTop="7dp"
+                    android:text="@string/Property_Priority"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/check_property_priority"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBaseline="@+id/text_property_priority_head"
+                    android:layout_below="@+id/text_property_worktype"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/text_property_priority_head"
+                    android:background="@drawable/priority_selector"
+                    android:button="@null"
+                     />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_worktype"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/text_property_worktype_header"
+                    android:layout_alignTop="@+id/text_property_worktype_header"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toLeftOf="@+id/image_property_camera"
+                    android:layout_toRightOf="@+id/text_property_worktype_header"
+                    android:singleLine="true"
+                    android:text="Office"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_dictate_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_property_priority_head"
+                    android:layout_marginTop="20dp"
+                    android:text="2013/09/25 12:08:18 0:36:15"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_jobnumber_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_property_dictate_details"
+                    android:text="@string/Property_Jobnumber"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_jobnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/text_property_jobnumber"
+                    android:layout_alignBottom="@+id/text_property_jobnumber"
+                    android:layout_below="@+id/text_property_dictate_details"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/text_property_jobnumber_header"
+                    android:text="1"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_status_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_property_jobnumber_header"
+                    android:text="@string/Property_Status"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/text_property_status_header"
+                    android:layout_below="@+id/text_property_jobnumber_header"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/text_property_status_header"
+                    android:text="Pending"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:textColor="@color/text_color"
+                    android:id="@+id/text_property_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/text_property_status_header"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/Property_Comment"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edit_property_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_below="@+id/text_property_comment"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:gravity="top"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:isScrollContainer="true"
+                    android:maxLength="100"
+                    android:overScrollMode="always"
+                    android:padding="4dp"
+                    android:scrollbars="vertical"
+                    android:textSize="18sp"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/image_property_camera"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:scaleType="center"
+                    android:src="@drawable/dictation_property_camera_icon_selector" />
+            </RelativeLayout>
+      <!--   </com.olympus.dmmobile.VerticalScrollview> -->
+
+        <RelativeLayout
+            android:id="@+id/relative_property_shake_twice_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:textColor="@color/text_color"
+                android:id="@+id/text_property_shake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/Property_Shake_Twice"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </RelativeLayout>
+    </LinearLayout>
+<!--  </ScrollView> 
+ -->
+
+    <RelativeLayout
+        android:id="@+id/relative_property_bottom_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:background="@drawable/bg_activity_bottom_tab"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/image_property_new_dictation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/new_dictation_selector" />
+        <ImageButton
+                 android:id="@+id/imgBtn_property_SettingsOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentRight="true"
+               	android:background="@android:color/transparent"
+                android:src="@drawable/action_settings_icon"
+                />
+    </RelativeLayout>
+
+</RelativeLayout>

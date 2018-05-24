@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/linlay_title_flashair_brwsr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_activity_top_tab"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/text_flashair_folder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" 
+            android:singleLine="true"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rellay_send_flashair"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_activity_top_tab" >
+
+       
+
+        <Button
+            android:id="@+id/btn_send_flashair_files"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/Flashair_Label_Send" 
+            android:layout_centerVertical="true"
+            android:textColor="@drawable/flashair_done_selector"
+            android:textSize="18sp"
+            android:background="@null"
+            />
+        
+         <ImageButton
+            android:id="@+id/btn_update_files"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/flashair_refresh_selector" 
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
+        
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_lay_ssid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linlay_title_flashair_brwsr"
+        android:background="#848484" 
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp">
+
+        <TextView
+            android:id="@+id/text_ssid_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="SSID: "
+            android:textColor="#FFFFFF" 
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/text_sel_ssid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="flashair_12345678"
+            android:textColor="#FFFFFF" 
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rellay_send_flashair"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/lin_lay_ssid" >
+    </ListView>
+
+</RelativeLayout>
