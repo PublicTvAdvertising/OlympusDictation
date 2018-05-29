@@ -6,12 +6,14 @@ android {
 
     defaultConfig {
         applicationId "com.olympus.dmmobile"
-        minSdkVersion 9
+        versionCode 12
+        versionName "1.2.4"
+        minSdkVersion 16
         targetSdkVersion 8
 
         ndk {
             moduleName "native_lib"
-            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+            //abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
         }
         sourceSets {
             main {
@@ -23,7 +25,7 @@ android {
                 cppFlags "-fexceptions"
                 // Sets a flag to enable format macro constants for the C compiler.
                 cFlags "-D__STDC_FORMAT_MACROS"
-
+                //cppFlags "-std=c++11"
             }
         }
     }
