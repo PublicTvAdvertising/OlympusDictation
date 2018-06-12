@@ -243,6 +243,11 @@
     <string name="Settings_ListRecording">Lista över inspelningar</string>
     <string name="Settings_trademark">FlashAir™ är ett varumärke eller registrerat som tillhör TOSHIBA CORPORATION.
 </string>
+
+    <string name="privacy_policy_title">Integritetspolicy</string>
+    <string name="privacy_policy_content"><![CDATA[<p><strong>Integritetspolicy f&ouml;r mjukvara f&ouml;r Olympus Dictation</strong></p>
+<p><br /><strong>1. RECORD_AUDIO</strong><br />Detta anv&auml;nds f&ouml;r inspelningsfunktionen i appen.<br /> <br /><strong>2. READ_PHONE_STATE</strong><br />Genom avl&auml;sning kommer detta tillst&aring;nd att detectera inkommande och utg&aring;ende samtal som intr&auml;ffade vid inspelning och stoppa inspelning.<br /> <br /><strong>3. READ_CONTACTS</strong><br />Detta anv&auml;nds f&ouml;r att v&auml;lja destination f&ouml;r e-postmeddelanden som har r&ouml;stfiler som bilagor.</p>]]></string>
+
     <!-- Settings -->
     
        

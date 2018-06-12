@@ -263,15 +263,9 @@
 
     <string name="privacy_policy_key">privacy_policy</string>
     <string name="privacy_policy_title">Privacy Policy</string>
-    <string name="privacy_policy_content"><![CDATA[<p>&nbsp;</p>
-<h4>Privacy Policy for Olympus Dictation for Android of Olympus Corporation</h4>
-<p><strong>1. Using Permissions</strong></p>
-<p><strong>(1) RECORD_AUDIO</strong></p>
-<p>This is used for the recording function in the App.</p>
-<p><strong>(2) READ_PHONE_STATE</strong></p>
-<p>By reading this state will detect incoming and outgoing calls that occured during recording and stop the App to record.</p>
-<p><strong>(3) READ_CONTACTS</strong></p>
-<p>This is being used to select the destination of the e-mails attached with voice files.</p>]]></string>
+    <string name="privacy_policy_content"><![CDATA[<p><strong>Software Privacy Policy for Olympus Dictation</strong></p>
+<p><br /><strong>1. RECORD_AUDIO</strong><br />This is used for the recording function in the App.<br /> <br /><strong>2. READ_PHONE_STATE</strong><br />By reading this state will detect incoming and outgoing calls that occurred during recording and stop the App to record.<br /> <br /><strong>3. READ_CONTACTS</strong><br />This is being used to select the destination of the e-mails attached with voice files.</p>
+<p>&nbsp;</p>]]></string>
 
     <!-- Settings -->
 

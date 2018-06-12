@@ -269,6 +269,13 @@
      <string name="Settings_newRecording">Neu Aufnahmen</string>
     <string name="Settings_ListRecording">Liste der Aufnahmen</string>
     <string name="Settings_trademark">FlashAir™ ist eine Marke oder eingetragene der TOSHIBA CORPORATION.</string>
+
+    <string name="privacy_policy_title">Datenschutzrichtlinie</string>
+    <string name="privacy_policy_content"><![CDATA[<p><strong>Software-Datenschutzrichtlinie f&uuml;r Olympus Dictation</strong></p>
+<p><br /><strong>1. RECORD_AUDIO</strong><br />Dies wird f&uuml;r die Aufnahmefunktion in der App verwendet.</p>
+<p><strong>2. READ_PHONE_STATE</strong><br />Durch das Lesen dieses Status werden ein- und ausgehende Anrufe erkannt, die w&auml;hrend der Aufzeichnung aufgetreten sind, und die Aufzeichnung durch die App angehalten.</p>
+<p><strong>3. READ_CONTACTS</strong><br />Dies wird verwendet, um den Empf&auml;nger der E-Mails auszuw&auml;hlen, an denen Sprachdateien angef&uuml;gt sind.</p>]]></string>
+
     <!-- Settings -->
     
        

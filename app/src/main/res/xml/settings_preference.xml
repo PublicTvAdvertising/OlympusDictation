@@ -137,13 +137,13 @@
         <Preference android:key="@string/legal_notices_key"
             android:title="@string/legal_notices_title"
             android:widgetLayout="@layout/custom_image"/>
+        <!--<Preference android:key="@string/about_key"
+            android:title="@string/Settings_About"
+            android:widgetLayout="@layout/custom_image"/>-->
+    </PreferenceCategory>
+    <PreferenceCategory android:title="    ">
         <Preference android:key="@string/about_key"
             android:title="@string/Settings_About"
             android:widgetLayout="@layout/custom_image"/>
     </PreferenceCategory>
-   <!-- <PreferenceCategory android:title="    ">
-        <Preference android:key="@string/about_key"
-            android:title="@string/Settings_About"
-            android:widgetLayout="@layout/custom_image"/>
-    </PreferenceCategory>-->
 </PreferenceScreen>

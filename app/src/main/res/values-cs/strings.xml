@@ -259,6 +259,12 @@
     <string name="Settings_newRecording">Nové záznamy</string>
     <string name="Settings_ListRecording">Seznam záznamů</string>
     <string name="Settings_trademark">FlashAir is a trademark or registered trademark of TOSHIBA CORPORATION</string>
+
+
+    <string name="privacy_policy_title">Zásady ochrany osobních údajů</string>
+    <string name="privacy_policy_content"><![CDATA[<p><strong>Z&aacute;sady ochrany osobn&iacute;ch &uacute;dajů pro software zař&iacute;zen&iacute; Olympus Dictation</strong></p>
+<p><br /><strong>1. RECORD_AUDIO</strong><br />Použ&iacute;v&aacute; se pro funkci z&aacute;znamu v aplikaci.<br /> <br /><strong>2. READ_PHONE_STATE</strong><br />Přečten&iacute;m tohoto stavu se detekuje př&iacute;choz&iacute; a odchoz&iacute; telefon&aacute;t, k němuž do&scaron;lo během z&aacute;znamu, a ukonč&iacute; se z&aacute;znam v r&aacute;mci aplikace.<br /> <br /><strong>3. READ_CONTACTS</strong><br />Slouž&iacute; k v&yacute;běru c&iacute;lov&eacute; destinace e-mailů připojen&yacute;ch k hlasov&yacute;m souborům. </p>]]></string>
+
     <!-- Settings -->
     
        
