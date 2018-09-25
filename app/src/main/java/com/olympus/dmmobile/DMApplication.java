@@ -1,12 +1,5 @@
 package com.olympus.dmmobile;
 
-import java.io.File;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
@@ -16,6 +9,14 @@ import android.os.Environment;
 import android.os.StatFs;
 
 import com.olympus.dmmobile.network.NetworkConnectivityListener;
+
+import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * DMApplication is the class which maintain global application state.
@@ -279,6 +280,7 @@ public class DMApplication extends Application{
 		 */
 		mBaseIntent= new Intent(DMApplication.this, ConvertAndUploadService.class);
 		startService(mBaseIntent);
+		//ContextCompat.startForegroundService(getContext(),mBaseIntent);
 	}
 	//************* Network Connectivity**************
 	public static boolean isONLINE() 

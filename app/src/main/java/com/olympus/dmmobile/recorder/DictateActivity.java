@@ -1,17 +1,5 @@
 package com.olympus.dmmobile.recorder;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -86,6 +74,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.ToggleButton;
+
 import com.olympus.dmmobile.AMRConverter;
 import com.olympus.dmmobile.CustomDialog;
 import com.olympus.dmmobile.CustomLaunchDialog;
@@ -102,6 +91,19 @@ import com.olympus.dmmobile.recorder.DMAudioRecorder.AudioRecordStateListener;
 import com.olympus.dmmobile.webservice.Base64_Encoding;
 import com.olympus.dmmobile.webservice.Settingsparser;
 import com.olympus.dmmobile.webservice.WebserviceHandler;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 
@@ -614,9 +616,9 @@ public class DictateActivity extends Activity implements OnClickListener,
 								.getActivity(this, 0, notificationIntent, 0);
 						notificationIntent.putExtra(
 								DMApplication.START_MODE_TAG, passedModeName);
-
-						mNotify.setLatestEventInfo(context, notifyTitle,
-								notifySubTitle, contentIntent);
+						//ToDo change the below deprecated code to latest
+						/*mNotify.setLatestEventInfo(context, notifyTitle,
+								notifySubTitle, contentIntent);*/
 						notificationManager
 								.notify(RECORDING_NOTIFY_ID, mNotify);
 					}

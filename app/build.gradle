@@ -1,15 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    android {
+        useLibrary 'org.apache.http.legacy'
+    }
+
 
     defaultConfig {
         applicationId "com.olympus.dmmobile"
         versionCode 13
         versionName "1.2.4"
-        minSdkVersion 9
-        targetSdkVersion 9
+        minSdkVersion 21
+        targetSdkVersion 26
 
         ndk {
             moduleName "native_lib"
@@ -35,7 +39,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:21.0.3'
+    implementation 'com.android.support:appcompat-v7:26.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    compile 'com.android.support:support-v4:21.0.0'
+    implementation 'com.android.support:support-v4:26.0.0'
 }
