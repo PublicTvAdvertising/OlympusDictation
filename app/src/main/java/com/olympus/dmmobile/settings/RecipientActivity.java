@@ -12,6 +12,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -96,6 +99,8 @@ public class RecipientActivity extends Activity implements
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		}
 		setContentView(R.layout.recipient_activity);
+//		Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+//		setSupportActionBar(toolbar);
 		setTitle(getResources().getString(
 				R.string.server_options_recipient_title));
 		dmApplication = (DMApplication) getApplication();

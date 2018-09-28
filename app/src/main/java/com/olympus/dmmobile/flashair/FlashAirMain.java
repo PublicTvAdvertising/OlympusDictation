@@ -95,7 +95,7 @@ public class FlashAirMain extends Activity {
 			dmApplication.setPreviousNetworkSSID(savedInstanceState.getString("PreviousNetworkSSID"));
 			dmApplication.setNetWorkId(savedInstanceState.getInt("NetworkID", -1));
 		}
-		mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 		
 		mReciever = new WifiScanReciever();
 		registerReceiver(mReciever, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));     //Registering BroadcastReceiver for SCAN_RESULTS_AVAILABLE_ACTION
@@ -167,7 +167,7 @@ public class FlashAirMain extends Activity {
 	private String getCurrentSsid() {
 		mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected()) {
-		    mWifiInfo = ((WifiManager) getSystemService(Context.WIFI_SERVICE)).getConnectionInfo();
+		    mWifiInfo = ((WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE)).getConnectionInfo();
 		    if (mWifiInfo != null && !mWifiInfo.getSSID().equals("")) 
 		      return mWifiInfo.getSSID();
 		}
@@ -340,7 +340,7 @@ public class FlashAirMain extends Activity {
 	 *  */
 	public void readWepConfig(String ssid) {
 		WifiConfiguration config;
-		mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 		List<WifiConfiguration> networks = mWifiManager.getConfiguredNetworks();
 		if (networks.size() > 0) {
 			for (WifiConfiguration item : networks) {
