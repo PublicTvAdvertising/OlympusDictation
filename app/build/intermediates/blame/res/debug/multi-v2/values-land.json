@@ -1,23 +1,35 @@
 {
     "logs": [
         {
-            "outputFile": "/home/raneez/Documents/olympus_dictation/dictation/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
+            "outputFile": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/home/raneez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-21.0.3.aar/30a0b69e20ac0ced244e989999ff5ff0/res/values-land/values.xml",
+                    "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/res/values-land/values-land.xml",
                     "from": {
-                        "startLines": "3,4,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "56,118,191,261,331,395,466",
-                        "endColumns": "61,71,69,69,63,70,67",
-                        "endOffsets": "113,185,256,326,390,461,529"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "232"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,117,189,259,329,393,464",
-                        "endColumns": "61,71,69,69,63,70,67",
-                        "endOffsets": "112,184,254,324,388,459,527"
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "328",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "505"
+                    }
+                },
+                {
+                    "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,125,189,260",
+                        "endColumns": "69,63,70,67",
+                        "endOffsets": "120,184,255,323"
                     }
                 }
             ]

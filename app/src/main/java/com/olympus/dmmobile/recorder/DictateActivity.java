@@ -1,5 +1,7 @@
 package com.olympus.dmmobile.recorder;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,6 +20,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -46,7 +49,11 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.StatFs;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -627,7 +634,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
                             builder.setContentTitle(notifySubTitle)                            // required
                                     .setSmallIcon(android.R.drawable.ic_popup_reminder)   // required
-                                    .setContentText(context.getString(R.string.app_name)) // required
+                                    .setContentText("Recording..") // required
                                     .setDefaults(Notification.DEFAULT_ALL)
                                     .setAutoCancel(true)
 
@@ -643,7 +650,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
                             builder.setContentTitle(notifyTitle)                            // required
                                     .setSmallIcon(android.R.drawable.ic_popup_reminder)   // required
-                                    .setContentText(context.getString(R.string.app_name)) // required
+                                    .setContentText("Recording..") // required
                                     .setDefaults(Notification.DEFAULT_ALL)
                                     .setAutoCancel(true)
                                     .setContentIntent(pendingIntent)
@@ -814,6 +821,8 @@ public class DictateActivity extends Activity implements OnClickListener,
         System.gc();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View v) {
 
@@ -947,62 +956,78 @@ public class DictateActivity extends Activity implements OnClickListener,
                 }
                 break;
             case R.id.record:
-                if (timer != null || mptimer != null) {
-                    timer.cancel();
-                    task.cancel();
-                    mptimer.cancel();
-                    mpTimertask.cancel();
-                }
-
-                if (isRecording) {
-                    isrecordingOnclick = false;
-                    if (ActivityInitialPlay) {
-                        ActivityInitialPlay = false;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if(checkAndRequestPermissions())
+                    {
+                    if (timer != null || mptimer != null) {
+                        timer.cancel();
+                        task.cancel();
+                        mptimer.cancel();
+                        mpTimertask.cancel();
                     }
-                    if (!isVcvaEnabled) {
-                        if (passedTotalDuration >= 1000) {
-                            tvTitle.setCursorVisible(false);
-                            recorderStopRecording();
-                            bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
 
-                            hideKeyboard();
+                    if (isRecording) {
+                        isrecordingOnclick = false;
+                        if (ActivityInitialPlay) {
+                            ActivityInitialPlay = false;
                         }
-                    } else {
-                        if (passedTotalDuration >= 1000) {
-                            recorderStopRecording();
-                            bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
-                        }
-                    }
-                    getWindow().getDecorView().findViewById(android.R.id.content)
-                            .setKeepScreenOn(false);
-
-                    if (mWakeLock.isHeld()) {
-                        mWakeLock.release();
-                    }
-
-                } else {
-                    getWindow().getDecorView().findViewById(android.R.id.content)
-                            .setKeepScreenOn(true);
-                    if (mWakeLock.isHeld()) {
-                        mWakeLock.acquire();
-                    }
-                    isrecordingOnclick = true;
-                    if (!isCallActive) {
                         if (!isVcvaEnabled) {
-                            if (isInsert) {
-                                showSignalometer();
-                            } else {
-                                showOverwriteSignalometer();
+                            if (passedTotalDuration >= 1000) {
+                                tvTitle.setCursorVisible(false);
+                                recorderStopRecording();
+                                bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
+
+                                hideKeyboard();
+                            }
+                        } else {
+                            if (passedTotalDuration >= 1000) {
+                                recorderStopRecording();
+                                bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
                             }
                         }
-                    }
-                    if (mMediaPlayer == null) {
-                        ActivityInitialPlay = true;
-                    }
-                    tvTimeRight.setVisibility(ProgressBar.VISIBLE);
-                    tvTimeRight.setVisibility(ProgressBar.VISIBLE);
-                    if (isOncePaused) {
-                        if (!isInsertionProcessRunning) {
+                        getWindow().getDecorView().findViewById(android.R.id.content)
+                                .setKeepScreenOn(false);
+
+                        if (mWakeLock.isHeld()) {
+                            mWakeLock.release();
+                        }
+
+                    } else {
+                        getWindow().getDecorView().findViewById(android.R.id.content)
+                                .setKeepScreenOn(true);
+                        if (mWakeLock.isHeld()) {
+                            mWakeLock.acquire();
+                        }
+                        isrecordingOnclick = true;
+                        if (!isCallActive) {
+                            if (!isVcvaEnabled) {
+                                if (isInsert) {
+                                    showSignalometer();
+                                } else {
+                                    showOverwriteSignalometer();
+                                }
+                            }
+                        }
+                        if (mMediaPlayer == null) {
+                            ActivityInitialPlay = true;
+                        }
+                        tvTimeRight.setVisibility(ProgressBar.VISIBLE);
+                        tvTimeRight.setVisibility(ProgressBar.VISIBLE);
+                        if (isOncePaused) {
+                            if (!isInsertionProcessRunning) {
+                                if (!isCallActive) {
+                                    hideKeyboard();
+                                    tvTitle.setCursorVisible(false);
+                                    if (validateSpaceAndSizeLimit()) {
+                                        recorderTriggerStart();
+                                    }
+
+                                } else {
+                                    DialogWhileActiveCall();
+
+                                }
+                            }
+                        } else {
                             if (!isCallActive) {
                                 hideKeyboard();
                                 tvTitle.setCursorVisible(false);
@@ -1012,24 +1037,13 @@ public class DictateActivity extends Activity implements OnClickListener,
 
                             } else {
                                 DialogWhileActiveCall();
-
                             }
                         }
-                    } else {
-                        if (!isCallActive) {
-                            hideKeyboard();
-                            tvTitle.setCursorVisible(false);
-                            if (validateSpaceAndSizeLimit()) {
-                                recorderTriggerStart();
-                            }
 
-                        } else {
-                            DialogWhileActiveCall();
-                        }
                     }
-
+                    break;
+            }
                 }
-                break;
         }
     }
 
@@ -1831,8 +1845,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-
-                    switch (event.getAction()) {
+              switch (event.getAction()) {
 
                         case MotionEvent.ACTION_DOWN:
 
@@ -5988,5 +6001,73 @@ public class DictateActivity extends Activity implements OnClickListener,
 		});
 
 	}*/
+	@TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean muteNotification()
+    {
+        NotificationManager n = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(!n.isNotificationPolicyAccessGranted()) {
 
+                startActivity(new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS));
+            }
+           else
+               return false;
+        }
+        return true;
+    }
+    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean checkAndRequestPermissions() {
+        int permissionRecordAudio = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO);
+
+
+        int writeStoragePermission = ContextCompat.checkSelfPermission(this,
+
+
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        int readStoragePermission = ContextCompat.checkSelfPermission(this,
+
+
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+        int readPhoneStatePermission = ContextCompat.checkSelfPermission(this,
+
+
+                Manifest.permission.READ_PHONE_STATE);
+        int readContactsPermission = ContextCompat.checkSelfPermission(this,
+
+
+                Manifest.permission.READ_CONTACTS);
+
+
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        if (readContactsPermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_CONTACTS);
+        }
+        if (readPhoneStatePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
+        }
+        if (readStoragePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+        if (writeStoragePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (permissionRecordAudio != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO);
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+
+            ActivityCompat.requestPermissions(this,
+
+
+                    listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 1);
+            return false;
+        }
+
+
+       return true;
+    }
 }

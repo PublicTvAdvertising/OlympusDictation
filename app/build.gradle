@@ -17,7 +17,7 @@ android {
 
         ndk {
             moduleName "native_lib"
-            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'armeabi'
+            //abiFilters 'armeabi-v7a', 'armeabi','x86', 'x86_64'
         }
         lintOptions {
             checkReleaseBuilds false

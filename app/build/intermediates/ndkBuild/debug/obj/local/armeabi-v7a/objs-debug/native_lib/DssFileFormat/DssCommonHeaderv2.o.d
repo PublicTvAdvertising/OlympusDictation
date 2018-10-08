@@ -1,59 +1,59 @@
-/home/raneez/Documents/olympus_dictation/dictation/app/build/intermediates/ndkBuild/debug/obj/local/armeabi-v7a/objs-debug/native_lib/DssFileFormat/DssCommonHeaderv2.o: \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssCommonHeaderv2.cpp \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/stdafx_ff.h \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/64bit.h \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/vector \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/string \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/stdexcept \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cctype \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/fstream \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/sstream \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/ctime \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/memory \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssElement.h \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/list \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssFileFormat.h \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssCryptor.h \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/AlignedMalloc.h \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssElementV2.h \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory
+/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/ndkBuild/debug/obj/local/armeabi-v7a/objs-debug/native_lib/DssFileFormat/DssCommonHeaderv2.o: \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssCommonHeaderv2.cpp \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/stdafx_ff.h \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/64bit.h \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/string \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/stdexcept \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/algorithm \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/fstream \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/sstream \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/ctime \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/memory \
+ /home/m2/Android/NDK/android-ndk-r10e/platforms/android-21/arch-arm/usr/include/math.h \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssElement.h \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/list \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssFileFormat.h \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssCryptor.h \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/AlignedMalloc.h \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssElementV2.h \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/tr1/memory
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/stdafx_ff.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/stdafx_ff.h:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/64bit.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/64bit.h:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/vector:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/string:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/string:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/stdexcept:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/stdexcept:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/algorithm:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/cctype:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/fstream:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/fstream:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/sstream:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/sstream:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/ctime:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/ctime:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/memory:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/memory:
+/home/m2/Android/NDK/android-ndk-r10e/platforms/android-21/arch-arm/usr/include/math.h:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssElement.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssElement.h:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/list:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/list:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssFileFormat.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssFileFormat.h:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssCryptor.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssCryptor.h:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/AlignedMalloc.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/AlignedMalloc.h:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssElementV2.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssElementV2.h:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/tr1/memory:

@@ -1,32 +1,35 @@
-/home/raneez/Documents/olympus_dictation/dictation/app/build/intermediates/ndkBuild/debug/obj/local/armeabi-v7a/objs-debug/native_lib/DssFileFormat/dssscanner.o: \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/dssscanner.cpp \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/stdafx_ff.h \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/64bit.h \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssElement.h \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/vector \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/list \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssFileFormat.h \
-  /media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/string \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssCryptor.h \
-  /home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/AlignedMalloc.h
+/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/ndkBuild/debug/obj/local/armeabi-v7a/objs-debug/native_lib/DssFileFormat/dssscanner.o: \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/dssscanner.cpp \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/stdafx_ff.h \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/64bit.h \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/algorithm \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssElement.h \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/list \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssFileFormat.h \
+ /home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/string \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssCryptor.h \
+ /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/AlignedMalloc.h \
+ /home/m2/Android/NDK/android-ndk-r10e/platforms/android-21/arch-arm/usr/include/math.h
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/stdafx_ff.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/stdafx_ff.h:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/64bit.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/64bit.h:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/algorithm:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssElement.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssElement.h:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/vector:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/list:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/list:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssFileFormat.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssFileFormat.h:
 
-/media/raneez/Drive1/Android/Sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/string:
+/home/m2/Android/NDK/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/string:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/DssFileFormat/DssCryptor.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/DssFileFormat/DssCryptor.h:
 
-/home/raneez/Documents/olympus_dictation/dictation/app/src/main/jni/AlignedMalloc.h:
+/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/jni/AlignedMalloc.h:
+
+/home/m2/Android/NDK/android-ndk-r10e/platforms/android-21/arch-arm/usr/include/math.h:
