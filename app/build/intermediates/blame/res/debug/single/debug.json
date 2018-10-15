@@ -1304,6 +1304,10 @@
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-mdpi/dictate_forward_press.png"
     },
     {
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable_checkedtextview_color.xml.flat",
+        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable/checkedtextview_color.xml"
+    },
+    {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-xxhdpi_dictate_insrt_blur.png.flat",
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-xxhdpi/dictate_insrt_blur.png"
     },

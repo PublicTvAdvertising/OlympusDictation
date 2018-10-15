@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.support.v4.content.ContextCompat;
 
 import com.olympus.dmmobile.network.NetworkConnectivityListener;
 
@@ -279,7 +280,12 @@ public class DMApplication extends Application{
 		 * To start background service.
 		 */
 		mBaseIntent= new Intent(DMApplication.this, ConvertAndUploadService.class);
-		startService(mBaseIntent);
+//		startService(mBaseIntent);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+		startForegroundService(mBaseIntent);
+		} else {
+			startService(mBaseIntent);
+		}
 		//ContextCompat.startForegroundService(getContext(),mBaseIntent);
 	}
 	//************* Network Connectivity**************

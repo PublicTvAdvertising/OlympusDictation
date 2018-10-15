@@ -633,12 +633,13 @@ public class DictateActivity extends Activity implements OnClickListener,
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
                             builder.setContentTitle(notifySubTitle)                            // required
-                                    .setSmallIcon(android.R.drawable.ic_popup_reminder)   // required
+                                     // required
                                     .setContentText("Recording..") // required
                                     .setDefaults(Notification.DEFAULT_ALL)
                                     .setAutoCancel(true)
 
-                                    .setSmallIcon(icon)
+                                 .setSmallIcon(icon)
+                                    .setColor(getResources().getColor(R.color.black))
                                     .setContentIntent(pendingIntent)
 
                                     .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
@@ -649,7 +650,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
                             builder.setContentTitle(notifyTitle)                            // required
-                                    .setSmallIcon(android.R.drawable.ic_popup_reminder)   // required
+                                   .setSmallIcon(icon)   // required
+                                    .setColor(getResources().getColor(R.color.black))
                                     .setContentText("Recording..") // required
                                     .setDefaults(Notification.DEFAULT_ALL)
                                     .setAutoCancel(true)

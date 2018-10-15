@@ -462,7 +462,12 @@ public class SplashscreenActivity extends Activity {
 	 */
 	 private void Errorservice() {
 		 baseIntent=new Intent(SplashscreenActivity.this, Errorservice.class);
-		 startService(baseIntent);
+//		 startService(baseIntent);
+		 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			 startForegroundService(baseIntent);
+		 } else {
+			 startService(baseIntent);
+		 }
 	 }
 	 /**
 	  * Method to determine whether new dictation or recordings screen to show first

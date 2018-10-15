@@ -15,7 +15,8 @@
 	<!-- Status colors -->
 	<color name="status_blue">#1E90FF</color>
 	<color name="status_red">#EE2E24</color>
-	
+	<color name="fab_color">#3470FF</color>
+
 	<color name="text_color">#E6E6E6</color>
 	
 </resources>

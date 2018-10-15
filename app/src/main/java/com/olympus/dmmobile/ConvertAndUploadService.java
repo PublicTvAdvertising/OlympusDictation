@@ -1,5 +1,9 @@
 package com.olympus.dmmobile;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,9 +15,11 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v7.app.NotificationCompat;
 
 import com.olympus.dmmobile.log.ExceptionReporter;
 import com.olympus.dmmobile.network.NetworkConnectivityListener.RetryUploadListener;
+import com.olympus.dmmobile.recorder.DictateActivity;
 import com.olympus.dmmobile.webservice.Base64_Encoding;
 import com.olympus.dmmobile.webservice.OlyDMSSLSocketFactory;
 import com.olympus.dmmobile.webservice.OlyDMTrustManager;
@@ -172,8 +178,58 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 		mDbHandlerQuerying = new DatabaseHandler(getApplicationContext());
 		mHandler5Minute = new Handler();
 		mHandler30Seconds = new Handler();
-		mDMApplication.setUploadServiceContext(this);//Copying context in to base application
-		
+		mDMApplication.setUploadServiceContext(this);
+		android.support.v4.app.NotificationCompat.Builder builder;
+		NotificationManager notifManager=null;
+		if (notifManager == null) {
+			notifManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+		}
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			int importance = NotificationManager.IMPORTANCE_HIGH;
+			NotificationChannel mChannel = notifManager.getNotificationChannel("1");
+			if (mChannel == null) {
+				mChannel = new NotificationChannel("1", "Service", importance);
+				mChannel.enableVibration(true);
+				mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+				notifManager.createNotificationChannel(mChannel);
+			}
+			builder = new android.support.v4.app.NotificationCompat.Builder(getApplicationContext(), "1");
+
+
+			builder.setContentTitle("Back ground servrice")                            // required
+					// required
+					.setContentText("Service running..") // required
+					.setDefaults(Notification.DEFAULT_ALL)
+					.setAutoCancel(true)
+
+					.setSmallIcon(R.drawable.ic_launcher)
+					.setColor(getResources().getColor(R.color.black))
+
+
+					.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+			Notification notification = builder.build();
+			startForeground(1, notification);
+
+		}
+		else {
+			builder = new android.support.v4.app.NotificationCompat.Builder(getApplicationContext(), "1");
+
+			builder.setContentTitle("Back ground servrice")                            // required
+					.setSmallIcon(R.drawable.ic_launcher)   // required
+					.setColor(getResources().getColor(R.color.black))
+					.setContentText("Service running..") // required
+					.setDefaults(Notification.DEFAULT_ALL)
+					.setAutoCancel(true)
+
+
+					.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+					.setPriority(Notification.PRIORITY_HIGH);
+			Notification notification = builder.build();
+			startForeground(1, notification);
+
+		}
+
+
 		/*
 		 * checks Android build version of device and set the streaming mode.
 		 */
@@ -210,6 +266,8 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		mDMApplication.setUploadServiceContext(this);
+
+
 		return START_STICKY;
 	}
 	
@@ -1922,6 +1980,9 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 	
 	@Override
 	public void onDestroy() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			stopForeground(true); //true will remove notification
+		}
 		unregisterReceiver(mMessengerReceiver);
 		super.onDestroy();
 	}

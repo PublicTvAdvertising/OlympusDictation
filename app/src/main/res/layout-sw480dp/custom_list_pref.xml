@@ -24,7 +24,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginRight="30dp"
         android:src="@drawable/fab_add"
-        app:fab_colorNormal="@color/status_red"
+        app:fab_colorNormal="@color/fab_color"
 
         app:fab_size="normal" />
 

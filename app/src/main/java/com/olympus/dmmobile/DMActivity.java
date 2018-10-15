@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
+
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -16,6 +18,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -31,8 +34,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.Editable;
 import android.text.Spannable;
@@ -484,7 +489,7 @@ public class DMActivity extends FragmentActivity implements
 			// enableSendDeleteButton(mSelectedList.size());
 			flashAirButton();
 			autoResize(mBtnEdit);
-			wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+			wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 			if (isOnceCalled) {
 				if(dmApplication.getNetWorkId() > 0) {
 					wifi.disableNetwork(dmApplication.getNetWorkId());
@@ -669,7 +674,7 @@ public class DMActivity extends FragmentActivity implements
 	 */
 	public void connectWifi(String ssid) {
 		WifiConfiguration config;
-		wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+		wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 		wifi.disconnect();
 		List<WifiConfiguration> networks = wifi.getConfiguredNetworks();
 
@@ -782,19 +787,30 @@ public class DMActivity extends FragmentActivity implements
 		baseIntent = new Intent(DMActivity.this, FlashAirMain.class);
 		startActivity(baseIntent);
 	}
+	private boolean checkAndRequestPermissions() {
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+			requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+					2);
+
+		}else{
+
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void onClick(View v) {
 		mTabPosition = mTabHost.getCurrentTab();
 		switch (v.getId()) {
 		case R.id.imgbutton_main_flashair:
-
+if(checkAndRequestPermissions()){
 			pref = DMActivity.this.getSharedPreferences(PREFS_NAME, 0);
 			mSettingsConfig = pref.getString("Activation", mActivation);
 			pref = PreferenceManager.getDefaultSharedPreferences(this);
 			int sendOption = Integer.parseInt(pref.getString(
 					getString(R.string.send_key), "1"));
-			WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+			WifiManager wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 			if (wifi.isWifiEnabled()) {
 				if (sendOption == 1) {
 					startFlashAirActivity();
@@ -820,7 +836,7 @@ public class DMActivity extends FragmentActivity implements
 							}
 						});
 				alert.create().show();
-			}
+			}}
 			break;
 		case R.id.img_main_new_dictate:
 			dmApplication.setRecordingsClickedDMActivity(true);

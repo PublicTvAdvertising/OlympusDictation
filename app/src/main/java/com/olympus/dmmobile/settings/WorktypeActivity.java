@@ -34,6 +34,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.olympus.dmmobile.DMApplication;
 import com.olympus.dmmobile.R;
 import com.olympus.dmmobile.log.ExceptionReporter;
@@ -48,7 +50,9 @@ import java.util.Locale;
  * @version 1.0.1
  *
  */
-public class WorktypeActivity extends Activity {
+public class
+
+WorktypeActivity extends Activity {
 
 	private ExceptionReporter mReporter; // Error Logger
 
@@ -78,6 +82,7 @@ public class WorktypeActivity extends Activity {
     private EditText edit;
     private String[] mCheckWorktype;
     private boolean isKeyboardShown = false;
+    FloatingActionButton floatingActionButton;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -89,6 +94,7 @@ public class WorktypeActivity extends Activity {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		}
 		setContentView(R.layout.custom_list_pref);
+		floatingActionButton=(FloatingActionButton) findViewById(R.id.fab);
 		setTitle(getResources().getString(R.string.worktype_list_title));
 		dmApplication=(DMApplication)getApplication();
 		dmApplication.setContext(this);
@@ -99,13 +105,15 @@ public class WorktypeActivity extends Activity {
 		mListView = (ListView) findViewById(R.id.custom_list_pref);
 		mListView.setSelector(android.R.color.transparent);
 		mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		
-		if (mCheckServermail.equalsIgnoreCase("2")) {
 
+		if (mCheckServermail.equalsIgnoreCase("2")) {
+			floatingActionButton.setVisibility(View.GONE);
 			if (WorktypeList != null) {
+
 				mAdapter = new WorktypeCustomAdapter(this, WorktypeList);
 			}
 		} else if (mCheckServermail.equalsIgnoreCase("1")) {
+			floatingActionButton.setVisibility(View.VISIBLE);
 			initValues();
 		}
 		mListView.setAdapter(mAdapter);
@@ -147,7 +155,15 @@ public class WorktypeActivity extends Activity {
 					}
 				});
 		
-		
+		floatingActionButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				if(delete != null && delete.getVisibility() == View.VISIBLE)
+					delete.setVisibility(View.INVISIBLE);
+				showAddWorktypeAlert();
+				dmApplication.worktypeSwiped = "";
+			}
+		});
 	}
 
 	@Override
@@ -342,7 +358,9 @@ public class WorktypeActivity extends Activity {
 		
 		if(TextUtils.isEmpty(mServerworktype)){
 			WorktypeList = null;
+			//floatingActionButton.setVisibility(View.GONE);
 		}else{
+		//	floatingActionButton.setVisibility(View.VISIBLE);
 			WorktypeList = new ArrayList<String>(Arrays.asList(mServerworktype
 					.split(":")));
 		}

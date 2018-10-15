@@ -30,6 +30,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.olympus.dmmobile.DMApplication;
 import com.olympus.dmmobile.DatabaseHandler;
 import com.olympus.dmmobile.R;
@@ -51,23 +53,17 @@ public class RecipientActivity extends Activity implements
 		OnRecipientDeleteListener {
 
 	private ExceptionReporter mReporter; // Error Logger
-
 	private SwipeMenuListView recipientListView; // recipient list view with
-													// swipe to delete
-													// functionality
-
 	DMApplication dmApplication;
 	RecipientAdapter listAdapter; // recipient list adapter
 	GestureDetector gestureDetector;
 	View.OnTouchListener gestureListener;
-
 	Button mBtnDeleteRecipient;
 	int deletePosition;
-
+FloatingActionButton floatingActionButton;
 	// request codes
 	private static final int RECIPIENT_EMAIL_REQUEST = 1002;
 	private static final int RECIPIENT_EMAIL_EDIT_REQUEST = 1003;
-
 	private static final int SWIPE_MIN_DISTANCE = 60;
 	private static final int SWIPE_MAX_OFF_PATH = 250;
 	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
@@ -99,6 +95,15 @@ public class RecipientActivity extends Activity implements
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		}
 		setContentView(R.layout.recipient_activity);
+		floatingActionButton=(FloatingActionButton) findViewById(R.id.fab);
+		floatingActionButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent addRecipientsIntent = new Intent(RecipientActivity.this,
+						AddRecipientActivity.class);
+				startActivityForResult(addRecipientsIntent, RECIPIENT_EMAIL_REQUEST);
+			}
+		});
 //		Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
 //		setSupportActionBar(toolbar);
 		setTitle(getResources().getString(
@@ -106,6 +111,7 @@ public class RecipientActivity extends Activity implements
 		dmApplication = (DMApplication) getApplication();
 		recipientListView = (SwipeMenuListView) findViewById(R.id.recipientList);
 		recipientListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
 		registerForContextMenu(recipientListView);
 		gestureDetector = new GestureDetector(new CustomGestureDetector());
 		gestureListener = new View.OnTouchListener() {
