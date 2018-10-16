@@ -1,4 +1,0 @@
-#Mon Oct 08 11:05:34 IST 2018
-base.0=/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/transforms/dexMerger/debug/2
-renamed.0=classes.dex
-file.0=/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/transforms/dexMerger/debug/2/classes.dex
