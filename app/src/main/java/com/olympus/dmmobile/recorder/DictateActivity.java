@@ -639,6 +639,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                                     .setAutoCancel(true)
 
                                  .setSmallIcon(icon)
+
                                     .setColor(getResources().getColor(R.color.black))
                                     .setContentIntent(pendingIntent)
 

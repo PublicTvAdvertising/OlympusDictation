@@ -180,12 +180,14 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 		mHandler30Seconds = new Handler();
 		mDMApplication.setUploadServiceContext(this);
 		android.support.v4.app.NotificationCompat.Builder builder;
+		Intent intent;
+		PendingIntent pendingIntent;
 		NotificationManager notifManager=null;
 		if (notifManager == null) {
 			notifManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 		}
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			int importance = NotificationManager.IMPORTANCE_HIGH;
+			int importance = NotificationManager.IMPORTANCE_MIN;
 			NotificationChannel mChannel = notifManager.getNotificationChannel("1");
 			if (mChannel == null) {
 				mChannel = new NotificationChannel("1", "Service", importance);
@@ -194,14 +196,16 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 				notifManager.createNotificationChannel(mChannel);
 			}
 			builder = new android.support.v4.app.NotificationCompat.Builder(getApplicationContext(), "1");
-
+			intent = new Intent(getApplicationContext(), SplashscreenActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
 
 			builder.setContentTitle("Back ground servrice")                            // required
 					// required
 					.setContentText("Service running..") // required
 					.setDefaults(Notification.DEFAULT_ALL)
 					.setAutoCancel(true)
-
+					.setContentIntent(pendingIntent)
 					.setSmallIcon(R.drawable.ic_launcher)
 					.setColor(getResources().getColor(R.color.black))
 
@@ -211,24 +215,24 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 			startForeground(1, notification);
 
 		}
-		else {
-			builder = new android.support.v4.app.NotificationCompat.Builder(getApplicationContext(), "1");
-
-			builder.setContentTitle("Back ground servrice")                            // required
-					.setSmallIcon(R.drawable.ic_launcher)   // required
-					.setColor(getResources().getColor(R.color.black))
-					.setContentText("Service running..") // required
-					.setDefaults(Notification.DEFAULT_ALL)
-					.setAutoCancel(true)
-
-
-					.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
-					.setPriority(Notification.PRIORITY_HIGH);
-			Notification notification = builder.build();
-			startForeground(1, notification);
-
-		}
-
+//		else {
+//			builder = new android.support.v4.app.NotificationCompat.Builder(getApplicationContext(), "1");
+//
+//			builder.setContentTitle("Back ground servrice")                            // required
+//					.setSmallIcon(R.drawable.ic_launcher)   // required
+//					.setColor(getResources().getColor(R.color.black))
+//					.setContentText("Service running..") // required
+//					.setDefaults(Notification.DEFAULT_ALL)
+//					.setAutoCancel(true)
+//
+//
+//					.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+//					.setPriority(Notification.PRIORITY_HIGH);
+//			Notification notification = builder.build();
+//			startForeground(1, notification);
+//
+//		}
+//
 
 		/*
 		 * checks Android build version of device and set the streaming mode.
@@ -257,7 +261,13 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 				onMoveAllToTimeOut();
 		}catch (Exception e) {}
 	}
-	
+
+	@Override
+	public boolean onUnbind(Intent intent) {
+
+		return super.onUnbind(intent);
+	}
+
 	@Override
 	public IBinder onBind(Intent arg0) {
 		return null;
@@ -2393,4 +2403,5 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 		}
 		catch(Exception e) {}
 	}
+
 }

@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-hdpi_dictate_insrt_blur.png.flat",
-        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-hdpi/dictate_insrt_blur.png"
-    },
-    {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
         "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/drawable-hdpi-v4/abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-hdpi_dictate_insrt_blur.png.flat",
+        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-hdpi/dictate_insrt_blur.png"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-ldpi_dictate_files_sel.png.flat",
@@ -36,20 +36,20 @@
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-mdpi/tab_list_dictate_priority_img.png"
     },
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-xxhdpi_checked.png.flat",
-        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-xxhdpi/checked.png"
-    },
-    {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-large-mdpi_olym_caption.png.flat",
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-large-mdpi/olym_caption.png"
     },
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-xhdpi_dictate_forward.png.flat",
-        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-xhdpi/dictate_forward.png"
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-xxhdpi_checked.png.flat",
+        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-xxhdpi/checked.png"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-xhdpi_dictate_over_blur.png.flat",
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-xhdpi/dictate_over_blur.png"
+    },
+    {
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-xhdpi_dictate_forward.png.flat",
+        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-xhdpi/dictate_forward.png"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/layout-sw320dp_activity_dictate_property_worktype_list.xml.flat",
@@ -64,16 +64,16 @@
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/layout-sw320dp/server_option_settings.xml"
     },
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/layout_abc_action_mode_close_item_material.xml.flat",
-        "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/layout/abc_action_mode_close_item_material.xml"
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-ldpi_flashair_dss_pro_icon.png.flat",
+        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-ldpi/flashair_dss_pro_icon.png"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
         "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/drawable-xxxhdpi-v4/abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-ldpi_flashair_dss_pro_icon.png.flat",
-        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-ldpi/flashair_dss_pro_icon.png"
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/layout_abc_action_mode_close_item_material.xml.flat",
+        "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/layout/abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/layout-sw720dp_custom_image.xml.flat",
@@ -152,20 +152,20 @@
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-hdpi/tab_list_dictate_priority_img.png"
     },
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable_abc_spinner_textfield_background_material.xml.flat",
-        "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/drawable/abc_spinner_textfield_background_material.xml"
-    },
-    {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-hdpi_dictate_rewind_press.png.flat",
-        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-hdpi/dictate_rewind_press.png"
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/layout-large_trademarknotice.xml.flat",
+        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/layout-large/trademarknotice.xml"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-large-mdpi_checked.png.flat",
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-large-mdpi/checked.png"
     },
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/layout-large_trademarknotice.xml.flat",
-        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/layout-large/trademarknotice.xml"
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-hdpi_dictate_rewind_press.png.flat",
+        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-hdpi/dictate_rewind_press.png"
+    },
+    {
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable_abc_spinner_textfield_background_material.xml.flat",
+        "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/drawable/abc_spinner_textfield_background_material.xml"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-hdpi_dictate_folder_sel.png.flat",
@@ -180,16 +180,16 @@
         "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable-ldpi/splash_logo.png"
     },
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/anim-v21_design_bottom_sheet_slide_in.xml.flat",
-        "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/res/anim-v21/design_bottom_sheet_slide_in.xml"
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable_abc_ic_search_api_material.xml.flat",
+        "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/drawable/abc_ic_search_api_material.xml"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_btn_radio_to_on_mtrl_015.png.flat",
         "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_015.png"
     },
     {
-        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable_abc_ic_search_api_material.xml.flat",
-        "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/drawable/abc_ic_search_api_material.xml"
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/anim-v21_design_bottom_sheet_slide_in.xml.flat",
+        "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/res/anim-v21/design_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -3278,6 +3278,10 @@
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/layout_design_navigation_item_separator.xml.flat",
         "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/res/layout/design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable_customize_check_box.xml.flat",
+        "source": "/home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/res/drawable/customize_check_box.xml"
     },
     {
         "merged": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/res/merged/debug/drawable-large-mdpi_dm_activity_bg_tab_left_unselected.png.flat",

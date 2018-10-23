@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckedTextView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.olympus.dmmobile.DMApplication;
 import com.olympus.dmmobile.DatabaseHandler;
@@ -102,17 +104,19 @@ public class RecipientAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.recipient_list_view,
 					parent, false);
 			viewHolder = new ViewHolder();
-			viewHolder.checkedTextView = (CheckedTextView) convertView
+			viewHolder.checkedTextView = (RadioButton) convertView
 					.findViewById(R.id.recipient_textview);
+			viewHolder.tvCheckedText = (TextView) convertView
+					.findViewById(R.id.tv_checked_text);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		if (position == 0) {
-			viewHolder.checkedTextView
+			viewHolder.tvCheckedText
 					.setText(itemList.get(position).getName());
 		} else {
-			viewHolder.checkedTextView
+			viewHolder.tvCheckedText
 					.setText(itemList.get(position).getText());
 		}
 		if (itemList.get(position).isSelected()) {
@@ -297,7 +301,8 @@ public class RecipientAdapter extends BaseAdapter {
 	}
 
 	public class ViewHolder {
-		CheckedTextView checkedTextView;
+		RadioButton checkedTextView;
+		TextView tvCheckedText;
 		int position;
 	}
 	
