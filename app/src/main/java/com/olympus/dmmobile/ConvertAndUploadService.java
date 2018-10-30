@@ -148,7 +148,7 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 	//private ThreadSafeClientConnManager mSafeClientConnManager = null;
 	//private TrustManager[] mTrustAllCerts = null;
 	private SSLContext mSslContext = null;
-	
+	private DictationCard dictCard;
 	private DMApplication mDMApplication = null;
 	private DatabaseHandler mDbHandlerConvert = null;
 	private DatabaseHandler mDbHandlerUpload = null;
@@ -195,14 +195,14 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 				mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
 				notifManager.createNotificationChannel(mChannel);
 			}
+
 			builder = new android.support.v4.app.NotificationCompat.Builder(getApplicationContext(), "1");
 			intent = new Intent(getApplicationContext(), SplashscreenActivity.class);
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
 
-			builder.setContentTitle("Back ground servrice")                            // required
-					// required
-					.setContentText("Service running..") // required
+			builder
+					.setContentText("Olympus Dictation is running...") // required
 					.setDefaults(Notification.DEFAULT_ALL)
 					.setAutoCancel(true)
 					.setContentIntent(pendingIntent)
@@ -215,24 +215,7 @@ public class  ConvertAndUploadService extends Service implements RetryUploadList
 			startForeground(1, notification);
 
 		}
-//		else {
-//			builder = new android.support.v4.app.NotificationCompat.Builder(getApplicationContext(), "1");
-//
-//			builder.setContentTitle("Back ground servrice")                            // required
-//					.setSmallIcon(R.drawable.ic_launcher)   // required
-//					.setColor(getResources().getColor(R.color.black))
-//					.setContentText("Service running..") // required
-//					.setDefaults(Notification.DEFAULT_ALL)
-//					.setAutoCancel(true)
-//
-//
-//					.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
-//					.setPriority(Notification.PRIORITY_HIGH);
-//			Notification notification = builder.build();
-//			startForeground(1, notification);
-//
-//		}
-//
+
 
 		/*
 		 * checks Android build version of device and set the streaming mode.

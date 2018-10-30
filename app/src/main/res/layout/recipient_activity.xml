@@ -6,29 +6,17 @@
 
     tools:context="com.olympus.dmmobile.RecipientActivity">
 
-    <!--<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:id="@+id/toolbar"-->
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/toolbar"
 
-        <!--android:background=" 	#999999"-->
-        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark">-->
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-
-            <!--<Button-->
-<!--android:background="#777777"-->
-                <!--android:padding="10dp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:text="ADD"-->
-                <!--android:layout_width="100dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_alignParentRight="true" />-->
-        <!--</RelativeLayout>-->
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        android:background=" 	#999999"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-    <!--</android.support.v7.widget.Toolbar>-->
+    </android.support.v7.widget.Toolbar>
 
 
 
@@ -38,10 +26,24 @@
         android:id="@+id/recipientList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+android:layout_below="@+id/toolbar"
         android:choiceMode="singleChoice" />
-    <com.github.clans.fab.FloatingActionButton
+    <!--<com.github.clans.fab.FloatingActionButton-->
 
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_gravity="bottom|right"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:src="@drawable/fab_add"-->
+        <!--app:fab_colorNormal="@color/fab_color"-->
+
+        <!--app:fab_size="normal" />-->
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,11 +52,10 @@
         android:layout_gravity="bottom|right"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
-        android:src="@drawable/fab_add"
-        app:fab_colorNormal="@color/fab_color"
 
-        app:fab_size="normal" />
+        android:src="@drawable/add_plus"
+        app:fabSize="normal"
+        android:backgroundTint="@color/fab_color"
 
-
-
+        />
 </RelativeLayout>

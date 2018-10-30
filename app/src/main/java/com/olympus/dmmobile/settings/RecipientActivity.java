@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
@@ -30,8 +31,6 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 import com.olympus.dmmobile.DMApplication;
 import com.olympus.dmmobile.DatabaseHandler;
 import com.olympus.dmmobile.R;
@@ -49,7 +48,7 @@ import com.olympus.dmmobile.utils.swipe.SwipeMenuListView.OnSwipeListener;
  * 
  * @version 1.2.0
  */
-public class RecipientActivity extends Activity implements
+public class RecipientActivity extends AppCompatActivity implements
 		OnRecipientDeleteListener {
 
 	private ExceptionReporter mReporter; // Error Logger
@@ -95,17 +94,10 @@ FloatingActionButton floatingActionButton;
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		}
 		setContentView(R.layout.recipient_activity);
-		floatingActionButton=(FloatingActionButton) findViewById(R.id.fab);
-		floatingActionButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent addRecipientsIntent = new Intent(RecipientActivity.this,
-						AddRecipientActivity.class);
-				startActivityForResult(addRecipientsIntent, RECIPIENT_EMAIL_REQUEST);
-			}
-		});
-//		Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
-//		setSupportActionBar(toolbar);
+
+		Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+
 		setTitle(getResources().getString(
 				R.string.server_options_recipient_title));
 		dmApplication = (DMApplication) getApplication();
@@ -120,6 +112,16 @@ FloatingActionButton floatingActionButton;
 				return gestureDetector.onTouchEvent(event);
 			}
 		};
+
+		floatingActionButton=(FloatingActionButton) findViewById(R.id.fab);
+		floatingActionButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent addRecipientsIntent = new Intent(RecipientActivity.this,
+						AddRecipientActivity.class);
+				startActivityForResult(addRecipientsIntent, RECIPIENT_EMAIL_REQUEST);
+			}
+		});
 
 		// set item click listener for recipient listview
 		recipientListView.setOnItemClickListener(new OnItemClickListener() {
@@ -231,6 +233,11 @@ FloatingActionButton floatingActionButton;
 
 		setRecipientListView();
 
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		return false;
 	}
 
 	@Override

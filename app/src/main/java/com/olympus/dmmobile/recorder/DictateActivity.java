@@ -663,27 +663,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                         }
                         Notification notification = builder.build();
                         notifManager.notify(RECORDING_NOTIFY_ID, notification);
-                        //Intent notificationIntent = new Intent(this,
-                        //	DictateActivity.class);
-                        //PendingIntent contentIntent = PendingIntent
-                        //	.getActivity(this, 0, notificationIntent, 0);
-                        //notificationIntent.putExtra(
-                        //	DMApplication.START_MODE_TAG, passedModeName);
-                        //ToDo change the below deprecated code to latest
-                        //mNotify.setLatestEventInfo(context, notifyTitle,
-                        //	notifySubTitle, contentIntent);
-                        //	notificationManager
-                        //.notify(RECORDING_NOTIFY_ID, mNotify);
-//                        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-//                        builder.setSmallIcon(icon);
-//                        Intent intent = new Intent(this, DictateActivity.class);
-//                        intent.putExtra(DMApplication.START_MODE_TAG, passedModeName);
-//                        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-//                        builder.setContentIntent(pendingIntent);
-//                        builder.setContentTitle(notifyTitle);
-//                        builder.setContentText(notifySubTitle);
-//                        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//                        notificationManager.notify(RECORDING_NOTIFY_ID, builder.build());
+
                     }
                 } else if (isBackpressed && isRecording) {
 

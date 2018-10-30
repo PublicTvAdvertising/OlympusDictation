@@ -5,49 +5,52 @@
     android:orientation="horizontal"
     android:padding="10dp" >
 
-    <!--<CheckedTextView-->
-        <!--android:id="@+id/recipient_textview"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:checkMark="@drawable/custom_check_button"-->
-        <!--android:padding="5dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:text="Recipient Name" -->
-        <!--android:gravity="center_vertical"-->
+    <CheckedTextView
+        android:id="@+id/recipient_textview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:checkMark="?android:attr/listChoiceIndicatorSingle"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:text="Recipient Name"
+        android:gravity="center_vertical"
+        android:checkMarkTint="@color/fab_color"
 
-        <!--/>-->
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:weightSum="2">
-       <TextView
-           android:id="@+id/tv_checked_text"
-           android:textStyle="bold"
-           android:text="Recipient Name"
-           android:gravity="center_vertical"
-           android:layout_width="0dp"
-           android:layout_weight="1.8"
-           android:layout_height="match_parent" />
-       <RadioButton
-           android:id="@+id/recipient_textview"
-           android:gravity="center_vertical"
-           android:buttonTint="@color/fab_color"
-           android:layout_width="0dp"
-           android:layout_weight="0.2"
-           android:layout_height="wrap_content" />
-   </LinearLayout>
-        <!-- <Button
-            android:id="@+id/delete_recipient"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/recipient_delete_button_bg"
-            android:padding="2dp"
-            android:textColor="#fff"
-            android:text="  DELETE  "
-            android:layout_gravity="right|center"
-            /> -->
-            
+
+        />
+
+   <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+       <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+       <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+       <!--&lt;!&ndash;android:weightSum="2">&ndash;&gt;-->
+       <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+           <!--&lt;!&ndash;android:id="@+id/tv_checked_text"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:text="Recipient Name"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:gravity="center_vertical"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_weight="1.8"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_height="match_parent" />&ndash;&gt;-->
+       <!--&lt;!&ndash;<RadioButton&ndash;&gt;-->
+           <!--&lt;!&ndash;android:id="@+id/recipient_textview"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:gravity="center_vertical"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:buttonTint="@color/fab_color"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_weight="0.2"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+   <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+        <!--&lt;!&ndash; <Button-->
+            <!--android:id="@+id/delete_recipient"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:background="@drawable/recipient_delete_button_bg"-->
+            <!--android:padding="2dp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:text="  DELETE  "-->
+            <!--android:layout_gravity="right|center"-->
+            <!--/> &ndash;&gt;-->
+            <!---->
 
 </FrameLayout>

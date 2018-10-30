@@ -20,19 +20,30 @@
     </style>
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        
+
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
     <style name="PrefsTheme" parent="@android:style/Theme.Black">
         <item name="android:textColor">#FFFFFF</item>
+
+
+
+
                 <item name="android:listViewStyle">@style/listViewPrefs</item>
+
+    </style>
+    <style name="checkboxTheme" >
+        <item name="colorAccent">@color/fab_color</item>
+        <item name="android:colorControlNormal">@color/fab_color</item>
+        <item name="android:colorControlActivated">@color/fab_color</item>
+
     </style>
     
     <style name="listViewPrefs" parent="@android:style/Widget.ListView.White">
        <!--  <item name="android:background">@drawable/relativeselector</item> -->
         <item name="android:cacheColorHint">#000000</item>
-        
+
     </style>
     
     <style name="RecipientEditTextView" >
@@ -47,5 +58,7 @@
         <item name="android:minHeight">48dip</item>
         <item name="android:lineSpacingExtra">@dimen/line_spacing_extra</item>
     </style>
-
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

@@ -104,19 +104,20 @@ public class RecipientAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.recipient_list_view,
 					parent, false);
 			viewHolder = new ViewHolder();
-			viewHolder.checkedTextView = (RadioButton) convertView
+			viewHolder.checkedTextView = (CheckedTextView) convertView
 					.findViewById(R.id.recipient_textview);
-			viewHolder.tvCheckedText = (TextView) convertView
-					.findViewById(R.id.tv_checked_text);
+//			viewHolder.tvCheckedText = (TextView) convertView
+//					.findViewById(R.id.tv_checked_text);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		if (position == 0) {
-			viewHolder.tvCheckedText
+			viewHolder.checkedTextView
 					.setText(itemList.get(position).getName());
 		} else {
-			viewHolder.tvCheckedText
+			viewHolder.checkedTextView
+
 					.setText(itemList.get(position).getText());
 		}
 		if (itemList.get(position).isSelected()) {
@@ -301,7 +302,7 @@ public class RecipientAdapter extends BaseAdapter {
 	}
 
 	public class ViewHolder {
-		RadioButton checkedTextView;
+		CheckedTextView checkedTextView;
 		TextView tvCheckedText;
 		int position;
 	}

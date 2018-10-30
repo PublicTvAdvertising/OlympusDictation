@@ -14,6 +14,8 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -34,8 +36,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 import com.olympus.dmmobile.DMApplication;
 import com.olympus.dmmobile.R;
 import com.olympus.dmmobile.log.ExceptionReporter;
@@ -52,7 +52,7 @@ import java.util.Locale;
  */
 public class
 
-WorktypeActivity extends Activity {
+WorktypeActivity extends AppCompatActivity {
 
 	private ExceptionReporter mReporter; // Error Logger
 
@@ -94,7 +94,7 @@ WorktypeActivity extends Activity {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		}
 		setContentView(R.layout.custom_list_pref);
-		floatingActionButton=(FloatingActionButton) findViewById(R.id.fab);
+	floatingActionButton=(FloatingActionButton) findViewById(R.id.fab_work);
 		setTitle(getResources().getString(R.string.worktype_list_title));
 		dmApplication=(DMApplication)getApplication();
 		dmApplication.setContext(this);
@@ -589,9 +589,16 @@ WorktypeActivity extends Activity {
 	protected void onPause(){
 		super.onPause();
 		if(isKeyboardShown){
-			InputMethodManager imm = (InputMethodManager)getSystemService(
-				      Context.INPUT_METHOD_SERVICE);
+			try {
+				InputMethodManager imm = (InputMethodManager)getSystemService(
+						Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
+			}
+			catch (NullPointerException e)
+			{
+				System.out.print("Null pointerException "+e.toString());
+			}
+
 		}
 	}
 }

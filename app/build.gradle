@@ -17,7 +17,7 @@ android {
 
         ndk {
             moduleName "native_lib"
-            //abiFilters 'armeabi-v7a', 'armeabi','x86', 'x86_64'
+            abiFilters 'armeabi-v7a', 'armeabi','x86', 'x86_64'
         }
         lintOptions {
             checkReleaseBuilds false
@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:support-v4:26.0.0'
     compile 'com.android.support:design:26.0.0'
-    compile 'com.github.clans:fab:1.6.4'
+
+
 
 }

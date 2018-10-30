@@ -107,7 +107,7 @@ public class DMAudioRecorder{
 		 * Callback to DictateActivity when the user attempts to record while another recorder instance is running in the background
 		 */
 		public void onNotifyError();
-		
+
 		//public void enableRecordUI(boolean state);
 		
 	}

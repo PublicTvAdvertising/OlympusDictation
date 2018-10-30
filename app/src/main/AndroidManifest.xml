@@ -89,7 +89,7 @@
         <activity
             android:name=".settings.WorktypeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/PrefsTheme"></activity>
+            android:theme="@style/Theme.AppCompat"></activity>
         <activity
             android:name=".settings.EmailOptionsActivity"
             android:screenOrientation="portrait"
@@ -139,7 +139,7 @@
             android:name=".settings.RecipientActivity"
             android:label="@string/recipient_title"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Light"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".settings.AddRecipientActivity"
             android:launchMode="singleTop"

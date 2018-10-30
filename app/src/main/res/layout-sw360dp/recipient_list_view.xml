@@ -5,39 +5,43 @@
     android:orientation="horizontal"
     android:padding="10dp" >
 
-    <!--<CheckedTextView-->
-        <!--android:id="@+id/recipient_textview"-->
-        <!--android:layout_width="match_parent"-->
-       <!--android:layout_height="wrap_content"-->
-        <!--android:singleLine="true"-->
-        <!--android:ellipsize="end"-->
-        <!--android:checkMark="@drawable/customize_check_box"-->
-        <!--android:padding="5dp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:text="Recipient Name"-->
-        <!--android:gravity="center_vertical"-->
-        <!--/>-->
-
-    <LinearLayout
+    <CheckedTextView
+        android:id="@+id/recipient_textview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="2">
-        <TextView
-            android:id="@+id/tv_checked_text"
-            android:textStyle="bold"
-            android:text="Recipient Name"
-            android:gravity="center_vertical"
-            android:layout_width="0dp"
-            android:layout_weight="1.8"
-            android:layout_height="match_parent" />
-        <RadioButton
-            android:id="@+id/recipient_textview"
-            android:gravity="center_vertical"
-            android:buttonTint="@color/fab_color"
-            android:layout_width="0dp"
-            android:layout_weight="0.2"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+       android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:checkMark="?android:attr/listChoiceIndicatorSingle"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:text="Recipient Name"
+        android:gravity="center_vertical"
+        android:checkMarkTint="@color/fab_color"
+        android:drawableTint="@color/fab_color"
+        android:foregroundTint="@color/fab_color"
+        android:backgroundTint="@color/fab_color"
+        />
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:weightSum="2">-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_checked_text"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="Recipient Name"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1.8"-->
+            <!--android:layout_height="match_parent" />-->
+        <!--<RadioButton-->
+            <!--android:id="@+id/recipient_textview"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:buttonTint="@color/fab_color"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="0.2"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
      <!--    <Button
             android:id="@+id/delete_recipient"
             android:layout_width="wrap_content"
