@@ -181,12 +181,11 @@
                     android:id="@+id/text_property_jobnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/text_property_jobnumber"
-                    android:layout_alignBottom="@+id/text_property_jobnumber"
+
                     android:layout_below="@+id/text_property_dictate_details"
                     android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@+id/text_property_jobnumber_header"
-                    android:text="1"
+                    android:text="job number"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="35sp" />
 
@@ -271,7 +270,8 @@
                 android:textSize="40sp" />
         </RelativeLayout>
     </LinearLayout>
-<!--  </ScrollView>  -->
+<!--  </ScrollView> 
+ -->
 
     <RelativeLayout
         android:id="@+id/relative_property_bottom_tab"

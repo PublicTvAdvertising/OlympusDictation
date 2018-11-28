@@ -1,9 +1,13 @@
 package com.olympus.dmmobile.settings;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -22,7 +27,13 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.Contacts;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,6 +75,8 @@ public class EmailOptionsActivity extends Activity {
 	private DMApplication dmApplication=null;
 	private AlertDialog.Builder mAlertDialog;
 	private int mPauseFlag=0;
+	private SharedPreferences pref;
+	private boolean isContactPermission = false;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -105,16 +118,20 @@ public class EmailOptionsActivity extends Activity {
 		setValues();
 		mContactchooser.setOnClickListener(new OnClickListener() {
 
+			@RequiresApi(api = Build.VERSION_CODES.M)
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				pref=getSharedPreferences("Conpermissions",MODE_PRIVATE);
+				isContactPermission=pref.getBoolean("Conperm",false);
+				if(checkContactPermission()&&isContactPermission){
 						InputMethodManager imm = (InputMethodManager)getSystemService(
 									      Context.INPUT_METHOD_SERVICE);
 									imm.hideSoftInputFromWindow(mEditRecipients.getWindowToken(), 0);
 								    mEditRecipients.setSelection(mEditRecipients.getText().length());
 										    if(dmApplication.getShowAlert()==0){
 										    doLaunchContactPicker(v);
-						    }
+						    }}
 			}
 		});
 		mEditRecipients.setOnEditorActionListener(new OnEditorActionListener() {
@@ -452,6 +469,105 @@ public class EmailOptionsActivity extends Activity {
 	         isValidEmail = true;
 	     }
 	     return isValidEmail;
-	 } 
-	 
+	 }
+//	@TargetApi(Build.VERSION_CODES.M)
+//	@RequiresApi(api = Build.VERSION_CODES.M)
+//	private boolean checkAndRequestPermissions() {
+//
+//		int readContactsPermission = ContextCompat.checkSelfPermission(this,
+//
+//
+//				Manifest.permission.READ_CONTACTS);
+//
+//
+//		List<String> listPermissionsNeeded = new ArrayList<>();
+//		if (readContactsPermission != PackageManager.PERMISSION_GRANTED) {
+//			listPermissionsNeeded.add(Manifest.permission.READ_CONTACTS);
+//		}
+//
+//		if (!listPermissionsNeeded.isEmpty()) {
+//
+//			ActivityCompat.requestPermissions(this,
+//
+//
+//					listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 1);
+//			return false;
+//		}
+//
+//
+//		return true;
+//	}
+	public boolean checkContactPermission()
+	{
+		int permissiontakeCamera = ContextCompat.checkSelfPermission(this,
+				Manifest.permission.READ_CONTACTS);
+		int[] perm = {permissiontakeCamera};
+		String[] stringPerm = {Manifest.permission.READ_CONTACTS};
+		ActivityCompat.requestPermissions(this, stringPerm, 1);
+		return true;
+
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		if (permissions.length == 0) {
+			return;
+		}
+		boolean allPermissionsGranted = true;
+		if (grantResults.length > 0) {
+			for (int grantResult : grantResults) {
+				if (grantResult != PackageManager.PERMISSION_GRANTED) {
+					allPermissionsGranted = false;
+					break;
+				}
+			}
+		}
+		if (!allPermissionsGranted) {
+			boolean somePermissionsForeverDenied = false;
+			for (String permission : permissions) {
+				if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+					//denied
+					Log.e("denied", permission);
+				} else {
+					if (ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+						//allowed
+						Log.e("allowed", permission);
+					} else {
+						//set to never ask again
+						Log.e("set to never ask again", permission);
+						somePermissionsForeverDenied = true;
+					}
+				}
+			}
+			if (somePermissionsForeverDenied) {
+				final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+				alertDialogBuilder.setTitle("Permissions Required")
+						.setMessage("To excute this action, tap SETTINGS go to App info> Permissions, then allow the following permission and try again\n\nPermission(Contacts)")
+						.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+										Uri.fromParts("package", getPackageName(), null));
+								intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								startActivity(intent);
+							}
+						})
+						.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+							}
+						})
+						.setCancelable(false)
+						.create()
+						.show();
+			}
+		} else {
+			pref=getSharedPreferences("Conpermissions",MODE_PRIVATE);
+			SharedPreferences.Editor editor = getSharedPreferences("Conpermissions", MODE_PRIVATE).edit();
+			editor.putBoolean("Conperm",true);
+			editor.commit();
+			isContactPermission = true;
+		}
+	}
+
 }

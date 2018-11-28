@@ -6,8 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/toolbar"
 
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        android:background=" 	#999999"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+
+    </android.support.v7.widget.Toolbar>
     <ListView
+        android:layout_below="@+id/toolbar"
         android:id="@+id/custom_list_pref"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"></ListView>

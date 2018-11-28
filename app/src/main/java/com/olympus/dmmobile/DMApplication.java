@@ -218,6 +218,7 @@ public class DMApplication extends Application{
 		this.dictateUploading = dictateUploading;
 	}
 	public Context getUploadServiceContext() {
+
 		return uploadServiceContext;
 	}
 	public void setUploadServiceContext(Context uploadServiceContext) {
@@ -279,8 +280,8 @@ public class DMApplication extends Application{
 		/*
 		 * To start background service.
 		 */
-		mBaseIntent= new Intent(DMApplication.this, ConvertAndUploadService.class);
-//		startService(mBaseIntent);
+	mBaseIntent= new Intent(DMApplication.this, ConvertAndUploadService.class);
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 		startForegroundService(mBaseIntent);
 		} else {

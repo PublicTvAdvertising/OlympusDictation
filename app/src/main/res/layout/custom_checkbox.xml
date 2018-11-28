@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <CheckBox
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/chk"
 
+    <CheckBox
+        android:focusable="false"
+        android:clickable="false"
+        android:focusableInTouchMode="false"
+android:id="@+android:id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:buttonTint="@color/fab_color"
-        android:drawableTint="@color/fab_color"
-        android:foregroundTint="@color/fab_color"
-        android:clickable="false"
-        android:focusable="false" />
+        android:button="@drawable/checkbox_selector"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingBottom="20dp"
+        android:paddingRight="3dp"
+        android:paddingTop="20dp" />
 </RelativeLayout>

@@ -97,6 +97,9 @@
                 android:background="@drawable/dm_activity_shape_search_600"
                 android:drawableLeft="@drawable/dm_activity_icon_search"
                 android:hint="@string/Recording_Label_Search"
+
+                android:textCursorDrawable="@color/fab_color"
+
                 android:imeOptions="actionSearch|normal"
                 android:singleLine="true"
                 android:textSize="22sp" />

@@ -355,7 +355,7 @@ public class SplashscreenActivity extends Activity {
 	 */
 	private void onStartNotActivatedActivity(String mMessage) {
 		if(!dmApplication.isTimeOutDialogOnFront()) {
-			if(!(dmApplication.getContext() instanceof SplashscreenActivity ||  dmApplication.getContext() instanceof Errorservice)) {
+			if(!(dmApplication.getContext() instanceof SplashscreenActivity )) {
 				dmApplication.setTimeOutDialogOnFront(true);
 				dmApplication.setWantToShowDialog(false);
 				baseIntent = new Intent(dmApplication.getContext(), CustomLaunchDialog.class);
@@ -638,7 +638,7 @@ public class SplashscreenActivity extends Activity {
 			if(DMApplication.isONLINE() && !isWebServiceCalled) {
 				 isWebServiceCalled=true;				 
 				 getDeviceConfig();
-				 Errorservice();	
+				 //Errorservice();
 			}
 		}
 	}

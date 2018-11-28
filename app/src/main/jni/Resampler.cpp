@@ -38,17 +38,21 @@ JNIEXPORT jint JNICALL Java_com_olympus_dmmobile_AMRConverter_resample(JNIEnv * 
 	m_InFile=env->GetStringUTFChars(src,0);
 
 	// get the class from the obj
+
 	cls = env->GetObjectClass(obj);
 
 	// get the ID of method "encode"
+
+
 	mid =env->GetMethodID(cls, "encode", "([S)V");
 	if (mid == NULL) {
+
 		return 0; // method not found
 	}
 
 	Resampler *resampler=new Resampler();
 	int result=resampler->startResampling(env,obj,mid);
-
+//__android_log_write(ANDROID_LOG_INFO, "nativelog", "returnmethod"+result);
 	return result;
 
 }
@@ -76,6 +80,7 @@ Resampler::~Resampler(void)
 // this function re-sample the PCM data and call the java method 'encode' in class 'AMRConverter' with the re-sampled data
 int Resampler::startResampling(JNIEnv * env,jobject obj,jmethodID mid)
 {
+
 	jshortArray sArray;
 	int SAMPLE_RATE=8000;
 
@@ -97,6 +102,9 @@ int Resampler::startResampling(JNIEnv * env,jobject obj,jmethodID mid)
 
 	while(pcmReader->Read(buf,size)==S_OK)
 	{
+	//__android_log_print(ANDROID_LOG_INFO, "nativelog", "test int = %d", size);
+
+
 		unsigned long neededBufferLen = max(size/inBytePerSample_/pcm.channels, resampler_.get_required_buffer_length(size)/inBytePerSample_/pcm.channels);
 
 		if((resamplingBuffer_ == 0) || neededBufferLen > resamplingBufferSize_)
@@ -108,18 +116,22 @@ int Resampler::startResampling(JNIEnv * env,jobject obj,jmethodID mid)
 
 		if(resamplingBuffer_)
 		{
+
 			downmix_channels(resamplingBuffer_, resamplingBufferSize_, (short *)buf, size/inBytePerSample_);
 			int resamples = (int)resampler_.process((short *)resamplingBuffer_, size/inBytePerSample_/pcm.channels, resamplingBufferSize_);
 
 			sArray=env->NewShortArray(resamples);
+			//__android_log_print(ANDROID_LOG_INFO, "nativelog", "line after sArray");
 			env->SetShortArrayRegion(sArray,0,resamples,resamplingBuffer_);
 
 			// call the java method 'encode' with that re-sampled data in sArray
+			__android_log_write(ANDROID_LOG_INFO, "nativelog", "call the java method 'encode' with that re-sampled data in sArray");
 			env->CallVoidMethod(obj, mid,sArray);
-
+__android_log_print(ANDROID_LOG_INFO, "nativelog", "line after env->sCallVoidMethod");
 			int input_samples = resamples;
 			env->DeleteLocalRef(sArray);
 		}
+
 	}
 
 	pcmReader->Close();

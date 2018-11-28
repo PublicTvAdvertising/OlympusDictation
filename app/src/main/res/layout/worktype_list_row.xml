@@ -18,6 +18,8 @@
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true"
         android:text="@string/Recording_Label_Delete"
+        android:textColor="@color/black"
+
         android:visibility="invisible"
         android:background="@drawable/button_round_shape_selected_hdp"
         android:padding="10dp"

@@ -23,9 +23,49 @@
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
+<style name="radobtn" parent="@android:style/Theme.Material">
+    <item name="android:colorControlActivated">@color/fab_color</item>
+    <item name="colorAccent">@color/fab_color</item>
+
+
+    <item name="android:checkMarkTint">@color/fab_color</item>
+    <item name="android:checkMark">@color/fab_color</item>
+</style>
+    <style name="dmact" parent="Theme.Design.NoActionBar">
+        <item name="colorAccent">@color/fab_color</item>
+
+    </style>
+    <style name="prefScreen" parent="@android:style/Theme.Black">
+        <item name="android:colorControlActivated">@color/fab_color</item>
+        <item name="colorAccent">@color/fab_color</item>
+
+
+        <item name="android:checkMarkTint">@color/fab_color</item>
+        <item name="android:checkMark">@color/fab_color</item>
+
+    </style>
+    <style name="settingsScreen" parent="@android:style/Theme.Material">
+        <item name="android:colorControlActivated">@color/fab_color</item>
+        <item name="colorAccent">@color/fab_color</item>
+
+
+        <item name="android:checkMarkTint">@color/fab_color</item>
+        <item name="android:checkMark">@color/fab_color</item>
+
+    </style>
+    <!--<style name="MyRaidoButtonTwo" parent="Widget.AppCompat.CompoundButton.RadioButton">-->
+        <!--<item name="android:colorControlNormal">#64dd17</item>-->
+        <!--<item name="android:colorControlActivated">#460745</item>-->
+        <!--<item name="android:colorControlHighlight">#c51162</item>-->
+        <!--<item name="android:textColorPrimaryDisableOnly">#00838f</item>-->
+        <!--<item name="android:textAppearance">@style/TextAppearance.AppCompat</item>-->
+    <!--</style>-->
+
     <style name="PrefsTheme" parent="@android:style/Theme.Black">
         <item name="android:textColor">#FFFFFF</item>
+        <item name="android:colorAccent">@color/fab_color</item>
+        <!--<item name="android:colorAccent">@color/fab_color</item>-->
+        <!--<item name="android:colorControlActivated">@color/fab_color</item>-->
 
 
 
@@ -33,12 +73,11 @@
                 <item name="android:listViewStyle">@style/listViewPrefs</item>
 
     </style>
-    <style name="checkboxTheme" >
-        <item name="colorAccent">@color/fab_color</item>
-        <item name="android:colorControlNormal">@color/fab_color</item>
-        <item name="android:colorControlActivated">@color/fab_color</item>
+    <style name="Dialg" parent="@android:style/Theme.Black">
+
 
     </style>
+
     
     <style name="listViewPrefs" parent="@android:style/Widget.ListView.White">
        <!--  <item name="android:background">@drawable/relativeselector</item> -->

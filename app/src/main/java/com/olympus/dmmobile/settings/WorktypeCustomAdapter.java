@@ -1,6 +1,7 @@
 package com.olympus.dmmobile.settings;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -61,6 +62,7 @@ public class WorktypeCustomAdapter extends BaseAdapter {
 		return position;
 	}
 
+	@SuppressLint("ResourceAsColor")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if(convertView == null){
@@ -68,6 +70,8 @@ public class WorktypeCustomAdapter extends BaseAdapter {
 	        holder = new ViewHolder();
 	        holder.text = (TextView)convertView.findViewById(R.id.text_view);
 	        holder.delete = (Button)convertView.findViewById(R.id.btn_delete);
+	        holder.delete.setTextColor(R.color.black);
+
 	        holder.delete.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {

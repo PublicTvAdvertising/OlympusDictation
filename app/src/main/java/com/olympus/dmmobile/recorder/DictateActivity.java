@@ -1,6 +1,7 @@
 package com.olympus.dmmobile.recorder;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -34,6 +35,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.hardware.camera2.CameraConstrainedHighSpeedCaptureSession;
 import android.media.AudioManager;
 import android.media.ExifInterface;
 import android.media.MediaPlayer;
@@ -48,14 +50,19 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.StatFs;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.service.notification.NotificationListenerService;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -85,6 +92,8 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.ToggleButton;
 
 import com.olympus.dmmobile.AMRConverter;
+import com.olympus.dmmobile.BuildConfig;
+import com.olympus.dmmobile.ConvertAndUploadService;
 import com.olympus.dmmobile.CustomDialog;
 import com.olympus.dmmobile.CustomLaunchDialog;
 import com.olympus.dmmobile.DMActivity;
@@ -119,7 +128,7 @@ import java.util.TimerTask;
  */
 // @SuppressLint("DefaultLocale")
 public class DictateActivity extends Activity implements OnClickListener,
-        SeekBar.OnSeekBarChangeListener, AudioRecordStateListener {
+        SeekBar.OnSeekBarChangeListener, AudioRecordStateListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
     static {
         System.loadLibrary("native_lib");
@@ -151,7 +160,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     private static String AUDIO_FILE_FOLDERNAME = "Dictations";
     private static int RECORDING_NOTIFY_ID = 55555;
     private static int PLAYER_NOTIFY_ID = 44444;
-
+    Vibrator vibrator = null;
     private final long MAXIMUM_LIMIT_SIZE = 1073741824;
 
     public static DMAudioRecorder RECORDER;
@@ -168,6 +177,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     private long totalDuration;
     private long currentDuration;
     public boolean InterruptCallDialogshown = false;
+    public boolean RequestActivityshown = true;
     private long savedCurrentPos;
     private long savedFileSizeDuration;
     public static boolean isCallActive = false;
@@ -197,6 +207,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     public boolean isIntentPlay = true;
     private boolean isBackpressed = false;
     private boolean checkForwordIsEnabled = false;
+    private boolean isAllPermissionGrnated = false;
     private BluetoothAdapter mBluetoothAdapter;
     private AlertDialog.Builder mBuilder = null;
     private AlertDialog mAlertDialog = null;
@@ -232,6 +243,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     private int mLanguageVal;
     private DatabaseHandler mDbHandler;
     private SharedPreferences mSharedPreferenece;
+    private SharedPreferences permSharedPref;
     private String mWorktype = "";
     private SharedPreferences pref;
     private SharedPreferences prefs;
@@ -568,6 +580,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
     @Override
     protected void onPause() {
+
         super.onPause();
         if ((isForwarding == 1 || isRewinding == 1)) {
             if (isForwarding == 1) {
@@ -593,11 +606,14 @@ public class DictateActivity extends Activity implements OnClickListener,
         }
         if (!isBeyondLimit)
             if (!limitFlag) {
-                if (isRecording && !isBackpressed) {
+//            if(RequestActivityshown)
+//            {
+//                isBackpressed=true;}
+                if (isRecording && !isBackpressed && !RequestActivityshown) {
                     if (!isPushToTalk) {
-                         NotificationManager notifManager=null;
+                        NotificationManager notifManager = null;
                         //	NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                        int icon = R.drawable.ic_launcher;
+                        int icon = R.drawable.dictation_stasusbar;
                         CharSequence notiTriggerText = "";
                         long whenShow = System.currentTimeMillis();
                         //Notification mNotify = new Notification(icon,
@@ -606,6 +622,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                         CharSequence notifyTitle = getResources().getString(
                                 R.string.category_recording)
                                 + "...";
+                        CharSequence notificationName = "Default";
                         CharSequence notifySubTitle = dictCard
                                 .getDictationName();
                         if ((!isReview && !(passedModeName
@@ -617,52 +634,57 @@ public class DictateActivity extends Activity implements OnClickListener,
                         PendingIntent pendingIntent;
                         NotificationCompat.Builder builder;
                         if (notifManager == null) {
-                            notifManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+                            notifManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             int importance = NotificationManager.IMPORTANCE_HIGH;
-                            NotificationChannel mChannel = notifManager.getNotificationChannel("1");
+                            NotificationChannel mChannel = notifManager.getNotificationChannel("2");
                             if (mChannel == null) {
-                                mChannel = new NotificationChannel("1", notifyTitle, importance);
+                                mChannel = new NotificationChannel("2", notificationName, importance);
                                 mChannel.enableVibration(true);
-                                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                                //  mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
                                 notifManager.createNotificationChannel(mChannel);
                             }
-                            builder = new NotificationCompat.Builder(context, "1");
+                            builder = new NotificationCompat.Builder(context, "2");
                             intent = new Intent(context, DictateActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
                             builder.setContentTitle(notifySubTitle)                            // required
-                                     // required
+                                    // required
                                     .setContentText("Recording..") // required
                                     .setDefaults(Notification.DEFAULT_ALL)
                                     .setAutoCancel(true)
 
-                                 .setSmallIcon(icon)
+                                    .setSmallIcon(icon)
 
                                     .setColor(getResources().getColor(R.color.black))
-                                    .setContentIntent(pendingIntent)
+                                    .setContentIntent(pendingIntent);
 
-                                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-                        }
-                        else {
-                            builder = new NotificationCompat.Builder(context, "1");
+                            //.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                            Notification notification = builder.build();
+                            notifManager.notify(RECORDING_NOTIFY_ID, notification);
+                        } else {
+                            builder = new NotificationCompat.Builder(context, "2");
                             intent = new Intent(context, DictateActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
                             builder.setContentTitle(notifyTitle)                            // required
-                                   .setSmallIcon(icon)   // required
+                                    .setSmallIcon(icon)   // required
                                     .setColor(getResources().getColor(R.color.black))
+                                    .setPriority(Notification.PRIORITY_HIGH)
                                     .setContentText("Recording..") // required
+                                    .setPriority(Notification.PRIORITY_HIGH)
                                     .setDefaults(Notification.DEFAULT_ALL)
                                     .setAutoCancel(true)
-                                    .setContentIntent(pendingIntent)
+                                    .setContentIntent(pendingIntent);
 
-                                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
-                                    .setPriority(Notification.PRIORITY_HIGH);
+                            // .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+
+                            Notification notification = builder.build();
+                            notifManager.notify(RECORDING_NOTIFY_ID, notification);
                         }
-                        Notification notification = builder.build();
-                        notifManager.notify(RECORDING_NOTIFY_ID, notification);
+
 
                     }
                 } else if (isBackpressed && isRecording) {
@@ -691,6 +713,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                     intent.putExtra(DMApplication.START_MODE_TAG, passedModeName);
                     setIntent(intent);
                 }
+
                 if (passedModeName.equals(DMApplication.MODE_COPY_RECORDING)) {
                     dictCard.setRecEndDate(dmApplication.getDeviceTime());
                     mDbHandler.updateRecEndDate(dictCard);
@@ -804,8 +827,9 @@ public class DictateActivity extends Activity implements OnClickListener,
         System.gc();
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
 
@@ -880,11 +904,13 @@ public class DictateActivity extends Activity implements OnClickListener,
                         if (mMediaPlayer != null) {
                             playButtonState = MediaMode.PLAY;
                             recorderSetEnable(false);
+
                             if (Graphbar.getProgress() == Graphbar.getMax()) {
                                 Graphbar.setProgress(0);
                             }
-                            mMediaPlayer.seekTo((int) getMMcurrentPos(Graphbar
-                                    .getProgress()));
+                            int re = (int) getMMcurrentPos(Graphbar
+                                    .getProgress());
+                            mMediaPlayer.seekTo(re);
                             mMediaPlayer.start();
                             bPlay.setBackgroundResource(R.drawable.dictate_pause_selector);
                         }
@@ -939,95 +965,115 @@ public class DictateActivity extends Activity implements OnClickListener,
                 }
                 break;
             case R.id.record:
+                RequestActivityshown = true;
+                permSharedPref = getSharedPreferences("permissions", MODE_PRIVATE);
+                isAllPermissionGrnated = permSharedPref.getBoolean("allperm", false);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if(checkAndRequestPermissions())
-                    {
-                    if (timer != null || mptimer != null) {
-                        timer.cancel();
-                        task.cancel();
-                        mptimer.cancel();
-                        mpTimertask.cancel();
-                    }
-
-                    if (isRecording) {
-                        isrecordingOnclick = false;
-                        if (ActivityInitialPlay) {
-                            ActivityInitialPlay = false;
-                        }
-                        if (!isVcvaEnabled) {
-                            if (passedTotalDuration >= 1000) {
-                                tvTitle.setCursorVisible(false);
-                                recorderStopRecording();
-                                bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
-
-                                hideKeyboard();
+                    if (checkAndRequestPermissions() && isAllPermissionGrnated) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            if (muteNotification()) {
+                                record();
+                                break;
                             }
+
                         } else {
-                            if (passedTotalDuration >= 1000) {
-                                recorderStopRecording();
-                                bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
-                            }
+                            record();
+                            break;
                         }
-                        getWindow().getDecorView().findViewById(android.R.id.content)
-                                .setKeepScreenOn(false);
 
-                        if (mWakeLock.isHeld()) {
-                            mWakeLock.release();
+                    }
+                } else {
+                    record();
+                    break;
+
+                }
+        }
+    }
+
+    public void record() {
+        if (timer != null || mptimer != null) {
+            timer.cancel();
+            task.cancel();
+            mptimer.cancel();
+            mpTimertask.cancel();
+        }
+
+        if (isRecording) {
+            isrecordingOnclick = false;
+            if (ActivityInitialPlay) {
+                ActivityInitialPlay = false;
+            }
+            if (!isVcvaEnabled) {
+                if (passedTotalDuration >= 1000) {
+                    tvTitle.setCursorVisible(false);
+                    recorderStopRecording();
+                    bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
+
+                    hideKeyboard();
+                }
+            } else {
+                if (passedTotalDuration >= 1000) {
+                    recorderStopRecording();
+                    bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
+                }
+            }
+            getWindow().getDecorView().findViewById(android.R.id.content)
+                    .setKeepScreenOn(false);
+
+            if (mWakeLock.isHeld()) {
+                mWakeLock.release();
+            }
+
+        } else {
+            getWindow().getDecorView().findViewById(android.R.id.content)
+                    .setKeepScreenOn(true);
+            if (mWakeLock.isHeld()) {
+                mWakeLock.acquire();
+            }
+            isrecordingOnclick = true;
+            if (!isCallActive) {
+                if (!isVcvaEnabled) {
+                    if (isInsert) {
+                        showSignalometer();
+                    } else {
+                        showOverwriteSignalometer();
+                    }
+                }
+            }
+            if (mMediaPlayer == null) {
+                ActivityInitialPlay = true;
+            }
+            tvTimeRight.setVisibility(ProgressBar.VISIBLE);
+            tvTimeRight.setVisibility(ProgressBar.VISIBLE);
+            if (isOncePaused) {
+                if (!isInsertionProcessRunning) {
+                    if (!isCallActive) {
+                        hideKeyboard();
+                        tvTitle.setCursorVisible(false);
+                        if (validateSpaceAndSizeLimit()) {
+                            recorderTriggerStart();
                         }
 
                     } else {
-                        getWindow().getDecorView().findViewById(android.R.id.content)
-                                .setKeepScreenOn(true);
-                        if (mWakeLock.isHeld()) {
-                            mWakeLock.acquire();
-                        }
-                        isrecordingOnclick = true;
-                        if (!isCallActive) {
-                            if (!isVcvaEnabled) {
-                                if (isInsert) {
-                                    showSignalometer();
-                                } else {
-                                    showOverwriteSignalometer();
-                                }
-                            }
-                        }
-                        if (mMediaPlayer == null) {
-                            ActivityInitialPlay = true;
-                        }
-                        tvTimeRight.setVisibility(ProgressBar.VISIBLE);
-                        tvTimeRight.setVisibility(ProgressBar.VISIBLE);
-                        if (isOncePaused) {
-                            if (!isInsertionProcessRunning) {
-                                if (!isCallActive) {
-                                    hideKeyboard();
-                                    tvTitle.setCursorVisible(false);
-                                    if (validateSpaceAndSizeLimit()) {
-                                        recorderTriggerStart();
-                                    }
-
-                                } else {
-                                    DialogWhileActiveCall();
-
-                                }
-                            }
-                        } else {
-                            if (!isCallActive) {
-                                hideKeyboard();
-                                tvTitle.setCursorVisible(false);
-                                if (validateSpaceAndSizeLimit()) {
-                                    recorderTriggerStart();
-                                }
-
-                            } else {
-                                DialogWhileActiveCall();
-                            }
-                        }
+                        DialogWhileActiveCall();
 
                     }
-                    break;
-            }
                 }
+            } else {
+                if (!isCallActive) {
+                    hideKeyboard();
+                    tvTitle.setCursorVisible(false);
+                    if (validateSpaceAndSizeLimit()) {
+                        recorderTriggerStart();
+                    }
+
+                } else {
+                    DialogWhileActiveCall();
+                }
+            }
+
         }
+
     }
 
     @Override
@@ -1508,6 +1554,13 @@ public class DictateActivity extends Activity implements OnClickListener,
                             .equalsIgnoreCase("Not Activated"))
                         if (DMApplication.isONLINE()) {
                             getSettingsAttribute();
+                            Intent myService = new Intent(DictateActivity.this, ConvertAndUploadService.class);
+
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                                startForegroundService(myService);
+//                            } else {
+//                                startService(myService);
+//                            }
                             new WebServiceGetSettings().execute();
                         } else {
                             onSetRecentSettings();
@@ -1828,7 +1881,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-              switch (event.getAction()) {
+                    switch (event.getAction()) {
 
                         case MotionEvent.ACTION_DOWN:
 
@@ -2609,7 +2662,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                             tvTimeLeft.setVisibility(View.VISIBLE);
                         }
                         savedFileSizeDuration = total_duration;
-
+                        Log.d("timeRight", "recordertimerupdateinsert" + String.valueOf(TotalDur));
                         tvTimeRight.setText(Utilities.getDurationInTimerFormat(totaldurOfFile));
                     } else {
                         if ((pausePosition + current_duration) > total_duration) {
@@ -2624,7 +2677,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                                 tvTimeLeft.setVisibility(View.VISIBLE);
                             }
                             if (!isNavigatedToAnotherScreen)
-                                tvTimeRight.setText(Utilities.getDurationInTimerFormat(savedFileSizeDuration));
+                                Log.d("timeRight", "navigatetoanotherscreen" + String.valueOf(TotalDur));
+                            tvTimeRight.setText(Utilities.getDurationInTimerFormat(savedFileSizeDuration));
                             if (!isReview) {
                                 totalDuration = getMilliseconsFromAFile(getFilename());
                                 TotalDur = Utilities.getDurationInTimerFormat(totalDuration);
@@ -2643,6 +2697,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                         tvTimeLeft.setVisibility(View.VISIBLE);
                     }
                     savedFileSizeDuration = total_duration;
+                    Log.d("timeRight", "not paused" + String.valueOf(TotalDur));
                     tvTimeRight.setText(Utilities.getDurationInTimerFormat(total_duration));
                 }
             }
@@ -2998,7 +3053,12 @@ public class DictateActivity extends Activity implements OnClickListener,
             mMediaPlayer.start();
             playButtonState = MediaMode.PLAY;
         } else {
-            mMediaPlayer.seekTo((int) getMMcurrentPos(Graphbar.getProgress()));
+            if (Graphbar.getMax() == Graphbar.getProgress()) {
+                mMediaPlayer.seekTo(0);
+            } else {
+                mMediaPlayer.seekTo((int) getMMcurrentPos(Graphbar.getProgress()));
+            }
+
             bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
             playButtonState = MediaMode.PAUSE;
 
@@ -3128,6 +3188,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
         TotalDur = Utilities.getDurationInTimerFormat(totalDuration);
         tvTimeLeft.setVisibility(View.VISIBLE);
+        Log.d("timeRight", "mediaPlayerUpdateTimer" + String.valueOf(TotalDur));
         tvTimeRight.setText(TotalDur);
         if (Graphbar.getProgress() == Graphbar.getMax()) {
             tvTimeLeft.setText(""
@@ -4482,12 +4543,15 @@ public class DictateActivity extends Activity implements OnClickListener,
         file = new File(DMApplication.DEFAULT_DIR + "/Dictations/"
                 + dictCard.getSequenceNumber() + "/",
                 dictCard.getDictationName() + ".amr");
-        uris.add(Uri.fromFile(file));
+        uris.add(FileProvider.getUriForFile(DictateActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
+
+        // uris.add(Uri.fromFile(file));
         if (dictCard.getIsThumbnailAvailable() == 1) {
             file = new File(DMApplication.DEFAULT_DIR + "/Dictations/"
                     + dictCard.getSequenceNumber() + "/"
                     + dictCard.getDictationName() + ".jpg");
-            uris.add(Uri.fromFile(file));
+            uris.add(FileProvider.getUriForFile(DictateActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
+            //  uris.add(Uri.fromFile(file));
         }
         baseIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
         baseIntent.setPackage(packageName);
@@ -4845,6 +4909,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                         /*
                          * To check the conversion is success or not.
                          */
+
                         if (amrConverter
                                 .convert(filePath + dictCard.getDictFileName()
                                                 + ".wav",
@@ -5859,9 +5924,42 @@ public class DictateActivity extends Activity implements OnClickListener,
         return inSampleSize;
     }
 
+    @SuppressLint("MissingPermission")
     public void muteNotificationSounds(boolean state) {
-        audioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, state);
-        audioManager.setStreamMute(AudioManager.STREAM_ALARM, state);
+        //   AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        AudioManager mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (state) {
+
+
+                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+
+//                AudioManager amanager = ((AudioManager) getSystemService(Context.AUDIO_SERVICE));
+//                amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_MUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_MUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_MUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_MUTE, 0);
+
+
+            } else {
+//
+                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+//                AudioManager amanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_UNMUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_UNMUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0);
+//                amanager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_UNMUTE, 0);
+
+            }
+        } else {
+            audioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, state);
+            audioManager.setStreamMute(AudioManager.STREAM_ALARM, state);
+        }
     }
 
     /**
@@ -5970,38 +6068,50 @@ public class DictateActivity extends Activity implements OnClickListener,
         bNew.setBackgroundResource(R.drawable.dictate_new_selector);
     }
 
-	/*@Override
-	public void enableRecordUI(final boolean state) {
-		// TODO Auto-generated method stub
-		runOnUiThread(new Runnable() {
+    /*@Override
+    public void enableRecordUI(final boolean state) {
+        // TODO Auto-generated method stub
+        runOnUiThread(new Runnable() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				bRecord.setEnabled(state);
-				System.out.println(" ui state - "+state);
-			}
-		});
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                bRecord.setEnabled(state);
+                System.out.println(" ui state - "+state);
+            }
+        });
 
-	}*/
-	@TargetApi(Build.VERSION_CODES.M)
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public boolean muteNotification()
-    {
+    }*/
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean muteNotification() {
         NotificationManager n = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(!n.isNotificationPolicyAccessGranted()) {
+            if (!n.isNotificationPolicyAccessGranted()) {
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle("Permissions Required")
+                        .setMessage("To mute notification sound during recording, you need to allow Tap PERMISSION, then apply it to Dictation and try again")
+                        .setPositiveButton("PERMISSION", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS));
 
-                startActivity(new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS));
-            }
-           else
-               return false;
+                            }
+                        })
+
+                        .setCancelable(false)
+                        .create()
+                        .show();
+            } else
+                return true;
         }
-        return true;
+        return false;
     }
-    @TargetApi(Build.VERSION_CODES.M)
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
+    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private boolean checkAndRequestPermissions() {
+        // isBackpressed=true;
         int permissionRecordAudio = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO);
 
@@ -6019,38 +6129,101 @@ public class DictateActivity extends Activity implements OnClickListener,
 
 
                 Manifest.permission.READ_PHONE_STATE);
-        int readContactsPermission = ContextCompat.checkSelfPermission(this,
+
+        int[] perm = {permissionRecordAudio, writeStoragePermission, readStoragePermission, readPhoneStatePermission};
+        String[] stringPerm = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE};
+        ActivityCompat.requestPermissions(this, stringPerm, 1);
 
 
-                Manifest.permission.READ_CONTACTS);
-
-
-        List<String> listPermissionsNeeded = new ArrayList<>();
-        if (readContactsPermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.READ_CONTACTS);
-        }
-        if (readPhoneStatePermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
-        }
-        if (readStoragePermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-        }
-        if (writeStoragePermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
-        if (permissionRecordAudio != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.RECORD_AUDIO);
-        }
-        if (!listPermissionsNeeded.isEmpty()) {
-
-            ActivityCompat.requestPermissions(this,
-
-
-                    listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 1);
-            return false;
-        }
-
-
-       return true;
+        return true;
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        RequestActivityshown = false;
+        String permissionTxt = "";
+        if (permissions.length == 0) {
+            return;
+        }
+        boolean allPermissionsGranted = true;
+        if (grantResults.length > 0) {
+            for (int grantResult : grantResults) {
+                if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break;
+                }
+            }
+        }
+
+        if (!allPermissionsGranted) {
+            boolean somePermissionsForeverDenied = false;
+            for (String permission : permissions) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                    //denied
+
+                    Log.e("denied", permission);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+                        //allowed
+                        Log.e("allowed", permission);
+                    } else {
+                        //set to never ask again
+                        if (permission.equalsIgnoreCase("android.permission.READ_PHONE_STATE")) {
+                            permissionTxt += "phone";
+                        }
+                        if (permission.equalsIgnoreCase("android.permission.RECORD_AUDIO")) {
+                            if (permissionTxt.equalsIgnoreCase("")) {
+                                permissionTxt += "Microphone";
+                            } else {
+                                permissionTxt += ",Microphone";
+                            }
+                        }
+                        if (permission.equalsIgnoreCase("android.permission.WRITE_EXTERNAL_STORAGE")) {
+                            if (permissionTxt.equalsIgnoreCase("")) {
+                                permissionTxt += "Storage";
+                            } else {
+                                permissionTxt += ",Storage";
+                            }
+                        }
+                        Log.e("set to never ask again", permission);
+                        somePermissionsForeverDenied = true;
+                    }
+                }
+            }
+            if (somePermissionsForeverDenied) {
+
+
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle("Permissions Required")
+                        .setMessage("To execute this action, tap SETTINGS, go to App info>Permissions, then allow the following permissions and try again:\n\nPermission(" + permissionTxt + ")")
+                        .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                        Uri.fromParts("package", getPackageName(), null));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setCancelable(false)
+                        .create()
+                        .show();
+
+            }
+        } else {
+            permSharedPref = getSharedPreferences("permissions", MODE_PRIVATE);
+            SharedPreferences.Editor editor = getSharedPreferences("permissions", MODE_PRIVATE).edit();
+            editor.putBoolean("allperm", true);
+            editor.commit();
+            isAllPermissionGrnated = true;
+        }
+
+    }
+
+
 }

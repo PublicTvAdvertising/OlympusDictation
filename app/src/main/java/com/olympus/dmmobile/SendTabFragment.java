@@ -107,9 +107,12 @@ public class SendTabFragment extends Fragment {
      * @param mCursorEnable Cursor to enable views.
      */
     public void onRefreshList(Cursor mCursor,Cursor mCursorEnable)
-    {
-    	mListAdapter.changeCursor(mCursor);
-    	mListAdapter.notifyDataSetChanged();
+    {if(mListAdapter!=null)
+	{
+		mListAdapter.changeCursor(mCursor);
+		mListAdapter.notifyDataSetChanged();
+	}
+
     	if(mCursorEnable!=null)
     	{
 	    	if(mCursorEnable.getCount()>0)

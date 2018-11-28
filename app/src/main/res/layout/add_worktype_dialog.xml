@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/relAddWorktype"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-     >
+    android:background="@color/black"
+
+
+    android:foregroundTint="@color/light_grey"
+    android:theme="@style/AppBaseTheme">
+<LinearLayout
+    android:background="@drawable/border"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Settings_Add_Worktype"
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/edt_addworktype"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textCapCharacters"
+        android:layout_marginTop="20dp"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_abcdefghijklmnopqrstuvwxyz!@#\\$%\\^&amp;\\(\\)\\-_=\\+\\]\\}\\[\\{~`';,]"
         android:hint="@string/Settings_Enter_Worktype"
-         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_abcdefghijklmnopqrstuvwxyz!@#\\$%\\^&amp;\\(\\)\\-_=\\+\\]\\}\\[\\{~`';,]"
-        android:layout_marginTop="5dp">
-    </EditText>
+        android:inputType="textCapCharacters"
+        android:paddingBottom="10dp"></EditText>
+
     <requestFocus />
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_grey"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnAdd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Done" />
+
+        <Button
+            android:id="@+id/btnAdd2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel" />
+    </LinearLayout>
+</LinearLayout>
 </RelativeLayout>

@@ -17,7 +17,10 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
+import android.net.NetworkRequest;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
@@ -27,6 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -84,6 +88,26 @@ public class FlashAirMain extends Activity {
 		else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.activity_flash_air_main);
+		final ConnectivityManager connection_manager =
+				(ConnectivityManager) this.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		NetworkRequest.Builder request = new NetworkRequest.Builder();
+		request.addTransportType(NetworkCapabilities.TRANSPORT_WIFI);
+
+		connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
+
+			@Override
+			public void onAvailable(Network network) {
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+					connection_manager.bindProcessToNetwork(network);
+
+				}
+				else
+				{
+					ConnectivityManager.setProcessDefaultNetwork(network);
+				}
+			}
+		});
 		dmApplication = (DMApplication) getApplication();
 		setCurrentLanguage(dmApplication.getCurrentLanguage());
 		mBtnUpdate = (ImageButton) findViewById(R.id.btn_update_wifi_list);
@@ -246,7 +270,7 @@ public class FlashAirMain extends Activity {
 					//Registers Receiver for NETWORK_STATE_CHANGED_ACTION
 					mConnectionTask = new ConnectionTask(FlashAirMain.this);
 					mConnectionTask.execute(name);
-					timer = new CountDownTimer(20000, 1000) {
+					timer = new CountDownTimer(50000, 1000) {
 						@Override
 						public void onTick(long millisUntilFinished) {}
 						@Override
@@ -349,6 +373,8 @@ public class FlashAirMain extends Activity {
 					mWifiManager.disconnect();
 					int res = config.networkId;
 					mWifiManager.enableNetwork(res, true);
+				//	mWifiManager.reconnect();
+
 				}
 			}
 		}
@@ -435,9 +461,13 @@ public class FlashAirMain extends Activity {
 						if (result.BSSID.toString().startsWith("e8:e0:b7")
 								|| result.BSSID.toString().startsWith("00:0b:5d")
 								|| result.BSSID.toString().startsWith("b8:6b:23")
+								|| result.BSSID.toString().startsWith("00:e0:00")
 								|| result.BSSID.toString().startsWith("ec:21:e5")) {   //Checks whether scanResults contain flashair
 							//Log.e("ssid matches", result.SSID.toString());
 							flashAirNames.add(result.SSID);
+						}
+						else {
+							Log.e("flashair","ssid:" + result.SSID.toString() + " BSSID:" + result.BSSID.toString());
 						}
 					}
 					if(flashAirNames !=null){
@@ -589,6 +619,7 @@ public class FlashAirMain extends Activity {
 
 		@Override
 		protected void onPostExecute(Void result) {
+
 		}
 	}
 

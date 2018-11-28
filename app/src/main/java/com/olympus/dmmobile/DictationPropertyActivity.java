@@ -8,6 +8,8 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,6 +17,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -29,11 +32,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -73,7 +82,7 @@ import com.olympus.dmmobile.settings.SettingsActivity;
  * 
  * @version 1.0.1
  */
-public class DictationPropertyActivity extends FragmentActivity{
+public class DictationPropertyActivity extends FragmentActivity implements  ActivityCompat.OnRequestPermissionsResultCallback{
 	
 	private ExceptionReporter mReporter;			//Error Logger
 	private Button mEdit;
@@ -103,7 +112,7 @@ public class DictationPropertyActivity extends FragmentActivity{
     private DictationCard mDictCard;
     private DatabaseHandler mDBHandler;
     private String mCheckServermail;
-    public static boolean ComingFromRecordings=false;
+    public static boolean ComingFromRecordings=true;
 	private String mMailworktype;
 	private String mServerWorktype;
 	private ArrayList<String> mListValues;
@@ -138,7 +147,9 @@ public class DictationPropertyActivity extends FragmentActivity{
 	private int initialImgFlag = 0;
 	
 	private ImageButton mBtnSettingsOption;
-   @Override
+	private boolean isCamPermissionGrnated=false;
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState){
     	mReporter = ExceptionReporter.register(this);
     	super.onCreate(savedInstanceState);
@@ -299,20 +310,23 @@ public class DictationPropertyActivity extends FragmentActivity{
 	    
 		mAuthorphoto.setOnClickListener(new OnClickListener(){
 			@Override
-			public void onClick(View v){
-				
-				String title = mEditDictationname.getText().toString().trim();
+			public void onClick(View v) {
+				sharedPreferences = getSharedPreferences("Campermissions", MODE_PRIVATE);
+				isCamPermissionGrnated = sharedPreferences.getBoolean("camperm", false);
+				if ( checkCameraPermission()&&isCamPermissionGrnated)
+				{	String title = mEditDictationname.getText().toString().trim();
 				boolean isValid = false;
 				if (!title.equalsIgnoreCase(mDictCard.getDictationName())) {
 					isValid = validateDictationName(title);
-				}else{
+				} else {
 					isValid = true;
 				}
-				if(isValid){
+				if (isValid) {
 					mEditDictationname.setText(title);
 					mEditDictationname.setSelection(title.length());
 					promptImageSelection();
 				}
+			}
 			}
 		});
 	    mWorktype.setOnClickListener(new OnClickListener(){			
@@ -497,6 +511,7 @@ public class DictationPropertyActivity extends FragmentActivity{
 								DMApplication.DICTATION_CARD_KEY, dCardList);*/
 						intent.putExtra(DMApplication.DICTATION_ID,
 								mDictCard.getDictationId());
+
 						startActivity(intent);
 						if(dmApplication.getDeletedId()==0)
 							dmApplication.setDeletedId(mDictCard.getDictationId());
@@ -914,7 +929,15 @@ public void onEditDone(){
 		    	public void onClick(View v){
 		    		mEditDictationname.clearFocus();
 		    		mImageFile = new File(DMApplication.DEFAULT_DIR+"/Dictations/"+mDictCard.getSequenceNumber()+"/"+TEMP_IMAGE+".jpg");
-	    	        Uri outputFileUri = Uri.fromFile(mImageFile);
+					Uri outputFileUri=null;
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+						outputFileUri = FileProvider.getUriForFile(DictationPropertyActivity.this, BuildConfig.APPLICATION_ID + ".provider", mImageFile);
+					}
+					else
+						{outputFileUri = Uri.fromFile(mImageFile);
+
+						}
+					//  Uri
 	                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	                intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
 		            startActivityForResult(intent,CAMERA_IMAGE_CAPTURE);
@@ -1475,4 +1498,101 @@ public String getStatusInString(int status){
 				return getResources().getString(R.string.Property_Pending);
 		}
 	}
-}
+	public boolean checkCameraPermission()
+	{
+		int permissiontakeCamera = ContextCompat.checkSelfPermission(this,
+				Manifest.permission.CAMERA);
+
+		int writeStoragePermission = ContextCompat.checkSelfPermission(this,
+
+
+				Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+		int readStoragePermission = ContextCompat.checkSelfPermission(this,
+
+
+				Manifest.permission.READ_EXTERNAL_STORAGE);
+		int[] perm = {permissiontakeCamera,writeStoragePermission,readStoragePermission};
+		String[] stringPerm = {Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+		ActivityCompat.requestPermissions(this, stringPerm, 1);
+		return true;
+
+		}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		String permissionTxt = "";
+	if (permissions.length == 0) {
+			return;
+		}
+		boolean allPermissionsGranted = true;
+		if (grantResults.length > 0) {
+			for (int grantResult : grantResults) {
+				if (grantResult != PackageManager.PERMISSION_GRANTED) {
+					allPermissionsGranted = false;
+					break;
+				}
+			}
+		}
+		if (!allPermissionsGranted) {
+			boolean somePermissionsForeverDenied = false;
+			for (String permission : permissions) {
+				if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+					//denied
+					Log.e("denied", permission);
+				} else {
+					if (ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+						//allowed
+						Log.e("allowed", permission);
+					} else {
+						if (permission.equalsIgnoreCase("android.permission.CAMERA")) {
+							if (permissionTxt.equalsIgnoreCase("")) {
+								permissionTxt += "Camera";
+							} else {
+								permissionTxt += ",Camera";
+							}
+						}
+						if (permission.equalsIgnoreCase("android.permission.WRITE_EXTERNAL_STORAGE")) {
+							if (permissionTxt.equalsIgnoreCase("")) {
+								permissionTxt += "Storage";
+							} else {
+								permissionTxt += ",Storage";
+							}
+						}
+						//set to never ask again
+						Log.e("set to never ask again", permission);
+						somePermissionsForeverDenied = true;
+					}
+				}
+			}
+			if (somePermissionsForeverDenied) {
+				final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+				alertDialogBuilder.setTitle("Permissions Required")
+						.setMessage("To excute this action, tap SETTINGS go to App info> Permissions, then allow the following permission and try again\n\nPermission("+permissionTxt+")")
+						.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+										Uri.fromParts("package", getPackageName(), null));
+								intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								startActivity(intent);
+							}
+						})
+						.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+							}
+						})
+						.setCancelable(false)
+						.create()
+						.show();
+			}
+		} else {
+			sharedPreferences=getSharedPreferences("Campermissions",MODE_PRIVATE);
+			SharedPreferences.Editor editor = getSharedPreferences("Campermissions", MODE_PRIVATE).edit();
+			editor.putBoolean("camperm",true);
+			editor.commit();
+			isCamPermissionGrnated = true;
+		}
+	}
+	}

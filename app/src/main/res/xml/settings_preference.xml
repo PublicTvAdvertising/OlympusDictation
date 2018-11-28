@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:seekbar="http://schemas.android.com/apk/res/com.olympus.dmmobile">
 
     <PreferenceCategory android:title="@string/category_comunication">
         <ListPreference
+
             android:defaultValue="1"
             android:entries="@array/send_entries"
             android:entryValues="@array/send_values"
@@ -12,6 +14,7 @@
             android:persistent="true"
             android:summary=""
             android:title="@string/send_title"
+
             android:widgetLayout="@layout/custom_image" />
 
         <PreferenceScreen
@@ -39,10 +42,13 @@
 
         <CheckBoxPreference
 
-
+            android:clickable="true"
+            android:contextClickable="true"
+            android:defaultValue="false"
             android:key="@string/blutooth_input_key"
-            android:theme="@style/checkboxTheme"
-            android:title="@string/blutooth_input_title" />
+
+            android:title="@string/blutooth_input_title"
+            android:widgetLayout="@layout/custom_checkbox" />
 
         <PreferenceScreen
             android:key="@string/mic_sens_screen_key"
@@ -62,9 +68,13 @@
             android:title="@string/vcva_screen_title"
             android:widgetLayout="@layout/custom_image">
             <CheckBoxPreference
+                android:defaultValue="false"
 
+                android:clickable="true"
                 android:key="@string/vcva_key"
-                android:title="@string/vcva_title" />
+
+                android:title="@string/vcva_title"
+                android:widgetLayout="@layout/custom_checkbox" />
             <PreferenceCategory
                 android:key="vcva_level_category"
                 android:title="@string/Settings_Vcva_Level"></PreferenceCategory>
@@ -79,8 +89,13 @@
         </PreferenceScreen>
 
         <CheckBoxPreference
+            android:defaultValue="false"
+
+            android:clickable="true"
+            android:contextClickable="true"
             android:key="@string/push_to_talk_key"
-            android:title="@string/push_to_talk_title" />
+            android:title="@string/push_to_talk_title"
+            android:widgetLayout="@layout/custom_checkbox" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/category_workflow">
         <EditTextPreference
@@ -98,6 +113,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/category_general">
         <ListPreference
+
             android:defaultValue="6"
             android:entries="@array/keep_item_enties"
             android:entryValues="@array/keep_item_values"
@@ -106,6 +122,7 @@
             android:title="@string/keep_sent_items_title"
             android:widgetLayout="@layout/custom_image" />
         <ListPreference
+
             android:defaultValue="2"
             android:entries="@array/on_launch_entries"
             android:entryValues="@array/on_launch_values"
@@ -121,11 +138,18 @@
             android:negativeButtonText="@string/Camera_Cancel"
             android:summary="English"
             android:title="@string/language_title"
+
             android:widgetLayout="@layout/custom_image" />
 
         <CheckBoxPreference
+            android:defaultValue="false"
+
+            android:clickable="true"
+            android:contextClickable="true"
             android:key="@string/use_flashair_key"
-            android:title="@string/use_flashair_title" />
+
+            android:title="@string/use_flashair_title"
+            android:widgetLayout="@layout/custom_checkbox" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="    ">

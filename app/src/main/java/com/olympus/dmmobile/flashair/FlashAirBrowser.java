@@ -44,6 +44,10 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -55,6 +59,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.support.v4.content.FileProvider;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -75,6 +80,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.olympus.dmmobile.BuildConfig;
 import com.olympus.dmmobile.DMActivity;
 import com.olympus.dmmobile.DMApplication;
 import com.olympus.dmmobile.DatabaseHandler;
@@ -276,7 +283,27 @@ public class FlashAirBrowser extends FragmentActivity implements FolderSelectedL
 			mDbHandler = dmApplication.getDatabaseHandler();
 			if(savedInstanceState != null )
 				mDownloadedDictCards = savedInstanceState.getParcelableArrayList("DownloadedDictCards");
-		}
+			final ConnectivityManager connection_manager =
+					(ConnectivityManager) getActivity().getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+			NetworkRequest.Builder request = new NetworkRequest.Builder();
+			request.addTransportType(NetworkCapabilities.TRANSPORT_WIFI);
+
+			connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
+
+				@Override
+				public void onAvailable(Network network) {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+						connection_manager.bindProcessToNetwork(network);
+
+					}
+					else
+					{
+						ConnectivityManager.setProcessDefaultNetwork(network);
+					}
+				}
+			});
+			}
 
 		@Override
 		public void onSaveInstanceState(Bundle outState) {
@@ -1362,8 +1389,15 @@ public class FlashAirBrowser extends FragmentActivity implements FolderSelectedL
 			for(int i = 0;i < sendList.size();i++){
 				if(sendList.get(i).getStatus()){
 					File file = new File(DMApplication.DEFAULT_DIR+"/Dictations/"+mDownloadedDictCards.get(i).getSequenceNumber(), sendList.get(i).getName());
-					Uri uri = Uri.fromFile(file);
-					uris.add(uri);
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+						uris.add(FileProvider.getUriForFile(getActivity(), BuildConfig.APPLICATION_ID + ".provider", file));
+					}
+					else
+					{
+						uris.add(Uri.fromFile(file));
+					}
+//					Uri uri = Uri.fromFile(file);
+//					uris.add(uri);
 				}
 			}
 			emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);

@@ -99,7 +99,10 @@
                 android:layout_weight="4"
                 android:background="@drawable/dm_activity_shape_search_360"
                 android:drawableLeft="@drawable/dm_activity_icon_search"
-                android:hint="@string/Recording_Label_Search"          
+                android:hint="@string/Recording_Label_Search"
+
+                android:textCursorDrawable="@color/fab_color"
+
                 android:singleLine="true"
                 android:focusableInTouchMode="true"
                 android:textSize="18sp" />

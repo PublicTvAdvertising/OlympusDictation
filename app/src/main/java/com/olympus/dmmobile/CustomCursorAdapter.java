@@ -149,6 +149,7 @@ public class CustomCursorAdapter extends CursorAdapter implements OnClickListene
 									if (dictationCard.getIsActive() == 1)
 										baseIntent.putExtra(DMApplication.START_MODE_TAG, "");
 									else
+
 										baseIntent.putExtra(DMApplication.START_MODE_TAG, DMApplication.MODE_EDIT_RECORDING);
 									DictationPropertyActivity.ComingFromRecordings = true;
 								}
