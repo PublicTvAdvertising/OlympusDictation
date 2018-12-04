@@ -36,7 +36,7 @@ android:background="@color/black"
 
         android:src="@drawable/add_plus"
         app:fabSize="auto"
-        android:backgroundTint="@color/fab_color"
+        app:backgroundTint="@color/fab_color"
 
         />
 

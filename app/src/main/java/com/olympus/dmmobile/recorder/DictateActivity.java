@@ -156,6 +156,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     ;
 
     public static String AUDIO_FILE_NAME;
+    public static int coming;
     public static final String AUDIO_FILE_EXTENTION = ".wav";
     private static String AUDIO_FILE_FOLDERNAME = "Dictations";
     private static int RECORDING_NOTIFY_ID = 55555;
@@ -582,6 +583,9 @@ public class DictateActivity extends Activity implements OnClickListener,
     protected void onPause() {
 
         super.onPause();
+        if (Graphbar.getProgress() != 0) {
+            DictationPropertyActivity.ComingFromRecordings = true;
+        }
         if ((isForwarding == 1 || isRewinding == 1)) {
             if (isForwarding == 1) {
                 isForwarding = 0;
@@ -1841,6 +1845,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     @Override
     protected void onResume() {
         super.onResume();
+        coming = getIntent().getIntExtra("coming", 0);
         isNavigatedToAnotherScreen = false;
         checkForwordIsEnabled = false;
         DictationPropertyActivity.ComingFromRecordings = false;
@@ -1879,8 +1884,13 @@ public class DictateActivity extends Activity implements OnClickListener,
             }
             bRecord.setOnTouchListener(new OnTouchListener() {
 
+
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                        if (checkAndRequestPermissions() && isAllPermissionGrnated) {
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                                if (muteNotification()) {
                     switch (event.getAction()) {
 
                         case MotionEvent.ACTION_DOWN:
@@ -1911,7 +1921,10 @@ public class DictateActivity extends Activity implements OnClickListener,
                                         } else {
                                             showOverwriteSignalometer();
                                         }
+
                                         recorderTriggerStart();
+
+
                                     }
                                 } else {
                                     DialogWhileActiveCall();
@@ -1938,6 +1951,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                             }
                             break;
                     }
+
+
                     return false;
                 }
             });
@@ -5932,28 +5947,27 @@ public class DictateActivity extends Activity implements OnClickListener,
 
             if (state) {
 
+            // mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
-                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-
-//                AudioManager amanager = ((AudioManager) getSystemService(Context.AUDIO_SERVICE));
-//                amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_MUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_MUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_MUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_MUTE, 0);
+                AudioManager amanager = ((AudioManager) getSystemService(Context.AUDIO_SERVICE));
+                amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_MUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_MUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_MUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_MUTE, 0);
 
 
             } else {
 //
-                mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-//                AudioManager amanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_UNMUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_UNMUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0);
-//                amanager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_UNMUTE, 0);
+             //   mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                AudioManager amanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_UNMUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_UNMUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0);
+                amanager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_UNMUTE, 0);
 
             }
         } else {
@@ -6111,6 +6125,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(api = Build.VERSION_CODES.O)
     private boolean checkAndRequestPermissions() {
+        boolean check = true;
         // isBackpressed=true;
         int permissionRecordAudio = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO);
@@ -6132,10 +6147,16 @@ public class DictateActivity extends Activity implements OnClickListener,
 
         int[] perm = {permissionRecordAudio, writeStoragePermission, readStoragePermission, readPhoneStatePermission};
         String[] stringPerm = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE};
+        for (String permis : stringPerm) {
+            if( !(ActivityCompat.checkSelfPermission(this, permis) == PackageManager.PERMISSION_GRANTED)) {
+
+                check = false;
+            }
+        }
         ActivityCompat.requestPermissions(this, stringPerm, 1);
 
 
-        return true;
+        return check;
     }
 
     @Override
@@ -6169,7 +6190,11 @@ public class DictateActivity extends Activity implements OnClickListener,
                     } else {
                         //set to never ask again
                         if (permission.equalsIgnoreCase("android.permission.READ_PHONE_STATE")) {
-                            permissionTxt += "phone";
+                            if (permissionTxt.equalsIgnoreCase("")) {
+                                permissionTxt += "Phone";
+                            } else {
+                                permissionTxt += ",Phone";
+                            }
                         }
                         if (permission.equalsIgnoreCase("android.permission.RECORD_AUDIO")) {
                             if (permissionTxt.equalsIgnoreCase("")) {

@@ -122,7 +122,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
     private String mPreviousUploadedTime = null;
     private final long mTimeLimitForHttpError = 300 * 1000;
     private final long mTimeLimitForWaitingToSend = 30 * 1000;
-    private final long mTimeLimitForWaitingToStopService = 30 * 1000;
+    private final long mTimeLimitForWaitingToStopService = 20 * 1000;
     private long mIdleTime = -1;
     private final int mTimeLimit = 20 * 1000;
     private final int mMaxBufferSize = 1024 * 1024;
@@ -410,7 +410,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                             mConvertingGroupId = mConvertCard.getGroupId();//Get current dictation group id.
                             mFileConvert = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mConvertCard.getSequenceNumber()
                                     + "/" + mConvertCard.getDictFileName() + ".wav");
-                            notification_msg = mConvertCard.getDictFileName().toString();
+                            notification_msg = mConvertCard.getDictationName().toString();
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                 Notification notification = getNotification(notification_msg, "Converting file format, and then transfer it to the server");

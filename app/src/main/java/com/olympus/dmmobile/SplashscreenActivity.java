@@ -109,6 +109,14 @@ public class SplashscreenActivity extends Activity {
 			else
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	    	setContentView(R.layout.splashscreen);
+			if (!isTaskRoot()
+					&& getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
+					&& getIntent().getAction() != null
+					&& getIntent().getAction().equals(Intent.ACTION_MAIN)) {
+
+				finish();
+				return;
+			}
 			dmApplication=(DMApplication)getApplication();
 	    	mTxtAppver = (TextView)findViewById(R.id.uuidappText);
 	    	//mOlymCap=(ImageView)findViewById(R.id.olymcaption);

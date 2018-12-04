@@ -36,7 +36,7 @@ import com.olympus.dmmobile.recorder.Utilities;
  */
 @SuppressLint("NewApi")
 public class CustomCursorAdapter extends CursorAdapter implements OnClickListener {
-
+public static int COMING=0;
 	private int mSendOption = 0;
 	private final String PREFS_NAME = "Config";
 	private Button btnResend = null;
@@ -615,6 +615,7 @@ public class CustomCursorAdapter extends CursorAdapter implements OnClickListene
 	 * Invokes Review view when user chose review option.
 	 */
 	private void onStartReviewActivity() {
+
 		onHideKeyBoard();
 		dmApplication.flashair = false;
 		Cursor cur = mDbHandler.checkActiveDictationExists();
@@ -626,8 +627,11 @@ public class CustomCursorAdapter extends CursorAdapter implements OnClickListene
 		cur = null;
 		baseIntent = new Intent(mActivity, DictateActivity.class);
 		baseIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
 		baseIntent.putExtra(DMApplication.START_MODE_TAG, DMApplication.MODE_REVIEW_RECORDING);
 		baseIntent.putExtra(DMApplication.DICTATION_ID, dictationCard.getDictationId());
+		baseIntent.putExtra("coming", 1);
+
 		mActivity.startActivity(baseIntent);
 	}
 	/**

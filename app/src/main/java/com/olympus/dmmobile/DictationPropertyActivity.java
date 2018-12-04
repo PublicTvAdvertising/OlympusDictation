@@ -883,10 +883,18 @@ public void onEditDone(){
      	if(mDictCard.getStatus()==DictationStatus.SENT.getValue()||mDictCard.getStatus()==DictationStatus.SENT_VIA_EMAIL.getValue()
      			||mDictCard.getStatus()==DictationStatus.OUTBOX.getValue() || mDictCard.isResend() == 1){
      		mEdit.setVisibility(View.INVISIBLE);
+
      		if(mDictCard.getStatus()==DictationStatus.OUTBOX.getValue()){
      			mShakeTwiceRelative.setVisibility(View.INVISIBLE);
      			mShaker.pause();
-     		}else{
+     		}
+
+     		else if(DictateActivity.coming==1)
+			{
+				mShakeTwiceRelative.setVisibility(View.INVISIBLE);
+				mShaker.pause();
+			}
+     		else{
      			mShakeTwiceRelative.setVisibility(View.VISIBLE);
      			mShaker.resume();
      		}
@@ -1499,7 +1507,7 @@ public String getStatusInString(int status){
 		}
 	}
 	public boolean checkCameraPermission()
-	{
+	{boolean check=true;
 		int permissiontakeCamera = ContextCompat.checkSelfPermission(this,
 				Manifest.permission.CAMERA);
 
@@ -1515,7 +1523,13 @@ public String getStatusInString(int status){
 		int[] perm = {permissiontakeCamera,writeStoragePermission,readStoragePermission};
 		String[] stringPerm = {Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 		ActivityCompat.requestPermissions(this, stringPerm, 1);
-		return true;
+        for (String permis : stringPerm) {
+            if( !(ActivityCompat.checkSelfPermission(this, permis) == PackageManager.PERMISSION_GRANTED)) {
+
+                check = false;
+            }
+        }
+		return check;
 
 		}
 

@@ -98,6 +98,7 @@ FloatingActionButton floatingActionButton;
 		Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
+
 		setTitle(getResources().getString(
 				R.string.server_options_recipient_title));
 		dmApplication = (DMApplication) getApplication();

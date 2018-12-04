@@ -31,10 +31,31 @@
     <item name="android:checkMarkTint">@color/fab_color</item>
     <item name="android:checkMark">@color/fab_color</item>
 </style>
-    <style name="dmact" parent="Theme.Design.NoActionBar">
+    <style name="dmact" parent="@android:style/Theme.Black.NoTitleBar">
+
+
+
+        <item name="android:colorControlActivated">@color/fab_color</item>
         <item name="colorAccent">@color/fab_color</item>
 
+
+        <item name="android:checkMarkTint">@color/fab_color</item>
+        <item name="android:checkMark">@color/fab_color</item>
+
     </style>
+
+
+    <style name="recepientActivity" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/fab_color</item>
+        <item name="android:colorAccent">@color/fab_color</item>
+        <item name="android:checkMarkTint">@color/fab_color</item>
+
+
+    </style>
+
+
+
+
     <style name="prefScreen" parent="@android:style/Theme.Black">
         <item name="android:colorControlActivated">@color/fab_color</item>
         <item name="colorAccent">@color/fab_color</item>
