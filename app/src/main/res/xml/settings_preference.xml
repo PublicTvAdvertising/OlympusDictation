@@ -101,7 +101,9 @@
         <EditTextPreference
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890"
             android:inputType="textCapCharacters"
+
             android:key="@string/author_key"
+            android:background="@drawable/edit_box"
             android:maxLength="16"
             android:negativeButtonText="@string/Camera_Cancel"
             android:title="@string/author_id"

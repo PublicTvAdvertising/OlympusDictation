@@ -342,7 +342,16 @@ Veuillez commander une licence supplémentaire.</string>
     <string name="Ils_Result_Code_4010">Licence inutilisée introuvable</string>
     <string name="Ils_Result_Code_4011">Arguments non valides</string>
     <string name="Ils_Result_Code_4012">Autre adresse e-mail activée</string>
-    
-    
-    
+
+    <!--Permission-->
+    <string name="muteNotification">Pour exécuter cette action, tapez sur "PARAMÈTRES", accédez à Informations sur l'application > Autorisations, puis accordez les autorisations suivantes et réessayez :
+</string>
+    <string name="permissionReq">Autorisations requises</string>
+    <string name="permission">Autorisation</string>
+
+
+    <!--Foreground Service-->
+    <string name="serviceIdle">Attente du fichier de dictée</string>
+    <string name="serviceActive">Convertissez le format du fichier, puis transférez-le sur le serveur.</string>
+
 </resources>

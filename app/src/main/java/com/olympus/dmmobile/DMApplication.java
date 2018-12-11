@@ -272,8 +272,9 @@ public class DMApplication extends Application{
 		try{
 			DEFAULT_DIR = new File(getExternalFilesDir(null).getAbsolutePath());
 			if(DEFAULT_DIR!=null){
-				if(!DEFAULT_DIR.exists())
+				if(!DEFAULT_DIR.exists()) {
 					DEFAULT_DIR.mkdirs();
+				}
 			}
 		}catch(Exception e){	
 		}	
@@ -752,4 +753,5 @@ public class DMApplication extends Application{
 		else 
 			return ((long)mStatFs.getAvailableBlocksLong() * (long)mStatFs.getBlockSizeLong());
 	}
+
 }

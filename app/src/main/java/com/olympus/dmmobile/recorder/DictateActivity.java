@@ -156,7 +156,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     ;
 
     public static String AUDIO_FILE_NAME;
-    public static int coming;
+    public static int coming=0;
     public static final String AUDIO_FILE_EXTENTION = ".wav";
     private static String AUDIO_FILE_FOLDERNAME = "Dictations";
     private static int RECORDING_NOTIFY_ID = 55555;
@@ -673,7 +673,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                             intent = new Intent(context, DictateActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-                            builder.setContentTitle(notifyTitle)                            // required
+                            builder.setContentTitle(notifySubTitle)                            // required
                                     .setSmallIcon(icon)   // required
                                     .setColor(getResources().getColor(R.color.black))
                                     .setPriority(Notification.PRIORITY_HIGH)
@@ -969,7 +969,12 @@ public class DictateActivity extends Activity implements OnClickListener,
                 }
                 break;
             case R.id.record:
-                RequestActivityshown = true;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    RequestActivityshown = true;
+                } else {
+                    RequestActivityshown = false;
+                }
+
                 permSharedPref = getSharedPreferences("permissions", MODE_PRIVATE);
                 isAllPermissionGrnated = permSharedPref.getBoolean("allperm", false);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -1499,6 +1504,7 @@ public class DictateActivity extends Activity implements OnClickListener,
         tvTitle.setEnabled(true);
         tvWorktype.setEnabled(true);
         imFav.setEnabled(true);
+        if(!(dCard.getDictationName().equalsIgnoreCase(""))&&dCard.getDictationName()!=null)
         tvTitle.setText(dCard.getDictationName());
         tvTitle.setCursorVisible(false);
         if (dCard.getWorktype() == null || dCard.getWorktype().equals(""))
@@ -1845,7 +1851,11 @@ public class DictateActivity extends Activity implements OnClickListener,
     @Override
     protected void onResume() {
         super.onResume();
-        coming = getIntent().getIntExtra("coming", 0);
+        if(DMApplication.MODE_REVIEW_RECORDING.equalsIgnoreCase("review"))
+        {
+            coming=1;
+        }
+        //coming = getIntent().getIntExtra("coming", 0);
         isNavigatedToAnotherScreen = false;
         checkForwordIsEnabled = false;
         DictationPropertyActivity.ComingFromRecordings = false;
@@ -2766,6 +2776,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
             }
         }
+
     }
 
     /**
@@ -4558,10 +4569,13 @@ public class DictateActivity extends Activity implements OnClickListener,
         file = new File(DMApplication.DEFAULT_DIR + "/Dictations/"
                 + dictCard.getSequenceNumber() + "/",
                 dictCard.getDictationName() + ".amr");
-        uris.add(FileProvider.getUriForFile(DictateActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            uris.add(FileProvider.getUriForFile(DictateActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
+        }
 
         // uris.add(Uri.fromFile(file));
         if (dictCard.getIsThumbnailAvailable() == 1) {
+
             file = new File(DMApplication.DEFAULT_DIR + "/Dictations/"
                     + dictCard.getSequenceNumber() + "/"
                     + dictCard.getDictationName() + ".jpg");
@@ -5947,12 +5961,11 @@ public class DictateActivity extends Activity implements OnClickListener,
 
             if (state) {
 
-            // mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                // mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
                 AudioManager amanager = ((AudioManager) getSystemService(Context.AUDIO_SERVICE));
                 amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_MUTE, 0);
                 amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_MUTE, 0);
-                amanager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_MUTE, 0);
                 amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, 0);
                 amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
                 amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_MUTE, 0);
@@ -5960,14 +5973,14 @@ public class DictateActivity extends Activity implements OnClickListener,
 
             } else {
 //
-             //   mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                //   mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 AudioManager amanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                 amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_UNMUTE, 0);
                 amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_UNMUTE, 0);
                 amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, 0);
                 amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
                 amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0);
-                amanager.adjustStreamVolume(AudioManager.STREAM_ACCESSIBILITY, AudioManager.ADJUST_UNMUTE, 0);
+
 
             }
         } else {
@@ -6103,9 +6116,9 @@ public class DictateActivity extends Activity implements OnClickListener,
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!n.isNotificationPolicyAccessGranted()) {
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setTitle("Permissions Required")
-                        .setMessage("To mute notification sound during recording, you need to allow Tap PERMISSION, then apply it to Dictation and try again")
-                        .setPositiveButton("PERMISSION", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setTitle(getResources().getString(R.string.permissionReq))
+                        .setMessage(getResources().getString(R.string.muteNotification))
+                        .setPositiveButton(getResources().getString(R.string.permission), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 startActivity(new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS));
@@ -6148,7 +6161,7 @@ public class DictateActivity extends Activity implements OnClickListener,
         int[] perm = {permissionRecordAudio, writeStoragePermission, readStoragePermission, readPhoneStatePermission};
         String[] stringPerm = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_PHONE_STATE};
         for (String permis : stringPerm) {
-            if( !(ActivityCompat.checkSelfPermission(this, permis) == PackageManager.PERMISSION_GRANTED)) {
+            if (!(ActivityCompat.checkSelfPermission(this, permis) == PackageManager.PERMISSION_GRANTED)) {
 
                 check = false;
             }
@@ -6161,7 +6174,10 @@ public class DictateActivity extends Activity implements OnClickListener,
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        RequestActivityshown = false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            RequestActivityshown = false;
+        }
+
         String permissionTxt = "";
         if (permissions.length == 0) {
             return;
@@ -6219,8 +6235,8 @@ public class DictateActivity extends Activity implements OnClickListener,
 
 
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setTitle("Permissions Required")
-                        .setMessage("To execute this action, tap SETTINGS, go to App info>Permissions, then allow the following permissions and try again:\n\nPermission(" + permissionTxt + ")")
+                alertDialogBuilder.setTitle(R.string.permissionReq)
+                        .setMessage(R.string.permissionAccess+"\n\n"+R.string.permission+"(" + permissionTxt + ")")
                         .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

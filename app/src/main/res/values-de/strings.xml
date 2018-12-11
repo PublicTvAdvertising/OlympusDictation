@@ -362,5 +362,14 @@ Bitte bestellen Sie eine zusätzliche Lizenz.</string>
     <string name="Ils_Result_Code_4011">Ungültige Argumente</string>
     <string name="Ils_Result_Code_4012">Andere E-Mail-Adresse aktiviert</string>
     
-    
+    <!--Permission-->
+    <string name="muteNotification">Damit kein Benachrichtigungston aufgezeichnet wird, tippen Sie auf „BERECHTIGUNG“, weisen Sie Diktaten Zugriff auf Nicht stören zu und wiederholen Sie den Vorgang.</string>
+    <string name="permissionReq">Berechtigung erforderlich</string>
+    <string name="permission">Berechtigung</string>
+
+
+    <!--Foreground Service-->
+    <string name="serviceIdle">Auf Diktatdatei wird gewartet</string>
+    <string name="serviceActive">Das Dateiformat wird konvertiert und dann zum Server übertragen.</string>
+
 </resources>

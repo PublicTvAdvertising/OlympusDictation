@@ -25,6 +25,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
@@ -251,11 +252,28 @@ public class DMActivity extends FragmentActivity implements
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         setContentView(R.layout.activity_main);
-        dmApplication = (DMApplication) getApplication();
-        dmApplication.setContext(this);
-        setCurrentLanguage(dmApplication.getCurrentLanguage());
         SharedPreferences sharedPref = PreferenceManager
                 .getDefaultSharedPreferences(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+
+
+
+        boolean firstRun = sharedPref.getBoolean("firstrun", true);
+        if (firstRun) {
+            String path = DMApplication.DEFAULT_DIR + "/Dictations/";
+            File pathFile = new File(path);
+            boolean success = deleteDirectory(pathFile);
+            if (success) {
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("firstrun", false);
+                editor.commit();
+            }
+        }
+        }
+        dmApplication = (DMApplication) getApplication();
+        dmApplication.setContext(this);
+
         SEND_TAG = this.getString(R.string.Recording_Label_Send);
         SEND_ALL_TAG = this.getString(R.string.Recording_Label_Send_All);
         DEL_TAG = this.getResources()
@@ -402,6 +420,24 @@ public class DMActivity extends FragmentActivity implements
                     NetWorkAndNotActivatedDialog.getInstance().onShowDialog(this);
             }
         }
+    }
+
+
+    public static boolean deleteDirectory(File path) {
+        if (path.exists()) {
+            File[] files = path.listFiles();
+            if (files == null) {
+                return true;
+            }
+            for (int i = 0; i < files.length; i++) {
+                if (files[i].isDirectory()) {
+                    deleteDirectory(files[i]);
+                } else {
+                    files[i].delete();
+                }
+            }
+        }
+        return (path.delete());
     }
 
     /**
@@ -805,7 +841,11 @@ public class DMActivity extends FragmentActivity implements
             case R.id.imgbutton_main_flashair:
                 pref = getSharedPreferences("Locermissions", MODE_PRIVATE);
                 isLocationPermission = pref.getBoolean("Locperm", false);
-                if (checkLocationPermission()&&isLocationPermission) {
+                if (checkLocationPermission() && isLocationPermission) {
+                    final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                    boolean isGpsProviderEnabled = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                    boolean isNetworkProviderEnabled = manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                    if (isGpsProviderEnabled&&isNetworkProviderEnabled) {
                     pref = DMActivity.this.getSharedPreferences(PREFS_NAME, 0);
                     mSettingsConfig = pref.getString("Activation", mActivation);
                     pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -837,6 +877,25 @@ public class DMActivity extends FragmentActivity implements
                                     }
                                 });
                         alert.create().show();
+                    }
+                }
+                else
+                    {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage("Your Location seems to be disabled, do you want to enable it?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(final DialogInterface dialog, final int id) {
+                                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(final DialogInterface dialog, final int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        final AlertDialog alert = builder.create();
+                        alert.show();
                     }
                 }
                 break;
@@ -2071,7 +2130,7 @@ public class DMActivity extends FragmentActivity implements
                     .setText(getString(R.string.Dictate_Alert_Compress_Recording_Background_message));
 
             dialog.show();
-            Log.d("sendVia email","thread in pre execution");
+            Log.d("sendVia email", "thread in pre execution");
         }
 
         @Override
@@ -2117,7 +2176,7 @@ public class DMActivity extends FragmentActivity implements
                         /*
                          * To check the conversion is success or not.
                          */
-                        int val=amrConverter.convert(
+                        int val = amrConverter.convert(
                                 filePath + mDictationCard.getDictFileName()
                                         + ".wav",
                                 filePath + mDictationCard.getDictationName()
@@ -2125,13 +2184,13 @@ public class DMActivity extends FragmentActivity implements
                         if (val == 0) {
 
 
-                         //   Log.d("sendVia email","conversion successfull");
+                            //   Log.d("sendVia email","conversion successfull");
                             mDictationCard.setSentDate(dmApplication
                                     .getDeviceTime());
                             mDbHandler.updateSentDate(mDictationCard);
                             if (mDictationCard.getIsThumbnailAvailable() == 1) {
                                 try {
-                                   // Log.d("sendVia email","thumbnailsavailable");
+                                    // Log.d("sendVia email","thumbnailsavailable");
                                     file = new File(DMApplication.DEFAULT_DIR
                                             + "/Dictations/"
                                             + mDictationCard.getSequenceNumber()
@@ -2139,17 +2198,17 @@ public class DMActivity extends FragmentActivity implements
                                             + mDictationCard.getDictFileName()
                                             + ".jpg");
                                     if (file.exists()) {
-                                     //   Log.d("sendVia email","file exists");
+                                        //   Log.d("sendVia email","file exists");
 
                                         if (!mDictationCard
                                                 .getDictFileName()
                                                 .equalsIgnoreCase(
                                                         mDictationCard
                                                                 .getDictationName())) {
-                                        //    Log.d("sendVia email","getDictFileName not equal to getDictationName");
+                                            //    Log.d("sendVia email","getDictFileName not equal to getDictationName");
                                             mtempFile = DMApplication.DEFAULT_DIR;
                                             if (mtempFile.canWrite()) {
-                                         //       Log.d("sendVia email","temp files can write");
+                                                //       Log.d("sendVia email","temp files can write");
 
                                                 mtempFile = new File(
                                                         DMApplication.DEFAULT_DIR
@@ -2188,9 +2247,8 @@ public class DMActivity extends FragmentActivity implements
                                 mtempFile = null;
                             }
 
-                        }
-                        else {
-                        //    Log.d("sendVia email","conversion failed");
+                        } else {
+                            //    Log.d("sendVia email","conversion failed");
                             conversionFailed = true;
                             break;
                         }
@@ -2206,7 +2264,7 @@ public class DMActivity extends FragmentActivity implements
 
         @Override
         protected void onPostExecute(Void result) {
-          Log.d("sendVia email","thread in post execution");
+            Log.d("sendVia email", "thread in post execution");
             if (dialog.isShowing())
                 dialog.dismiss();
             if (!hasNoMemory) {
@@ -2557,19 +2615,16 @@ public class DMActivity extends FragmentActivity implements
                     + mDictationCard.getDictationName() + ".amr");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 uris.add(FileProvider.getUriForFile(DMActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
-            }
-            else
-            {
+            } else {
                 uris.add(Uri.fromFile(file));
-            }if (dictationCards.get(i).getIsThumbnailAvailable() == 1) {
+            }
+            if (dictationCards.get(i).getIsThumbnailAvailable() == 1) {
                 file = new File(DMApplication.DEFAULT_DIR + "/Dictations/"
                         + dictationCards.get(i).getSequenceNumber() + "/"
                         + mDictationCard.getDictationName() + ".jpg");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     uris.add(FileProvider.getUriForFile(DMActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
-                }
-                else
-                {
+                } else {
                     uris.add(Uri.fromFile(file));
                 }
             }
@@ -2611,8 +2666,8 @@ public class DMActivity extends FragmentActivity implements
 
     @Override
     protected void onPause() {
-        if(dialog!=null)
-        dialog.dismiss();
+        if (dialog != null)
+            dialog.dismiss();
         super.onPause();
     }
 
@@ -2859,7 +2914,7 @@ public class DMActivity extends FragmentActivity implements
     public void onDestroy() {
         super.onDestroy();
         // Avoid Memory leaks
-       // convertAndUploadService.showNotification(this);
+        // convertAndUploadService.showNotification(this);
 
         unbindDrawables(findViewById(R.id.dmactivity_root_view));
         System.gc();
@@ -3063,14 +3118,21 @@ public class DMActivity extends FragmentActivity implements
             e.printStackTrace();
         }
     }
-    public boolean checkLocationPermission()
-    {
+
+    public boolean checkLocationPermission() {
+        boolean check=true;
         int permissiontakeCamera = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION);
         int[] perm = {permissiontakeCamera};
         String[] stringPerm = {Manifest.permission.ACCESS_COARSE_LOCATION};
+        for (String permis : stringPerm) {
+            if (!(ActivityCompat.checkSelfPermission(this, permis) == PackageManager.PERMISSION_GRANTED)) {
+
+                check = false;
+            }
+        }
         ActivityCompat.requestPermissions(this, stringPerm, 1);
-        return true;
+        return check;
 
     }
 
@@ -3128,9 +3190,9 @@ public class DMActivity extends FragmentActivity implements
                         .show();
             }
         } else {
-            pref=getSharedPreferences("Locermissions",MODE_PRIVATE);
+            pref = getSharedPreferences("Locermissions", MODE_PRIVATE);
             SharedPreferences.Editor editor = getSharedPreferences("Locermissions", MODE_PRIVATE).edit();
-            editor.putBoolean("Locperm",true);
+            editor.putBoolean("Locperm", true);
             editor.commit();
             isLocationPermission = true;
         }

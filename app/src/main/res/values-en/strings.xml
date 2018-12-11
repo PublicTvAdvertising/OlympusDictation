@@ -395,4 +395,15 @@ Do not press Home/Sleep button until the transmission is completed.</string>
     <string name="Ils_Result_Code_4011">Invalid Arguments</string>
     <string name="Ils_Result_Code_4012">Another E-mail address Activated</string>
 
+    <!--Permission-->
+
+    <string name="muteNotification">To prevent the notification sound from being recorded, tap "PERMISSION", then allow Dictation to access Do not disturb, and try again.</string>
+    <string name="permissionReq">Permission Required</string>
+    <string name="permission">Permission</string>
+
+
+    <!--Foreground Service-->
+    <string name="serviceIdle">Waiting for dictation file</string>
+    <string name="serviceActive">Converting file format, and then transfer it to the server.</string>
+
 </resources>

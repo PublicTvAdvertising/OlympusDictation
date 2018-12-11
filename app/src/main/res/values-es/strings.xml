@@ -338,6 +338,14 @@ Solicite una licencia adicional.</string>
     <string name="Ils_Result_Code_4011">Argumentos no válidos</string>
     <string name="Ils_Result_Code_4012">Se ha activado otro correo electrónico</string>
     
-    
-    
+    <!--Permission-->
+
+    <string name="muteNotification">Para ejecutar esta acción, toque "AJUSTES", vaya a Información de la aplicación > Permisos y, a continuación, otorgue siguientes permisos e inténtelo de nuevo:</string>
+    <string name="permissionReq">Se requieren permisos</string>
+    <string name="permission">Permiso</string>
+
+    <!--Foreground Service-->
+    <string name="serviceIdle">Esperando el archivo de dictado</string>
+    <string name="serviceActive">Convirtiendo el formato, después se transferirá al servidor.</string>
+
 </resources>

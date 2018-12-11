@@ -156,6 +156,19 @@
     <string name="Flashair_Alert_Activate_Account">Please activate your account.Tap the [Check Server Connection]
        to activate in the Server Options.</string>
 
+   <!--Permission-->
+<string name="muteNotification">To prevent the notification sound from being recorded, tap "PERMISSION", then allow Dictation to access Do not disturb, and try again.</string>
+<string name="permissionReq">Permission Required</string>
+<string name="permission">Permission</string>
+<string name="permissionAccess">To execute this action, tap SETTINGS, go to App info>Permissions, then allow the following permissions and try again:</string>
+
+
+    <!--Foreground Service-->
+    <string name="serviceIdle">Waiting for dictation file</string>
+    <string name="serviceActive">Converting file format, and then transfer it to the server.</string>
+
+
+
     <!-- Settings -->
     <string name="Settings_setting">Settings</string>
     <string name="category_comunication">Communication</string>

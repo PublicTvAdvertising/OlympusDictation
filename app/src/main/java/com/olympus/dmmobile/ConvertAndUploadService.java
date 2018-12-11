@@ -221,7 +221,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
 
-            startForeground(1, getNotification("Waiting for dictation file", ""));
+            startForeground(1, getNotification(getResources().getString(R.string.serviceIdle), ""));
             Log.d("notificationLog", "calling from onStart");
             //notifManager.notify(1,getNotification("Waiting for dictation file",""));
         }
@@ -413,7 +413,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                             notification_msg = mConvertCard.getDictationName().toString();
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                Notification notification = getNotification(notification_msg, "Converting file format, and then transfer it to the server");
+                                Notification notification = getNotification(notification_msg, ""+getResources().getString(R.string.serviceActive));
                                 notifManager.notify(1, notification);
                                 Log.d("notificationLog", "calling from upload getcount > 0");
                             }
@@ -2292,7 +2292,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                         mConvertCursor = mDbHandlerConvert.getConvertionDictation(mDMApplication.getCurrentGroupId());
                         if (mQueryCursor.getCount() <= 0 && mUploadCursor.getCount() <= 0 && mConvertCursor.getCount() <= 0) {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                Notification notification = getNotification("Waiting for dictation file"," ");
+                                Notification notification = getNotification(getResources().getString(R.string.serviceIdle)," ");
                                 notifManager.notify(1,notification);
                                 Log.d("notificationLog","calling from after upload");
                             }
@@ -2399,7 +2399,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 .setContentText(contentInfo)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setAutoCancel(true)
-                .setOnlyAlertOnce(true)
+
                 .setSmallIcon(R.drawable.dictation_stasusbar)
                 .setColor(getResources().getColor(R.color.black));
 
@@ -2407,4 +2407,5 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         Notification notification = builder.build();
         return notification;
     }
+
 }

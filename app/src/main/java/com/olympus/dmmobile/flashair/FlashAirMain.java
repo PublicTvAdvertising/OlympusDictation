@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -14,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -29,6 +31,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.app.ActivityCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -90,24 +93,23 @@ public class FlashAirMain extends Activity {
 		setContentView(R.layout.activity_flash_air_main);
 		final ConnectivityManager connection_manager =
 				(ConnectivityManager) this.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			NetworkRequest.Builder request = new NetworkRequest.Builder();
+			request.addTransportType(NetworkCapabilities.TRANSPORT_WIFI);
 
-		NetworkRequest.Builder request = new NetworkRequest.Builder();
-		request.addTransportType(NetworkCapabilities.TRANSPORT_WIFI);
+			connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
 
-		connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
+				@Override
+				public void onAvailable(Network network) {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+						connection_manager.bindProcessToNetwork(network);
 
-			@Override
-			public void onAvailable(Network network) {
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-					connection_manager.bindProcessToNetwork(network);
-
+					} else {
+						ConnectivityManager.setProcessDefaultNetwork(network);
+					}
 				}
-				else
-				{
-					ConnectivityManager.setProcessDefaultNetwork(network);
-				}
-			}
-		});
+			});
+		}
 		dmApplication = (DMApplication) getApplication();
 		setCurrentLanguage(dmApplication.getCurrentLanguage());
 		mBtnUpdate = (ImageButton) findViewById(R.id.btn_update_wifi_list);
@@ -450,13 +452,17 @@ public class FlashAirMain extends Activity {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
-			
+
 			if (action.equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {   //if receives SCAN_RESULTS_AVAILABLE_ACTION
 				if(!isScanOver){
 					mSelectedSsid = null;
 					onEnableOrDisableDone();
 					flashAirNames = new ArrayList<String>();
-					mScanResults = mWifiManager.getScanResults();
+					if ((ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
+
+
+
+						mScanResults = mWifiManager.getScanResults();
 					for (ScanResult result : mScanResults) {
 						if (result.BSSID.toString().startsWith("e8:e0:b7")
 								|| result.BSSID.toString().startsWith("00:0b:5d")
@@ -469,7 +475,7 @@ public class FlashAirMain extends Activity {
 						else {
 							Log.e("flashair","ssid:" + result.SSID.toString() + " BSSID:" + result.BSSID.toString());
 						}
-					}
+					}}
 					if(flashAirNames !=null){
 						if(flashAirNames.size()<1){
 							isScanOver = true;

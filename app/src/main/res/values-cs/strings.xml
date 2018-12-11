@@ -352,5 +352,15 @@ Nestiskněte tlačítko Domů/Spánek, dokud se nedokončí přenos.</string>
     <string name="Ils_Result_Code_4011">Neplatné argumenty</string>
     <string name="Ils_Result_Code_4012">Aktivováno pro jinou e-mailovou adresu</string>
     
-    
+    <!--Permission-->
+
+    <string name="muteNotification">
+Chcete-li zamezit nahrávání zvuků upozornění, klepněte na „POVOLENÍ“, umožněte diktafonu přístup k režimu Nerušit a zkuste to znovu.</string>
+    <string name="permissionReq">Vyžadováno povolení</string>
+    <string name="permission">Povolení</string>
+
+    <!--Foreground Service-->
+    <string name="serviceIdle">Čekání na soubor diktátu</string>
+    <string name="serviceActive">Probíhá konverze souborů a odesílání na server.</string>
+
 </resources>

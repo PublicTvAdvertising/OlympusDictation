@@ -7,7 +7,7 @@
 
 
     android:foregroundTint="@color/light_grey"
-    android:theme="@style/AppBaseTheme">
+    >
 <LinearLayout
     android:background="@drawable/border"
     android:layout_width="match_parent"
@@ -20,38 +20,54 @@
         android:textSize="20dp" />
 
     <EditText
+        android:textColor="@color/black"
+        android:padding="3dp"
         android:id="@+id/edt_addworktype"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_abcdefghijklmnopqrstuvwxyz!@#\\$%\\^&amp;\\(\\)\\-_=\\+\\]\\}\\[\\{~`';,]"
         android:hint="@string/Settings_Enter_Worktype"
+        android:textColorHint="@color/light_grey"
+android:background="@drawable/edit_box"
         android:inputType="textCapCharacters"
         android:paddingBottom="10dp"></EditText>
 
     <requestFocus />
 
     <LinearLayout
+        android:layout_marginVertical="15dp"
         android:layout_marginTop="5dp"
 android:padding="3dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:background="@color/dark_grey"
         android:orientation="horizontal"
         android:weightSum="2">
 
         <Button
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:textColor="@color/black"
+         android:background="@color/light_grey"
             android:id="@+id/btnAdd1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.90"
             android:text="Done" />
+       <View
+           android:layout_weight="0.20"
+           android:layout_width="1sp"
+           android:layout_height="match_parent"/>
 
         <Button
+           android:layout_margin="5dp"
+            android:textColor="@color/black"
+            android:background="@color/light_grey"
             android:id="@+id/btnAdd2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.90"
             android:text="Cancel" />
     </LinearLayout>
 </LinearLayout>

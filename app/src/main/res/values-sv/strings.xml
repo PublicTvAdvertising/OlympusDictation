@@ -336,6 +336,15 @@ Beställ en till licens.</string>
     <string name="Ils_Result_Code_4011">Ogiltiga argument</string>
     <string name="Ils_Result_Code_4012">En annan e-postadress aktiverad</string>    
     
-    
-    
+    <!--Permission-->
+    <string name="muteNotification">För att förhindra att meddelandeljudet från att spelas in, tryck på "BEHÖRIGHET", och tillåt Diktering at komma åt "Stör ej", försök sedan igen. </string>
+    <string name="permissionReq">Behörighet krävs</string>
+    <string name="permission">Behörighet</string>
+
+
+
+    <!--Foreground Service-->
+    <string name="serviceIdle">Väntar på dikteringsfil</string>
+    <string name="serviceActive">Konverterar filformat. Filen skickas sedan till servern.</string>
+
 </resources>
