@@ -41,6 +41,7 @@ import android.media.ExifInterface;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaRecorder;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -156,7 +157,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     ;
 
     public static String AUDIO_FILE_NAME;
-    public static int coming=0;
+    public static int coming = 0;
     public static final String AUDIO_FILE_EXTENTION = ".wav";
     private static String AUDIO_FILE_FOLDERNAME = "Dictations";
     private static int RECORDING_NOTIFY_ID = 55555;
@@ -474,7 +475,7 @@ public class DictateActivity extends Activity implements OnClickListener,
         outGoingCallReciever = new OutgoingCallReceiver();
         IntentFilter outgoingCallFilter = new IntentFilter(Intent.ACTION_NEW_OUTGOING_CALL);
         baseIntent = this.registerReceiver(outGoingCallReciever, outgoingCallFilter);
-        audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+
         /**
          * Get an instance of the PowerManager
          */
@@ -637,16 +638,18 @@ public class DictateActivity extends Activity implements OnClickListener,
                         Intent intent;
                         PendingIntent pendingIntent;
                         NotificationCompat.Builder builder;
+                        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                         if (notifManager == null) {
                             notifManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
                             int importance = NotificationManager.IMPORTANCE_HIGH;
                             NotificationChannel mChannel = notifManager.getNotificationChannel("2");
                             if (mChannel == null) {
                                 mChannel = new NotificationChannel("2", notificationName, importance);
-                                mChannel.enableVibration(true);
+                                mChannel.enableVibration(false);
                                 //  mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
                                 notifManager.createNotificationChannel(mChannel);
                             }
@@ -657,18 +660,18 @@ public class DictateActivity extends Activity implements OnClickListener,
                             builder.setContentTitle(notifySubTitle)                            // required
                                     // required
                                     .setContentText("Recording..") // required
-                                    .setDefaults(Notification.DEFAULT_ALL)
                                     .setAutoCancel(true)
-
                                     .setSmallIcon(icon)
+
 
                                     .setColor(getResources().getColor(R.color.black))
                                     .setContentIntent(pendingIntent);
 
-                            //.setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
                             Notification notification = builder.build();
                             notifManager.notify(RECORDING_NOTIFY_ID, notification);
                         } else {
+
                             builder = new NotificationCompat.Builder(context, "2");
                             intent = new Intent(context, DictateActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -676,14 +679,13 @@ public class DictateActivity extends Activity implements OnClickListener,
                             builder.setContentTitle(notifySubTitle)                            // required
                                     .setSmallIcon(icon)   // required
                                     .setColor(getResources().getColor(R.color.black))
-                                    .setPriority(Notification.PRIORITY_HIGH)
+
                                     .setContentText("Recording..") // required
                                     .setPriority(Notification.PRIORITY_HIGH)
-                                    .setDefaults(Notification.DEFAULT_ALL)
+
                                     .setAutoCancel(true)
                                     .setContentIntent(pendingIntent);
 
-                            // .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
 
                             Notification notification = builder.build();
                             notifManager.notify(RECORDING_NOTIFY_ID, notification);
@@ -1504,8 +1506,8 @@ public class DictateActivity extends Activity implements OnClickListener,
         tvTitle.setEnabled(true);
         tvWorktype.setEnabled(true);
         imFav.setEnabled(true);
-        if(!(dCard.getDictationName().equalsIgnoreCase(""))&&dCard.getDictationName()!=null)
-        tvTitle.setText(dCard.getDictationName());
+        if (!(dCard.getDictationName().equalsIgnoreCase("")) && dCard.getDictationName() != null)
+            tvTitle.setText(dCard.getDictationName());
         tvTitle.setCursorVisible(false);
         if (dCard.getWorktype() == null || dCard.getWorktype().equals(""))
             tvWorktype.setText(getResources().getString(
@@ -5984,8 +5986,8 @@ public class DictateActivity extends Activity implements OnClickListener,
 
             }
         } else {
-            audioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, state);
-            audioManager.setStreamMute(AudioManager.STREAM_ALARM, state);
+            mAudioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, state);
+            mAudioManager.setStreamMute(AudioManager.STREAM_ALARM, state);
         }
     }
 
@@ -6236,7 +6238,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                 alertDialogBuilder.setTitle(R.string.permissionReq)
-                        .setMessage(R.string.permissionAccess+"\n\n"+R.string.permission+"(" + permissionTxt + ")")
+                        .setMessage(getResources().getString(R.string.permissionAccess) + "\n\n" + getResources().getString(R.string.permission) + "(" + permissionTxt + ")")
                         .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

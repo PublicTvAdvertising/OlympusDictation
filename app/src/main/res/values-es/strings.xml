@@ -343,6 +343,11 @@ Solicite una licencia adicional.</string>
     <string name="muteNotification">Para ejecutar esta acción, toque "AJUSTES", vaya a Información de la aplicación > Permisos y, a continuación, otorgue siguientes permisos e inténtelo de nuevo:</string>
     <string name="permissionReq">Se requieren permisos</string>
     <string name="permission">Permiso</string>
+    <string name="permissionAccess">Para ejecutar esta acción, toque "AJUSTES", vaya a Información de la aplicación > Permisos y, a continuación, otorgue siguientes permisos e inténtelo de nuevo:</string>
+    <string name="deny">Rechazar</string>
+    <string name="allow">Permitir</string>
+    <string name="turnOnLocation">Para detectar FlashAir, debe permitir el permiso de ubicación.</string>
+
 
     <!--Foreground Service-->
     <string name="serviceIdle">Esperando el archivo de dictado</string>

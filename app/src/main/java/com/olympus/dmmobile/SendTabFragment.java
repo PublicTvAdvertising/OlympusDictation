@@ -99,6 +99,10 @@ public class SendTabFragment extends Fragment {
      * @return Adapter as CustomCursorAdapter.
      */
     public CustomCursorAdapter getListAdapter(){
+    	if(mListAdapter==null)
+		{mListAdapter = new CustomCursorAdapter(getActivity(), mCursor);
+
+		}
     	return mListAdapter;
     }
     /**
@@ -116,9 +120,19 @@ public class SendTabFragment extends Fragment {
     	if(mCursorEnable!=null)
     	{
 	    	if(mCursorEnable.getCount()>0)
-				mListAdapter.updateSendDeleteButtons(true);
+	    		if(mListAdapter!=null)
+				{
+					mListAdapter.updateSendDeleteButtons(true);
+				}
+
 			else
-				mListAdapter.updateSendDeleteButtons(false);
+				{
+				if(mListAdapter!=null)
+				{
+					mListAdapter.updateSendDeleteButtons(false);
+				}
+				}
+
     	}
     }
 }

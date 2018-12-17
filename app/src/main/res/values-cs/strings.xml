@@ -358,6 +358,10 @@ Nestiskněte tlačítko Domů/Spánek, dokud se nedokončí přenos.</string>
 Chcete-li zamezit nahrávání zvuků upozornění, klepněte na „POVOLENÍ“, umožněte diktafonu přístup k režimu Nerušit a zkuste to znovu.</string>
     <string name="permissionReq">Vyžadováno povolení</string>
     <string name="permission">Povolení</string>
+    <string name="permissionAccess">Chcete-li provést tuto akci, klepněte na „NASTAVENÍ“ Informace o aplikaci > Oprávnění, nastavte následující povolení a zkuste to znovu:</string>
+    <string name="deny">Odmítnout</string>
+    <string name="allow">Povolit</string>
+    <string name="turnOnLocation">TChcete-li zjistit FlashAir, musíte povolit oprávnění k umístění.</string>
 
     <!--Foreground Service-->
     <string name="serviceIdle">Čekání na soubor diktátu</string>

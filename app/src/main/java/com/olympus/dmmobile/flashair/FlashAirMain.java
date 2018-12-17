@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -49,16 +50,16 @@ import com.olympus.dmmobile.log.ExceptionReporter;
 
 /**
  * FlashAirMain is used to establish connection with FlashAir.
- * 
+ *
  * @version 1.0.1
  */
 public class FlashAirMain extends Activity {
-	
+
 	private ExceptionReporter mReporter;			// Error Logger
-	
+
 	private boolean mIsStateChanged = false;     // True for stateChanged otherwise false
 	private boolean mIsListening = false;		// True if listening for BroadcastReceiver otherwise False
-	private boolean mStartFlag = false;   
+	private boolean mStartFlag = false;
 	private boolean isScanOver = false;
 	private boolean wifiSettingsInvoked= false;
 	private boolean isOnceStarted = false;
@@ -81,11 +82,16 @@ public class FlashAirMain extends Activity {
     private Locale mLocale = null;
     private ConnectivityManager mConnectivityManager = null;
     private WifiInfo mWifiInfo = null;
-    
+    private SharedPreferences pref = null;
+	SharedPreferences.Editor editor=null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		mReporter = ExceptionReporter.register(this);
 		super.onCreate(savedInstanceState);
+		pref = getSharedPreferences("ssid", MODE_PRIVATE);
+
+
 		if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 		else
@@ -115,14 +121,14 @@ public class FlashAirMain extends Activity {
 		mBtnUpdate = (ImageButton) findViewById(R.id.btn_update_wifi_list);
 		mScanResultView = (ListView) findViewById(R.id.list_scan_res);
 		mBtnDone = (Button) findViewById(R.id.btn_done_flashair_connect);
-		if(savedInstanceState == null) 
+		if(savedInstanceState == null)
 			dmApplication.setPreviousNetworkSSID(getCurrentSsid());
 		else {
 			dmApplication.setPreviousNetworkSSID(savedInstanceState.getString("PreviousNetworkSSID"));
 			dmApplication.setNetWorkId(savedInstanceState.getInt("NetworkID", -1));
 		}
 		mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-		
+
 		mReciever = new WifiScanReciever();
 		registerReceiver(mReciever, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));     //Registering BroadcastReceiver for SCAN_RESULTS_AVAILABLE_ACTION
 		mReciever.startListening(getApplicationContext());       //Receiver start listening for Broadcast
@@ -158,7 +164,7 @@ public class FlashAirMain extends Activity {
 			}
 		});
 	}
-	
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -166,12 +172,12 @@ public class FlashAirMain extends Activity {
 		outState.putInt("NetworkID", dmApplication.getNetWorkId());
 	}
 
-	/** 
-	 * Wifi scanning will be started if wifi state is enabled. 
+	/**
+	 * Wifi scanning will be started if wifi state is enabled.
 	 * */
 	public void startScan() {
 		isScanOver = false;
-		if (mWifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED) 
+		if (mWifiManager.getWifiState() == WifiManager.WIFI_STATE_ENABLED)
 			mWifiManager.startScan();     //Starts Scanning
 		else {
 			runOnUiThread(new Runnable() {
@@ -187,14 +193,14 @@ public class FlashAirMain extends Activity {
 		}
 	}
 
-	/** 
-	 * To get currently connected Wifi Network's SSID 
+	/**
+	 * To get currently connected Wifi Network's SSID
 	 * */
 	private String getCurrentSsid() {
 		mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected()) {
 		    mWifiInfo = ((WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE)).getConnectionInfo();
-		    if (mWifiInfo != null && !mWifiInfo.getSSID().equals("")) 
+		    if (mWifiInfo != null && !mWifiInfo.getSSID().equals(""))
 		      return mWifiInfo.getSSID();
 		}
 		return null;
@@ -223,12 +229,25 @@ public class FlashAirMain extends Activity {
 	@Override
 	protected void onDestroy() {
 		try{
+
+
 			unregisterReceiver(mReciever);
+//			if(mWifiManager!=null)
+//			{
+//				mWifiManager.setWifiEnabled(false);
+//
+//			}
 		}catch(IllegalArgumentException e){}
 		super.onDestroy();
 	}
-	
-	/**
+
+    @Override
+    protected void onPause() {
+        DMApplication.COMINGFROM="flash_air";
+        super.onPause();
+    }
+
+    /**
 	 * Shows dialog when no wifi connection available.
 	 */
 	public void showNoWifiConnectionDialog(){
@@ -243,8 +262,8 @@ public class FlashAirMain extends Activity {
 		});
 		alert.create().show();
 	}
-	
-	
+
+
 	/**
 	 * Checks whether the particular wifi network is configured or not.
 	 * If configured connection will be established.
@@ -268,7 +287,7 @@ public class FlashAirMain extends Activity {
 					// change action and Calling connectionTask
 					registerReceiver(mReciever, new IntentFilter(
 							WifiManager.NETWORK_STATE_CHANGED_ACTION));
-					
+
 					//Registers Receiver for NETWORK_STATE_CHANGED_ACTION
 					mConnectionTask = new ConnectionTask(FlashAirMain.this);
 					mConnectionTask.execute(name);
@@ -307,7 +326,7 @@ public class FlashAirMain extends Activity {
 						}
 					};
 					timer.start();
-				
+
 			} else {
 				new AlertDialog.Builder(FlashAirMain.this)
 						.setTitle(getResources().getString(R.string.Connect_Flashair))
@@ -353,7 +372,7 @@ public class FlashAirMain extends Activity {
 
 		}
 	}
-	
+
 	private void onEnableOrDisableDone() {
 		if(mScanResultView.getCheckedItemPosition() < 0)
 			mBtnDone.setEnabled(false);
@@ -382,15 +401,15 @@ public class FlashAirMain extends Activity {
 		}
 	}
 
-	/** 
-	 * Starts the FlashAir browser. 
+	/**
+	 * Starts the FlashAir browser.
 	 * */
 	public void startBrowser() {
-				
+
 		new AsyncTask<Void, Void, Void>(){
-			
+
 			long timeToHold;
-			
+
 			@Override
 			protected void onPreExecute() {
 				// TODO Auto-generated method stub
@@ -402,33 +421,33 @@ public class FlashAirMain extends Activity {
 			protected Void doInBackground(
 					Void... params) {
 				// TODO Auto-generated method stub
-				
+
 				while(System.currentTimeMillis() < timeToHold){
-					
+
 				}
-				
+
 				return null;
 			}
-			
+
 			@Override
 			protected void onPostExecute(Void result) {
 				// TODO Auto-generated method stub
 				super.onPostExecute(result);
-				
+
 				if(mProgressDialog.isShowing()){
 					mProgressDialog.dismiss();
 				}
-				
+
 				isOnceStarted = true;
 				dmApplication.setNetWorkId(mNetworkId);
 				Intent intent = new Intent(FlashAirMain.this, FlashAirBrowser.class);
 				intent.putExtra("ssid", mSelectedSsid);
 				startActivity(intent);
 			}
-			
+
 		}.execute();
-		
-		
+
+
 	}
 
 	/**
@@ -512,9 +531,9 @@ public class FlashAirMain extends Activity {
 			} else if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {    //if receives CONNECTIVITY_ACTION
 				// checking whether wifi is connected or not
 				boolean noConnectivity = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
-				if (noConnectivity) 
+				if (noConnectivity)
 					mState = State.NOT_CONNECTED;
-				else 
+				else
 					mState = State.CONNECTED;
 			} else if (action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION)) {   //if receives NETWORK_STATE_CHANGED_ACTION
 				NetworkInfo netInfo = intent
@@ -538,17 +557,17 @@ public class FlashAirMain extends Activity {
 									timer.cancel();
 									timer = null;
 								}
-								
+
 								startBrowser();
-								
+
 								//
 							}
 						}
 					}
 			}
 		}
-		
-		/** 
+
+		/**
 		 * Starts listening for BroadcastReceiver .
 		 * */
 		public synchronized void startListening(Context context) {
@@ -559,8 +578,8 @@ public class FlashAirMain extends Activity {
 			}
 		}
 
-		/** 
-		 * Stops listening for BroadcastReceiver. 
+		/**
+		 * Stops listening for BroadcastReceiver.
 		 * */
 		public synchronized void stopListening() {
 			if (mIsListening) {
@@ -569,16 +588,16 @@ public class FlashAirMain extends Activity {
 			}
 		}
 
-		/** 
-		 * Wifi state will be returned.  
+		/**
+		 * Wifi state will be returned.
 		 * */
 		public State getState() {
 			return mState;
 		}
 
 	}
-	
-	
+
+
 	/**
 	 * Checks whether the device is connected to the passed Ssid or not.
 	 * @param context Context of the current activity.
@@ -598,8 +617,8 @@ public class FlashAirMain extends Activity {
 		return connected;
 	}
 
-	/** 
-	 * Asynctask used Establish connection with FlashAir card 
+	/**
+	 * Asynctask used Establish connection with FlashAir card
 	 * */
 	class ConnectionTask extends AsyncTask<String, Void, Void> {
 
@@ -635,7 +654,7 @@ public class FlashAirMain extends Activity {
 	class ScanTask extends AsyncTask<String, Void, Void> {
 
 		FlashAirMain activity;
-		
+
 
 		public ScanTask(FlashAirMain activity) {
 			this.activity = activity;
@@ -661,7 +680,7 @@ public class FlashAirMain extends Activity {
 		}
 	}
 	/**
-	 * Sets current Language. 
+	 * Sets current Language.
 	 * @param value Language value passed as int.
 	 */
 	public void setCurrentLanguage(int value){

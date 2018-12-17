@@ -21,7 +21,7 @@ public class NetWorkAndNotActivatedDialog {
 	private DMApplication mDmApplication = null;
 	private AlertDialog.Builder alert = null;
 	private SharedPreferences mPreferences = null;
-	
+
 	/**
 	 * get instance of class
 	 * @return

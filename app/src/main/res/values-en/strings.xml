@@ -400,6 +400,10 @@ Do not press Home/Sleep button until the transmission is completed.</string>
     <string name="muteNotification">To prevent the notification sound from being recorded, tap "PERMISSION", then allow Dictation to access Do not disturb, and try again.</string>
     <string name="permissionReq">Permission Required</string>
     <string name="permission">Permission</string>
+    <string name="permissionAccess">To execute this action, tap "SETTINGS", go to App info > Permissions, then allow the following permissions and try again:</string>
+    <string name="deny">Deny</string>
+    <string name="allow">Allow</string>
+    <string name="turnOnLocation">To detect FlashAir, you need to allow Location permission. </string>
 
 
     <!--Foreground Service-->

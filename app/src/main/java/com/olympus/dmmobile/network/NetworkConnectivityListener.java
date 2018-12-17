@@ -7,17 +7,25 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.net.NetworkRequest;
 import android.os.Build;
+import android.util.Log;
+
 import com.olympus.dmmobile.DMApplication;
+
+import java.lang.reflect.Method;
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
 
 /**
  * This class always listen to the network state of the device and update the application with the current state of network.
- * 
+ *
  * @version 1.0.1
  */
 public class NetworkConnectivityListener {
-	
+
 	private final String CONNECTIVITY_ACTION_LOLLIPOP = "com.olympus.dmmobile.network.CONNECTIVITY_ACTION_LOLLIPOP";
 	private Context mContext = null;
 	private boolean mListening = false;
@@ -26,11 +34,11 @@ public class NetworkConnectivityListener {
 	private NetworkBroadcastReceiver mReceiver = null;
     private RetryUploadListener retryUploadListener=null;
     private DMApplication mDMApplication=null;
-    
+
     /**
      * This class is a subclass of BroadcastReceiver, which receive a notification whenever the connection state changes.
      * The current network state received is updated to application via DMApplication
-     * 
+     *
      */
     public class NetworkBroadcastReceiver extends BroadcastReceiver {
     	@Override
@@ -44,15 +52,16 @@ public class NetworkConnectivityListener {
 	    		boolean noConnectivity =intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
 	    		if (noConnectivity||mDMApplication.isFlashAirState()) {
 	    			mState = State.NOT_CONNECTED;
+	    			if(!isNetworkAvailable())
 	    			DMApplication.setONLINE(false);
-	    		} 
+	    		}
 	    		else {
 	    			mState = State.CONNECTED;
 	    			DMApplication.setONLINE(true);
 	    			onRetryUpload();
 	    		}
     		}
-    	}	
+    	}
 	}
     /**
      * various states of Network connection.
@@ -62,7 +71,7 @@ public class NetworkConnectivityListener {
         CONNECTED,
         NOT_CONNECTED
     }
-	
+
 	/**
 	 * Initialize the BroadcastReceiver and set default state to the Network Connection State.
 	 */
@@ -70,10 +79,10 @@ public class NetworkConnectivityListener {
 		mState=State.UNKNOWN;
 		mReceiver=new NetworkBroadcastReceiver();
 	}
-	
+
 	/**
 	 * Listen to the network state by registering to a Receiver with the action 'CONNECTIVITY_ACTION'
-	 * 
+	 *
 	 * @param context base application context
 	 */
 	public synchronized void startListening(Context context)  {
@@ -87,7 +96,7 @@ public class NetworkConnectivityListener {
             registerConnectivityActionLollipop();
         }
     }
-	
+
 	/**
 	 * Stop/Close the BroadcastReceiver.
 	 */
@@ -98,7 +107,7 @@ public class NetworkConnectivityListener {
             mListening = false;
         }
     }
-	
+
 	/**
 	 * Listener to notify the network state to background service
 	 */
@@ -117,14 +126,14 @@ public class NetworkConnectivityListener {
 			retryUploadListener.onRetryUploadListener();
 		}
 	}
-	
+
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void registerConnectivityActionLollipop() {
 	    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
 	        return;
 	    isNewVersion = true;
 	    mDMApplication=(DMApplication)mContext.getApplicationContext();
-	    ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+	    ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(CONNECTIVITY_SERVICE);
 	    NetworkRequest.Builder builder = new NetworkRequest.Builder();
 	    connectivityManager.registerNetworkCallback(builder.build(), new ConnectivityManager.NetworkCallback() {
 	        @Override
@@ -134,10 +143,30 @@ public class NetworkConnectivityListener {
 	        }
 	        @Override
 	        public void onLost(Network network) {
-	        	DMApplication.setONLINE(false);
+	        	if(!isNetworkAvailable()){
+	        	DMApplication.setONLINE(false);}
 	        }
 	    });
 	}
+
+	private Boolean isNetworkAvailable() {
+		boolean isonline = false;
+		final ConnectivityManager connection_manager =
+				(ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager connectivityManager
+				= (ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+		//   Log.d("networkindConnect", activeNetworkInfo.getTypeName().toString());
+		if (activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting()) {
+
+			if (!activeNetworkInfo.getTypeName().toString().equalsIgnoreCase("")) {
+				Log.d("activenetwork",activeNetworkInfo.getTypeName().toString());
+				isonline=true;
+			}
+		}
+		return isonline;
+	}
+
 }
 
 

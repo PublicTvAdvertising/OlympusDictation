@@ -66,6 +66,7 @@ public class DMApplication extends Application{
 	public static final String DICTATION_ID="dict_id";
 	public static final String EDIT_COPY_FORCE_QUIT="edit_copy_forcequit";
 	public static final String EDIT_COPY_DESTINATION="edit_copy_destination";
+	public static String  COMINGFROM="flash_air_no";
 	private boolean timeOutDialogOnFront = false;
 	private boolean isWantToShowDialog = false;
 	private String ErrorCode = "";

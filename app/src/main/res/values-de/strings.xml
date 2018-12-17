@@ -366,6 +366,10 @@ Bitte bestellen Sie eine zusätzliche Lizenz.</string>
     <string name="muteNotification">Damit kein Benachrichtigungston aufgezeichnet wird, tippen Sie auf „BERECHTIGUNG“, weisen Sie Diktaten Zugriff auf Nicht stören zu und wiederholen Sie den Vorgang.</string>
     <string name="permissionReq">Berechtigung erforderlich</string>
     <string name="permission">Berechtigung</string>
+    <string name="permissionAccess">Um diese Aktion auszuführen, tippen Sie auf „EINSTELLUNGEN“, gehen Sie zu App-info > Berechtigungen, weisen Sie dann die folgenden Berechtigungen zu und wiederholen Sie den Vorgang:</string>
+    <string name="deny">Ablehnen</string>
+    <string name="allow">Zulassen</string>
+    <string name="turnOnLocation">Um FlashAir zu erkennen, müssen Sie die Standortberechtigung zulassen.</string>
 
 
     <!--Foreground Service-->

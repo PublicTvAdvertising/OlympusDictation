@@ -340,6 +340,11 @@ Beställ en till licens.</string>
     <string name="muteNotification">För att förhindra att meddelandeljudet från att spelas in, tryck på "BEHÖRIGHET", och tillåt Diktering at komma åt "Stör ej", försök sedan igen. </string>
     <string name="permissionReq">Behörighet krävs</string>
     <string name="permission">Behörighet</string>
+    <string name="permissionAccess">För att utföra denna åtgärd, tryck på "INSTÄLLNNGAR", gå till Appinfomation > Behörigheter, tillåt följande behörigheter och försök igen:</string>
+    <string name="deny">Neka</string>
+    <string name="allow">Tillåt</string>
+    <string name="turnOnLocation">För att upptäcka FlashAir måste du tillåta platsbehörighet.</string>
+
 
 
 

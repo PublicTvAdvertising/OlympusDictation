@@ -38,29 +38,30 @@ public class OutboxTabFragment extends Fragment {
     
     @Override
     public void onActivityCreated(Bundle bundle) {
-    	super.onActivityCreated(bundle);
-    	mCursor = mDbHandler.getOutboxDictations();
-    	mListAdapter = new CustomCursorAdapter(getActivity(), mCursor);
-		mListView.setAdapter(mListAdapter);
-		mListAdapter.setFilterQueryProvider(new FilterQueryProvider() {
-			@Override
-			public Cursor runQuery(CharSequence constraint) {
-				String partialValue = mDMApplication.editStringHasEscape(constraint.toString());
-				if(mDMApplication.isPriorityOn())
-					mCursor = mDbHandler.getSearchFilteredAndPrioritisedOutboxDictations(partialValue);
+		super.onActivityCreated(bundle);
+		mCursor = mDbHandler.getOutboxDictations();
+		mListAdapter = new CustomCursorAdapter(getActivity(), mCursor);
+		if (mListAdapter != null&&mListView!=null) {
+			mListView.setAdapter(mListAdapter);
+			mListAdapter.setFilterQueryProvider(new FilterQueryProvider() {
+				@Override
+				public Cursor runQuery(CharSequence constraint) {
+					String partialValue = mDMApplication.editStringHasEscape(constraint.toString());
+					if (mDMApplication.isPriorityOn())
+						mCursor = mDbHandler.getSearchFilteredAndPrioritisedOutboxDictations(partialValue);
+					else
+						mCursor = mDbHandler.getSearchFilteredOutboxDictations(partialValue);
+					return mCursor;
+				}
+			});
+			if (mCursor != null && mDMApplication.getTabPos() == 1) {
+				if (mCursor.getCount() > 0)
+					mListAdapter.updateSendDeleteButtons(true);
 				else
-					mCursor = mDbHandler.getSearchFilteredOutboxDictations(partialValue);
-	            return mCursor;
+					mListAdapter.updateSendDeleteButtons(false);
 			}
-		});
-		if(mCursor!=null&&mDMApplication.getTabPos()==1) {
-	    	if(mCursor.getCount()>0)
-				mListAdapter.updateSendDeleteButtons(true);
-			else
-				mListAdapter.updateSendDeleteButtons(false);
-    	}
-    }
-    
+		}
+	}
     /**
      * Used to get Dictation list adapter
      * @return Adapter as CustomCursorAdapter.
@@ -76,14 +77,18 @@ public class OutboxTabFragment extends Fragment {
      */
     public void onRefreshList(Cursor mCursor,Cursor mCursorEnable) {
     	if(mListAdapter != null) {
-	    	mListAdapter.changeCursor(mCursor);
-	    	mListAdapter.notifyDataSetChanged();
-	    	if(mCursorEnable!=null) {
-		    	if(mCursorEnable.getCount()>0)
-					mListAdapter.updateSendDeleteButtons(true);
-				else
-					mListAdapter.updateSendDeleteButtons(false);
-	    	}
+
+				mListAdapter.changeCursor(mCursor);
+				mListAdapter.notifyDataSetChanged();
+				if(mCursorEnable!=null) {
+					if(mCursorEnable.getCount()>0)
+						mListAdapter.updateSendDeleteButtons(true);
+					else
+						mListAdapter.updateSendDeleteButtons(false);
+				}
+
+
+
     	}
     }
     

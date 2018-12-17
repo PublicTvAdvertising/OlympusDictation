@@ -2,6 +2,10 @@ package com.olympus.dmmobile.settings;
 
 
 
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -18,6 +22,11 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +38,7 @@ import android.text.TextUtils;
 import android.text.util.Rfc822Token;
 import android.text.util.Rfc822Tokenizer;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +48,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.olympus.dmmobile.DMActivity;
 import com.olympus.dmmobile.DMApplication;
 import com.olympus.dmmobile.PartialRegexInputFilter;
 import com.olympus.dmmobile.R;
@@ -63,8 +74,8 @@ public class ServerOptionsActivity extends FragmentActivity {
 	private EditText mEditAuthor;
 	private Button mBtnCheckConn;
 	private Button mBtnRecipient;
-	
-	
+
+
 	private String mMail;
 	//private String mActvation;
 	private String mResultcode;
@@ -116,7 +127,15 @@ public class ServerOptionsActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		mReporter = ExceptionReporter.register(this);
 	    super.onCreate(savedInstanceState);
-	    if(android.os.Build.VERSION.SDK_INT>=Build.VERSION_CODES.GINGERBREAD)
+//		if (isMobileDataEnabled()) {
+//			if(hasActiveInternetConnection(this))
+//			{
+//				DMApplication.setONLINE(true);
+//			}
+//
+//		}
+
+		if(android.os.Build.VERSION.SDK_INT>=Build.VERSION_CODES.GINGERBREAD)
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 		else
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -176,7 +195,13 @@ public class ServerOptionsActivity extends FragmentActivity {
 				   }else{
 						mMail=mEditEmail.getText().toString().trim();
 						mBasevalue=mBaseEncoding.base64(mUUID+":"+mEditEmail.getText().toString().trim());
-			    if(DMApplication.isONLINE()){
+
+					   try {
+						   Thread.sleep(50);
+					   } catch (InterruptedException e) {
+						   e.printStackTrace();
+					   }
+					   if(DMApplication.isONLINE()){
 			    	activateThisDevice(NOT_FORCED);
 					flag=0;
 			    }
@@ -1181,5 +1206,47 @@ public class ServerOptionsActivity extends FragmentActivity {
 		mEditor.putString(Recipient.SELECTED_RECIPIENT_EMAIL_TAG , email);
 		mEditor.commit();
 	}
+	public Boolean isMobileDataEnabled() {
+		Object connectivityService = getSystemService(CONNECTIVITY_SERVICE);
+		ConnectivityManager cm = (ConnectivityManager) connectivityService;
+
+		try {
+			Class<?> c = Class.forName(cm.getClass().getName());
+			Method m = c.getDeclaredMethod("getMobileDataEnabled");
+			m.setAccessible(true);
+			return (Boolean) m.invoke(cm);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	boolean icConnected = false;
+	public boolean hasActiveInternetConnection(Context context) {
+	new CheckCon().execute();
+
+		return icConnected;
+	}
+
+	public class CheckCon extends AsyncTask<Void, Void, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(Void... voids) {
+			try {
+				HttpURLConnection urlc = (HttpURLConnection) (new URL("http://www.google.com").openConnection());
+				urlc.setRequestProperty("User-Agent", "Test");
+				urlc.setRequestProperty("Connection", "close");
+				urlc.setConnectTimeout(1500);
+				urlc.connect();
+				icConnected = urlc.getResponseCode() == 200;
+				return (icConnected);
+			} catch (IOException e) {
+
+			}
+			return icConnected;
+		}
+
+
+	}
+
 }
 

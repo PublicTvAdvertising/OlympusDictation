@@ -63,12 +63,12 @@ public static int COMING=0;
 
 	/**
 	 * Constructor of this class with two parameters.
-	 * @param mActivity Activity reference
+	 * @param activity Activity reference
 	 * @param cursor The cursor contains all data from DataBase
 	 */
-	public CustomCursorAdapter(Activity mActivity, Cursor cursor) {
-		super(mActivity, cursor);
-		this.mActivity = mActivity;
+	public CustomCursorAdapter(Activity activity, Cursor cursor) {
+		super(activity, cursor);
+		this.mActivity = activity;
 		this.mListener = (RecordingSelectedListener) mActivity;
 		this.mEditCopyListener = (ListItemAction) mActivity;
 		this.inflater = LayoutInflater.from(mActivity);
@@ -427,7 +427,9 @@ public static int COMING=0;
 	}
 	
 	public void initCheckList() {
-		mCheckList.clear();
+		if(mCheckList!=null)
+		{mCheckList.clear();}
+
 	}
 	/**
 	 * Update active dictation status

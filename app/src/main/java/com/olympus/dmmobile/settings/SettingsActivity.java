@@ -26,6 +26,7 @@ import android.preference.PreferenceScreen;
 import android.util.DisplayMetrics;
 import android.widget.CheckBox;
 
+import com.olympus.dmmobile.DMActivity;
 import com.olympus.dmmobile.DMApplication;
 import com.olympus.dmmobile.DatabaseHandler;
 import com.olympus.dmmobile.R;
@@ -91,6 +92,8 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         // initialize tap event handler for server options button
         serverOptionsTapHandler = new ServerOptionsTapEventHandler(this);
         addPreferencesFromResource(R.xml.settings_preference);
+        if(DMApplication.COMINGFROM.equalsIgnoreCase("flash_air"))
+
         dmApplication = (DMApplication) getApplication();
         dmApplication.setContext(this);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {

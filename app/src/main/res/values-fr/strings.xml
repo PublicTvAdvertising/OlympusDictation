@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-      <string name="app_name">Dictation</string>
-      <string name="hello_world">Hello world!</string>
-      <string name="menu_settings">Paramètres</string>
-     
-     <!-- Dictate -->
-     <string name="Property_Worktype">Type de travail:</string>
-     <string name="Record_Save_Actionsheet_Message">Les modifications apportées n\'ont pas été enregistrées. Cliquez sur Supprimer ci-dessous pour continuer
+    <string name="app_name">Dictation</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Paramètres</string>
+
+    <!-- Dictate -->
+    <string name="Property_Worktype">Type de travail:</string>
+    <string name="Record_Save_Actionsheet_Message">Les modifications apportées n\'ont pas été enregistrées. Cliquez sur Supprimer ci-dessous pour continuer
           sans enregistrer ou sur Annuler pour revenir à l\'enregistrement.</string>
-     <string name="Button_Discard">Supprimer</string>
-     <string name="Button_Pending">En attente</string>
-     <string name="Button_Cancel">Annuler</string>
-     <string name="Button_Sendtosever">Envoyer au serveur</string>
-     <string name="Button_Sendviaemail">Envoyer via E-mail</string>
-     <string name="Button_Email">E-mail</string>
-     <string name="Button_FTP">FTP</string>
-     <string name="Dictate_Alert_name_exists">Le nom de dictée existe</string>
-     <string name="Dictate_Alert_Ok">OK</string>
-     <string name="Dictate_Alert_Yes">OUI</string>
-     <string name="Dictate_Alert_No">NON</string>
-     <string name="Dictate_Alert_Insufficent_Device_Memory">Mémoire périphérique insuffisante</string>
-     <string name="Dictate_Alert_Insufficent_Memory">Mémoire insuffisante</string>
-     <string name="Dictate_Alert_Maximum_Recording_Message">Impossible d\'enregistrer car le nombre maximal d\'enregistrements est atteint.</string>
-     <string name="Dictate_Alert_Recording_File_Large_Message">De par sa taille, le fichier sera divisé en plusieurs petits fichiers lors de l\'envoi.</string>
-     <string name="Dictate_Preparing_Audio">Préparation de l\'audio</string>
-     <string name="Dictate_Saving_Audio">Enregistrement de l\'audio</string>
-     <string name="Dictate_Disconnect_Call">Veuillez arrêter l\'appel en cours puis continuez</string>
-     <string name="Dictate_Alert_Continue_Insert_Message">Voulez-vous continuer d\'insérer ?</string>
-     <string name="Dictate_Alert_Continue_Overwrite_Message">Voulez-vous continuer de remplacer ?</string>
-     <string name="Dictate_Alert_Continue">Continuer</string>
-     <string name="Dictate_Alert_Stop">Arrêt</string>
-     <string name="Dictate_Loading">Chargement en cours...</string>
-     <string name="Dictate_Alert_Configure_Server">Veuillez configurer les paramètres du serveur</string>
-     <string name="Dictate_Alert_Compress_Recording_Background_message">Veuillez patienter pendant la compression de votre enregistrement
+    <string name="Button_Discard">Supprimer</string>
+    <string name="Button_Pending">En attente</string>
+    <string name="Button_Cancel">Annuler</string>
+    <string name="Button_Sendtosever">Envoyer au serveur</string>
+    <string name="Button_Sendviaemail">Envoyer via E-mail</string>
+    <string name="Button_Email">E-mail</string>
+    <string name="Button_FTP">FTP</string>
+    <string name="Dictate_Alert_name_exists">Le nom de dictée existe</string>
+    <string name="Dictate_Alert_Ok">OK</string>
+    <string name="Dictate_Alert_Yes">OUI</string>
+    <string name="Dictate_Alert_No">NON</string>
+    <string name="Dictate_Alert_Insufficent_Device_Memory">Mémoire périphérique insuffisante</string>
+    <string name="Dictate_Alert_Insufficent_Memory">Mémoire insuffisante</string>
+    <string name="Dictate_Alert_Maximum_Recording_Message">Impossible d\'enregistrer car le nombre maximal d\'enregistrements est atteint.</string>
+    <string name="Dictate_Alert_Recording_File_Large_Message">De par sa taille, le fichier sera divisé en plusieurs petits fichiers lors de l\'envoi.</string>
+    <string name="Dictate_Preparing_Audio">Préparation de l\'audio</string>
+    <string name="Dictate_Saving_Audio">Enregistrement de l\'audio</string>
+    <string name="Dictate_Disconnect_Call">Veuillez arrêter l\'appel en cours puis continuez</string>
+    <string name="Dictate_Alert_Continue_Insert_Message">Voulez-vous continuer d\'insérer ?</string>
+    <string name="Dictate_Alert_Continue_Overwrite_Message">Voulez-vous continuer de remplacer ?</string>
+    <string name="Dictate_Alert_Continue">Continuer</string>
+    <string name="Dictate_Alert_Stop">Arrêt</string>
+    <string name="Dictate_Loading">Chargement en cours...</string>
+    <string name="Dictate_Alert_Configure_Server">Veuillez configurer les paramètres du serveur</string>
+    <string name="Dictate_Alert_Compress_Recording_Background_message">Veuillez patienter pendant la compression de votre enregistrement
           ou appuyez sur le bouton d\'accueil pour compresser en arrière-plan.</string>
-     <string name="Dictate_Alert_Compressing">Compression</string>
-     <string name="Dictate_Alert_File_Conversion">Conversion de fichiers en cours</string>     
-     <string name="Dictate_Low_Memory">Mémoire ou espace disque insuffisant pour terminer l\'opération</string>
-     <string name="Dictate_No_Space">Aucun espace disque</string>
-     <string name="Dictate_Network_Notavailable">Réseau non disponible</string>
-     <string name="Dictate_Email_Configuration">Aucun compte e-mail configuré</string>
-     <!-- Dictate -->
-     
-     <!-- Property  -->
-     <string name="Property_Back">Revenir</string>
-     <string name="Property_Edit">Éditer</string>
-     <string name="Property_Done">Terminé</string>
-     <string name="Property_Priority">Priorité</string>
-     <string name="Property_Jobnumber">Numéro de tâche:</string>
-     <string name="Property_Status">État:</string>
-     <string name="Property_Comment">Commentaire:</string>
-     <string name="Property_Close">Fermer</string>
-     <string name="Property_Shake_Twice">Agitez deux fois pour « Enregistrer »</string>  
-     <string name="Property_New">Nouveau</string>
-     <string name="Property_Pending">En attente</string>
-     <string name="Property_Outbox">Bte envoi</string>
-     <string name="Property_sending">Envoi</string>
-     <string name="property_sending_failed">Échec d\'envoi</string>
-     <string name="Property_Dictate_Sent">Envoyé</string>
-     <string name="Property_Via_Email">Envoyé via E-mail</string>
-     <string name="Property_Timeout">Temporisation</string>
-     <string name="Property_Settings">Paramètres</string>
-     <string name="Property_Waiting_Send">Envoi en attente</string>
-     <string name="Property_Retrying">Nouvel essai</string>
-     <string name="Property_Conversion_Failed">Échec de conversion</string>
-     <string name="Camera_Take_Photo">Prendre une photo</string>
-     <string name="Camera_Choose_Existing">Choisir de quitter</string>
-     <string name="Camera_Cancel">Annuler</string>
-     <string name="Camera_Delete_Photo">Supprimer une photo</string>
-     
-      <!-- Property  -->
- 
-      <!-- Recording Labels -->
-      
+    <string name="Dictate_Alert_Compressing">Compression</string>
+    <string name="Dictate_Alert_File_Conversion">Conversion de fichiers en cours</string>
+    <string name="Dictate_Low_Memory">Mémoire ou espace disque insuffisant pour terminer l\'opération</string>
+    <string name="Dictate_No_Space">Aucun espace disque</string>
+    <string name="Dictate_Network_Notavailable">Réseau non disponible</string>
+    <string name="Dictate_Email_Configuration">Aucun compte e-mail configuré</string>
+    <!-- Dictate -->
+
+    <!-- Property  -->
+    <string name="Property_Back">Revenir</string>
+    <string name="Property_Edit">Éditer</string>
+    <string name="Property_Done">Terminé</string>
+    <string name="Property_Priority">Priorité</string>
+    <string name="Property_Jobnumber">Numéro de tâche:</string>
+    <string name="Property_Status">État:</string>
+    <string name="Property_Comment">Commentaire:</string>
+    <string name="Property_Close">Fermer</string>
+    <string name="Property_Shake_Twice">Agitez deux fois pour « Enregistrer »</string>
+    <string name="Property_New">Nouveau</string>
+    <string name="Property_Pending">En attente</string>
+    <string name="Property_Outbox">Bte envoi</string>
+    <string name="Property_sending">Envoi</string>
+    <string name="property_sending_failed">Échec d\'envoi</string>
+    <string name="Property_Dictate_Sent">Envoyé</string>
+    <string name="Property_Via_Email">Envoyé via E-mail</string>
+    <string name="Property_Timeout">Temporisation</string>
+    <string name="Property_Settings">Paramètres</string>
+    <string name="Property_Waiting_Send">Envoi en attente</string>
+    <string name="Property_Retrying">Nouvel essai</string>
+    <string name="Property_Conversion_Failed">Échec de conversion</string>
+    <string name="Camera_Take_Photo">Prendre une photo</string>
+    <string name="Camera_Choose_Existing">Choisir de quitter</string>
+    <string name="Camera_Cancel">Annuler</string>
+    <string name="Camera_Delete_Photo">Supprimer une photo</string>
+
+    <!-- Property  -->
+
+    <!-- Recording Labels -->
+
     <string name="Recording_Label_Back">Revenir</string>
     <string name="Recording_Label_Pending">En attente</string>
     <string name="Recording_Label_Outbox">Bte envoi</string>
@@ -98,8 +98,8 @@
     <string name="Recording_Alerts_Delete">Effacer</string>
     <string name="Recording_Alerts_Delete_Pending_Message">Voulez-vous vraiment supprimer # enregistrements
          * ? Cette action est irréversible.</string>
-    <string name="Recording_Alerts_Delete_Recordings">Supprimer # enregistrements ?</string>  
-    <string name="Recording_Alerts_Send_All_Recordings_Message">Voulez-vous vraiment envoyer tous les enregistrements ?</string>      
+    <string name="Recording_Alerts_Delete_Recordings">Supprimer # enregistrements ?</string>
+    <string name="Recording_Alerts_Send_All_Recordings_Message">Voulez-vous vraiment envoyer tous les enregistrements ?</string>
     <string name="Recording_Alerts_Send_All_Recordings">Envoyer tous les enregistrements ?</string>
     <string name="Recording_Alerts_Send_All_Server">Envoyer tout au serveur</string>
     <string name="Recording_Alerts_Send_All_Email">Envoyer tout via E-mail</string>
@@ -108,47 +108,47 @@
     <string name="Recording_Alerts_Copying_Editing">Copie de fichier pour l\'édition</string>
     <string name="Recording_Alerts_Encrypt_File_Message">Ce service envoie les fichiers de dictée via E-mail et FTP. Pour éviter toute fuite d\'informations, nous vous conseillons
          vivement de demander à votre administrateur de chiffrer les fichiers de dictée. </string>
-   <string name="Recording_Alerts_Dontshow">Ne plus afficher ce message.</string>
-     <!-- Recordings -->
-     
-     
+    <string name="Recording_Alerts_Dontshow">Ne plus afficher ce message.</string>
+    <!-- Recordings -->
+
+
     <!-- Flashair Labels -->
-    
-     <string name="Flashair_Label_Connect_Flashair">Connecter FlashAir</string>
-     <string name="Flashair_Label_Choose_SSID">Choisir un SSID</string>
-     <string name="Flashair_Recordings">Enregistrements</string>
-     <string name="Flashair_Label_Establish_WiFi_Message">Établissez une connexion Wi-Fi avec la carte FlashAir et tapez « Terminé ».</string>
-     <string name="Flashair_Label_Choose_FlashAir">Une connexion FlashAir est requise pour cette fonction. 
+
+    <string name="Flashair_Label_Connect_Flashair">Connecter FlashAir</string>
+    <string name="Flashair_Label_Choose_SSID">Choisir un SSID</string>
+    <string name="Flashair_Recordings">Enregistrements</string>
+    <string name="Flashair_Label_Establish_WiFi_Message">Établissez une connexion Wi-Fi avec la carte FlashAir et tapez « Terminé ».</string>
+    <string name="Flashair_Label_Choose_FlashAir">Une connexion FlashAir est requise pour cette fonction.
          Connectez-vous à la carte FlashAir via Paramètres > Wi-Fi > Choisir un réseau.</string>
-     <string name="Flashair_Label_Scan_Flashair">Analyse de la carte FlashAir</string>
-     <string name="Flashair_Label_Flashcard_inSettings">Configurez cette carte FlashAir sous Paramètres</string>
-     <string name="Flashair_Label_YES">OUI</string>
-     <string name="Flashair_Label_NO">NON</string>
-     <string name="Flashair_Label_Done">Terminé</string>
-     <string name="Flashair_Label_Select_All">Sélectionner tout</string>
-     <string name="Flashair_Label_Deselect_All">Désélectionner tout</string>
-     <string name="Flashair_Label_Send">Envoyer</string>
-     <string name="Flashair_Label_Downloading">Téléchargement</string>
-     <string name="Flashair_Label_DownloadSummary">Télécharger récapitulatif</string>
-     <string name="Flashair_Label_Files_Downloaded">* sur # fichiers téléchargés</string>
-     <string name="Flashair_Label_Password">Password</string>
-     <string name="Flashair_Label_Authenticating">Authenticating</string>
-     <string name="Flashair_Label_Obtaining_Ip">Obtaining IP Address</string>
-     <string name="Flashair_Label_Connection_Compleate">Connection Complete</string>
-     <string name="Flashair_Label_Items"># éléments</string>
-     <string name="Flashair_Alert_WiFi_Accessible">Wi-Fi inaccessible. Assurez-vous que les paramètres Wi-Fi sont activés.</string>
-     <string name="Flashair_Alert_WiFi_Connection">Connexion Wi-Fi</string>
-     <string name="Flashair_Alert_Connection_Notfound">Connexion FlashAir Wi-Fi indétectée.</string>
-     <string name="Flashair_Alert_Cannot_Establish_Connection">Impossible d\'établir une connexion avec la carte FlashAir</string>
-     <string name="Flashair_Alert_Connection_Error">Erreur de connexion</string>
-     <string name="Flashair_Alert_Valid_WiFi_Connection">Veuillez utiliser une connexion Wi-Fi valide si vous êtes connecté(e) à la carte Flash Air</string>
-     <string name="Flashair_Alert_Error_Recieving_Data">Une erreur s\'est produite pendant la réception des données. Veuillez vérifier la connexion FlashAir.</string>
-     <string name="Flashair_Alert_FTP_option">Impossible d\'envoyer le ou les fichiers suivants en raison d\'une taille trop volumineuse.  
+    <string name="Flashair_Label_Scan_Flashair">Analyse de la carte FlashAir</string>
+    <string name="Flashair_Label_Flashcard_inSettings">Configurez cette carte FlashAir sous Paramètres</string>
+    <string name="Flashair_Label_YES">OUI</string>
+    <string name="Flashair_Label_NO">NON</string>
+    <string name="Flashair_Label_Done">Terminé</string>
+    <string name="Flashair_Label_Select_All">Sélectionner tout</string>
+    <string name="Flashair_Label_Deselect_All">Désélectionner tout</string>
+    <string name="Flashair_Label_Send">Envoyer</string>
+    <string name="Flashair_Label_Downloading">Téléchargement</string>
+    <string name="Flashair_Label_DownloadSummary">Télécharger récapitulatif</string>
+    <string name="Flashair_Label_Files_Downloaded">* sur # fichiers téléchargés</string>
+    <string name="Flashair_Label_Password">Password</string>
+    <string name="Flashair_Label_Authenticating">Authenticating</string>
+    <string name="Flashair_Label_Obtaining_Ip">Obtaining IP Address</string>
+    <string name="Flashair_Label_Connection_Compleate">Connection Complete</string>
+    <string name="Flashair_Label_Items"># éléments</string>
+    <string name="Flashair_Alert_WiFi_Accessible">Wi-Fi inaccessible. Assurez-vous que les paramètres Wi-Fi sont activés.</string>
+    <string name="Flashair_Alert_WiFi_Connection">Connexion Wi-Fi</string>
+    <string name="Flashair_Alert_Connection_Notfound">Connexion FlashAir Wi-Fi indétectée.</string>
+    <string name="Flashair_Alert_Cannot_Establish_Connection">Impossible d\'établir une connexion avec la carte FlashAir</string>
+    <string name="Flashair_Alert_Connection_Error">Erreur de connexion</string>
+    <string name="Flashair_Alert_Valid_WiFi_Connection">Veuillez utiliser une connexion Wi-Fi valide si vous êtes connecté(e) à la carte Flash Air</string>
+    <string name="Flashair_Alert_Error_Recieving_Data">Une erreur s\'est produite pendant la réception des données. Veuillez vérifier la connexion FlashAir.</string>
+    <string name="Flashair_Alert_FTP_option">Impossible d\'envoyer le ou les fichiers suivants en raison d\'une taille trop volumineuse.
               Veuillez utiliser l\'option \'FTP\' pour envoyer des fichiers volumineux.</string>
-     <string name="Flashair_Alert_Size_limitation">Limitation de la taille de fichier</string>  
-     <string name="Flashair_Alert_Activate_Account">Veuillez activer votre compte. Tapez sur [Vérifier la connexion au serveur] pour activer les options de serveur. </string>
-   
-    
+    <string name="Flashair_Alert_Size_limitation">Limitation de la taille de fichier</string>
+    <string name="Flashair_Alert_Activate_Account">Veuillez activer votre compte. Tapez sur [Vérifier la connexion au serveur] pour activer les options de serveur. </string>
+
+
     <!-- Settings -->
     <string name="Settings_setting">Paramètres</string>
     <string name="category_comunication">Communication</string>
@@ -156,14 +156,14 @@
     <string name="category_workflow">Flux de travail</string>
     <string name="category_general">Général</string>
     <string name="Settings_Information">Informations</string>
-    <string name="send_title">Envoyer</string>   
+    <string name="send_title">Envoyer</string>
     <string-array name="send_entries">
-        <item >via E-mail</item>
-        <item >au serveur</item>
+        <item>via E-mail</item>
+        <item>au serveur</item>
     </string-array>
-     <string-array name="send_values">
-        <item >1</item>
-        <item >2</item>
+    <string-array name="send_values">
+        <item>1</item>
+        <item>2</item>
     </string-array>
     <string name="sendoption_server">Options du serveur</string>
     <string name="server_url_title">URL de serveur</string>
@@ -173,7 +173,7 @@
     <!-- <string name="email_title">E-mail</string> -->
     <string name="server_title">Serveur</string>
     <string name="Settings_Invalid_Email">E-mail incorrect</string>
-    <string name="check_server_text">Vérifier la connexion au serveur</string>  
+    <string name="check_server_text">Vérifier la connexion au serveur</string>
     <string name="Settings_Valid_url">Échec de la connexion ODP. Veuillez saisir une URL ODP valide.</string>
     <string name="sendoption_email">Options d\'e-mail</string>
     <string name="recipient_title">Empfänger</string>
@@ -200,20 +200,20 @@
     <string name="keep_sent_items_title">Conserver élém. envoyés</string>
     <string name="Settings_Select">Sélectionner</string>
     <string-array name="keep_item_enties">
-        <item >Dernier jour</item>
-        <item >3 jours</item>
-        <item >Semaine dernière</item>
-        <item >2 dernières semaines</item>
-        <item >Mois dernier</item>
-        <item >Toujours</item>
-        </string-array>
-        <string-array name="keep_item_values">
-        <item >1</item>
-        <item >2</item>
-        <item >3</item>
-        <item >4</item>
-        <item >5</item>
-        <item >6</item>
+        <item>Dernier jour</item>
+        <item>3 jours</item>
+        <item>Semaine dernière</item>
+        <item>2 dernières semaines</item>
+        <item>Mois dernier</item>
+        <item>Toujours</item>
+    </string-array>
+    <string-array name="keep_item_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
     </string-array>
     <string name="Setting_LastDay">Dernier jour</string>
     <string name="Setting_3day">3 jours</string>
@@ -224,12 +224,12 @@
     <string name="Setting_Never">Never</string>
     <string name="onlaunch_show_title">Affichage de lancement</string>
     <string-array name="on_launch_values">
-        <item >1</item>
-        <item >2</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
     <string-array name="on_launch_entries">
-        <item >Nouveaux enregistrements</item>
-        <item >Liste d\'enregistrements</item>
+        <item>Nouveaux enregistrements</item>
+        <item>Liste d\'enregistrements</item>
     </string-array>
     <string name="Settings_Worktype_Exist">Ce type de travail figure déjà sur la liste</string>
     <string name="language_title">Langue</string>
@@ -246,8 +246,8 @@
     <string name="Settings_Server_Connection">Connexion au serveur réussi</string>
     <string name="Settings_Error_Correct">Connexion au serveur échoué. Assurez-vous que l\'URL de serveur, le nom d\'utilisateur et le mot de passe sont corrects.</string>
     <string name="Settings_via_email">via E-mail</string>
-    <string name="Settings_to_server">au serveur</string> 
-     <string name="Settings_newRecording">Nouveaux enregistrements</string>
+    <string name="Settings_to_server">au serveur</string>
+    <string name="Settings_newRecording">Nouveaux enregistrements</string>
     <string name="Settings_ListRecording">Liste d\'enregistrements</string>
     <string name="Settings_trademark">FlashAir™ est une marque commerciale ou déposée de TOSHIBA CORPORATION.</string>
 
@@ -256,17 +256,17 @@
 <p><br /><strong>1. RECORD_AUDIO</strong><br />Utilis&eacute; pour la fonction d\'enregistrement dans l\'application.<br /> <br /><strong>2. READ_PHONE_STATE</strong><br />La lecture de cet &eacute;tat permet de d&eacute;tecter les appels entrants et sortants qui se sont produits pendant l\'enregistrement et arr&ecirc;te l\'application pour enregistrer.<br /> <br /><strong>3. READ_CONTACTS</strong><br />Utile pour s&eacute;lectionner la destination des e-mails joints aux fichiers vocaux.</p>]]></string>
 
     <!-- Settings -->
-    
-       
+
+
     <!-- ODP-Resultcode -->
     <string name="Ils_Result_Global_Client_Error">Erreur générale de client</string>
     <string name="Ils_Result_Global_Server_Error">Erreur globale de serveur</string>
     <string name="Ils_Result_Internal_Server_error">Erreur générale de client</string>
     <string name="Ils_Result_Bad_request">Demande incorrecte</string>
-    <string name="Ils_Result_Resend_Selected">Sélectionnez les éléments \"Échec d\'envoi\" sous l\'onglet Bte envoi et tapez sur l\'icône [Envoyer] pour les renvoyer.</string>   
+    <string name="Ils_Result_Resend_Selected">Sélectionnez les éléments \"Échec d\'envoi\" sous l\'onglet Bte envoi et tapez sur l\'icône [Envoyer] pour les renvoyer.</string>
     <string name="Ils_Result_Fail_Activate">Impossible d\'activer</string>
     <string name="ILs_Result_Another_UUID_Activated">Autre UUID activé</string>
-   <!--  <string name="ILs_Result_Already_Activated">Ce périphérique est déjà activé avec un autre ID de périphérique</string> -->
+    <!--  <string name="ILs_Result_Already_Activated">Ce périphérique est déjà activé avec un autre ID de périphérique</string> -->
     <string name="Ils_Result_Unauthorized">Non autorisé</string>
     <string name="Ils_Result_Unexpected_Error">Une erreur système imprévue a été détectée.</string>
     <string name="Ils_Result_Resource_Not_Found">Ressource introuvable</string>
@@ -274,44 +274,44 @@
     <string name="Ils_Result_Need_Client_Update">Ancienne version de l\'application. Impossible d\'accéder au serveur de services. Mettez à jour l\'application.</string>
     <string name="Ils_Result_Not_Activated">Désactivé</string>
     <string name="Ils_Result_Activate_Server">Ce périphérique est désactivé par l\'administrateur. Tapez sur [Vérifier la connexion au serveur] pour activer les options de serveur. </string>
-    <string name="Ils_Result_License_Expired">Licence expirée</string>     
+    <string name="Ils_Result_License_Expired">Licence expirée</string>
     <string name="Ils_Result_License_Access_Service">La licence a expiré. Impossible d\'accéder au serveur de services.</string>
     <string name="Ils_Result_Account_Disabled">Compte désactivé</string>
-    <string name="Ils_Result_Service_Unavailable">Service non disponible</string>   
+    <string name="Ils_Result_Service_Unavailable">Service non disponible</string>
     <string name="Ils_Result_Cannot_Connect">Impossible de se connecter</string>
     <string name="Ils_Result_Cannot_Connect_Server">Impossible de se connecter au serveur
                       Échec de la connexion ODP.</string>
     <string name="Ils_Result_Invalid_Url">URL non valide</string>
-    
-    
-<string name="entervalidemail">Veuillez saisir un e-mail valide.</string>
-<string name="Settings_Language">Veuillez redémarrer l\'application pour que les paramètres de langue prennent effet.</string>
-<string name="Account_Disabled">Le compte est désactivé. Impossible d\'accéder au serveur de services.</string>
-<string name="Continue_Recording">Voulez-vous continuer l\'enregistrement ?</string>
-<string name="Property_enter_valid_dict_name">Veuillez saisir un nom de dictée valide.</string>
-<string name="Trademarks">Marques déposées</string>
-<string name="ThirdPartySoftware">Logiciels tiers</string>
-<string name="None">Aucun</string>
-<string name="ON">Activé</string>
-<string name="OFF">Désactivé</string>
-<string name="Alert">Alerte</string>
-<string name="FlashAirTrade">FlashAir™ est une marque commerciale ou une marque déposée de TOSHIBA CORPORATION.</string>
-<string name="worktypeexist">Ce type de travail figure déjà sur la liste.</string>
-<string name="Dictate_Alert_Already_Exists_Message">Ce nom de dictée figure déjà sur la liste.</string>
-<string name="HomeSleep">Envoi de fichier(s) de dictée. 
+
+
+    <string name="entervalidemail">Veuillez saisir un e-mail valide.</string>
+    <string name="Settings_Language">Veuillez redémarrer l\'application pour que les paramètres de langue prennent effet.</string>
+    <string name="Account_Disabled">Le compte est désactivé. Impossible d\'accéder au serveur de services.</string>
+    <string name="Continue_Recording">Voulez-vous continuer l\'enregistrement ?</string>
+    <string name="Property_enter_valid_dict_name">Veuillez saisir un nom de dictée valide.</string>
+    <string name="Trademarks">Marques déposées</string>
+    <string name="ThirdPartySoftware">Logiciels tiers</string>
+    <string name="None">Aucun</string>
+    <string name="ON">Activé</string>
+    <string name="OFF">Désactivé</string>
+    <string name="Alert">Alerte</string>
+    <string name="FlashAirTrade">FlashAir™ est une marque commerciale ou une marque déposée de TOSHIBA CORPORATION.</string>
+    <string name="worktypeexist">Ce type de travail figure déjà sur la liste.</string>
+    <string name="Dictate_Alert_Already_Exists_Message">Ce nom de dictée figure déjà sur la liste.</string>
+    <string name="HomeSleep">Envoi de fichier(s) de dictée.
 N\'appuyez pas sur le bouton d\'accueil/de veille avant la fin de la transmission.</string>
-<string name="Settings_Max_Recipients">Nombre maximal de destinataires atteint</string>
-<string name="SourceNotfound">Source introuvable</string>
-<string name="Settings_About">À propos</string>
-<string name="UnableRecording">Impossible de démarrer l\'enregistrement. Une autre application d\'enregistreur est en cours d\'exécution.</string>
-<string name="FileSizeMaximum">Comme la taille du fichier sélectionné dépasse la limite pour une pièce jointe d\'e-mail, il sera envoyé en plusieurs e-mails.</string>
-<string name="WifiAllianze">Wi-Fi est une marque déposée de Wi-Fi Alliance.  </string>
-<string name="Add">Ajouter</string> 
-<string name="Select">sélectionner</string>
-<string name="Connect_Flashair">Connectez-vous à FlashAir manuellement à partir des paramètres</string>
-<string name="Connecting_to">Connexion à</string>     
+    <string name="Settings_Max_Recipients">Nombre maximal de destinataires atteint</string>
+    <string name="SourceNotfound">Source introuvable</string>
+    <string name="Settings_About">À propos</string>
+    <string name="UnableRecording">Impossible de démarrer l\'enregistrement. Une autre application d\'enregistreur est en cours d\'exécution.</string>
+    <string name="FileSizeMaximum">Comme la taille du fichier sélectionné dépasse la limite pour une pièce jointe d\'e-mail, il sera envoyé en plusieurs e-mails.</string>
+    <string name="WifiAllianze">Wi-Fi est une marque déposée de Wi-Fi Alliance.  </string>
+    <string name="Add">Ajouter</string>
+    <string name="Select">sélectionner</string>
+    <string name="Connect_Flashair">Connectez-vous à FlashAir manuellement à partir des paramètres</string>
+    <string name="Connecting_to">Connexion à</string>
     <!-- ODP-Resultcode -->
-    
+
     <!-- New Stings -->
 
     <string name="author_id">ID de l\'auteur</string>
@@ -329,11 +329,11 @@ N\'appuyez pas sur le bouton d\'accueil/de veille avant la fin de la transmissio
     <string name="Recording_Alerts_Copying_Resend">Copie du fichier pour le renvoi</string>
     <string name="invalid_recipient_email_alert_message">La ou les adresses E-mail suivantes ne sont pas valides \n</string>
     <string name="resend">Renvoyer</string>
-    
+
     <string name="recipient_hint_text">Entrer adresse e-mail</string>
-    
+
     <!-- ODP Strings -->
-    
+
     <string name="Ils_Result_Another_Email_Activated">Ce périphérique est déjà activé par une autre adresse e-mail. Voulez-vous changer l\'adresse e-mail ?</string>
     <string name="Ils_Result_No_Unused_Licence">Échec de l\'activation en raison d\'un manque de licences disponibles.
 Veuillez commander une licence supplémentaire.</string>
@@ -344,10 +344,14 @@ Veuillez commander une licence supplémentaire.</string>
     <string name="Ils_Result_Code_4012">Autre adresse e-mail activée</string>
 
     <!--Permission-->
-    <string name="muteNotification">Pour exécuter cette action, tapez sur "PARAMÈTRES", accédez à Informations sur l'application > Autorisations, puis accordez les autorisations suivantes et réessayez :
+    <string name="muteNotification">Pour exécuter cette action, tapez sur "PARAMÈTRES", accédez à Informations sur l\'application > Autorisations, puis accordez les autorisations suivantes et réessayez :
 </string>
     <string name="permissionReq">Autorisations requises</string>
     <string name="permission">Autorisation</string>
+    <string name="permissionAccess">Pour exécuter cette action, tapez sur "PARAMÈTRES", accédez à Informations sur l\'application > Autorisations, puis accordez les autorisations suivantes et réessayez :</string>
+    <string name="deny">Refuser</string>
+    <string name="allow">Autoriser</string>
+    <string name="turnOnLocation">Pour détecter FlashAir, vous devez autoriser l’emplacement.</string>
 
 
     <!--Foreground Service-->

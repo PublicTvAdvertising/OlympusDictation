@@ -3,6 +3,12 @@ package com.olympus.dmmobile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +16,7 @@ import java.util.Locale;
 import java.util.Vector;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -26,6 +33,11 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
 import android.net.Uri;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
@@ -33,10 +45,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.StatFs;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -71,6 +85,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.olympus.dmmobile.ConvertAndUploadService.UploadStatusChangeListener;
 import com.olympus.dmmobile.flashair.ChooserIntentListAdapter;
@@ -252,24 +267,26 @@ public class DMActivity extends FragmentActivity implements
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         setContentView(R.layout.activity_main);
+        Toast.makeText(DMActivity.this, "oncreate", Toast.LENGTH_SHORT).show();
+        isNetworkAvailable();
+        isOnline();
         SharedPreferences sharedPref = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
 
 
-
-
-        boolean firstRun = sharedPref.getBoolean("firstrun", true);
-        if (firstRun) {
-            String path = DMApplication.DEFAULT_DIR + "/Dictations/";
-            File pathFile = new File(path);
-            boolean success = deleteDirectory(pathFile);
-            if (success) {
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putBoolean("firstrun", false);
-                editor.commit();
+            boolean firstRun = sharedPref.getBoolean("firstrun", true);
+            if (firstRun) {
+                String path = DMApplication.DEFAULT_DIR + "/Dictations/";
+                File pathFile = new File(path);
+                boolean success = deleteDirectory(pathFile);
+                if (success) {
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("firstrun", false);
+                    editor.commit();
+                }
             }
-        }
         }
         dmApplication = (DMApplication) getApplication();
         dmApplication.setContext(this);
@@ -465,9 +482,14 @@ public class DMActivity extends FragmentActivity implements
                 getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
+       //Toast.makeText(DMActivity.this, "onResume", Toast.LENGTH_SHORT).show();
+
+        isNetworkAvailable();
+        isOnline();
         mDbHandler = dmApplication.getDatabaseHandler();
         try {
             setCurrentLanguage(dmApplication.getCurrentLanguage());
@@ -765,7 +787,11 @@ public class DMActivity extends FragmentActivity implements
                     mOutboxFragment = (OutboxTabFragment) mViewPagerAdapter
                             .getItem(1);
                 onRefreashList();
-                mOutboxFragment.getListAdapter().initCheckList();
+if(mOutboxFragment!=null)
+
+                    mOutboxFragment.getListAdapter().initCheckList();
+
+
 
                 break;
             case 2:
@@ -845,51 +871,49 @@ public class DMActivity extends FragmentActivity implements
                     final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                     boolean isGpsProviderEnabled = manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
                     boolean isNetworkProviderEnabled = manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-                    if (isGpsProviderEnabled&&isNetworkProviderEnabled) {
-                    pref = DMActivity.this.getSharedPreferences(PREFS_NAME, 0);
-                    mSettingsConfig = pref.getString("Activation", mActivation);
-                    pref = PreferenceManager.getDefaultSharedPreferences(this);
-                    int sendOption = Integer.parseInt(pref.getString(
-                            getString(R.string.send_key), "1"));
-                    WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                    if (wifi.isWifiEnabled()) {
-                        if (sendOption == 1) {
-                            startFlashAirActivity();
-                        } else if (sendOption == 2) {
-                            if (mSettingsConfig != null
-                                    && !mSettingsConfig
-                                    .equalsIgnoreCase("Not Activated")) {
+                    if (isGpsProviderEnabled && isNetworkProviderEnabled) {
+                        pref = DMActivity.this.getSharedPreferences(PREFS_NAME, 0);
+                        mSettingsConfig = pref.getString("Activation", mActivation);
+                        pref = PreferenceManager.getDefaultSharedPreferences(this);
+                        int sendOption = Integer.parseInt(pref.getString(
+                                getString(R.string.send_key), "1"));
+                        WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                        if (wifi.isWifiEnabled()) {
+                            if (sendOption == 1) {
                                 startFlashAirActivity();
-                            } else
-                                onShowNotActivatedDialog();
+                            } else if (sendOption == 2) {
+                                if (mSettingsConfig != null
+                                        && !mSettingsConfig
+                                        .equalsIgnoreCase("Not Activated")) {
+                                    startFlashAirActivity();
+                                } else
+                                    onShowNotActivatedDialog();
+                            }
+                        } else {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(
+                                    DMActivity.this);
+                            alert.setTitle(getString(R.string.Flashair_Alert_WiFi_Connection));
+                            alert.setMessage(getString(R.string.Flashair_Alert_WiFi_Accessible));
+                            alert.setPositiveButton(getString(R.string.Dictate_Alert_Ok),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            alert.create().show();
                         }
                     } else {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(
-                                DMActivity.this);
-                        alert.setTitle(getString(R.string.Flashair_Alert_WiFi_Connection));
-                        alert.setMessage(getString(R.string.Flashair_Alert_WiFi_Accessible));
-                        alert.setPositiveButton(getString(R.string.Dictate_Alert_Ok),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                        alert.create().show();
-                    }
-                }
-                else
-                    {
                         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setMessage("Your Location seems to be disabled, do you want to enable it?")
+                        builder.setMessage(getResources().getString(R.string.turnOnLocation))
                                 .setCancelable(false)
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                .setPositiveButton(getResources().getString(R.string.allow), new DialogInterface.OnClickListener() {
                                     public void onClick(final DialogInterface dialog, final int id) {
                                         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                                     }
                                 })
-                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getResources().getString(R.string.deny), new DialogInterface.OnClickListener() {
                                     public void onClick(final DialogInterface dialog, final int id) {
                                         dialog.cancel();
                                     }
@@ -2666,8 +2690,11 @@ public class DMActivity extends FragmentActivity implements
 
     @Override
     protected void onPause() {
+        Toast.makeText(DMActivity.this, "onPause", Toast.LENGTH_SHORT).show();
+
         if (dialog != null)
             dialog.dismiss();
+
         super.onPause();
     }
 
@@ -2912,7 +2939,9 @@ public class DMActivity extends FragmentActivity implements
 
     @Override
     public void onDestroy() {
+
         super.onDestroy();
+
         // Avoid Memory leaks
         // convertAndUploadService.showNotification(this);
 
@@ -3120,11 +3149,11 @@ public class DMActivity extends FragmentActivity implements
     }
 
     public boolean checkLocationPermission() {
-        boolean check=true;
+        boolean check = true;
         int permissiontakeCamera = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION);
         int[] perm = {permissiontakeCamera};
-        String[] stringPerm = {Manifest.permission.ACCESS_COARSE_LOCATION};
+        String[] stringPerm = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
         for (String permis : stringPerm) {
             if (!(ActivityCompat.checkSelfPermission(this, permis) == PackageManager.PERMISSION_GRANTED)) {
 
@@ -3138,6 +3167,7 @@ public class DMActivity extends FragmentActivity implements
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        String permissionTxt = "";
         if (permissions.length == 0) {
             return;
         }
@@ -3161,6 +3191,20 @@ public class DMActivity extends FragmentActivity implements
                         //allowed
                         Log.e("allowed", permission);
                     } else {
+                        if (permission.equalsIgnoreCase("android.permission.LOCATION")) {
+                            if (permissionTxt.equalsIgnoreCase("")) {
+                                permissionTxt += "Location";
+                            } else {
+                                permissionTxt += ",Location";
+                            }
+                        }
+                        if (permission.equalsIgnoreCase("android.permission.WRITE_EXTERNAL_STORAGE")) {
+                            if (permissionTxt.equalsIgnoreCase("")) {
+                                permissionTxt += "Storage";
+                            } else {
+                                permissionTxt += ",Storage";
+                            }
+                        }
                         //set to never ask again
                         Log.e("set to never ask again", permission);
                         somePermissionsForeverDenied = true;
@@ -3170,7 +3214,7 @@ public class DMActivity extends FragmentActivity implements
             if (somePermissionsForeverDenied) {
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                 alertDialogBuilder.setTitle("Permissions Required")
-                        .setMessage("To excute this action, tap SETTINGS go to App info> Permissions, then allow the following permission and try again\n\nPermission(Location)")
+                        .setMessage(getResources().getString(R.string.permissionAccess) + "\n\n" + getResources().getString(R.string.permission) + "(" + permissionTxt + ")")
                         .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -3196,5 +3240,79 @@ public class DMActivity extends FragmentActivity implements
             editor.commit();
             isLocationPermission = true;
         }
+    }
+
+    private Boolean isNetworkAvailable() {
+        boolean isonline = false;
+        final ConnectivityManager connection_manager =
+                (ConnectivityManager) this.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+//        Log.d("networkindConnect", activeNetworkInfo.getTypeName().toString());
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting()) {
+            isonline = isOnline();
+            if (isonline && activeNetworkInfo.getTypeName().toString().equalsIgnoreCase("MOBILE")) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    NetworkRequest.Builder request = new NetworkRequest.Builder();
+                    request.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR);
+
+                    connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
+
+                        @Override
+                        public void onAvailable(Network network) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                connection_manager.bindProcessToNetwork(network);
+
+                            } else {
+                                ConnectivityManager.setProcessDefaultNetwork(network);
+                            }
+                        }
+                    });
+                }
+            }
+            if (isonline && activeNetworkInfo.getTypeName().toString().equalsIgnoreCase("WIFI")) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    NetworkRequest.Builder request = new NetworkRequest.Builder();
+                    request.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR);
+
+                    connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
+
+                        @Override
+                        public void onAvailable(Network network) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                connection_manager.bindProcessToNetwork(network);
+
+                            } else {
+                                ConnectivityManager.setProcessDefaultNetwork(network);
+                            }
+                        }
+                    });
+                }
+            }
+        }
+        return isonline;
+    }
+
+    public Boolean isOnline() {
+        try {
+            Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
+            int returnVal = p1.waitFor();
+            boolean reachable = (returnVal == 0);
+            Log.d("networkindConnect", String.valueOf(reachable));
+
+            return reachable;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Toast.makeText(DMActivity.this, "onStop", Toast.LENGTH_SHORT).show();
+
     }
 }

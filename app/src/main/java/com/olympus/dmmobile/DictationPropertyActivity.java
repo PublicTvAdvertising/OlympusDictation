@@ -1582,7 +1582,7 @@ public String getStatusInString(int status){
 			if (somePermissionsForeverDenied) {
 				final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 				alertDialogBuilder.setTitle("Permissions Required")
-						.setMessage("To excute this action, tap SETTINGS go to App info> Permissions, then allow the following permission and try again\n\nPermission("+permissionTxt+")")
+						.setMessage(getResources().getString(R.string.permission)+"\n\n"+getResources().getString(R.string.permission)+"(" + permissionTxt + ")")
 						.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
