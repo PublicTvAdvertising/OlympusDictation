@@ -41,6 +41,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
@@ -144,7 +146,9 @@
             android:name=".settings.SplashActivity"
             android:screenOrientation="portrait"></activity>
 
-        <service android:name=".ConvertAndUploadService"></service>
+        <service android:name=".ConvertAndUploadService"
+           android:stopWithTask="false"
+           ></service>
 
         <activity
             android:name=".CustomDialog"

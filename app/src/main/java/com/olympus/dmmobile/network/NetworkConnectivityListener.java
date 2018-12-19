@@ -55,6 +55,7 @@ public class NetworkConnectivityListener {
 	    			if(!isNetworkAvailable())
 	    			DMApplication.setONLINE(false);
 	    		}
+
 	    		else {
 	    			mState = State.CONNECTED;
 	    			DMApplication.setONLINE(true);

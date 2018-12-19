@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.os.StrictMode;
 import android.support.v4.content.ContextCompat;
 
 import com.olympus.dmmobile.network.NetworkConnectivityListener;
@@ -265,6 +266,17 @@ public class DMApplication extends Application{
 		}
 		databaseHandler=new DatabaseHandler(getApplicationContext());
 		FlashAirState=false;
+
+
+				StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+						.detectAll()    // detect everything potentially suspect
+						.penaltyLog()   // penalty is to write to log
+						.build());
+				StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+						.detectAll()
+						.penaltyLog()
+						.build());
+
 		/*
 		 * To start a BroadcastReceiver for getting Network Connection states.
 		 */
@@ -282,13 +294,7 @@ public class DMApplication extends Application{
 		/*
 		 * To start background service.
 		 */
-	mBaseIntent= new Intent(DMApplication.this, ConvertAndUploadService.class);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-		startForegroundService(mBaseIntent);
-		} else {
-			startService(mBaseIntent);
-		}
 		//ContextCompat.startForegroundService(getContext(),mBaseIntent);
 	}
 	//************* Network Connectivity**************

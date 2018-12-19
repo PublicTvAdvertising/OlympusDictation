@@ -1566,7 +1566,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                             .equalsIgnoreCase("Not Activated"))
                         if (DMApplication.isONLINE()) {
                             getSettingsAttribute();
-                            Intent myService = new Intent(DictateActivity.this, ConvertAndUploadService.class);
+                          //  Intent myService = new Intent(DictateActivity.this, ConvertAndUploadService.class);
 
 //                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //                                startForegroundService(myService);

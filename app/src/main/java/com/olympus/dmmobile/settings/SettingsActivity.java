@@ -92,10 +92,10 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         // initialize tap event handler for server options button
         serverOptionsTapHandler = new ServerOptionsTapEventHandler(this);
         addPreferencesFromResource(R.xml.settings_preference);
-        if(DMApplication.COMINGFROM.equalsIgnoreCase("flash_air"))
+
 
         dmApplication = (DMApplication) getApplication();
-        dmApplication.setContext(this);
+        dmApplication.setContext(SettingsActivity.this);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         } else {

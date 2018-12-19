@@ -121,13 +121,25 @@ public class EmailOptionsActivity extends Activity {
         setValues();
         mContactchooser.setOnClickListener(new OnClickListener() {
 
-            @RequiresApi(api = Build.VERSION_CODES.M)
+
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 pref = getSharedPreferences("Conpermissions", MODE_PRIVATE);
                 isContactPermission = pref.getBoolean("Conperm", false);
                 if (checkContactPermission() && isContactPermission) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mEditRecipients.getWindowToken(), 0);
+                    mEditRecipients.setSelection(mEditRecipients.getText().length());
+                    if (dmApplication.getShowAlert() == 0) {
+                        doLaunchContactPicker(v);
+                    }
+                }
+            }
+            else
+                {
                     InputMethodManager imm = (InputMethodManager) getSystemService(
                             Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(mEditRecipients.getWindowToken(), 0);

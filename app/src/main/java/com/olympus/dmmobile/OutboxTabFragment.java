@@ -77,15 +77,21 @@ public class OutboxTabFragment extends Fragment {
      */
     public void onRefreshList(Cursor mCursor,Cursor mCursorEnable) {
     	if(mListAdapter != null) {
+try {
+	mListAdapter.changeCursor(mCursor);
+	mListAdapter.notifyDataSetChanged();
+	if(mCursorEnable!=null) {
+		if(mCursorEnable.getCount()>0)
+			mListAdapter.updateSendDeleteButtons(true);
+		else
+			mListAdapter.updateSendDeleteButtons(false);
+	}
 
-				mListAdapter.changeCursor(mCursor);
-				mListAdapter.notifyDataSetChanged();
-				if(mCursorEnable!=null) {
-					if(mCursorEnable.getCount()>0)
-						mListAdapter.updateSendDeleteButtons(true);
-					else
-						mListAdapter.updateSendDeleteButtons(false);
-				}
+}catch (Exception E)
+{
+	if(mCursor!=null)
+		mCursor.close();
+}
 
 
 

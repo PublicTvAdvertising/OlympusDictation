@@ -996,8 +996,16 @@ public void onEditDone(){
   		    	public void onClick(View v){
   		    		mEditDictationname.clearFocus();
   		    		mImageFile = new File(DMApplication.DEFAULT_DIR+"/Dictations/"+mDictCard.getSequenceNumber()+"/"+TEMP_IMAGE+".jpg");
-	    	        Uri outputFileUri = Uri.fromFile(mImageFile);
-  		    		Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
+					Uri outputFileUri=null;
+
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+						 outputFileUri=FileProvider.getUriForFile(getApplicationContext(),BuildConfig.APPLICATION_ID + ".provider", mImageFile);
+					}
+					else
+					{
+						 outputFileUri = Uri.fromFile(mImageFile);
+					}
+	    	        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
   		    		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
   				    startActivityForResult(cameraIntent, CAMERA_IMAGE_CAPTURE); 
   				    mAlertDialog.dismiss();

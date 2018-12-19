@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -836,7 +837,7 @@ public class ServerOptionsActivity extends FragmentActivity {
 		    		||!mAuthor.equals(mEditAuthor.getText().toString()) && flag==0){
 		    	
 
-		    	new MyDialogFragment(ServerOptionsActivity.this).show(getSupportFragmentManager(), "MyDialog");
+		    	new MyDialogFragment(ServerOptionsActivity.this).show(getFragmentManager(), "MyDialog");
 		    }
 		    else{
 		    	moveTosettings();
@@ -1044,7 +1045,10 @@ public class ServerOptionsActivity extends FragmentActivity {
 
 		        return alertDialogBuilder.create();
 		    }
+
+		public void show(FragmentManager fragmentManager, String myDialog) {
 		}
+	}
 	 @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -1247,6 +1251,7 @@ public class ServerOptionsActivity extends FragmentActivity {
 
 
 	}
+
 
 }
 

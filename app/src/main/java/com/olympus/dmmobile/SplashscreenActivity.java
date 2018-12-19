@@ -94,6 +94,7 @@ public class SplashscreenActivity extends Activity {
 	private WebServiceUpdate webServiceUpdate=null;
 	private final String FORCEQUIT_PREF_NAME = "force_quit";
 	private Handler mHandler = null;
+	private Intent mBaseIntent = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +123,19 @@ public class SplashscreenActivity extends Activity {
 	    	//mOlymCap=(ImageView)findViewById(R.id.olymcaption);
 	    	dmApplication.setContext(this);
 	    	dmApplication.setFlashAirState(false);
+
+
+
+			mBaseIntent= new Intent(SplashscreenActivity.this, ConvertAndUploadService.class);
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+				startForegroundService(mBaseIntent);
+			} else {
+				startService(mBaseIntent);
+			}
+
+
+
 	    	Locale.getDefault().getDisplayLanguage();
 	    	try {
 		    	mTxtAppver.setText("for Android Ver " + dmApplication.getApplicationVersion());

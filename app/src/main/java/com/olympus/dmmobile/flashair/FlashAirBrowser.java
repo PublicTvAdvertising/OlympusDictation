@@ -524,7 +524,7 @@ public class FlashAirBrowser extends FragmentActivity implements FolderSelectedL
 
 				@Override
 				public void onClick(View v) {
-					
+					DMApplication.COMINGFROM="flash_air";
 					mDownloadList = new ArrayList<DownloadFiles>();
 					mDownloadList.addAll(mSelectedList);
 					groupId=mDbHandler.getGroupId();
@@ -1676,5 +1676,5 @@ public class FlashAirBrowser extends FragmentActivity implements FolderSelectedL
 
 		    return sb.toString();
 		}
-	 
+
 }

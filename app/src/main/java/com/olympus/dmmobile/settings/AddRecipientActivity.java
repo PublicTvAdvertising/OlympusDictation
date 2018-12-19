@@ -263,9 +263,18 @@ public class AddRecipientActivity extends Activity implements
      * method to display contact application for selecting a recipient
      */
     private void showContactPicker() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         pref = getSharedPreferences("Conpermissions", MODE_PRIVATE);
         isContactPermission = pref.getBoolean("Conperm", false);
         if (checkContactPermission() && isContactPermission) {
+            Intent contactPickerIntent = new Intent(Intent.ACTION_PICK);
+            contactPickerIntent
+                    .setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
+            startActivityForResult(contactPickerIntent, CONTACT_PICKER_RESULT);
+        }
+    }
+    else
+        {
             Intent contactPickerIntent = new Intent(Intent.ACTION_PICK);
             contactPickerIntent
                     .setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);

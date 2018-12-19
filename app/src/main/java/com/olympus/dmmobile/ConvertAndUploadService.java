@@ -1,6 +1,7 @@
 package com.olympus.dmmobile;
 
 import android.annotation.TargetApi;
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +14,8 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -88,6 +91,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
     private Thread mQueryThread = null;
     private Handler mHandler5Minute = null;
     private Handler mHandler30Seconds = null;
+    private Handler mHandlerRetr30Seconds = null;
     private Handler mHandler20Seconds = null;
     private Cursor mConvertCursor = null;
     private Cursor mUploadCursor = null;
@@ -133,7 +137,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
     private String mErrorMessage = null;
     private String mPathQuery = null;
     private String mPreviousUploadedTime = null;
-    private final long mTimeLimitForHttpError = 30 * 1000;
+    private final long mTimeLimitForHttpError = 60 * 1000;
     private final long mTimeLimitForWaitingToSend = 20 * 1000;
     private final long mTimeLimitForWaitingToStopService = 20 * 1000;
     private long mIdleTime = -1;
@@ -227,6 +231,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         mDbHandlerQuerying = new DatabaseHandler(getApplicationContext());
         mHandler5Minute = new Handler();
         mHandler30Seconds = new Handler();
+        mHandlerRetr30Seconds = new Handler();
         mHandler20Seconds = new Handler();
         mDMApplication.
                 setUploadServiceContext(this);
@@ -262,6 +267,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 getSettingsAttribute();
                 mDbHandlerUpload.updateOnLaunch();
                 onUpdateList();
+
             } else
                 onMoveAllToTimeOut();
         } catch (Exception e) {
@@ -544,6 +550,9 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                         mFilesCards = null;
                         onUpdateList();
                         return;
+                    } finally {
+                        if(mConvertCursor!=null)
+                        mConvertCursor.close();
                     }
                 }
             }
@@ -574,6 +583,9 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                             mGroupOfDictationCard = new ArrayList<DictationCard>();
                             hasIdleStateRealeased = false;
                             isCurrentUploadingIsGoesToTimeOut = false;
+                            try {
+
+
                             do {
                                 mUploadCard = null;
                                 mUploadCard = mDbHandlerUpload.getSelectedDictation(mUploadCursor);
@@ -639,7 +651,13 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                     mGroupOfDictationCard.add(mUploadCard);
                                 }
                             } while (mUploadCursor.moveToNext());
-
+                            }
+                            catch (Exception e)
+                            {}
+                            finally {
+                                if(mUploadCursor!=null)
+                                mUploadCursor.close();
+                            }
                             mUploadCursor.close();
                             onUpdateList();
 
@@ -907,18 +925,21 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                         isInputStreaming = false;
                                         mInputStream = null;
                                     } catch (final Exception e) {
-                                        //setMobileConnectionEnabled(true);
-                                        Handler handler = new Handler(Looper.getMainLooper());
-                                        handler.post(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                        Log.d("serviceLogging", " upload file exception" + e.toString());
+//                                        Handler handler = new Handler(Looper.getMainLooper());
+//                                        handler.post(new Runnable() {
+//                                            @Override
+//                                            public void run() {
+//                                                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        });
+                                        //                      Log.d("serviceLogging", " upload file exception" + e.toString());
                                         mUploadResult = "http_error";
                                         //e.printStackTrace();
                                     } finally {
+                                        if(mUploadCursor!=null)
+                                        {
+                                            mUploadCursor.close();
+                                        }
                                         if (mUrlConnection instanceof HttpsURLConnection)
                                             mHttpsURLConnection.disconnect();
                                         else
@@ -1421,10 +1442,13 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                             isInputStreaming = false;
                                         } catch (Exception e) {
                                             //e.printStackTrace();
-                                   //         setMobileConnectionEnabled(true);
                                             Log.d("serviceLogging", "on upload exception" + e.toString());
                                             mUploadResult = "http_error";
                                         } finally {
+                                            if(mUploadCursor!=null)
+                                            {
+                                                mUploadCursor.close();
+                                            }
                                             if (mUrlConnection instanceof HttpsURLConnection)
                                                 mHttpsURLConnection.disconnect();
                                             else
@@ -1630,7 +1654,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
 
                 } catch (Exception e) {
                     //e.printStackTrace();
-                  //  setMobileConnectionEnabled(true);
+                    //setMobileConnectionEnabled(this,true);
                     isUploadThreadExecuting = false;
                     onUpdateList();
                     return;
@@ -1652,6 +1676,8 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             @Override
             public void run() {
                 try {
+                  retr();
+
                     if (!isQueryExecuting) {
                         Log.d("serviceLogging", "isQueryExecuting");
                         isQueryExecuting = true;
@@ -1664,6 +1690,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                             do {
                                 mQueryCard = mDbHandlerQuerying.getSelectedDictation(mQueryCursor);
                                 mQueryCard.setFilesList(mDbHandlerQuerying.getFileList(mQueryCard.getDictationId()));
+
                             } while (mQueryCursor.moveToNext());
                             mQueryCursor.close();
                             if (mQueryCard.getFilesList() != null && mQueryCard.getFilesList().size() > 0) {
@@ -1754,7 +1781,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                             mQueryAttributeObjects = mQueryXmlParser.parse(getLanguage());
                                         }
                                     } catch (final Exception e) {
-                               //         setMobileConnectionEnabled(true);
                                         Log.d("serviceLogging", " onquery dictation exception" + e.toString());
 
                                         mQueryResult = "http_error";
@@ -1952,6 +1978,10 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                     onUpdateList();
                     return;
                 }
+                finally {
+                    if(mQueryCursor!=null)
+                    mQueryCursor.close();
+                }
             }
         };
         mQueryThread.start();
@@ -1983,9 +2013,9 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
 
     @Override
     public void onDestroy() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            stopForeground(true); //true will remove notification
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            stopForeground(true); //true will remove notification
+//        }
         unregisterReceiver(mMessengerReceiver);
         super.onDestroy();
     }
@@ -2168,6 +2198,26 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         onUpdateList();
     }
 
+    public void retr() {
+        try {
+            if (mQueryCard == null)
+                isQueryExecuting = false;
+            if (DMApplication.isONLINE()) {
+                getSettingsAttribute();
+                mDbHandlerUpload.updateUploadRetryDictation(DictationStatus.RETRYING2.getValue());
+                mDbHandlerQuerying.updateQuerying5MinRetryDictation(DictationStatus.RETRYING2.getValue());
+                if (!hasUploadCounting)
+                    mDbHandlerUpload.updateUploadRetryDictation(DictationStatus.RETRYING1.getValue());
+                if (!hasQueryCounting)
+                    mDbHandlerQuerying.updateQuerying5MinRetryDictation(DictationStatus.RETRYING1.getValue());
+                if (!isQueryTimerStarted)
+                    mDbHandlerQuerying.updateQuery30SecRetryDictation();
+            }
+        } catch (Exception e) {
+        }
+        onUpdateList();
+    }
+
     /**
      * initiate all threads and change the status of dictation in recordings list.
      */
@@ -2194,8 +2244,11 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
 //                    notifManager.notify(1, notification);
 //                }
 //            }
-                if (!isQueryExecuting)
+                if (!isQueryExecuting) {
+
                     onQueryDictation();
+                }
+
             if (!isUploadThreadExecuting)
                 onUploadFile();
             if (!isConvertExecuting && !mDMApplication.isWaitConvertion())
@@ -2281,26 +2334,15 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 try {
 
                     if (hasUploadCounting && DMApplication.isONLINE()) {
+
                         mDbHandlerUpload.updateUploadRetryDictation(DictationStatus.RETRYING1.getValue());
                         Log.d("serviceLogging", "hasUploadCounting && DMApplication.isONLINE()");
-//                        Handler handler = new Handler(Looper.getMainLooper());
-//                        handler.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                Toast.makeText(getApplicationContext(), "hasUploadCounting && DMApplication.isONLINE()", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
+
 
                     } else if (hasUploadCounting) {
                         mDbHandlerUpload.updateWholeUploadToRetryDictation();
                         Log.d("serviceLogging", "hasUploadCounting");
-//                        Handler handler = new Handler(Looper.getMainLooper());
-//                        handler.post(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                Toast.makeText(getApplicationContext(), "hasUploadCounting", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
+
 
                     }
                     if (hasQueryCounting && DMApplication.isONLINE()) {
@@ -2328,10 +2370,12 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         mHandler30Seconds.postDelayed(new Runnable() {
             public void run() {
                 //   lis();
+
                 try {
-                    if (DMApplication.isONLINE())
+                    if (DMApplication.isONLINE()) {
                         mDbHandlerQuerying.updateQuery30SecRetryDictation();
-                    else
+                        onUploadFile();
+                    } else
                         mDbHandlerQuerying.updateWholeQueryToRetryDictation();
                 } catch (Exception e) {
                 }
@@ -2340,15 +2384,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             }
         }, mTimeLimitForWaitingToSend);
     }
-//private void test()
-//{
-//    mHandler20Seconds.postDelayed(new Runnable() {
-//        public void run() {
-//            lis();
-//
-//        }
-//    }, mTimeLimitForWaitingToSend);
-//}
+
 
     private void onStopService() {
         mHandler30Seconds.postDelayed(new Runnable() {
@@ -2476,37 +2512,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         return notification;
     }
 
-    public void lis() {
-        PhoneStateListener callStateListener = null;
-        TelephonyManager myTelephonyManager = null;
-
-        myTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-
-        callStateListener = new PhoneStateListener() {
-            public void onDataConnectionStateChanged(int state) {
-                switch (state) {
-                    case TelephonyManager.DATA_DISCONNECTED:
-                        Log.d("DataState: ", "Offline");
-                        // String stateString = "Offline";
-                        // Toast.makeText(getApplicationContext(),
-                        // stateString, Toast.LENGTH_LONG).show();
-                        break;
-                    case TelephonyManager.DATA_SUSPENDED:
-                        Log.d("DataState: ", "IDLE");
-                        // stateString = "Idle";
-                        // Toast.makeText(getApplicationContext(),
-                        // stateString, Toast.LENGTH_LONG).show();
-                        break;
-                    case TelephonyManager.DATA_CONNECTED:
-                        Log.d("DataState", "online");
-                }
-            }
-        };
-        myTelephonyManager.listen(callStateListener,
-                PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
-
-
-    }
 
     public Boolean isMobileDataEnabled() {
         Object connectivityService = getSystemService(CONNECTIVITY_SERVICE);
@@ -2523,8 +2528,5 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             return null;
         }
     }
-
-
-
 
 }

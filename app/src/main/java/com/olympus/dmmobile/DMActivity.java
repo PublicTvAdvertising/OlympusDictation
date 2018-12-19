@@ -19,6 +19,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -126,14 +127,15 @@ public class DMActivity extends FragmentActivity implements
     public native int editCopy(long size, String sourceFile, String destFile);
 
     private ExceptionReporter mReporter; // Error Logger
-
+    private final long mTimeLimitForWaitingToStopService = 20 * 1000;
+    private Handler mHandler30Seconds = null;
     private String SEND_TAG;
     private String SEND_ALL_TAG;
     private String DEL_TAG;
     private String DEL_ALL_TAG;
     private final String HIGH_PRIORITY_TAG = "high_priority";
     private final String LOW_PRIORITY_TAG = "low_priority";
-
+    private Intent mBaseIntent = null;
     private TabHost mTabHost;
     private DMActivityViewPager mViewPager;
     private ViewPagerAdapter mViewPagerAdapter = null;
@@ -254,7 +256,7 @@ public class DMActivity extends FragmentActivity implements
     private int mActionForDuplication = -1;
     private int mSelectedSize = -1;
     private GetAvailableDictationSlotTask mComputeAvailableDictSlot = null;
-    ConvertAndUploadService convertAndUploadService;
+    //ConvertAndUploadService convertAndUploadService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -267,7 +269,8 @@ public class DMActivity extends FragmentActivity implements
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
         setContentView(R.layout.activity_main);
-        Toast.makeText(DMActivity.this, "oncreate", Toast.LENGTH_SHORT).show();
+
+
         isNetworkAvailable();
         isOnline();
         SharedPreferences sharedPref = PreferenceManager
@@ -485,12 +488,15 @@ public class DMActivity extends FragmentActivity implements
 
     @Override
     protected void onResume() {
-        super.onResume();
-       //Toast.makeText(DMActivity.this, "onResume", Toast.LENGTH_SHORT).show();
 
+        super.onResume();
+
+
+        mDbHandler
+                .getOutboxDictationsToEnableSendAll();
         isNetworkAvailable();
         isOnline();
-        mDbHandler = dmApplication.getDatabaseHandler();
+
         try {
             setCurrentLanguage(dmApplication.getCurrentLanguage());
 
@@ -561,13 +567,15 @@ public class DMActivity extends FragmentActivity implements
                 if (dmApplication.getPreviousNetworkSSID() != null) {
                     if (dmApplication.getPreviousNetworkSSID().equals(
                             dmApplication.getFlashAirSSID()))
-                        wifi.disconnect();
+                    {
+                      //  wifi.disconnect();
+                    }
+
                     else {
                         dmApplication.setDictateUploading(true);
-                        connectWifi(dmApplication.getPreviousNetworkSSID());
+                       connectWifi(dmApplication.getPreviousNetworkSSID());
                     }
-                } else
-                    wifi.disconnect();
+                }
                 isOnceCalled = false;
             }
 
@@ -765,53 +773,63 @@ public class DMActivity extends FragmentActivity implements
 
         switch (mTabPosition) {
             case 0:
-                changeTabTextColor("Pending");
-                mBtnSendDelete.setVisibility(View.VISIBLE);
-                mBtnSendDeleteAll.setVisibility(View.VISIBLE);
-                mBtnSendDelete.setEnabled(false);
-                mBtnSendDeleteAll.setEnabled(true);
-                if (mPendingFragment == null)
-                    mPendingFragment = (PendingTabFragment) mViewPagerAdapter
-                            .getItem(0);
-                onRefreashList();
-                mPendingFragment.getListAdapter().initCheckList();
+                try {
+                    changeTabTextColor("Pending");
+                    mBtnSendDelete.setVisibility(View.VISIBLE);
+                    mBtnSendDeleteAll.setVisibility(View.VISIBLE);
+                    mBtnSendDelete.setEnabled(false);
+                    mBtnSendDeleteAll.setEnabled(true);
+                    if (mPendingFragment == null)
+                        mPendingFragment = (PendingTabFragment) mViewPagerAdapter
+                                .getItem(0);
+                    onRefreashList();
+                    mPendingFragment.getListAdapter().initCheckList();
+                } catch (Exception e) {
+
+                }
 
                 break;
             case 1:
-                changeTabTextColor("Outbox");
-                mBtnSendDelete.setVisibility(View.VISIBLE);
-                mBtnSendDeleteAll.setVisibility(View.VISIBLE);
-                mBtnSendDelete.setEnabled(false);
-                mBtnSendDeleteAll.setEnabled(true);
-                if (mOutboxFragment == null)
-                    mOutboxFragment = (OutboxTabFragment) mViewPagerAdapter
-                            .getItem(1);
-                onRefreashList();
-if(mOutboxFragment!=null)
+                try {
+                    changeTabTextColor("Outbox");
+                    mBtnSendDelete.setVisibility(View.VISIBLE);
+                    mBtnSendDeleteAll.setVisibility(View.VISIBLE);
+                    mBtnSendDelete.setEnabled(false);
+                    mBtnSendDeleteAll.setEnabled(true);
+                    if (mOutboxFragment == null)
+                        mOutboxFragment = (OutboxTabFragment) mViewPagerAdapter
+                                .getItem(1);
+                    onRefreashList();
+                    if (mOutboxFragment != null)
 
-                    mOutboxFragment.getListAdapter().initCheckList();
+                        mOutboxFragment.getListAdapter().initCheckList();
 
-
+                } catch (Exception e) {
+                }
 
                 break;
             case 2:
-                changeTabTextColor("Sent");
-                mBtnSendDelete.setEnabled(false);
-                if (mBtnSendDeleteAll.getTag().toString()
-                        .equalsIgnoreCase(DEL_ALL_TAG)) {
-                    mBtnSendDeleteAll.setEnabled(true);
+                try {
+                    changeTabTextColor("Sent");
                     mBtnSendDelete.setEnabled(false);
-                    mBtnSendDelete.setVisibility(View.VISIBLE);
-                    mBtnSendDeleteAll.setVisibility(View.VISIBLE);
-                } else if (mBtnSendDeleteAll.getTag().toString()
-                        .equalsIgnoreCase(SEND_ALL_TAG)) {
-                    mBtnSendDelete.setVisibility(View.INVISIBLE);
-                    mBtnSendDeleteAll.setVisibility(View.INVISIBLE);
+                    if (mBtnSendDeleteAll.getTag().toString()
+                            .equalsIgnoreCase(DEL_ALL_TAG)) {
+                        mBtnSendDeleteAll.setEnabled(true);
+                        mBtnSendDelete.setEnabled(false);
+                        mBtnSendDelete.setVisibility(View.VISIBLE);
+                        mBtnSendDeleteAll.setVisibility(View.VISIBLE);
+                    } else if (mBtnSendDeleteAll.getTag().toString()
+                            .equalsIgnoreCase(SEND_ALL_TAG)) {
+                        mBtnSendDelete.setVisibility(View.INVISIBLE);
+                        mBtnSendDeleteAll.setVisibility(View.INVISIBLE);
+                    }
+                    if (mSendFragment == null)
+                        mSendFragment = (SendTabFragment) mViewPagerAdapter.getItem(2);
+                    onRefreashList();
+                    mSendFragment.getListAdapter().initCheckList();
+                } catch (Exception e) {
+
                 }
-                if (mSendFragment == null)
-                    mSendFragment = (SendTabFragment) mViewPagerAdapter.getItem(2);
-                onRefreashList();
-                mSendFragment.getListAdapter().initCheckList();
                 break;
 
             default:
@@ -1224,7 +1242,7 @@ if(mOutboxFragment!=null)
         if (DMApplication.isONLINE()) {
             getSettingsAttribute();
             mWebServiceGetSettings = null;
-            Intent myService = new Intent(this, ConvertAndUploadService.class);
+            //  Intent myService = new Intent(this, ConvertAndUploadService.class);
 
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //                startForegroundService(myService);
@@ -2690,8 +2708,8 @@ if(mOutboxFragment!=null)
 
     @Override
     protected void onPause() {
-        Toast.makeText(DMActivity.this, "onPause", Toast.LENGTH_SHORT).show();
 
+        DMApplication.COMINGFROM = "flash_air_no";
         if (dialog != null)
             dialog.dismiss();
 
@@ -3312,7 +3330,9 @@ if(mOutboxFragment!=null)
     @Override
     protected void onStop() {
         super.onStop();
-        Toast.makeText(DMActivity.this, "onStop", Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(DMActivity.this, "onStop", Toast.LENGTH_SHORT).show();
 
     }
+
+
 }
