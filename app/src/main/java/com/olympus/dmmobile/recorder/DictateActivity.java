@@ -123,6 +123,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @version 1.0.1
@@ -355,9 +356,15 @@ public class DictateActivity extends Activity implements OnClickListener,
         public void run() {
 
             if (isRewinding == 1) {
+                totalDuration = getMilliseconsFromAFile(getFilename());
+                long seconds = TimeUnit.MILLISECONDS.toSeconds(totalDuration);
+                Log.d("TotalSize","Graphar"+String.valueOf(seconds));
 
+                double minusVariable=seconds>200?seconds/200:0.2;
                 int rewCurrentPosition = Graphbar.getProgress();
-                rewCurrentPosition = rewCurrentPosition - 5;
+
+                Log.d("TotalSize","minus variable"+String.valueOf(minusVariable));
+                rewCurrentPosition = rewCurrentPosition-1 ;
                 if (rewCurrentPosition >= 1) {
 
                     if (!isInsertionProcessRunning) {
@@ -3935,6 +3942,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                             if (mMediaPlayer.isPlaying())
                                 mMediaPlayer.pause();
                         }
+                        int totalSize=Graphbar.getProgress();
+
                         rewindThread.run();
                         break;
                     case MotionEvent.ACTION_UP:
