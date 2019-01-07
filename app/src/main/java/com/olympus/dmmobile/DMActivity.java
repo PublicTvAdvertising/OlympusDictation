@@ -275,8 +275,8 @@ public class DMActivity extends FragmentActivity implements
         isOnline();
         SharedPreferences sharedPref = PreferenceManager
                 .getDefaultSharedPreferences(this);
-
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
+        int buildVersion = Build.VERSION.SDK_INT;
+        if (buildVersion == 24 || buildVersion == 25) {
 
 
             boolean firstRun = sharedPref.getBoolean("firstrun", true);
@@ -492,8 +492,13 @@ public class DMActivity extends FragmentActivity implements
         super.onResume();
 
 
-        mDbHandler
+        Cursor outBoxDictation = mDbHandler
                 .getOutboxDictationsToEnableSendAll();
+        if (mDbHandler != null || outBoxDictation != null) {
+            outBoxDictation.close();
+            mDbHandler.close();
+        }
+
         isNetworkAvailable();
         isOnline();
 
@@ -566,20 +571,20 @@ public class DMActivity extends FragmentActivity implements
                 }
                 if (dmApplication.getPreviousNetworkSSID() != null) {
                     if (dmApplication.getPreviousNetworkSSID().equals(
-                            dmApplication.getFlashAirSSID()))
-                    {
-                      //  wifi.disconnect();
-                    }
+                            dmApplication.getFlashAirSSID())) {
 
-                    else {
+                    } else {
                         dmApplication.setDictateUploading(true);
-                       connectWifi(dmApplication.getPreviousNetworkSSID());
+                        connectWifi(dmApplication.getPreviousNetworkSSID());
                     }
                 }
                 isOnceCalled = false;
             }
 
         } catch (Exception e) {
+            if (mDbHandler != null) {
+                mDbHandler.close();
+            }
         }
         dmApplication.setFlashAirState(false);
 
@@ -1384,32 +1389,43 @@ public class DMActivity extends FragmentActivity implements
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        switch (mTabPosition) {
-                            case 0:
-                                mCursor = mDbHandler.getDictationsInPendingAll();
-                                break;
-                            case 1:
-                                mCursor = mDbHandler
-                                        .getOutboxDictationsToEnableDeleteAll();
-                                break;
-                            case 2:
-                                mCursor = mDbHandler.getSentDictations();
-                                break;
-                            default:
-                                break;
+                        try {
+
+
+                            dialog.dismiss();
+                            switch (mTabPosition) {
+                                case 0:
+                                    mCursor = mDbHandler.getDictationsInPendingAll();
+                                    break;
+                                case 1:
+                                    mCursor = mDbHandler
+                                            .getOutboxDictationsToEnableDeleteAll();
+                                    break;
+                                case 2:
+                                    mCursor = mDbHandler.getSentDictations();
+                                    break;
+                                default:
+                                    break;
+                            }
+                            if (mCursor.moveToFirst()) {
+                                do {
+                                    mDictationCard = mDbHandler
+                                            .getSelectedDicts(mCursor);
+                                    onDeleteDictations();
+                                } while (mCursor.moveToNext());
+                            }
+                            if (mCursor != null)
+                                mCursor.close();
+                            onRefreashList();
+                            mSelectedList.clear();
+                            enableSendDeleteButton(0);
+                        } catch (Exception e) {
+                            if (mCursor != null)
+                                mCursor.close();
+                        } finally {
+                            if (mCursor != null)
+                                mCursor.close();
                         }
-                        if (mCursor.moveToFirst()) {
-                            do {
-                                mDictationCard = mDbHandler
-                                        .getSelectedDicts(mCursor);
-                                onDeleteDictations();
-                            } while (mCursor.moveToNext());
-                        }
-                        mCursor.close();
-                        onRefreashList();
-                        mSelectedList.clear();
-                        enableSendDeleteButton(0);
                     }
                 });
         mBuilder.setNegativeButton(getString(R.string.Recording_Alerts_Cancel),
@@ -2051,26 +2067,38 @@ public class DMActivity extends FragmentActivity implements
         emailGroupFileSize = 0;
         hasMultipleSplits = false;
         hasNoEncript = false;
-        if (isSendAll) {
-            switch (mTabPosition) {
-                case 0:
-                    mCursor = mDbHandler.getDictationsInPendingAll();
-                    break;
-                case 1:
-                    mCursor = mDbHandler.getOutboxDictationsToEnableSendAll();
-                    break;
-            }
-            if (mCursor.moveToFirst()) {
-                do {
-                    mDictationCard = mDbHandler.getSelectedDicts(mCursor);
+        try {
+
+
+            if (isSendAll) {
+                switch (mTabPosition) {
+                    case 0:
+                        mCursor = mDbHandler.getDictationsInPendingAll();
+                        break;
+                    case 1:
+                        mCursor = mDbHandler.getOutboxDictationsToEnableSendAll();
+                        break;
+                }
+                if (mCursor.moveToFirst()) {
+                    do {
+                        mDictationCard = mDbHandler.getSelectedDicts(mCursor);
+                        onSendToServerHandler();
+                    } while (mCursor.moveToNext());
+                }
+                mCursor.close();
+            } else {
+                for (int i : mSelectedList) {
+                    mDictationCard = mDbHandler.getDictationCardWithId(i);
                     onSendToServerHandler();
-                } while (mCursor.moveToNext());
+                }
             }
-            mCursor.close();
-        } else {
-            for (int i : mSelectedList) {
-                mDictationCard = mDbHandler.getDictationCardWithId(i);
-                onSendToServerHandler();
+        } catch (Exception e) {
+            if (mCursor != null) {
+                mCursor.close();
+            }
+        } finally {
+            if (mCursor != null) {
+                mCursor.close();
             }
         }
         onRefreashList();
@@ -3178,7 +3206,11 @@ public class DMActivity extends FragmentActivity implements
                 check = false;
             }
         }
-        ActivityCompat.requestPermissions(this, stringPerm, 1);
+
+            ActivityCompat.requestPermissions(this, stringPerm, 1);
+
+
+
         return check;
 
     }
@@ -3209,7 +3241,7 @@ public class DMActivity extends FragmentActivity implements
                         //allowed
                         Log.e("allowed", permission);
                     } else {
-                        if (permission.equalsIgnoreCase("android.permission.LOCATION")) {
+                        if (permission.equalsIgnoreCase("android.permission.ACCESS_COARSE_LOCATION")) {
                             if (permissionTxt.equalsIgnoreCase("")) {
                                 permissionTxt += "Location";
                             } else {

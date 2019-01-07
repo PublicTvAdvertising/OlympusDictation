@@ -1,5 +1,7 @@
 package com.olympus.dmmobile.webservice;
 
+import android.net.TrafficStats;
+
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -206,6 +208,7 @@ public class WebserviceHandler {
 			request.addHeader("X-ILS-Authorization",
 					"Basic " + base64value.trim());
 			if (DMApplication.isONLINE()) {
+				TrafficStats.setThreadStatsTag(10000);
 				response = httpClient.execute(request);
 				strResponse = EntityUtils.toString(response.getEntity());
 			}

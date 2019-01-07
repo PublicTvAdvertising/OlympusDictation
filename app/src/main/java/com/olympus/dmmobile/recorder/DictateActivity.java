@@ -185,7 +185,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     public static boolean isCallActive = false;
     public static int SavedDicID;
     private String TotalDur;
-    private String passedModeName;
+    private String passedModeName = "";
     private String passedFileName;
     private DictationCard passedDictationCard;
     private String mAuthor; // get author from settings
@@ -361,6 +361,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                 if (rewCurrentPosition >= 1) {
 
                     if (!isInsertionProcessRunning) {
+                        Log.d("insertOverwrite", "rewindThread rewCurrentPosition >= 1");
                         Graphbar.setProgress(rewCurrentPosition);
                         if (mMediaPlayer != null) {
                             mMediaPlayer
@@ -377,6 +378,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
                 } else {
                     if (!isInsertionProcessRunning) {
+                        Log.d("insertOverwrite", "rewindThread rewCurrentPosition >= 1 else");
                         Graphbar.setProgress(0);
                         if (mMediaPlayer != null) {
                             mMediaPlayer.seekTo(0);
@@ -396,8 +398,9 @@ public class DictateActivity extends Activity implements OnClickListener,
         public void run() {
             if (isForwarding == 1) {
                 int fwdCurrentPosition = Graphbar.getProgress();
-                fwdCurrentPosition = fwdCurrentPosition + 5;
+                fwdCurrentPosition = fwdCurrentPosition + 1;
                 if (fwdCurrentPosition < Graphbar.getMax()) {
+                    Log.d("insertOverwrite", "forwardThread1 fwdCurrentPosition < Graphbar.getMax()");
                     Graphbar.setProgress(fwdCurrentPosition);
                     if (mMediaPlayer != null) {
                         mMediaPlayer
@@ -407,6 +410,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                     pausePosition = getMMcurrentPos(fwdCurrentPosition);
                 } else {
                     disableForward();
+                    Log.d("insertOverwrite", "forwardThread1 fwdCurrentPosition < Graphbar.getMax() else");
+
                     Graphbar.setProgress(Graphbar.getMax());
                     bNew.setEnabled(true);
                     bNew.setBackgroundResource(R.drawable.dictate_new_selector);
@@ -468,12 +473,14 @@ public class DictateActivity extends Activity implements OnClickListener,
         IntentFilter filter = new IntentFilter(Intent.ACTION_SHUTDOWN);
         filter.addAction(Intent.ACTION_BATTERY_CHANGED);
         filter.addAction("android.intent.action.PHONE_STATE");
+
         filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         baseIntent = this.registerReceiver(deviceLockInterrupt, filter);
 
         outGoingCallReciever = new OutgoingCallReceiver();
         IntentFilter outgoingCallFilter = new IntentFilter(Intent.ACTION_NEW_OUTGOING_CALL);
+        outgoingCallFilter.addAction("android.intent.action.PHONE_STATE");
         baseIntent = this.registerReceiver(outGoingCallReciever, outgoingCallFilter);
 
         /**
@@ -630,10 +637,12 @@ public class DictateActivity extends Activity implements OnClickListener,
                         CharSequence notificationName = "Default";
                         CharSequence notifySubTitle = dictCard
                                 .getDictationName();
-                        if ((!isReview && !(passedModeName
-                                .equals(DMApplication.MODE_EDIT_RECORDING)))) {
+                        if (passedModeName != null) {
+                            if ((!isReview && !(passedModeName
+                                    .equals(DMApplication.MODE_EDIT_RECORDING)))) {
 
-                            passedModeName = "";
+                                passedModeName = "";
+                            }
                         }
                         Intent intent;
                         PendingIntent pendingIntent;
@@ -679,7 +688,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                             builder.setContentTitle(notifySubTitle)                            // required
                                     .setSmallIcon(icon)   // required
                                     .setColor(getResources().getColor(R.color.black))
-
+                                    .setDefaults(Notification.DEFAULT_SOUND)
                                     .setContentText("Recording..") // required
                                     .setPriority(Notification.PRIORITY_HIGH)
 
@@ -701,30 +710,34 @@ public class DictateActivity extends Activity implements OnClickListener,
                             dictCard.getStatus());
                 } else if ((!isRecording
                         || (Graphbar.getProgress() != Graphbar.getMax())) && !isNew) {
-                    if (!isReview && !(passedModeName.equals(DMApplication.MODE_EDIT_RECORDING))) {
-                        SavedDicID = dictCard.getDictationId();
-                        passedModeName = "";
-                        Intent intent = getIntent();
-                        intent.putExtra(DMApplication.START_MODE_TAG,
-                                passedModeName);
-                        setIntent(intent);
+                    if (passedModeName != null) {
+                        if (!isReview && !(passedModeName.equals(DMApplication.MODE_EDIT_RECORDING))) {
+                            SavedDicID = dictCard.getDictationId();
+                            passedModeName = "";
+                            Intent intent = getIntent();
+                            intent.putExtra(DMApplication.START_MODE_TAG,
+                                    passedModeName);
+                            setIntent(intent);
+                        }
                     }
                 }
                 if ((Graphbar.getProgress() == Graphbar.getMax() || (Graphbar.getProgress() != Graphbar.getMax())) && !isReview && !isNew) {
                     SavedDicID = dictCard.getDictationId();
-                    if (!(passedModeName.equals(DMApplication.MODE_EDIT_RECORDING)))
-                        passedModeName = "";
+                    if (passedModeName != null) {
+                        if (!(passedModeName.equals(DMApplication.MODE_EDIT_RECORDING)))
+                            passedModeName = "";
+                    }
                     dmApplication.passMode = "";
                     Intent intent = getIntent();
                     intent.putExtra(DMApplication.START_MODE_TAG, passedModeName);
                     setIntent(intent);
                 }
-
-                if (passedModeName.equals(DMApplication.MODE_COPY_RECORDING)) {
-                    dictCard.setRecEndDate(dmApplication.getDeviceTime());
-                    mDbHandler.updateRecEndDate(dictCard);
+                if (passedModeName != null) {
+                    if (passedModeName.equals(DMApplication.MODE_COPY_RECORDING)) {
+                        dictCard.setRecEndDate(dmApplication.getDeviceTime());
+                        mDbHandler.updateRecEndDate(dictCard);
+                    }
                 }
-
                 if (mMediaPlayer != null) {
                     if (mMediaPlayer.isPlaying()) {
                         SavedDicID = dictCard.getDictationId();
@@ -742,20 +755,24 @@ public class DictateActivity extends Activity implements OnClickListener,
                     keepName = tvTitle.getText().toString();
                     retainFlag = true;
                 }
-                if (!isNew && !isReview && !isPropertyClicked
-                        && !passedModeName.equals("")) {
+                if (passedModeName != null) {
+                    if (!isNew && !isReview && !isPropertyClicked
+                            && !passedModeName.equals("")) {
 
-                    if (!(Graphbar.getProgress() != Graphbar.getMax())) {
-                        updateTimerandgraph();
+                        if (!(Graphbar.getProgress() != Graphbar.getMax())) {
+                            updateTimerandgraph();
+                        }
+
                     }
-
                 }
-                if (passedModeName.equals(DMApplication.MODE_REVIEW_RECORDING)) {
-                    if (timer != null || mptimer != null) {
-                        timer.cancel();
-                        task.cancel();
-                        mptimer.cancel();
-                        mpTimertask.cancel();
+                if (passedModeName != null) {
+                    if (passedModeName.equals(DMApplication.MODE_REVIEW_RECORDING)) {
+                        if (timer != null || mptimer != null) {
+                            timer.cancel();
+                            task.cancel();
+                            mptimer.cancel();
+                            mpTimertask.cancel();
+                        }
                     }
                 }
                 if (isNew && !isFolderButtonTouched) {
@@ -912,6 +929,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                             recorderSetEnable(false);
 
                             if (Graphbar.getProgress() == Graphbar.getMax()) {
+                                Log.d("insertOverwrite", "onclick playButtonState == MediaMode.PAUSE");
+
                                 Graphbar.setProgress(0);
                             }
                             int re = (int) getMMcurrentPos(Graphbar
@@ -1566,7 +1585,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                             .equalsIgnoreCase("Not Activated"))
                         if (DMApplication.isONLINE()) {
                             getSettingsAttribute();
-                          //  Intent myService = new Intent(DictateActivity.this, ConvertAndUploadService.class);
+                            //  Intent myService = new Intent(DictateActivity.this, ConvertAndUploadService.class);
 
 //                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 //                                startForegroundService(myService);
@@ -1853,10 +1872,13 @@ public class DictateActivity extends Activity implements OnClickListener,
     @Override
     protected void onResume() {
         super.onResume();
-        if(DMApplication.MODE_REVIEW_RECORDING.equalsIgnoreCase("review"))
-        {
-            coming=1;
+
+//      if (RequestActivityshown||DMApplication.DIC_PROP) {
+        if (DMApplication.MODE_REVIEW_RECORDING.equalsIgnoreCase("review")) {
+            coming = 1;
+
         }
+        DMApplication.DIC_PROP = false;
         //coming = getIntent().getIntExtra("coming", 0);
         isNavigatedToAnotherScreen = false;
         checkForwordIsEnabled = false;
@@ -1883,9 +1905,10 @@ public class DictateActivity extends Activity implements OnClickListener,
         isBackpressed = false;
         IsOtherRecorderActive = false;
         isPropertyClicked = false;
-
-        if (!isRecording && passedModeName != "") {
-            isOncePaused = false;
+        if (passedModeName != null) {
+            if (!isRecording && passedModeName != "") {
+                isOncePaused = false;
+            }
         }
 
         if (isPushToTalk) {
@@ -1987,8 +2010,10 @@ public class DictateActivity extends Activity implements OnClickListener,
                         && !dmApplication.passMode.equals(DMApplication.MODE_REVIEW_RECORDING)) {
                     if (!isNew
                             && (Graphbar.getProgress() == Graphbar.getMax() || Graphbar.getProgress() == 0)) {
-                        if (passedModeName.equals(""))
-                            passedModeName = dmApplication.passMode;
+                        if (passedModeName != null) {
+                            if (passedModeName.equals(""))
+                                passedModeName = dmApplication.passMode;
+                        }
                     }
                 }
             } catch (Exception e) {
@@ -2060,28 +2085,30 @@ public class DictateActivity extends Activity implements OnClickListener,
                         dictCard.setIsConverted(0);
                         mDbHandler.updateIsConverted(dictCard);
                         dictCard.setFilesList(null);
-
-                        if (dmApplication.isRecordingsClickedDMActivity()) {
-                            if (!IsAlreadyActive) {
+                        if (passedModeName != null) {
+                            if (dmApplication.isRecordingsClickedDMActivity()) {
+                                if (!IsAlreadyActive) {
+                                    if (isInsert) {
+                                        tbOverwrite.performClick();
+                                    }
+                                }
+                            } else if (passedModeName
+                                    .equals(DMApplication.MODE_COPY_RECORDING)) {
                                 if (isInsert) {
                                     tbOverwrite.performClick();
                                 }
-                            }
-                        } else if (passedModeName
-                                .equals(DMApplication.MODE_COPY_RECORDING)) {
-                            if (isInsert) {
-                                tbOverwrite.performClick();
-                            }
 
+                            }
                         }
-
                         mDbHandler.deleteFileList(dictCard);
-                        if (passedModeName
-                                .equals(DMApplication.MODE_COPY_RECORDING)) {
-                            dictCard.setStatus(DictationStatus.NEW.getValue());
-                            mDbHandler.updateDictationStatus(
-                                    dictCard.getDictationId(),
-                                    dictCard.getStatus());
+                        if (passedModeName != null) {
+                            if (passedModeName
+                                    .equals(DMApplication.MODE_COPY_RECORDING)) {
+                                dictCard.setStatus(DictationStatus.NEW.getValue());
+                                mDbHandler.updateDictationStatus(
+                                        dictCard.getDictationId(),
+                                        dictCard.getStatus());
+                            }
                         }
                         AUDIO_FILE_NAME = dictCard.getDictFileName();
                         mDictationDir = new File(
@@ -2106,6 +2133,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                         updateTimerandgraph();
 
                         if (!IsAlreadyActive) {
+                            Log.d("insertOverwrite", "onresume");
+
                             Graphbar.setProgress(Graphbar.getMax());
                         }
                         if (Graphbar.getProgress() < 1) {
@@ -2126,17 +2155,20 @@ public class DictateActivity extends Activity implements OnClickListener,
                         imbSend.setImageResource(R.drawable.dictate_send_selector);
                         imbDelete
                                 .setImageResource(R.drawable.dictate_delete_selector);
+                        if (passedModeName != null) {
+                            if (passedModeName
+                                    .equals(DMApplication.MODE_COPY_RECORDING)
+                                    && dmApplication.isPropertyClicked()) {
+                                Log.d("insertOverwrite", "onResume");
 
-                        if (passedModeName
-                                .equals(DMApplication.MODE_COPY_RECORDING)
-                                && dmApplication.isPropertyClicked()) {
-                            Graphbar.setProgress(Graphbar.getMax());
-                            dmApplication.setPropertyClicked(false);
-                            triggerDictationProperty();
-                            isPropertyClicked = true;
+                                Graphbar.setProgress(Graphbar.getMax());
+                                dmApplication.setPropertyClicked(false);
+                                triggerDictationProperty();
+                                isPropertyClicked = true;
+                            }
+                        } else {
+                            setPassedModeToNew();
                         }
-                    } else {
-                        setPassedModeToNew();
                     }
                     tvTimeRight.setVisibility(View.VISIBLE);
                 } else if (passedModeName
@@ -2188,6 +2220,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                             bNew.setEnabled(true);
                             bPlay.setEnabled(true);
                             bRewind.setEnabled(true);
+                            Log.d("insertOverwrite", "onresume");
+
                             Graphbar.setProgress(Graphbar.getMax());
                             if (dmApplication.isPropertyClicked()) {
                                 dmApplication.setPropertyClicked(false);
@@ -2235,6 +2269,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                     }
                 }
                 if (passedModeName.equals(DMApplication.MODE_COPY_RECORDING)) {
+                    Log.d("insertOverwrite", "onresume");
                     Graphbar.setProgress(Graphbar.getMax());
                 }
             }
@@ -2322,6 +2357,7 @@ public class DictateActivity extends Activity implements OnClickListener,
             baseIntent = null;
         }
         dmApplication.setWantToShowDialog(false);
+        // }
     }
 
     /**
@@ -2848,23 +2884,30 @@ public class DictateActivity extends Activity implements OnClickListener,
         if (amoungToupdate == 0) {
             amoungToupdate = (int) passedTotalDuration / 500;
         }
+
         if (isOncePaused) {
             if (!isInsert) {
+                Log.d("insertOverwrite", "update timer graph if (!isInsert)");
                 Graphbar.setProgress((int) getGBcurrentPos(pausePosition));
                 mediaPlayerUpdateTimer((int) pausePosition);
                 if (Graphbar.getMax() == Graphbar.getProgress()) {
                     disableForward();
                 }
             } else {
+                Log.d("insertOverwrite", "update timer graph else");
+
                 Graphbar.setProgress((int) getGBcurrentPos((int) pausePosition) - 1);
                 mediaPlayerUpdateTimer((int) (pausePosition) - 1);
             }
         } else {
             if (!isCallActive) {
+                Log.d("insertOverwrite", "update timer graph if (isOncePaused) { else ");
+
                 Graphbar.setProgress(Graphbar.getMax());
             }
             mediaPlayerUpdateTimer(getMMcurrentPos(Graphbar.getMax()));
             disableForward();
+
         }
     }
 
@@ -3069,6 +3112,8 @@ public class DictateActivity extends Activity implements OnClickListener,
 
 
             if (Graphbar.getMax() == Graphbar.getProgress()) {
+                Log.d("insertOverwrite", "media player prepare audio file");
+
                 Graphbar.setProgress(0);
             }
 
@@ -3108,6 +3153,13 @@ public class DictateActivity extends Activity implements OnClickListener,
                                             * Graphbar.getProgress() >= InsideMMduration)) {
                                         int tempP = Graphbar.getProgress();
                                         tempP += 1;
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Log.d("insertOverwrite", "media player prepare audio file inside timer");
+
+                                            }
+                                        });
                                         Graphbar.setProgress(tempP);
                                         enableRewindandForward();
                                     }
@@ -3119,32 +3171,46 @@ public class DictateActivity extends Activity implements OnClickListener,
                 });
             }
         };
-        timer = new Timer();
-        timer.schedule(task, 0, amoungToupdate);
-        // TimerTask for updating the timer while playing
-        mpTimertask = new TimerTask() {
-            @Override
-            public void run() {
-                Graphbar.post(new Runnable() {
-                    @Override
-                    public void run() {
+        try {
 
-                        if (mMediaPlayer != null) {
-                            if (playButtonState == MediaMode.PLAY) {
-                                if (mMediaPlayer.isPlaying()) {
-                                    mediaPlayerUpdateTimer(mMediaPlayer
-                                            .getCurrentPosition());
+
+            timer = new Timer();
+            timer.schedule(task, 0, amoungToupdate);
+            // TimerTask for updating the timer while playing
+            mpTimertask = new TimerTask() {
+                @Override
+                public void run() {
+                    Graphbar.post(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (mMediaPlayer != null) {
+                                if (playButtonState == MediaMode.PLAY) {
+                                    if (mMediaPlayer.isPlaying()) {
+                                        mediaPlayerUpdateTimer(mMediaPlayer
+                                                .getCurrentPosition());
+                                    }
                                 }
                             }
                         }
-                    }
-                });
-            }
-        };
+                    });
+                }
+            };
+
         // Scheduled in each second
         mptimer = new Timer();
         mptimer.schedule(mpTimertask, 0, 1000);
-        // OnCompletion listener for reseting the player view when the
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        // ion listener for reseting the player view when the
         // MediaPlayer playing gets stopped.
         mMediaPlayer.setOnCompletionListener(new OnCompletionListener() {
 
@@ -3162,6 +3228,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                     imbFiles.setImageResource(R.drawable.dictate_files_selector);
                 }
                 pausePosition = getMMcurrentPos(Graphbar.getMax());
+                Log.d("insertOverwrite", "on complate listener");
+
                 Graphbar.setProgress(Graphbar.getMax());
                 tvTimeLeft.setText(tvTimeRight.getText());
                 bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
@@ -3232,6 +3300,8 @@ public class DictateActivity extends Activity implements OnClickListener,
      */
     private void disableForward() {
         if (!isVcvaEnabled && !isCallActive) {
+            Log.d("insertOverwrite", "disableForward");
+
             Graphbar.setProgress(Graphbar.getMax());
         }
         bForward.setBackgroundResource(R.drawable.dictate_forward_sel);
@@ -3246,6 +3316,8 @@ public class DictateActivity extends Activity implements OnClickListener,
      */
     private void disableRewind() {
         if (!isVcvaEnabled) {
+            Log.d("insertOverwrite", "disable rewind");
+
             Graphbar.setProgress(0);
         }
         if (!isRecording) {
@@ -3326,10 +3398,15 @@ public class DictateActivity extends Activity implements OnClickListener,
         Drawable d = new BitmapDrawable(getResources(),
                 mWavegraph.getSoundWavegraph());
         int tempProgress = Graphbar.getProgress();
+
+        Log.d("insertOverwrite", "draw wave graph 0");
+
         Graphbar.setProgress(0);
         Rect bounds = Graphbar.getProgressDrawable().getBounds();
+        Log.d("insertOverwrite", "draw wave graph d");
         Graphbar.setProgressDrawable(d);
         Graphbar.getProgressDrawable().setBounds(bounds);
+        Log.d("insertOverwrite", "draw wave graph temp progress");
         Graphbar.setProgress(tempProgress);
 
         Graphbar.setOnTouchListener(new OnTouchListener() {
@@ -3374,6 +3451,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
         // Refresh the widget save the graphbar status to temp values
         int tempProgress = Graphbar.getProgress();
+        Log.d("insertOverwrite", "draw wave graph 0 refresh the widget");
         Graphbar.setProgress(0);
 
         Rect bounds = Graphbar.getProgressDrawable().getBounds();
@@ -3383,6 +3461,7 @@ public class DictateActivity extends Activity implements OnClickListener,
 
         // Replace the temp values to new graphbar
         Graphbar.getProgressDrawable().setBounds(bounds);
+        Log.d("insertOverwrite", "draw wave graph temp values to grapher");
         Graphbar.setProgress(tempProgress);
         Graphbar.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -3843,10 +3922,14 @@ public class DictateActivity extends Activity implements OnClickListener,
                             updateTimerandgraph();
                             bPlay.setBackgroundResource(R.drawable.dictate_pause_selector);
                             recorderSetEnable(false);
-                            if (!isOncePaused)
+                            if (!isOncePaused) {
+                                Log.d("insertOverwrite", "set rewind forward ontouch if");
                                 Graphbar.setProgress(Graphbar.getMax());
-                            else
+                            } else {
+                                Log.d("insertOverwrite", "set rewind forward ontouch else");
+
                                 Graphbar.setProgress((int) getGBcurrentPos(pausePosition));
+                            }
                         }
                         if (mMediaPlayer != null) {
                             if (mMediaPlayer.isPlaying())
@@ -4009,7 +4092,8 @@ public class DictateActivity extends Activity implements OnClickListener,
                     card.setStatus(DictationStatus.PENDING.getValue());
                     mDbHandler.updateStatusAndActive(card);
                 }
-                cur.close();
+                if (cur != null)
+                    cur.close();
             }
         } else
             isSendClicked = false;
@@ -4036,6 +4120,8 @@ public class DictateActivity extends Activity implements OnClickListener,
         passedModeName = DMApplication.MODE_NEW_RECORDING;
         mSignalometer.setProgress(0);
         mOverwriteSignalometer.setProgress(0);
+        Log.d("insertOverwrite", "initializr record views");
+
         Graphbar.setProgress(0);
         tvWorktype.setEnabled(true);
         disableRewindandForward();
@@ -4571,18 +4657,28 @@ public class DictateActivity extends Activity implements OnClickListener,
         file = new File(DMApplication.DEFAULT_DIR + "/Dictations/"
                 + dictCard.getSequenceNumber() + "/",
                 dictCard.getDictationName() + ".amr");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             uris.add(FileProvider.getUriForFile(DictateActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
         }
+        else
+        {
+            uris.add(Uri.fromFile(file));
+        }
 
-        // uris.add(Uri.fromFile(file));
+        //
         if (dictCard.getIsThumbnailAvailable() == 1) {
 
             file = new File(DMApplication.DEFAULT_DIR + "/Dictations/"
                     + dictCard.getSequenceNumber() + "/"
                     + dictCard.getDictationName() + ".jpg");
-            uris.add(FileProvider.getUriForFile(DictateActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
-            //  uris.add(Uri.fromFile(file));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                uris.add(FileProvider.getUriForFile(DictateActivity.this, BuildConfig.APPLICATION_ID + ".provider", file));
+            }
+            else
+            {
+                uris.add(Uri.fromFile(file));
+            }
+
         }
         baseIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
         baseIntent.setPackage(packageName);
@@ -5177,9 +5273,12 @@ public class DictateActivity extends Activity implements OnClickListener,
             /**
              * DEVICE CALL OCCURED
              */
+
             else if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
-                    .equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+                    .equals(TelephonyManager.EXTRA_STATE_RINGING) || intent.getStringExtra(TelephonyManager.EXTRA_STATE)
+                    .equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
                 try {
+                    CancelNotification(DictateActivity.this, RECORDING_NOTIFY_ID);
                     isCallActive = true;
                     dmApplication.lastDictMailSent = false;
                     if (isForwarding == 1 || isRewinding == 1) {
@@ -5193,11 +5292,18 @@ public class DictateActivity extends Activity implements OnClickListener,
                         bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
                     }
                     if (isRecording) {
+//                        if (intent.getStringExtra(TelephonyManager.EXTRA_STATE)
+//                                .equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
+//                            CancelNotification(DictateActivity.this, RECORDING_NOTIFY_ID);
+//                        }
                         recorderStopRecording();
+
                         if (Graphbar.getProgress() < Graphbar.getMax()
                                 && Graphbar.getProgress() > 0) {
                             isOncePaused = true;
                         } else {
+                            Log.d("insertOverwrite", "device lock interrupt on receive");
+
                             Graphbar.setProgress(Graphbar.getMax());
                         }
                         actionFlag = 1;
@@ -5239,7 +5345,9 @@ public class DictateActivity extends Activity implements OnClickListener,
 
                 } catch (Exception e) {
                 }
+
             }
+
             /**
              * DEVICE CALL ENDS
              */
@@ -5263,37 +5371,40 @@ public class DictateActivity extends Activity implements OnClickListener,
     public class OutgoingCallReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // TODO: Handle outgoing call event here
-            try {
-                isCallActive = true;
-                if (isRecording) {
-                    recorderStopRecording();
-                    actionFlag = 1;
-                    displayDialogOnScreen(actionFlag);
-                } else if (mMediaPlayer.isPlaying()) {
-                    if (mMediaPlayer != null) {
-                        actionFlag = 2;
-                        playButtonState = MediaMode.PAUSE;
-                        recorderSetEnable(true);
-                        mediaPlayerUpdatebottomBar(true);
-                        mMediaPlayer.pause();
-                        if (Graphbar.getProgress() < Graphbar.getMax()
-                                && Graphbar.getProgress() > 0) {
-                            isOncePaused = true;
-                        }
-                        OverwriteLimitExceeded = false;
-                        savedCurrentPos = getMMcurrentPos(Graphbar
-                                .getProgress());
-                        pausePosition = mMediaPlayer.getCurrentPosition();
-                        fileSize = getPlayBackFileSize();
-                        continue_process = false;
-                        bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
-                    }
 
-                }
-            } catch (Exception e) {
-            }
+            // Log.d("insideBro",intent.getAction().toString());
+            // TODO: Handle outgoing call event here
+//            try {
+//                isCallActive = true;
+//                if (isRecording) {
+//                    recorderStopRecording();
+//                    actionFlag = 1;
+//                    displayDialogOnScreen(actionFlag);
+//                } else if (mMediaPlayer.isPlaying()) {
+//                    if (mMediaPlayer != null) {
+//                        actionFlag = 2;
+//                        playButtonState = MediaMode.PAUSE;
+//                        recorderSetEnable(true);
+//                        mediaPlayerUpdatebottomBar(true);
+//                        mMediaPlayer.pause();
+//                        if (Graphbar.getProgress() < Graphbar.getMax()
+//                                && Graphbar.getProgress() > 0) {
+//                            isOncePaused = true;
+//                        }
+//                        OverwriteLimitExceeded = false;
+//                        savedCurrentPos = getMMcurrentPos(Graphbar
+//                                .getProgress());
+//                        pausePosition = mMediaPlayer.getCurrentPosition();
+//                        fileSize = getPlayBackFileSize();
+//                        continue_process = false;
+//                        bPlay.setBackgroundResource(R.drawable.dictate_play_selector);
+//                    }
+//
+//                }
+//            } catch (Exception e) {
+//            }
         }
+
     }
 
     /**
@@ -5358,6 +5469,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (mMediaPlayer != null) {
+
                             if (Graphbar.getProgress() < Graphbar.getMax()
                                     && Graphbar.getProgress() > 0) {
                                 isOncePaused = true;
@@ -5754,14 +5866,15 @@ public class DictateActivity extends Activity implements OnClickListener,
                         }
                     }
                 }
-
-                if (!passedModeName.equals(DMApplication.MODE_COPY_RECORDING)
-                        && !passedModeName
-                        .equals(DMApplication.MODE_REVIEW_RECORDING)
-                        && !passedModeName
-                        .equals(DMApplication.MODE_EDIT_RECORDING)) {
-                    mSignalometer.setVisibility(View.INVISIBLE);
-                    mOverwriteSignalometer.setVisibility(View.INVISIBLE);
+                if (passedModeName != null) {
+                    if (!passedModeName.equals(DMApplication.MODE_COPY_RECORDING)
+                            && !passedModeName
+                            .equals(DMApplication.MODE_REVIEW_RECORDING)
+                            && !passedModeName
+                            .equals(DMApplication.MODE_EDIT_RECORDING)) {
+                        mSignalometer.setVisibility(View.INVISIBLE);
+                        mOverwriteSignalometer.setVisibility(View.INVISIBLE);
+                    }
                 }
                 if (isNew) {
                     tvTimeRight.setVisibility(View.INVISIBLE);
@@ -5976,13 +6089,14 @@ public class DictateActivity extends Activity implements OnClickListener,
             } else {
 //
                 //   mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                AudioManager amanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_UNMUTE, 0);
-                amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_UNMUTE, 0);
-                amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, 0);
-                amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
-                amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0);
-
+                if (mAudioManager.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+                    AudioManager amanager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                    amanager.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_UNMUTE, 0);
+                    amanager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_UNMUTE, 0);
+                    amanager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, 0);
+                    amanager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
+                    amanager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0);
+                }
 
             }
         } else {
@@ -6168,8 +6282,12 @@ public class DictateActivity extends Activity implements OnClickListener,
                 check = false;
             }
         }
-        ActivityCompat.requestPermissions(this, stringPerm, 1);
-
+        if (!check) {
+            ActivityCompat.requestPermissions(this, stringPerm, 1);
+        } else {
+            isAllPermissionGrnated = true;
+            RequestActivityshown = false;
+        }
 
         return check;
     }
@@ -6178,6 +6296,7 @@ public class DictateActivity extends Activity implements OnClickListener,
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             RequestActivityshown = false;
+
         }
 
         String permissionTxt = "";

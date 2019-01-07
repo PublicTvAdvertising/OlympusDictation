@@ -1,12 +1,11 @@
 package com.olympus.dmmobile;
 
-import android.annotation.TargetApi;
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
+import android.app.job.JobParameters;
+import android.app.job.JobService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,28 +13,18 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.NotificationCompat;
-import android.telecom.TelecomManager;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.olympus.dmmobile.log.ExceptionReporter;
 import com.olympus.dmmobile.network.NetworkConnectivityListener;
-import com.olympus.dmmobile.network.NetworkConnectivityListener.RetryUploadListener;
-import com.olympus.dmmobile.recorder.DictateActivity;
 import com.olympus.dmmobile.webservice.Base64_Encoding;
 import com.olympus.dmmobile.webservice.OlyDMSSLSocketFactory;
 import com.olympus.dmmobile.webservice.OlyDMTrustManager;
@@ -59,8 +48,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -75,15 +62,7 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 
-/**
- * This class handles the process of DSS file conversion and uploading the dictations to the
- * ILS,which is executed in the background.
- *
- * @version 1.0.2
- */
-
-public class ConvertAndUploadService extends Service implements RetryUploadListener {
-
+public class ConvertAnduploadJobScheduler extends JobService implements NetworkConnectivityListener.RetryUploadListener {
     private static final String TAG = "catch exception";
     private Intent mBaseIntent = null;
     private Thread mConvertThread = null;
@@ -91,7 +70,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
     private Thread mQueryThread = null;
     private Handler mHandler5Minute = null;
     private Handler mHandler30Seconds = null;
-    private Handler mHandlerRetr30Seconds = null;
     private Handler mHandler20Seconds = null;
     private Cursor mConvertCursor = null;
     private Cursor mUploadCursor = null;
@@ -137,7 +115,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
     private String mErrorMessage = null;
     private String mPathQuery = null;
     private String mPreviousUploadedTime = null;
-    private final long mTimeLimitForHttpError = 40 * 1000;
+    private final long mTimeLimitForHttpError = 30 * 1000;
     private final long mTimeLimitForWaitingToSend = 20 * 1000;
     private final long mTimeLimitForWaitingToStopService = 20 * 1000;
     private long mIdleTime = -1;
@@ -203,7 +181,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
     private DatabaseHandler mDbHandlerConvert = null;
     private DatabaseHandler mDbHandlerUpload = null;
     private DatabaseHandler mDbHandlerQuerying = null;
-    private UploadStatusChangeListener mStatusChangeListener = null;
+    private ConvertAndUploadService.UploadStatusChangeListener mStatusChangeListener = null;
     private Base64_Encoding mBaseEncoding = null;
     private DSSConverter mDSSConverter = null;
     private ArrayList<DictationCard> mGroupOfDictationCard = null;
@@ -218,9 +196,8 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
     private List<DictationUploadFileXmlParser.JobDataObjects> mJobDataObjects = null;
     private List<DictationQueryXmlParser.AttributeObjects> mQueryAttributeObjects = null;
     public NotificationManager notifManager = null;
-
     @Override
-    public void onCreate() {
+    public boolean onStartJob(JobParameters params) {
         ExceptionReporter.register(this);
         dmApplication = (DMApplication) getApplication();
         dmApplication.setContext(this);
@@ -231,25 +208,25 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         mDbHandlerQuerying = new DatabaseHandler(getApplicationContext());
         mHandler5Minute = new Handler();
         mHandler30Seconds = new Handler();
-        mHandlerRetr30Seconds = new Handler();
         mHandler20Seconds = new Handler();
         mDMApplication.
                 setUploadServiceContext(this);
+        mDMApplication.setUploadServiceContext(this);
+        getErrorConfiguration();
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-
-            startForeground(1, getNotification(getResources().getString(R.string.serviceIdle), ""));
-            Log.d("notificationLog", "calling from onStart");
-            //notifManager.notify(1,getNotification("Waiting for dictation file",""));
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//
+//
+//            startForeground(1, getNotification(getResources().getString(R.string.serviceIdle), ""));
+//            Log.d("notificationLog", "calling from onStart");
+//            //notifManager.notify(1,getNotification("Waiting for dictation file",""));
+//        }
 
 
         /*
          * checks Android build version of device and set the streaming mode.
          */
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
+        if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
             isToUseFixedLength = true;
 
 
@@ -267,34 +244,19 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 getSettingsAttribute();
                 mDbHandlerUpload.updateOnLaunch();
                 onUpdateList();
-
             } else
                 onMoveAllToTimeOut();
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
+        return false;
     }
 
     @Override
-    public boolean onUnbind(Intent intent) {
+    public boolean onStopJob(JobParameters params) {
+        unregisterReceiver(mMessengerReceiver);
 
-        return super.onUnbind(intent);
+        return false;
     }
-
-    @Override
-    public IBinder onBind(Intent arg0) {
-        return null;
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        mDMApplication.setUploadServiceContext(this);
-        getErrorConfiguration();
-
-        return START_STICKY;
-    }
-
-
     public void getErrorConfiguration() {
         sharedPreferences = this.getSharedPreferences(PREFS_NAME, 0);
         errorConfig = sharedPreferences.getBoolean("ErrorStatus", errorStatus);
@@ -316,7 +278,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             mFilename = Environment.getExternalStorageDirectory().getAbsolutePath() + LOG_PATH;
             base64value = baseEncoding.base64(prefUUID + ":" + mEmail);
             if (DMApplication.isONLINE())
-                new ConvertAndUploadService.WebServiceErrorinfo().execute();
+                new WebServiceErrorinfo().execute();
 //            else
 //                stopSelf();
 
@@ -400,7 +362,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             mBaseEncoding = new Base64_Encoding();
             mBase64Value = mBaseEncoding.base64(mPrefUUID + ":" + mEmail);
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
     }
 
@@ -422,7 +383,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 if (!isConvertExecuting) {
                     isConvertExecuting = true;//The conversion thread is on running state.
                     try {
-
                         mConvertCursor = mDbHandlerConvert.getConvertionDictation(mDMApplication.getCurrentGroupId());//Get next dictation with the order of groupId.
                         /*
                          * To check next dictation is available or not for conversion.
@@ -457,12 +417,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                  */
                                 if (mDbHandlerConvert.getNonConvertedGroupCount(mConvertingGroupId) == 0)
                                     mDbHandlerConvert.updateMainStatusConvert(200, mConvertingGroupId);
-//                              if(mConvertCursor!=null)
-//                              {
-//                                  mConvertCursor.close();
-//                              }
                                 mConvertCursor = null;
-
                                 mConvertCard = null;
                                 isConvertExecuting = false;
                                 mConvertingGroupId = -1;
@@ -552,9 +507,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                             return;
                         }
                     } catch (Exception e) {
-                        Log.d("Exception",e.toString());
-                        if(mConvertCursor!=null)
-                            mConvertCursor.close();
                         isConvertExecuting = false;
                         mConvertCursor = null;
                         mConvertCard = null;
@@ -562,10 +514,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                         onUpdateList();
                         return;
                     }
-//                    finally {
-//                        if(mConvertCursor!=null)
-//                        mConvertCursor.close();
-//                    }
                 }
             }
         });
@@ -581,7 +529,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
 
             @Override
             public void run() {
-
                 try {
                     if (!isUploadThreadExecuting) {
                         isUploadThreadExecuting = true;
@@ -592,89 +539,90 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                          * To check the dictations are available or not
                          */
                         if (mUploadCursor.getCount() > 0 && mUploadCursor.moveToFirst()) {
-                           // retr();
                             mUploadCard = null;
                             mGroupOfDictationCard = new ArrayList<DictationCard>();
                             hasIdleStateRealeased = false;
                             isCurrentUploadingIsGoesToTimeOut = false;
                             try {
+                                do {
+                                    mUploadCard = null;
+                                    mUploadCard = mDbHandlerUpload.getSelectedDictation(mUploadCursor);
+                                    mUploadCard.setFilesList(mDbHandlerUpload.getFileList(mUploadCard.getDictationId()));
+                                    isFileExists = true;
+                                    if (mUploadCard.getFilesList().size() > 0) {
+                                        for (int i = 0; i < mUploadCard.getFilesList().size(); i++) {
+                                            mFilesCard = null;
+                                            mFileUpload = null;
+                                            mFilesCard = mUploadCard.getFilesList().get(i);
+                                            Log.d("serviceLogging", "isQueryExecuting " + notification_msg);
 
-
-                            do {
-                                mUploadCard = null;
-                                mUploadCard = mDbHandlerUpload.getSelectedDictation(mUploadCursor);
-                                mUploadCard.setFilesList(mDbHandlerUpload.getFileList(mUploadCard.getDictationId()));
-                                isFileExists = true;
-                                if (mUploadCard.getFilesList().size() > 0) {
-                                    for (int i = 0; i < mUploadCard.getFilesList().size(); i++) {
-                                        mFilesCard = null;
-                                        mFileUpload = null;
-                                        mFilesCard = mUploadCard.getFilesList().get(i);
-                                        Log.d("serviceLogging", "isQueryExecuting " + notification_msg);
-
-                                        //  notifManager.notify();
-                                        mFileUpload = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mUploadCard.getSequenceNumber()
-                                                + "/" + mFilesCard.getFileName() + "." + DMApplication.getDssType(mUploadCard.getDssVersion()));
-                                        if (!mFileUpload.exists()) {
-                                            //System.out.println(mUploadCard.getDictationId()+"<<<<<id>>>>>>"+mFileUpload.getPath());
-                                            mUploadCard = mDbHandlerUpload.getDictationCardWithId(mUploadCard.getDictationId());
+                                            //  notifManager.notify();
                                             mFileUpload = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mUploadCard.getSequenceNumber()
                                                     + "/" + mFilesCard.getFileName() + "." + DMApplication.getDssType(mUploadCard.getDssVersion()));
                                             if (!mFileUpload.exists()) {
-                                                isFileExists = false;
-                                                break;
+                                                //System.out.println(mUploadCard.getDictationId()+"<<<<<id>>>>>>"+mFileUpload.getPath());
+                                                mUploadCard = mDbHandlerUpload.getDictationCardWithId(mUploadCard.getDictationId());
+                                                mFileUpload = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mUploadCard.getSequenceNumber()
+                                                        + "/" + mFilesCard.getFileName() + "." + DMApplication.getDssType(mUploadCard.getDssVersion()));
+                                                if (!mFileUpload.exists()) {
+                                                    isFileExists = false;
+                                                    break;
+                                                }
                                             }
                                         }
-                                    }
-                                } else {
-                                    mFileUpload = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mUploadCard.getSequenceNumber()
-                                            + "/" + mUploadCard.getDictationName() + "." + DMApplication.getDssType(mUploadCard.getDssVersion()));
-                                    if (mFileUpload.exists()) {
-                                        mFilesCard = new FilesCard();
-                                        mFilesCard.setFileId(mUploadCard.getDictationId());
-                                        mFilesCard.setFileIndex(0);
-                                        mFilesCard.setFileName(mUploadCard.getDictationName());
-                                        mDbHandlerUpload.insertFiles(mFilesCard);
-                                        mUploadCard.setIsConverted(1);
-                                        mUploadCard.setFilesList(mDbHandlerUpload.getFileList(mUploadCard.getDictationId()));
                                     } else {
-                                        isFileExists = false;
-                                        mUploadCard.setIsConverted(0);
-                                    }
-                                    mDbHandlerUpload.updateIsConverted(mUploadCard);
-                                }
-                                mFilesCard = null;
-                                mFileUpload = null;
-                                if (!isFileExists) {
-                                    mUploadCard.setStatus(DictationStatus.SENDING_FAILED.getValue());
-                                    mDbHandlerUpload.updateDictationStatus(mUploadCard.getDictationId(), mUploadCard.getStatus());
-                                } else {
-                                    if (mUploadCard.getIsThumbnailAvailable() == 1) {
                                         mFileUpload = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mUploadCard.getSequenceNumber()
-                                                + "/" + mUploadCard.getDictFileName() + ".jpg");
-                                        if (!mFileUpload.exists()) {
-                                            mUploadCard.setIsThumbnailAvailable(0);
-                                            mDbHandlerUpload.updateIsThumbnailAvailable(mUploadCard);
+                                                + "/" + mUploadCard.getDictationName() + "." + DMApplication.getDssType(mUploadCard.getDssVersion()));
+                                        if (mFileUpload.exists()) {
+                                            mFilesCard = new FilesCard();
+                                            mFilesCard.setFileId(mUploadCard.getDictationId());
+                                            mFilesCard.setFileIndex(0);
+                                            mFilesCard.setFileName(mUploadCard.getDictationName());
+                                            mDbHandlerUpload.insertFiles(mFilesCard);
+                                            mUploadCard.setIsConverted(1);
+                                            mUploadCard.setFilesList(mDbHandlerUpload.getFileList(mUploadCard.getDictationId()));
+                                        } else {
+                                            isFileExists = false;
+                                            mUploadCard.setIsConverted(0);
                                         }
+                                        mDbHandlerUpload.updateIsConverted(mUploadCard);
                                     }
+                                    mFilesCard = null;
                                     mFileUpload = null;
-                                    if (mUploadCard.getStatus() != DictationStatus.SENDING.getValue()) {
-                                        mUploadCard.setStatus(DictationStatus.SENDING.getValue());
+                                    if (!isFileExists) {
+                                        mUploadCard.setStatus(DictationStatus.SENDING_FAILED.getValue());
                                         mDbHandlerUpload.updateDictationStatus(mUploadCard.getDictationId(), mUploadCard.getStatus());
+                                    } else {
+                                        if (mUploadCard.getIsThumbnailAvailable() == 1) {
+                                            mFileUpload = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mUploadCard.getSequenceNumber()
+                                                    + "/" + mUploadCard.getDictFileName() + ".jpg");
+                                            if (!mFileUpload.exists()) {
+                                                mUploadCard.setIsThumbnailAvailable(0);
+                                                mDbHandlerUpload.updateIsThumbnailAvailable(mUploadCard);
+                                            }
+                                        }
+                                        mFileUpload = null;
+                                        if (mUploadCard.getStatus() != DictationStatus.SENDING.getValue()) {
+                                            mUploadCard.setStatus(DictationStatus.SENDING.getValue());
+                                            mDbHandlerUpload.updateDictationStatus(mUploadCard.getDictationId(), mUploadCard.getStatus());
+                                        }
+                                        mGroupOfDictationCard.add(mUploadCard);
                                     }
-                                    mGroupOfDictationCard.add(mUploadCard);
-                                }
-                            } while (mUploadCursor.moveToNext());
+                                } while (mUploadCursor.moveToNext());
                             }
                             catch (Exception e)
-                            {Log.d("Exception",e.toString());
+                            {
                                 if(mUploadCursor!=null)
+                                {
                                     mUploadCursor.close();
+                                }
                             }
-//                            finally {
-//                                if(mUploadCursor!=null)
-//                                mUploadCursor.close();
-//                            }
+finally {
+                                if(mUploadCursor!=null)
+                                {
+                                    mUploadCursor.close();
+                                }
+                            }
 
                             onUpdateList();
 
@@ -942,20 +890,17 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                         isInputStreaming = false;
                                         mInputStream = null;
                                     } catch (final Exception e) {
-                                        Log.d("Exception",e.toString());
-                                       if(mUploadCursor!=null)
-                                        {
-                                            mUploadCursor.close();
-                                        }
-
+                                        Handler handler = new Handler(Looper.getMainLooper());
+                                        handler.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                        Log.d("serviceLogging", " upload file exception" + e.toString());
                                         mUploadResult = "http_error";
                                         //e.printStackTrace();
-                                    }
-                                    finally {
-//                                        if(mUploadCursor!=null)
-//                                        {
-//                                            mUploadCursor.close();
-//                                        }
+                                    } finally {
                                         if (mUrlConnection instanceof HttpsURLConnection)
                                             mHttpsURLConnection.disconnect();
                                         else
@@ -1169,7 +1114,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                             mUploadCard = mDbHandlerUpload.getDictationCardWithId(mUploadCard.getDictationId());
                                             mUploadCard.setFilesList(mDbHandlerUpload.getFileList(mUploadCard.getDictationId()));
                                         } catch (Exception e) {
-                                            Log.d("Exception",e.toString());
                                         }
                                     }
                                     if (mUploadCard.getStatus() == DictationStatus.TIMEOUT.getValue() || mUploadCard.getStatus() == DictationStatus.SENDING_FAILED.getValue()) {
@@ -1458,15 +1402,10 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                             mInputStream = null;
                                             isInputStreaming = false;
                                         } catch (Exception e) {
-                                            Log.d("Exception",e.toString());
                                             //e.printStackTrace();
                                             Log.d("serviceLogging", "on upload exception" + e.toString());
                                             mUploadResult = "http_error";
                                         } finally {
-//                                            if(mUploadCursor!=null)
-//                                            {
-//                                                mUploadCursor.close();
-//                                            }
                                             if (mUrlConnection instanceof HttpsURLConnection)
                                                 mHttpsURLConnection.disconnect();
                                             else
@@ -1671,7 +1610,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                     }
 
                 } catch (Exception e) {
-                    Log.d("Exception",e.toString());
                     //e.printStackTrace();
                     //setMobileConnectionEnabled(this,true);
                     isUploadThreadExecuting = false;
@@ -1695,8 +1633,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             @Override
             public void run() {
                 try {
-               retr();
-
                     if (!isQueryExecuting) {
                         Log.d("serviceLogging", "isQueryExecuting");
                         isQueryExecuting = true;
@@ -1704,30 +1640,13 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                         /*
                          * checks whether any dictations are available in query queue.
                          */
-
                         if (mQueryCursor.getCount() == 1 && mQueryCursor.moveToFirst()) {
                             mQueryResult = null;
-                            try {
-                                do {
-                                    mQueryCard = mDbHandlerQuerying.getSelectedDictation(mQueryCursor);
-                                    mQueryCard.setFilesList(mDbHandlerQuerying.getFileList(mQueryCard.getDictationId()));
-
-                                } while (mQueryCursor.moveToNext());
-                            }
-                           catch (Exception e)
-                           {
-                               Log.d("Exception",e.toString());
-                               if(mQueryCursor!=null)
-                               {
-                                   mQueryCursor.close();
-                               }
-                           }
-                          finally {
-//                                if(mQueryCursor!=null)
-//                                {
-//                                    mQueryCursor.close();
-//                                }
-                            }
+                            do {
+                                mQueryCard = mDbHandlerQuerying.getSelectedDictation(mQueryCursor);
+                                mQueryCard.setFilesList(mDbHandlerQuerying.getFileList(mQueryCard.getDictationId()));
+                            } while (mQueryCursor.moveToNext());
+                            mQueryCursor.close();
                             if (mQueryCard.getFilesList() != null && mQueryCard.getFilesList().size() > 0) {
                                 mPositionQuery = 0;
                                 for (mPositionQuery = 0; mPositionQuery < mQueryCard.getFilesList().size(); mPositionQuery++) {
@@ -1816,7 +1735,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                             mQueryAttributeObjects = mQueryXmlParser.parse(getLanguage());
                                         }
                                     } catch (final Exception e) {
-                                        Log.d("Exception",e.toString());
                                         Log.d("serviceLogging", " onquery dictation exception" + e.toString());
 
                                         mQueryResult = "http_error";
@@ -1830,7 +1748,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                             break;
                                         }
                                     } catch (Exception e) {
-                                        Log.d("Exception",e.toString());
                                     }
                                     if (mQueryResult != null) {
                                         if (mUploadCard != null) {
@@ -1934,7 +1851,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                                             }
                                                             mPathQuery = null;
                                                         } catch (Exception e) {
-                                                            Log.d("Exception",e.toString());
                                                         }
                                                     } else {
                                                         if (mPositionQuery <= (mQueryCard.getFilesList().size() - 2))
@@ -2012,15 +1928,10 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                         }
                     }
                 } catch (Exception e) {
-                    Log.d("Exception",e.toString());
                     isQueryExecuting = false;
                     onUpdateList();
                     return;
                 }
-//                finally {
-//                    if(mQueryCursor!=null)
-//                    mQueryCursor.close();
-//                }
             }
         };
         mQueryThread.start();
@@ -2045,20 +1956,11 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 }
             }
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
         isInputStreaming = false;
         isOutputStreaming = false;
     }
 
-    @Override
-    public void onDestroy() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            stopForeground(true); //true will remove notification
-//        }
-        unregisterReceiver(mMessengerReceiver);
-        super.onDestroy();
-    }
 
     /**
      * BroadcastReceiver which is used to communicate between Service and other components.
@@ -2069,7 +1971,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             try {
                 getSettingsAttribute();
                 mDMApplication = (DMApplication) getApplication();
-                mDMApplication.setUploadServiceContext(ConvertAndUploadService.this);
+                mDMApplication.setUploadServiceContext(ConvertAnduploadJobScheduler.this);
                 if (intent.getBooleanExtra("isWantToUpdate", false))
                     onUpdateList();
                 else if (intent.getBooleanExtra("isWantWholeToTimeOut", false))
@@ -2077,7 +1979,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 else if (intent.getBooleanExtra("isWantToCheckStreaming", false))
                     onResendDictations();
             } catch (Exception e) {
-                Log.d("Exception",e.toString());
             }
         }
     };
@@ -2164,7 +2065,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             mBytesAvailable = 0;
             mFileInputStream.close();
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
             size = 0;
         }
         return size;
@@ -2199,7 +2099,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             mBytesAvailable = 0;
             mFileInputStream.close();
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
             size = 0;
         }
         return size;
@@ -2237,35 +2136,8 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                     mDbHandlerQuerying.updateQuery30SecRetryDictation();
             }
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
         onUpdateList();
-    }
-
-    public void retr() {
-        try {
-            if (mQueryCard == null)
-                isQueryExecuting = false;
-            if (DMApplication.isONLINE()) {
-                getSettingsAttribute();
-                mDbHandlerUpload.updateUploadRetryDictation(DictationStatus.RETRYING2.getValue());
-                mDbHandlerQuerying.updateQuerying5MinRetryDictation(DictationStatus.RETRYING2.getValue());
-                if (!hasUploadCounting)
-                    mDbHandlerUpload.updateUploadRetryDictation(DictationStatus.RETRYING1.getValue());
-                if (!hasQueryCounting)
-                    mDbHandlerQuerying.updateQuerying5MinRetryDictation(DictationStatus.RETRYING1.getValue());
-                if (!isQueryTimerStarted)
-                    mDbHandlerQuerying.updateQuery30SecRetryDictation();
-            }
-        } catch (Exception e) {
-            Log.d("Exception",e.toString());
-        }
-//        finally {
-//            mDbHandlerUpload.close();
-//            mDbHandlerQuerying.close();
-//            mDbHandlerConvert.close();
-//        }
-
     }
 
     /**
@@ -2280,8 +2152,8 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
              * Check the current view of application is Recordings list or not.
              */
             if (mDMApplication.getContext() instanceof DMActivity && mDMApplication.getTabPos() > 0) {
-                mDMApplication.setUploadServiceContext(ConvertAndUploadService.this);
-                mStatusChangeListener = (UploadStatusChangeListener) mDMApplication.getContext();
+                mDMApplication.setUploadServiceContext(ConvertAnduploadJobScheduler.this);
+                mStatusChangeListener = (ConvertAndUploadService.UploadStatusChangeListener) mDMApplication.getContext();
                 mStatusChangeListener.onUploadStatusChanged();
             }
             System.gc();
@@ -2294,18 +2166,14 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
 //                    notifManager.notify(1, notification);
 //                }
 //            }
-                if (!isQueryExecuting) {
-
+                if (!isQueryExecuting)
                     onQueryDictation();
-                }
-
             if (!isUploadThreadExecuting)
                 onUploadFile();
             if (!isConvertExecuting && !mDMApplication.isWaitConvertion())
                 onConvertFile();
 
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
     }
 
@@ -2328,7 +2196,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 }
             }
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
     }
 
@@ -2349,7 +2216,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             mQueryCard = null;
             onUpdateList();
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
     }
 
@@ -2387,15 +2253,26 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 try {
 
                     if (hasUploadCounting && DMApplication.isONLINE()) {
-
                         mDbHandlerUpload.updateUploadRetryDictation(DictationStatus.RETRYING1.getValue());
                         Log.d("serviceLogging", "hasUploadCounting && DMApplication.isONLINE()");
-
+//                        Handler handler = new Handler(Looper.getMainLooper());
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                Toast.makeText(getApplicationContext(), "hasUploadCounting && DMApplication.isONLINE()", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
 
                     } else if (hasUploadCounting) {
                         mDbHandlerUpload.updateWholeUploadToRetryDictation();
                         Log.d("serviceLogging", "hasUploadCounting");
-
+//                        Handler handler = new Handler(Looper.getMainLooper());
+//                        handler.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                Toast.makeText(getApplicationContext(), "hasUploadCounting", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
 
                     }
                     if (hasQueryCounting && DMApplication.isONLINE()) {
@@ -2408,7 +2285,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                         mDbHandlerQuerying.updateWholeQueryToRetryDictation();
                     }
                 } catch (Exception e) {
-                    Log.d("Exception",e.toString());
                 }
                 hasUploadCounting = false;
                 hasQueryCounting = false;
@@ -2424,22 +2300,27 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         mHandler30Seconds.postDelayed(new Runnable() {
             public void run() {
                 //   lis();
-
                 try {
-                    if (DMApplication.isONLINE()) {
+                    if (DMApplication.isONLINE())
                         mDbHandlerQuerying.updateQuery30SecRetryDictation();
-                        onUploadFile();
-                    } else
+                    else
                         mDbHandlerQuerying.updateWholeQueryToRetryDictation();
                 } catch (Exception e) {
-                    Log.d("Exception",e.toString());
                 }
                 isQueryTimerStarted = false;
                 onUpdateList();
             }
         }, mTimeLimitForWaitingToSend);
     }
-
+//private void test()
+//{
+//    mHandler20Seconds.postDelayed(new Runnable() {
+//        public void run() {
+//            lis();
+//
+//        }
+//    }, mTimeLimitForWaitingToSend);
+//}
 
     private void onStopService() {
         mHandler30Seconds.postDelayed(new Runnable() {
@@ -2462,35 +2343,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                     }
 
                 } catch (Exception e) {
-                    Log.d("Exception",e.toString());
-//                    if(mQueryCursor!=null)
-//                    {
-//                        mQueryCursor.close();
-//
-//                    }
-//                    if(mUploadCursor!=null)
-//                    {
-//                        mUploadCursor.close();
-//                    }
-//                    if(mConvertCursor!=null)
-//                    {
-//                        mConvertCursor.close();
-//                    }
-                }
-                finally {
-                    if(mQueryCursor!=null)
-                    {
-                        mQueryCursor.close();
-
-                    }
-                    if(mUploadCursor!=null)
-                    {
-                        mUploadCursor.close();
-                    }
-                    if(mConvertCursor!=null)
-                    {
-                        mConvertCursor.close();
-                    }
                 }
 
             }
@@ -2506,7 +2358,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             mDateFormat = new SimpleDateFormat("HH:mm:ss:SSS");
             mPreviousUploadedTime = mDateFormat.format(mDate);
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
     }
 
@@ -2545,7 +2396,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                 else
                                     mHttpURLConnection.disconnect();
                             } catch (Exception e) {
-                                Log.d("Exception",e.toString());
                                 isUploadThreadExecuting = false;
                             }
                             isUploadThreadExecuting = false;
@@ -2558,7 +2408,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                 }
             }
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
         }
     }
 
@@ -2611,10 +2460,8 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             boolean res = (Boolean) m.invoke(cm);
             return res;
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
             e.printStackTrace();
             return null;
         }
     }
-
 }

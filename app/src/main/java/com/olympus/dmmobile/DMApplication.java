@@ -68,6 +68,7 @@ public class DMApplication extends Application{
 	public static final String EDIT_COPY_FORCE_QUIT="edit_copy_forcequit";
 	public static final String EDIT_COPY_DESTINATION="edit_copy_destination";
 	public static String  COMINGFROM="flash_air_no";
+	public static boolean  DIC_PROP=false;
 	private boolean timeOutDialogOnFront = false;
 	private boolean isWantToShowDialog = false;
 	private String ErrorCode = "";
@@ -268,14 +269,14 @@ public class DMApplication extends Application{
 		FlashAirState=false;
 
 
-				StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-						.detectAll()    // detect everything potentially suspect
-						.penaltyLog()   // penalty is to write to log
-						.build());
-				StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-						.detectAll()
-						.penaltyLog()
-						.build());
+//				StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//						.detectAll()    // detect everything potentially suspect
+//						.penaltyLog()   // penalty is to write to log
+//						.build());
+//				StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//						.detectAll()
+//						.penaltyLog()
+//						.build());
 
 		/*
 		 * To start a BroadcastReceiver for getting Network Connection states.
@@ -294,7 +295,13 @@ public class DMApplication extends Application{
 		/*
 		 * To start background service.
 		 */
+		mBaseIntent= new Intent(DMApplication.this, ConvertAndUploadService.class);
 
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			startForegroundService(mBaseIntent);
+		} else {
+			startService(mBaseIntent);
+		}
 		//ContextCompat.startForegroundService(getContext(),mBaseIntent);
 	}
 	//************* Network Connectivity**************

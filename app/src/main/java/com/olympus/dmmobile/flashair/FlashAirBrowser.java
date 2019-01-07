@@ -1093,7 +1093,8 @@ public class FlashAirBrowser extends FragmentActivity implements FolderSelectedL
 					edit.putInt("seq_number", seqNumber);
 					edit.commit();
 				}
-				
+				if(cur!=null)
+					cur.close();
 		}
 		
 		/**
@@ -1389,7 +1390,7 @@ public class FlashAirBrowser extends FragmentActivity implements FolderSelectedL
 			for(int i = 0;i < sendList.size();i++){
 				if(sendList.get(i).getStatus()){
 					File file = new File(DMApplication.DEFAULT_DIR+"/Dictations/"+mDownloadedDictCards.get(i).getSequenceNumber(), sendList.get(i).getName());
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 						uris.add(FileProvider.getUriForFile(getActivity(), BuildConfig.APPLICATION_ID + ".provider", file));
 					}
 					else

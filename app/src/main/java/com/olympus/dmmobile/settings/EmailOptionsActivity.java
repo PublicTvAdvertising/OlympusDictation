@@ -273,6 +273,7 @@ public class EmailOptionsActivity extends Activity {
      * @param view
      */
     public void doLaunchContactPicker(View view) {
+
         Intent contactPickerIntent = new Intent(Intent.ACTION_PICK
                 /*,contactPickerIntentContacts.CONTENT_URI */);
         contactPickerIntent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
@@ -281,6 +282,7 @@ public class EmailOptionsActivity extends Activity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("resultCode","resultCode "+String.valueOf(resultCode));
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case CONTACT_PICKER_RESULT:

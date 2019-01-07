@@ -107,15 +107,35 @@ public class PendingTabFragment extends Fragment {
      * @param mCursorEnable Cursor to enable views.
      */
     public void onRefreshList(Cursor mCursor,Cursor mCursorEnable) {
-    	if(mListAdapter != null ) {
-	    	mListAdapter.changeCursor(mCursor);
-	    	mListAdapter.notifyDataSetChanged();
-	    	if(mCursorEnable != null) {
-		    	if(mCursorEnable.getCount()>0)
-					mListAdapter.updateSendDeleteButtons(true);
-				else
-					mListAdapter.updateSendDeleteButtons(false);
-	    	}
-    	}
+    	try {
+			if(mListAdapter != null ) {
+				mListAdapter.changeCursor(mCursor);
+				mListAdapter.notifyDataSetChanged();
+				if(mCursorEnable != null) {
+					if(mCursorEnable.getCount()>0)
+						mListAdapter.updateSendDeleteButtons(true);
+					else
+						mListAdapter.updateSendDeleteButtons(false);
+				}
+
+			}
+		}
+		catch (Exception e)
+		{
+			if(mCursorEnable!=null)
+				mCursorEnable.close();
+			if(mCursor!=null)
+				mCursorEnable.close();
+			mCursor.close();
+		}
+//		finally {
+//			if(mCursorEnable!=null)
+//				mCursorEnable.close();
+//			if(mCursor!=null)
+//
+//			mCursor.close();
+//		}
+
+
     }
 }

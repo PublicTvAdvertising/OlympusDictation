@@ -126,13 +126,7 @@ public class SplashscreenActivity extends Activity {
 
 
 
-			mBaseIntent= new Intent(SplashscreenActivity.this, ConvertAndUploadService.class);
 
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-				startForegroundService(mBaseIntent);
-			} else {
-				startService(mBaseIntent);
-			}
 
 
 
