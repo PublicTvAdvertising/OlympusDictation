@@ -330,6 +330,7 @@ public class DictationPropertyActivity extends FragmentActivity implements Activ
                         }
                     }
                 } else {
+                    Log.d("Os5galexys4","no need for permission");
                     String title = mEditDictationname.getText().toString().trim();
                     boolean isValid = false;
                     if (!title.equalsIgnoreCase(mDictCard.getDictationName())) {
@@ -792,6 +793,7 @@ public class DictationPropertyActivity extends FragmentActivity implements Activ
             //bundle.putParcelableArrayList(DMApplication.DICTATION_CARD_KEY, dCardList);
             //intent.putExtras(bundle);
             startActivity(intent);
+            finish();
         } else
             dmApplication.onSetPending = false;
 
@@ -855,6 +857,7 @@ public class DictationPropertyActivity extends FragmentActivity implements Activ
             mImageFile = new File(DMApplication.DEFAULT_DIR + "/Dictations/" +
                     mDictCard.getSequenceNumber() + "/" + mDictCard.getDictFileName() + ".jpg");
             if (mDictCard.getIsThumbnailAvailable() == 1 && mImageFile.exists()) {
+
                 mAuthorphoto.setImageBitmap(decodeSampledBitmapFromResource(mImageFile.getAbsolutePath(),
                         mAuthorphoto.getWidth(), mAuthorphoto.getHeight()));
             }
@@ -931,6 +934,7 @@ public class DictationPropertyActivity extends FragmentActivity implements Activ
      * Dialog will be shown when user tap on image icon.
      */
     private void promptImageSelection() {
+        Log.d("Os5galexys4","promptImageSelection triggered");
         String title = "";
         if (flag == 0) {
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -949,7 +953,7 @@ public class DictationPropertyActivity extends FragmentActivity implements Activ
                         outputFileUri = FileProvider.getUriForFile(DictationPropertyActivity.this, BuildConfig.APPLICATION_ID + ".provider", mImageFile);
                     } else {
                         outputFileUri = Uri.fromFile(mImageFile);
-
+                        Log.d("Os5galexys4","get uri grom take photo");
                     }
                     //  Uri
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -966,6 +970,7 @@ public class DictationPropertyActivity extends FragmentActivity implements Activ
                     Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                     photoPickerIntent.setType("image/*");
                     startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+                    Log.d("Os5galexys4","from choose photo");
                     System.gc();
                     mAlertDialog.dismiss();
                 }

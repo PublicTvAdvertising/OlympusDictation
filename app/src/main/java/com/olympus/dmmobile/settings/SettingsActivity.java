@@ -286,6 +286,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         mAuthorPref = (EditTextPreference) findPreference(getResources().getString(R.string.author_key));
         changeFormats();
         enableAuthor();
+        System.gc();
     }
 
     /**
@@ -510,5 +511,11 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         startActivity(serverOptionsIntent);
         finish();
 
+    }
+
+    @Override
+    protected void onPause() {
+        System.gc();
+        super.onPause();
     }
 }

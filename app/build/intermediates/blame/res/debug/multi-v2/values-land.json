@@ -4,7 +4,7 @@
             "outputFile": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/res/values-land/values-land.xml",
+                    "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/values-land/values-land.xml",
+                    "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

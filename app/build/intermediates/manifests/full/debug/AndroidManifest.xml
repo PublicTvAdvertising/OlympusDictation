@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.olympus.dmmobile"
-    android:versionCode="13"
-    android:versionName="1.2.4" >
+    android:versionCode="15"
+    android:versionName="1.3.1" >
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -20,12 +20,15 @@
     <uses-feature android:name="android.hardware.microphone" />
     <uses-feature android:name="android.hardware.screen.portrait" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -38,7 +41,9 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
@@ -48,12 +53,14 @@
         android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:testOnly="true"
+        android:largeHeap="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.olympus.dmmobile.SplashscreenActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppBase" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,24 +71,26 @@
             android:name="com.olympus.dmmobile.DMActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/dmact" />
         <activity
             android:name="com.olympus.dmmobile.settings.SettingsActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black" />
+            android:theme="@style/prefScreen" />
         <activity
             android:name="com.olympus.dmmobile.DictationPropertyActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
+            android:theme="@style/prefScreen"
             android:windowSoftInputMode="adjustPan" />
 
-        <service
-            android:name="com.olympus.dmmobile.Errorservice"
-            android:label="@string/app_name" />
+        <!-- <service -->
+        <!-- android:name=".Errorservice" -->
+        <!-- android:label="@string/app_name"></service> -->
 
         <activity
             android:name="com.olympus.dmmobile.flashair.FlashAirMain"
@@ -93,15 +102,15 @@
         <activity
             android:name="com.olympus.dmmobile.settings.WorktypeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/PrefsTheme" />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="com.olympus.dmmobile.settings.EmailOptionsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/PrefsTheme" />
+            android:theme="@style/prefScreen" />
         <activity
             android:name="com.olympus.dmmobile.settings.ServerOptionsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/PrefsTheme" />
+            android:theme="@style/prefScreen" />
         <activity
             android:name="com.olympus.dmmobile.settings.LegalNoticesActivity"
             android:label="@string/legal_notices_title"
@@ -119,7 +128,8 @@
         <activity
             android:name="com.olympus.dmmobile.recorder.DictateActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/prefScreen" />
         <activity
             android:name="com.olympus.dmmobile.settings.TrademarkActivity"
             android:screenOrientation="portrait"
@@ -131,7 +141,9 @@
             android:name="com.olympus.dmmobile.settings.SplashActivity"
             android:screenOrientation="portrait" />
 
-        <service android:name="com.olympus.dmmobile.ConvertAndUploadService" />
+        <service
+            android:name="com.olympus.dmmobile.ConvertAndUploadService"
+            android:stopWithTask="false" />
 
         <activity
             android:name="com.olympus.dmmobile.CustomDialog"
@@ -143,7 +155,7 @@
             android:name="com.olympus.dmmobile.settings.RecipientActivity"
             android:label="@string/recipient_title"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Light" />
+            android:theme="@style/recepientActivity" />
         <activity
             android:name="com.olympus.dmmobile.settings.AddRecipientActivity"
             android:launchMode="singleTop"
@@ -153,9 +165,22 @@
             android:label="@string/privacy_policy_title"
             android:theme="@android:style/Theme.Black" />
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.olympus.dmmobile.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
+
         <meta-data
             android:name="android.support.VERSION"
-            android:value="26.0.0" />
+            android:value="26.1.0" />
+        <meta-data
+            android:name="android.arch.lifecycle.VERSION"
+            android:value="27.0.0-SNAPSHOT" />
     </application>
 
 </manifest>

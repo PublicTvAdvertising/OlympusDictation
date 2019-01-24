@@ -241,8 +241,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
 
 
             startForeground(1, getNotification(getResources().getString(R.string.serviceIdle), ""));
-            Log.d("notificationLog", "calling from onStart");
-            //notifManager.notify(1,getNotification("Waiting for dictation file",""));
+
         }
 
 
@@ -271,7 +270,7 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             } else
                 onMoveAllToTimeOut();
         } catch (Exception e) {
-            Log.d("Exception",e.toString());
+
         }
     }
 
@@ -430,7 +429,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                         if (mConvertCursor.getCount() == 1 && mConvertCursor.moveToFirst()) {
                             mConvertCard = mDbHandlerConvert.getSelectedDictation(mConvertCursor);
                             mConvertCursor.close();
-                            Log.d("serviceLogging", "isQueryExecuting " + mConvertCard.getDictFileName());
                             mConvertingGroupId = mConvertCard.getGroupId();//Get current dictation group id.
                             mFileConvert = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mConvertCard.getSequenceNumber()
                                     + "/" + mConvertCard.getDictFileName() + ".wav");
@@ -439,7 +437,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                 Notification notification = getNotification(notification_msg, "" + getResources().getString(R.string.serviceActive));
                                 notifManager.notify(1, notification);
-                                Log.d("notificationLog", "calling from upload getcount > 0");
                             }
 
                             /*
@@ -520,7 +517,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                 }
                             } else {
                                 mConvertCard.setStatus(DictationStatus.CONVERTION_FAILED.getValue());
-                                Log.d("serviceLogging", "isConvertExecuting " + mConvertCard.getDictFileName() + " conversion failed");
 
                                 mDbHandlerConvert.updateDictationStatusConvert(mConvertCard.getDictationId(), mConvertCard.getStatus());
                                 mConvertCard.setIsConverted(0);
@@ -610,7 +606,6 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                                         mFilesCard = null;
                                         mFileUpload = null;
                                         mFilesCard = mUploadCard.getFilesList().get(i);
-                                        Log.d("serviceLogging", "isQueryExecuting " + notification_msg);
 
                                         //  notifManager.notify();
                                         mFileUpload = new File(DMApplication.DEFAULT_DIR + "/Dictations/" + mUploadCard.getSequenceNumber()
@@ -2445,6 +2440,8 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
         mHandler30Seconds.postDelayed(new Runnable() {
             public void run() {
                 try {
+                  //  boolean foregroud = new ForegroundCheckTask().execute(ConvertAndUploadService.this).get();
+
                     if (!isQueryExecuting && !isConvertExecuting && !mDMApplication.isWaitConvertion() && !isUploadThreadExecuting && !isWebServiceErrorInfo) {
                         mQueryCursor = mDbHandlerQuerying.getQueryDictation();
                         mUploadCursor = mDbHandlerUpload.getUploadingDictation();
@@ -2460,6 +2457,13 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
                         }
 
                     }
+//                    if (!foregroud) {
+//                        if (!isUploadThreadExecuting && !isConvertExecuting && !mDMApplication.isWaitConvertion() && !isUploadThreadExecuting && !isWebServiceErrorInfo) {
+//                            stopForeground(true);
+//
+//                        }
+//
+//                    }
 
                 } catch (Exception e) {
                     Log.d("Exception",e.toString());
@@ -2478,19 +2482,25 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
 //                    }
                 }
                 finally {
-                    if(mQueryCursor!=null)
-                    {
-                        mQueryCursor.close();
+                    try {
+                        if(mQueryCursor!=null)
+                        {
+                            mQueryCursor.close();
 
-                    }
-                    if(mUploadCursor!=null)
+                        }
+                        if(mUploadCursor!=null)
+                        {
+                            mUploadCursor.close();
+                        }
+                        if(mConvertCursor!=null)
+                        {
+                            mConvertCursor.close();
+                        }
+                    }catch (Exception e)
                     {
-                        mUploadCursor.close();
+                        e.printStackTrace();
                     }
-                    if(mConvertCursor!=null)
-                    {
-                        mConvertCursor.close();
-                    }
+
                 }
 
             }
@@ -2616,5 +2626,27 @@ public class ConvertAndUploadService extends Service implements RetryUploadListe
             return null;
         }
     }
-
+//    class ForegroundCheckTask extends AsyncTask<Context, Void, Boolean> {
+//
+//        @Override
+//        protected Boolean doInBackground(Context... params) {
+//            final Context context = params[0].getApplicationContext();
+//            return isAppOnForeground(context);
+//        }
+//
+//        private boolean isAppOnForeground(Context context) {
+//            ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+//            List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
+//            if (appProcesses == null) {
+//                return false;
+//            }
+//            final String packageName = context.getPackageName();
+//            for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+//                if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName.equals(packageName)) {
+//                    return true;
+//                }
+//            }
+//            return false;
+//        }
+//    }
 }

@@ -4,7 +4,7 @@
             "outputFile": "/home/m2/AndroidStudioProjects/OlympusDictation/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
-                    "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/res/values-zh-rTW/values-zh-rTW.xml",
+                    "source": "/home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

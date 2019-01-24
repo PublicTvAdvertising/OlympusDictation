@@ -807,6 +807,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                     playButtonState = MediaMode.START;
                 }
             }
+            System.gc();
     }
 
     @Override
@@ -1432,6 +1433,7 @@ public class DictateActivity extends Activity implements OnClickListener,
                                 intentFolder
                                         .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                                 startActivity(intentFolder);
+                                finish();
                                 dmApplication
                                         .setRecordingsClickedDMActivity(false);
 
@@ -2048,9 +2050,15 @@ public class DictateActivity extends Activity implements OnClickListener,
 
                 if (!InterruptCallDialogshown) {
                     passedModeName = "";
-                    Bundle bundle = getIntent().getExtras();
-                    int id = bundle.getInt(DMApplication.DICTATION_ID);
-                    dictCard = mDbHandler.getDictationCardWithId(id);
+                    try {
+                        Bundle bundle = getIntent().getExtras();
+                        int id = bundle.getInt(DMApplication.DICTATION_ID);
+                        dictCard = mDbHandler.getDictationCardWithId(id);
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
                 if (InterruptCallDialogshown) {
                     CancelNotification(this, RECORDING_NOTIFY_ID);

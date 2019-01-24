@@ -1,458 +1,511 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-152:12
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-152:12
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-152:12
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-152:12
-MERGED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:17:1-31:12
-MERGED from [com.github.clans:fab:1.6.4] /home/m2/.gradle/caches/transforms-1/files-1.1/fab-1.6.4.aar/0cbd53ddb2d027f9e978b8fc87ddefab/AndroidManifest.xml:2:1-14:12
-MERGED from [com.android.support:appcompat-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/AndroidManifest.xml:17:1-31:12
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-186:12
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-186:12
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-186:12
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-186:12
+MERGED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/6331470f9c4c52fa47fae7ac51bc2ceb/AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:transition:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.0.0.aar/374466809818ee1ae7daa4397d928371/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-v4:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.0.0.aar/ddcda51803ed5816211fcc33691ccae8/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:multidex:1.0.1] /home/m2/.gradle/caches/transforms-1/files-1.1/multidex-1.0.1.aar/5eeba748917ab72dee78f3cb73e08757/AndroidManifest.xml:16:1-19:12
-MERGED from [com.android.support:recyclerview-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.0.0.aar/6b5f97fa02ec231d0a82817d3de726d2/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:animated-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.0.0.aar/274fe71864feea0971f90bdbbb037551/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.0.0.aar/b34f4a244f839cf41522e40c0a4b4b5f/AndroidManifest.xml:17:1-28:12
-MERGED from [com.android.support:support-media-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.0.0.aar/3b3511f774bcb73a3b9aafc61b6cda5b/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-fragment:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.0.0.aar/e142caebfed456dc51124c038800da7f/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-utils:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.0.0.aar/693129dd567c281e2fd7df2cd270fc2e/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-ui:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.0.0.aar/4ac3c80342a84368d19d209a475fb2ba/AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.0.0.aar/e30a05c31cebd2b8dc9ad9fbd9c67c29/AndroidManifest.xml:17:1-31:12
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-152:12
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-152:12
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-152:12
+MERGED from [com.android.support:transition:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/936ebaf17da1645b5f259a5116275036/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8eced1ec2c4f7b4778916b79e1526e92/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/c19647e0c3aebf7fdb3fb83dd9be1e08/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/e75b9ba3d168a65db5cbb0d1e48956ea/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93e12b451d6c91d4cc8d4544c5484eed/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-fragment:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/5f2c1cc2d5d0367786d1f818d91e9596/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/5a9878b60d6722c94ebc0c4b81ba6c53/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/c750e642ccd817d90d2ebc175ba17966/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/78a603e1e8cd7bc35d85b87c61bfc924/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/49b73fb7b682759b2057b4d4ff2214aa/AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5345b73ff6378bbf5bb29a0c48275f26/AndroidManifest.xml:17:1-30:12
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-186:12
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-186:12
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:1-186:12
 	package
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:3:5-35
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:4:5-35
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
 	android:versionName
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:5:5-32
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:6:5-32
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:3:5-51
 	xmlns:android
 		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:4:5-29
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:5:5-29
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
 uses-sdk
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:7:5-43
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:7:5-43
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:7:5-43
-MERGED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:21:5-23:62
-MERGED from [com.github.clans:fab:1.6.4] /home/m2/.gradle/caches/transforms-1/files-1.1/fab-1.6.4.aar/0cbd53ddb2d027f9e978b8fc87ddefab/AndroidManifest.xml:8:5-10:41
-MERGED from [com.github.clans:fab:1.6.4] /home/m2/.gradle/caches/transforms-1/files-1.1/fab-1.6.4.aar/0cbd53ddb2d027f9e978b8fc87ddefab/AndroidManifest.xml:8:5-10:41
-MERGED from [com.android.support:appcompat-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:appcompat-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/AndroidManifest.xml:21:5-23:78
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:8:5-43
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:8:5-43
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:8:5-43
+MERGED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/6331470f9c4c52fa47fae7ac51bc2ceb/AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/6331470f9c4c52fa47fae7ac51bc2ceb/AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:transition:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.0.0.aar/374466809818ee1ae7daa4397d928371/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.0.0.aar/374466809818ee1ae7daa4397d928371/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.0.0.aar/ddcda51803ed5816211fcc33691ccae8/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-v4:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.0.0.aar/ddcda51803ed5816211fcc33691ccae8/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:multidex:1.0.1] /home/m2/.gradle/caches/transforms-1/files-1.1/multidex-1.0.1.aar/5eeba748917ab72dee78f3cb73e08757/AndroidManifest.xml:18:5-42
-MERGED from [com.android.support:multidex:1.0.1] /home/m2/.gradle/caches/transforms-1/files-1.1/multidex-1.0.1.aar/5eeba748917ab72dee78f3cb73e08757/AndroidManifest.xml:18:5-42
-MERGED from [com.android.support:recyclerview-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.0.0.aar/6b5f97fa02ec231d0a82817d3de726d2/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.0.0.aar/6b5f97fa02ec231d0a82817d3de726d2/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.0.0.aar/274fe71864feea0971f90bdbbb037551/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.0.0.aar/274fe71864feea0971f90bdbbb037551/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.0.0.aar/b34f4a244f839cf41522e40c0a4b4b5f/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.0.0.aar/b34f4a244f839cf41522e40c0a4b4b5f/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-media-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.0.0.aar/3b3511f774bcb73a3b9aafc61b6cda5b/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-media-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.0.0.aar/3b3511f774bcb73a3b9aafc61b6cda5b/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-fragment:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.0.0.aar/e142caebfed456dc51124c038800da7f/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-fragment:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.0.0.aar/e142caebfed456dc51124c038800da7f/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-core-utils:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.0.0.aar/693129dd567c281e2fd7df2cd270fc2e/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-utils:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.0.0.aar/693129dd567c281e2fd7df2cd270fc2e/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-ui:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.0.0.aar/4ac3c80342a84368d19d209a475fb2ba/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-ui:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.0.0.aar/4ac3c80342a84368d19d209a475fb2ba/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.0.0.aar/e30a05c31cebd2b8dc9ad9fbd9c67c29/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.0.0.aar/e30a05c31cebd2b8dc9ad9fbd9c67c29/AndroidManifest.xml:21:5-23:58
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:7:5-43
-INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:7:5-43
+MERGED from [com.android.support:transition:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/936ebaf17da1645b5f259a5116275036/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/936ebaf17da1645b5f259a5116275036/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8eced1ec2c4f7b4778916b79e1526e92/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8eced1ec2c4f7b4778916b79e1526e92/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/c19647e0c3aebf7fdb3fb83dd9be1e08/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/c19647e0c3aebf7fdb3fb83dd9be1e08/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/e75b9ba3d168a65db5cbb0d1e48956ea/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/e75b9ba3d168a65db5cbb0d1e48956ea/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93e12b451d6c91d4cc8d4544c5484eed/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93e12b451d6c91d4cc8d4544c5484eed/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/5f2c1cc2d5d0367786d1f818d91e9596/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/5f2c1cc2d5d0367786d1f818d91e9596/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/5a9878b60d6722c94ebc0c4b81ba6c53/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/5a9878b60d6722c94ebc0c4b81ba6c53/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/c750e642ccd817d90d2ebc175ba17966/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/c750e642ccd817d90d2ebc175ba17966/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/78a603e1e8cd7bc35d85b87c61bfc924/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/78a603e1e8cd7bc35d85b87c61bfc924/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/49b73fb7b682759b2057b4d4ff2214aa/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/49b73fb7b682759b2057b4d4ff2214aa/AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5345b73ff6378bbf5bb29a0c48275f26/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5345b73ff6378bbf5bb29a0c48275f26/AndroidManifest.xml:20:5-22:41
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:8:5-43
+INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:8:5-43
 	tools:overrideLibrary
-		ADDED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:23:9-59
+		ADDED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:7:5-43
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:8:5-43
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:7:15-40
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:8:15-40
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
 		INJECTED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml
 uses-feature#android.hardware.telephony
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:9:5-11:36
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:10:5-12:36
 	android:required
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:11:9-33
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:12:9-33
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:10:9-50
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:11:9-50
 uses-feature#android.hardware.bluetooth
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:12:5-14:36
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:13:5-15:36
 	android:required
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:14:9-33
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:15:9-33
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:13:9-50
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:14:9-50
 uses-feature#android.hardware.wifi
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:15:5-17:36
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:16:5-18:36
 	android:required
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:17:9-33
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:18:9-33
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:16:9-45
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:17:9-45
 uses-feature#android.hardware.microphone
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:18:5-64
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:19:5-64
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:18:19-61
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:19:19-61
 uses-feature#android.hardware.screen.portrait
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:19:5-69
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:20:5-69
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:19:19-66
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:20:19-66
+uses-permission#android.permission.VIBRATE
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:22:5-66
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:22:22-63
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:21:5-76
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:23:5-76
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:21:22-73
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:23:22-73
+uses-permission#android.permission.CAMERA
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:24:5-65
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:24:22-62
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:22:5-79
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:25:5-79
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:22:22-76
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:25:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:23:5-81
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:26:5-81
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:23:22-78
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:26:22-78
 uses-permission#android.permission.INTERNET
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:24:5-67
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:27:5-67
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:24:22-64
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:27:22-64
 uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:25:5-76
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:28:5-76
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:25:22-73
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:28:22-73
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:26:5-79
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:29:5-79
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:26:22-76
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:29:22-76
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:27:5-81
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:31:5-81
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:27:22-78
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:31:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:28:5-80
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:32:5-80
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:28:22-77
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:32:22-77
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:29:5-71
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:33:5-71
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:29:22-68
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:33:22-68
 uses-permission#android.permission.READ_CONTACTS
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:30:5-72
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:34:5-72
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:30:22-69
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:34:22-69
 uses-permission#android.permission.READ_PROFILE
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:31:5-71
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:35:5-71
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:31:22-68
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:35:22-68
 uses-permission#android.permission.BLUETOOTH
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:32:5-68
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:36:5-68
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:32:22-65
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:36:22-65
 uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:33:5-80
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:37:5-80
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:33:22-77
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:37:22-77
 uses-permission#android.permission.BROADCAST_STICKY
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:34:5-75
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:34:22-72
-uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:35:5-74
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:35:22-71
-uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:36:5-81
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:36:22-78
-uses-permission#android.permission.WAKE_LOCK
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:37:5-68
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:37:22-65
-uses-permission#android.permission.READ_PHONE_STATE
 ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:38:5-75
 	android:name
 		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:38:22-72
-uses-permission#android.permission.PROCESS_OUTGOING_CALLS
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:39:5-81
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:39:5-74
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:39:22-78
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:39:22-71
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:40:5-81
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:40:22-78
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:41:5-68
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:41:22-65
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:42:5-75
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:42:22-72
+uses-permission#android.permission.CHANGE_NETWORK_STATE
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:43:5-79
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:43:22-76
+uses-permission#android.permission.MODIFY_PHONE_STATE
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:44:5-46:47
+	tools:ignore
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:46:9-44
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:45:9-61
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:47:5-49:47
+	tools:ignore
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:49:9-44
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:48:9-57
 uses-permission#android.permission.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:40:5-101
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:51:5-101
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:40:22-98
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:51:22-98
 uses-permission#android.permission.ACCESS_NOTIFICATION_POLICY
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:41:5-85
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:52:5-85
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:41:22-82
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:52:22-82
 application
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:43:5-150:19
-MERGED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:25:5-29:19
-MERGED from [com.github.clans:fab:1.6.4] /home/m2/.gradle/caches/transforms-1/files-1.1/fab-1.6.4.aar/0cbd53ddb2d027f9e978b8fc87ddefab/AndroidManifest.xml:12:5-20
-MERGED from [com.github.clans:fab:1.6.4] /home/m2/.gradle/caches/transforms-1/files-1.1/fab-1.6.4.aar/0cbd53ddb2d027f9e978b8fc87ddefab/AndroidManifest.xml:12:5-20
-MERGED from [com.android.support:appcompat-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:appcompat-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/AndroidManifest.xml:25:5-29:19
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:54:5-184:19
+MERGED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:appcompat-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/6331470f9c4c52fa47fae7ac51bc2ceb/AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/6331470f9c4c52fa47fae7ac51bc2ceb/AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:transition:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.0.0.aar/374466809818ee1ae7daa4397d928371/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:transition:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.0.0.aar/374466809818ee1ae7daa4397d928371/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-v4:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.0.0.aar/ddcda51803ed5816211fcc33691ccae8/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-v4:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.0.0.aar/ddcda51803ed5816211fcc33691ccae8/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:recyclerview-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.0.0.aar/6b5f97fa02ec231d0a82817d3de726d2/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:recyclerview-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.0.0.aar/6b5f97fa02ec231d0a82817d3de726d2/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:animated-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.0.0.aar/274fe71864feea0971f90bdbbb037551/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:animated-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.0.0.aar/274fe71864feea0971f90bdbbb037551/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.0.0.aar/b34f4a244f839cf41522e40c0a4b4b5f/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.0.0.aar/b34f4a244f839cf41522e40c0a4b4b5f/AndroidManifest.xml:22:5-26:19
-MERGED from [com.android.support:support-media-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.0.0.aar/3b3511f774bcb73a3b9aafc61b6cda5b/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-media-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.0.0.aar/3b3511f774bcb73a3b9aafc61b6cda5b/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-fragment:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.0.0.aar/e142caebfed456dc51124c038800da7f/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-fragment:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.0.0.aar/e142caebfed456dc51124c038800da7f/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-utils:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.0.0.aar/693129dd567c281e2fd7df2cd270fc2e/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-utils:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.0.0.aar/693129dd567c281e2fd7df2cd270fc2e/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-ui:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.0.0.aar/4ac3c80342a84368d19d209a475fb2ba/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-core-ui:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.0.0.aar/4ac3c80342a84368d19d209a475fb2ba/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.0.0.aar/e30a05c31cebd2b8dc9ad9fbd9c67c29/AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support:support-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.0.0.aar/e30a05c31cebd2b8dc9ad9fbd9c67c29/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:transition:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/936ebaf17da1645b5f259a5116275036/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:transition:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/936ebaf17da1645b5f259a5116275036/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8eced1ec2c4f7b4778916b79e1526e92/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8eced1ec2c4f7b4778916b79e1526e92/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/c19647e0c3aebf7fdb3fb83dd9be1e08/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/c19647e0c3aebf7fdb3fb83dd9be1e08/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/e75b9ba3d168a65db5cbb0d1e48956ea/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/e75b9ba3d168a65db5cbb0d1e48956ea/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93e12b451d6c91d4cc8d4544c5484eed/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93e12b451d6c91d4cc8d4544c5484eed/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-fragment:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/5f2c1cc2d5d0367786d1f818d91e9596/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/5f2c1cc2d5d0367786d1f818d91e9596/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/5a9878b60d6722c94ebc0c4b81ba6c53/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/5a9878b60d6722c94ebc0c4b81ba6c53/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/c750e642ccd817d90d2ebc175ba17966/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/c750e642ccd817d90d2ebc175ba17966/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/78a603e1e8cd7bc35d85b87c61bfc924/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/78a603e1e8cd7bc35d85b87c61bfc924/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/49b73fb7b682759b2057b4d4ff2214aa/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/49b73fb7b682759b2057b4d4ff2214aa/AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5345b73ff6378bbf5bb29a0c48275f26/AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5345b73ff6378bbf5bb29a0c48275f26/AndroidManifest.xml:24:5-28:19
 	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:47:9-41
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:58:9-41
+	android:largeHeap
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:59:9-33
 	android:icon
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:46:9-45
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:57:9-45
 	android:allowBackup
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:45:9-35
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:56:9-35
 	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:48:9-40
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:60:9-40
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:44:9-38
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:55:9-38
 activity#com.olympus.dmmobile.SplashscreenActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:49:9-58:20
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:61:9-72:20
 	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:52:13-49
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:65:13-49
 	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:51:13-45
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:63:13-45
+	android:launchMode
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:64:13-43
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:66:13-43
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:50:13-49
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:62:13-49
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:53:13-57:29
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:67:13-71:29
 action#android.intent.action.MAIN
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:54:17-69
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:68:17-69
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:54:25-66
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:68:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:56:17-77
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:70:17-77
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:56:27-74
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:70:27-74
 activity#com.olympus.dmmobile.DMActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:59:9-63:61
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:73:9-79:53
 	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:63:13-49
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:78:13-49
 	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:61:13-45
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:75:13-45
 	android:launchMode
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:62:13-43
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:60:13-39
-activity#com.olympus.dmmobile.settings.SettingsActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:64:9-69:67
-	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:68:13-49
-	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:66:13-45
-	android:launchMode
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:67:13-43
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:77:13-43
 	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:69:13-55
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:65:13-54
-activity#com.olympus.dmmobile.DictationPropertyActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:70:9-76:64
-	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:75:13-49
-	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:73:13-45
-	android:launchMode
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:74:13-43
-	android:windowSoftInputMode
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:76:13-52
-	android:configChanges
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:72:13-48
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:71:13-54
-service#com.olympus.dmmobile.Errorservice
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:78:9-80:56
-	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:80:13-45
-	android:name
 		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:79:13-41
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:74:13-39
+activity#com.olympus.dmmobile.settings.SettingsActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:80:9-85:58
+	android:screenOrientation
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:84:13-49
+	android:label
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:82:13-45
+	android:launchMode
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:83:13-43
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:85:13-46
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:81:13-54
+activity#com.olympus.dmmobile.DictationPropertyActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:86:9-94:64
+	android:screenOrientation
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:92:13-49
+	android:label
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:90:13-45
+	android:launchMode
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:91:13-43
+	android:windowSoftInputMode
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:94:13-52
+	android:configChanges
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:88:13-48
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:93:13-46
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:87:13-54
 activity#com.olympus.dmmobile.flashair.FlashAirMain
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:82:9-85:61
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:100:9-103:61
 	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:85:13-49
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:103:13-49
 	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:84:13-45
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:102:13-45
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:83:13-50
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:101:13-50
 activity#com.olympus.dmmobile.flashair.FlashAirBrowser
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:86:9-88:61
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:104:9-106:61
 	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:88:13-49
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:106:13-49
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:87:13-53
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:105:13-53
 activity#com.olympus.dmmobile.settings.WorktypeActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:89:9-92:58
-	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:91:13-49
-	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:92:13-46
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:90:13-54
-activity#com.olympus.dmmobile.settings.EmailOptionsActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:93:9-96:58
-	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:95:13-49
-	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:96:13-46
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:94:13-58
-activity#com.olympus.dmmobile.settings.ServerOptionsActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:97:9-100:58
-	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:99:13-49
-	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:100:13-46
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:98:13-59
-activity#com.olympus.dmmobile.settings.LegalNoticesActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:101:9-105:58
-	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:104:13-49
-	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:103:13-56
-	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:105:13-46
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:102:13-58
-activity#com.olympus.dmmobile.settings.LegalnoticeActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:106:9-110:58
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:107:9-110:75
 	android:screenOrientation
 		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:109:13-49
-	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:108:13-56
 	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:110:13-46
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:110:13-63
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:107:13-57
-activity#com.olympus.dmmobile.settings.ThirdpartySoftware
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:108:13-54
+activity#com.olympus.dmmobile.settings.EmailOptionsActivity
 ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:111:9-114:58
 	android:screenOrientation
 		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:113:13-49
 	android:theme
 		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:114:13-46
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:112:13-56
-activity#com.olympus.dmmobile.recorder.DictateActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:115:9-118:61
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:112:13-58
+activity#com.olympus.dmmobile.settings.ServerOptionsActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:115:9-118:58
 	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:118:13-49
-	android:launchMode
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:117:13-43
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:116:13-53
-activity#com.olympus.dmmobile.settings.TrademarkActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:119:9-122:58
-	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:121:13-49
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:117:13-49
 	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:122:13-46
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:118:13-46
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:120:13-55
-activity#com.olympus.dmmobile.settings.NoSdcard
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:123:9-125:61
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:116:13-59
+activity#com.olympus.dmmobile.settings.LegalNoticesActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:119:9-123:58
 	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:125:13-49
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:124:13-46
-activity#com.olympus.dmmobile.settings.SplashActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:126:9-128:61
-	android:screenOrientation
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:128:13-49
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:127:13-52
-service#com.olympus.dmmobile.ConvertAndUploadService
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:130:9-68
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:130:18-57
-activity#com.olympus.dmmobile.CustomDialog
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:132:9-134:84
-	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:134:13-72
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:133:13-41
-activity#com.olympus.dmmobile.CustomLaunchDialog
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:135:9-137:84
-	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:137:13-72
-	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:136:13-47
-activity#com.olympus.dmmobile.settings.RecipientActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:138:9-142:67
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:122:13-49
 	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:140:13-52
-	android:launchMode
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:141:13-43
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:121:13-56
 	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:142:13-55
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:123:13-46
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:120:13-58
+activity#com.olympus.dmmobile.settings.LegalnoticeActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:124:9-128:58
+	android:screenOrientation
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:127:13-49
+	android:label
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:126:13-56
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:128:13-46
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:125:13-57
+activity#com.olympus.dmmobile.settings.ThirdpartySoftware
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:129:9-132:58
+	android:screenOrientation
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:131:13-49
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:132:13-46
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:130:13-56
+activity#com.olympus.dmmobile.recorder.DictateActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:133:9-137:58
+	android:screenOrientation
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:136:13-49
+	android:launchMode
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:135:13-43
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:137:13-46
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:134:13-53
+activity#com.olympus.dmmobile.settings.TrademarkActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:138:9-141:58
+	android:screenOrientation
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:140:13-49
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:141:13-46
 	android:name
 		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:139:13-55
-activity#com.olympus.dmmobile.settings.AddRecipientActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:143:9-146:67
-	android:launchMode
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:145:13-43
-	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:146:13-55
+activity#com.olympus.dmmobile.settings.NoSdcard
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:142:9-144:61
+	android:screenOrientation
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:144:13-49
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:144:13-58
-activity#com.olympus.dmmobile.settings.PrivacyPolicyActivity
-ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:147:9-149:67
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:143:13-46
+activity#com.olympus.dmmobile.settings.SplashActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:145:9-147:61
+	android:screenOrientation
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:147:13-49
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:146:13-52
+service#com.olympus.dmmobile.ConvertAndUploadService
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:149:9-151:52
+	android:stopWithTask
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:151:13-41
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:150:13-52
+activity#com.olympus.dmmobile.CustomDialog
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:153:9-155:84
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:155:13-72
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:154:13-41
+activity#com.olympus.dmmobile.CustomLaunchDialog
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:156:9-158:84
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:158:13-72
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:157:13-47
+activity#com.olympus.dmmobile.settings.RecipientActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:159:9-163:65
 	android:label
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:148:13-57
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:161:13-52
+	android:launchMode
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:162:13-43
 	android:theme
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:149:13-55
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:163:13-53
 	android:name
-		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:147:19-65
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:160:13-55
+activity#com.olympus.dmmobile.settings.AddRecipientActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:164:9-167:67
+	android:launchMode
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:166:13-43
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:167:13-55
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:165:13-58
+activity#com.olympus.dmmobile.settings.PrivacyPolicyActivity
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:168:9-171:67
+	android:label
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:170:13-57
+	android:theme
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:171:13-55
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:169:13-59
+provider#android.support.v4.content.FileProvider
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:173:9-183:20
+	android:grantUriPermissions
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:177:13-47
+	android:authorities
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:175:13-64
+	android:exported
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:176:13-37
+	tools:replace
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:178:13-48
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:174:13-67
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:179:13-182:52
+	android:resource
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:181:17-54
+	tools:replace
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:182:17-49
+	android:name
+		ADDED from /home/m2/AndroidStudioProjects/OlympusDictation/app/src/main/AndroidManifest.xml:180:17-67
 meta-data#android.support.VERSION
-ADDED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:appcompat-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:appcompat-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.0.aar/5864f22f165f9f8a1d162a8a4dc7ab11/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:transition:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.0.0.aar/374466809818ee1ae7daa4397d928371/AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:transition:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.0.0.aar/374466809818ee1ae7daa4397d928371/AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:support-v4:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.0.0.aar/ddcda51803ed5816211fcc33691ccae8/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-v4:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.0.0.aar/ddcda51803ed5816211fcc33691ccae8/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:recyclerview-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.0.0.aar/6b5f97fa02ec231d0a82817d3de726d2/AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:recyclerview-v7:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.0.0.aar/6b5f97fa02ec231d0a82817d3de726d2/AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:animated-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.0.0.aar/274fe71864feea0971f90bdbbb037551/AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:animated-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.0.0.aar/274fe71864feea0971f90bdbbb037551/AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:support-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.0.0.aar/b34f4a244f839cf41522e40c0a4b4b5f/AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:support-vector-drawable:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.0.0.aar/b34f4a244f839cf41522e40c0a4b4b5f/AndroidManifest.xml:23:9-25:38
-MERGED from [com.android.support:support-media-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.0.0.aar/3b3511f774bcb73a3b9aafc61b6cda5b/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-media-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.0.0.aar/3b3511f774bcb73a3b9aafc61b6cda5b/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-fragment:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.0.0.aar/e142caebfed456dc51124c038800da7f/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-fragment:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.0.0.aar/e142caebfed456dc51124c038800da7f/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-utils:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.0.0.aar/693129dd567c281e2fd7df2cd270fc2e/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-utils:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.0.0.aar/693129dd567c281e2fd7df2cd270fc2e/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-ui:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.0.0.aar/4ac3c80342a84368d19d209a475fb2ba/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-core-ui:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.0.0.aar/4ac3c80342a84368d19d209a475fb2ba/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.0.0.aar/e30a05c31cebd2b8dc9ad9fbd9c67c29/AndroidManifest.xml:26:9-28:38
-MERGED from [com.android.support:support-compat:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.0.0.aar/e30a05c31cebd2b8dc9ad9fbd9c67c29/AndroidManifest.xml:26:9-28:38
+ADDED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:appcompat-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/630ae59ce23b0402eae1a7bcf90f6c95/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:transition:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/936ebaf17da1645b5f259a5116275036/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:transition:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/transition-26.1.0.aar/936ebaf17da1645b5f259a5116275036/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-v4:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8eced1ec2c4f7b4778916b79e1526e92/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-v4:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/8eced1ec2c4f7b4778916b79e1526e92/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/c19647e0c3aebf7fdb3fb83dd9be1e08/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:recyclerview-v7:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/c19647e0c3aebf7fdb3fb83dd9be1e08/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/e75b9ba3d168a65db5cbb0d1e48956ea/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:animated-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/e75b9ba3d168a65db5cbb0d1e48956ea/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93e12b451d6c91d4cc8d4544c5484eed/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-vector-drawable:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/93e12b451d6c91d4cc8d4544c5484eed/AndroidManifest.xml:23:9-25:38
+MERGED from [com.android.support:support-fragment:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/5f2c1cc2d5d0367786d1f818d91e9596/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/5f2c1cc2d5d0367786d1f818d91e9596/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/5a9878b60d6722c94ebc0c4b81ba6c53/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/5a9878b60d6722c94ebc0c4b81ba6c53/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/c750e642ccd817d90d2ebc175ba17966/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/c750e642ccd817d90d2ebc175ba17966/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/78a603e1e8cd7bc35d85b87c61bfc924/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/78a603e1e8cd7bc35d85b87c61bfc924/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/49b73fb7b682759b2057b4d4ff2214aa/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/49b73fb7b682759b2057b4d4ff2214aa/AndroidManifest.xml:26:9-28:38
 	android:value
-		ADDED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:28:13-35
+		ADDED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:28:13-35
 	android:name
-		ADDED from [com.android.support:design:26.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.0.0.aar/8842d71b0a05c8d8e7acd8e4bd8472ce/AndroidManifest.xml:27:13-51
+		ADDED from [com.android.support:design:26.1.0] /home/m2/.gradle/caches/transforms-1/files-1.1/design-26.1.0.aar/34f742090bbb9f5b7bf0d84fce0b3d8e/AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5345b73ff6378bbf5bb29a0c48275f26/AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5345b73ff6378bbf5bb29a0c48275f26/AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/m2/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5345b73ff6378bbf5bb29a0c48275f26/AndroidManifest.xml:26:13-58

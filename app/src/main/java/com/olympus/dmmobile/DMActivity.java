@@ -272,7 +272,7 @@ public class DMActivity extends FragmentActivity implements
 
 
         isNetworkAvailable();
-        isOnline();
+
         SharedPreferences sharedPref = PreferenceManager
                 .getDefaultSharedPreferences(this);
         int buildVersion = Build.VERSION.SDK_INT;
@@ -491,7 +491,7 @@ public class DMActivity extends FragmentActivity implements
 
         super.onResume();
 
-
+        System.gc();
         Cursor outBoxDictation = mDbHandler
                 .getOutboxDictationsToEnableSendAll();
         if (mDbHandler != null || outBoxDictation != null) {
@@ -499,8 +499,7 @@ public class DMActivity extends FragmentActivity implements
             mDbHandler.close();
         }
 
-        isNetworkAvailable();
-        isOnline();
+        //isNetworkAvailable();
 
         try {
             setCurrentLanguage(dmApplication.getCurrentLanguage());
@@ -2189,18 +2188,24 @@ public class DMActivity extends FragmentActivity implements
 
         @Override
         protected void onPreExecute() {
-            dialog = new Dialog(DMActivity.this);
-            dialog.setTitle(getString(R.string.Dictate_Alert_File_Conversion));
-            dialog.setCancelable(false);
-            dialog.setContentView(R.layout.amr_sending_dialog);
-            txtvAMRFileName = (TextView) dialog
-                    .findViewById(R.id.txtvAmrFileName);
-            txtvMessage = (TextView) dialog.findViewById(R.id.txtvMessage);
-            txtvMessage
-                    .setText(getString(R.string.Dictate_Alert_Compress_Recording_Background_message));
+            try {
+                dialog = new Dialog(DMActivity.this);
+                dialog.setTitle(getString(R.string.Dictate_Alert_File_Conversion));
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.amr_sending_dialog);
+                txtvAMRFileName = (TextView) dialog
+                        .findViewById(R.id.txtvAmrFileName);
+                txtvMessage = (TextView) dialog.findViewById(R.id.txtvMessage);
+                txtvMessage
+                        .setText(getString(R.string.Dictate_Alert_Compress_Recording_Background_message));
+                if (dialog != null) {
+                    dialog.show();
+                }
 
-            dialog.show();
-            Log.d("sendVia email", "thread in pre execution");
+                Log.d("sendVia email", "thread in pre execution");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
@@ -2335,33 +2340,44 @@ public class DMActivity extends FragmentActivity implements
         @Override
         protected void onPostExecute(Void result) {
             Log.d("sendVia email", "thread in post execution");
-            if (dialog.isShowing())
-                dialog.dismiss();
-            if (!hasNoMemory) {
-                if (conversionFailed)
-                    onConvertionFailed();
-                else if (removedCards.size() > 0)
-                    onFileMissing(removedCards);
-                else if (dictationCards.size() > 0)
-                    shareViaEmail();
-            } else {
-                /*
-                 * Alert when their memory has not available.
-                 */
-                file = null;
-                mAlertDialog = new AlertDialog.Builder(DMActivity.this)
-                        .create();
-                mAlertDialog.setTitle(getString(R.string.Dictate_No_Space));
-                mAlertDialog.setMessage(getString(R.string.Dictate_Low_Memory));
-                mAlertDialog.setButton(getString(R.string.Dictate_Alert_Ok),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                dialog.cancel();
-                            }
-                        });
-                mAlertDialog.show();
+            try {
+                if (DMActivity.this.isDestroyed()) {
+                    dialog.dismiss();
+                    return;
+                }
+
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                    dialog = null;
+                }
+                if (!hasNoMemory) {
+                    if (conversionFailed)
+                        onConvertionFailed();
+                    else if (removedCards.size() > 0)
+                        onFileMissing(removedCards);
+                    else if (dictationCards.size() > 0)
+                        shareViaEmail();
+                } else {
+                    /*
+                     * Alert when their memory has not available.
+                     */
+                    file = null;
+                    mAlertDialog = new AlertDialog.Builder(DMActivity.this)
+                            .create();
+                    mAlertDialog.setTitle(getString(R.string.Dictate_No_Space));
+                    mAlertDialog.setMessage(getString(R.string.Dictate_Low_Memory));
+                    mAlertDialog.setButton(getString(R.string.Dictate_Alert_Ok),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                    mAlertDialog.show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             System.gc();
         }
@@ -2736,11 +2752,13 @@ public class DMActivity extends FragmentActivity implements
 
     @Override
     protected void onPause() {
-
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
         DMApplication.COMINGFROM = "flash_air_no";
         if (dialog != null)
             dialog.dismiss();
-
+        System.gc();
         super.onPause();
     }
 
@@ -3207,8 +3225,7 @@ public class DMActivity extends FragmentActivity implements
             }
         }
 
-            ActivityCompat.requestPermissions(this, stringPerm, 1);
-
+        ActivityCompat.requestPermissions(this, stringPerm, 1);
 
 
         return check;
@@ -3294,52 +3311,60 @@ public class DMActivity extends FragmentActivity implements
 
     private Boolean isNetworkAvailable() {
         boolean isonline = false;
-        final ConnectivityManager connection_manager =
-                (ConnectivityManager) this.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        try {
+
+            final ConnectivityManager connection_manager =
+                    (ConnectivityManager) this.getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 //        Log.d("networkindConnect", activeNetworkInfo.getTypeName().toString());
-        if (activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting()) {
-            isonline = isOnline();
-            if (isonline && activeNetworkInfo.getTypeName().toString().equalsIgnoreCase("MOBILE")) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    NetworkRequest.Builder request = new NetworkRequest.Builder();
-                    request.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR);
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting()) {
+                isonline = isOnline();
+                if (isonline && activeNetworkInfo.getTypeName().toString().equalsIgnoreCase("MOBILE")) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        NetworkRequest.Builder request = new NetworkRequest.Builder();
+                        request.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR);
 
-                    connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
+                        connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
 
-                        @Override
-                        public void onAvailable(Network network) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                connection_manager.bindProcessToNetwork(network);
+                            @Override
+                            public void onAvailable(Network network) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    connection_manager.bindProcessToNetwork(network);
 
-                            } else {
-                                ConnectivityManager.setProcessDefaultNetwork(network);
+                                } else {
+                                    ConnectivityManager.setProcessDefaultNetwork(network);
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+                }
+                if (isonline && activeNetworkInfo.getTypeName().toString().equalsIgnoreCase("WIFI")) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        NetworkRequest.Builder request = new NetworkRequest.Builder();
+                        request.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR);
+
+                        connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
+
+                            @Override
+                            public void onAvailable(Network network) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    connection_manager.bindProcessToNetwork(network);
+
+                                } else {
+                                    ConnectivityManager.setProcessDefaultNetwork(network);
+                                }
+                            }
+                        });
+                    }
                 }
             }
-            if (isonline && activeNetworkInfo.getTypeName().toString().equalsIgnoreCase("WIFI")) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    NetworkRequest.Builder request = new NetworkRequest.Builder();
-                    request.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR);
 
-                    connection_manager.registerNetworkCallback(request.build(), new ConnectivityManager.NetworkCallback() {
-
-                        @Override
-                        public void onAvailable(Network network) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                connection_manager.bindProcessToNetwork(network);
-
-                            } else {
-                                ConnectivityManager.setProcessDefaultNetwork(network);
-                            }
-                        }
-                    });
-                }
-            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return isonline;
     }
